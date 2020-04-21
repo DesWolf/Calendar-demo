@@ -9,7 +9,7 @@
 import UIKit
 import CVCalendar
 
-class ViewController: UIViewController {
+class CalendarVC: UIViewController {
     
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
@@ -32,7 +32,7 @@ class ViewController: UIViewController {
     
     
 }
-extension ViewController: CVCalendarMenuViewDelegate, CVCalendarViewDelegate {
+extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate {
     func presentationMode() -> CalendarMode {
         return CalendarMode.monthView
     }
@@ -54,7 +54,9 @@ extension ViewController: CVCalendarMenuViewDelegate, CVCalendarViewDelegate {
 //    func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
 //        return 
 //    }
-
+    func shouldSelectDayView(_ dayView: DayView) -> Bool {
+        return true
+    }
     
     func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
         
