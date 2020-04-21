@@ -32,7 +32,7 @@ class CalendarVC: UIViewController {
     
     
 }
-extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate {
+extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
     func presentationMode() -> CalendarMode {
         return CalendarMode.monthView
     }
@@ -49,15 +49,27 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate {
         return false
     }
     func dotMarker(colorOnDayView dayView: DayView) -> [UIColor]{
-        return [UIColor.black]
+        return [UIColor.red]
     }
-//    func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
-//        return 
-//    }
-    func shouldSelectDayView(_ dayView: DayView) -> Bool {
-        return true
+    func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
+        return CGFloat(5)
     }
+
+    func preliminaryView(viewOnDayView dayView: DayView) -> UIView {
+           let circleView = CVAuxiliaryView(dayView: dayView, rect: dayView.frame, shape: CVShape.circle)
+        circleView.fillColor = .green
+           return circleView
+       }
+    func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
+            if(datesDictionary[dayView.date.commonDescription] != nil){
+                return true
+            }
+            return false
+        }
     
+    
+
+
     func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
         
         dayTextView.text = ""
@@ -69,4 +81,21 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate {
     
     
     
+}
+
+extension CalendarVC: CVCalendarViewAppearanceDelegate {
+
+    // не работает смена шрифта
+    func dayLabelColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
+         switch (weekDay, status, present) {
+         case (_, .selected, _), (_, .highlighted, _): return ColorsConfig.selectedText
+         case (.sunday, .in, _): return ColorsConfig.sundayText
+         case (.sunday, _, _): return ColorsConfig.sundayTextDisabled
+         case (_, .in, _): return ColorsConfig.text
+//         case (.sunday, .disabled, _): return .red
+         default: return ColorsConfig.textDisabled
+         }
+     }
+    
+
 }

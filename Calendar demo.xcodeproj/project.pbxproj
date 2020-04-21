@@ -12,10 +12,16 @@
 		9E0A5E20244F26CE00188CDE /* ContactsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E1F244F26CE00188CDE /* ContactsVC.swift */; };
 		9E0A5E25244F271F00188CDE /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E24244F271F00188CDE /* StatisticsVC.swift */; };
 		9E0A5E27244F272F00188CDE /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E26244F272F00188CDE /* SettingsVC.swift */; };
+		9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E28244F39C000188CDE /* ColorsConfig.swift */; };
+		9E0A5E2B244F3FC200188CDE /* DetailedDayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2A244F3FC200188CDE /* DetailedDayVC.swift */; };
+		9E0A5E2E244F410900188CDE /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2D244F410900188CDE /* StudentModel.swift */; };
+		9E0A5E30244F411400188CDE /* MeetingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2F244F411400188CDE /* MeetingModel.swift */; };
+		9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631936244F4781007DE5F1 /* MeetingCell.swift */; };
+		9E631939244F50B4007DE5F1 /* ChangeMeetingVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631938244F50B4007DE5F1 /* ChangeMeetingVC.swift */; };
+		9E63193A244F6101007DE5F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B4244D92AB00FA529B /* Main.storyboard */; };
 		9E7A73AF244D92AB00FA529B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A73AE244D92AB00FA529B /* AppDelegate.swift */; };
 		9E7A73B1244D92AB00FA529B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A73B0244D92AB00FA529B /* SceneDelegate.swift */; };
 		9E7A73B3244D92AB00FA529B /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A73B2244D92AB00FA529B /* CalendarVC.swift */; };
-		9E7A73B6244D92AB00FA529B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B4244D92AB00FA529B /* Main.storyboard */; };
 		9E7A73B8244D92AC00FA529B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B7244D92AC00FA529B /* Assets.xcassets */; };
 		9E7A73BB244D92AC00FA529B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B9244D92AC00FA529B /* LaunchScreen.storyboard */; };
 		9E7A73C3244DE51E00FA529B /* LoginVCCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A73C2244DE51E00FA529B /* LoginVCCode.swift */; };
@@ -31,6 +37,12 @@
 		9E0A5E1F244F26CE00188CDE /* ContactsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsVC.swift; sourceTree = "<group>"; };
 		9E0A5E24244F271F00188CDE /* StatisticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsVC.swift; sourceTree = "<group>"; };
 		9E0A5E26244F272F00188CDE /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		9E0A5E28244F39C000188CDE /* ColorsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsConfig.swift; sourceTree = "<group>"; };
+		9E0A5E2A244F3FC200188CDE /* DetailedDayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedDayVC.swift; sourceTree = "<group>"; };
+		9E0A5E2D244F410900188CDE /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
+		9E0A5E2F244F411400188CDE /* MeetingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingModel.swift; sourceTree = "<group>"; };
+		9E631936244F4781007DE5F1 /* MeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCell.swift; sourceTree = "<group>"; };
+		9E631938244F50B4007DE5F1 /* ChangeMeetingVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChangeMeetingVC.swift; sourceTree = "<group>"; };
 		9E7A73AB244D92AB00FA529B /* Calendar demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calendar demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7A73AE244D92AB00FA529B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7A73B0244D92AB00FA529B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -83,6 +95,7 @@
 				9E7A73B0244D92AB00FA529B /* SceneDelegate.swift */,
 				9E7A73B4244D92AB00FA529B /* Main.storyboard */,
 				9E7A73B9244D92AC00FA529B /* LaunchScreen.storyboard */,
+				9E0A5E2D244F410900188CDE /* StudentModel.swift */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -90,7 +103,9 @@
 		9E0A5E1D244F26A500188CDE /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				9E631938244F50B4007DE5F1 /* ChangeMeetingVC.swift */,
 				9E7A73B2244D92AB00FA529B /* CalendarVC.swift */,
+				9E0A5E28244F39C000188CDE /* ColorsConfig.swift */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -128,6 +143,16 @@
 			path = Statistics;
 			sourceTree = "<group>";
 		};
+		9E0A5E2C244F3FC800188CDE /* DetailedDay */ = {
+			isa = PBXGroup;
+			children = (
+				9E0A5E2F244F411400188CDE /* MeetingModel.swift */,
+				9E0A5E2A244F3FC200188CDE /* DetailedDayVC.swift */,
+				9E631936244F4781007DE5F1 /* MeetingCell.swift */,
+			);
+			path = DetailedDay;
+			sourceTree = "<group>";
+		};
 		9E7A73A2244D92AB00FA529B = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +175,7 @@
 			isa = PBXGroup;
 			children = (
 				9E0A5E1C244F268900188CDE /* App */,
+				9E0A5E2C244F3FC800188CDE /* DetailedDay */,
 				9E0A5E1D244F26A500188CDE /* Calendar */,
 				9E0A5E1B244F265F00188CDE /* Enter */,
 				9E0A5E21244F26D300188CDE /* Contacts */,
@@ -228,9 +254,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E63193A244F6101007DE5F1 /* Main.storyboard in Resources */,
 				9E7A73BB244D92AC00FA529B /* LaunchScreen.storyboard in Resources */,
 				9E7A73B8244D92AC00FA529B /* Assets.xcassets in Resources */,
-				9E7A73B6244D92AB00FA529B /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -284,14 +310,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E7A73B3244D92AB00FA529B /* CalendarVC.swift in Sources */,
+				9E0A5E30244F411400188CDE /* MeetingModel.swift in Sources */,
 				9E7A73AF244D92AB00FA529B /* AppDelegate.swift in Sources */,
 				9E0A5E18244ED4AD00188CDE /* LoginVC.swift in Sources */,
+				9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */,
 				9E0A5E20244F26CE00188CDE /* ContactsVC.swift in Sources */,
 				9E7A73C3244DE51E00FA529B /* LoginVCCode.swift in Sources */,
+				9E0A5E2B244F3FC200188CDE /* DetailedDayVC.swift in Sources */,
+				9E631939244F50B4007DE5F1 /* ChangeMeetingVC.swift in Sources */,
+				9E0A5E2E244F410900188CDE /* StudentModel.swift in Sources */,
 				9E0A5E25244F271F00188CDE /* StatisticsVC.swift in Sources */,
 				9E7A73B1244D92AB00FA529B /* SceneDelegate.swift in Sources */,
 				9E0A5E1A244ED78500188CDE /* EnterVC.swift in Sources */,
 				9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */,
+				9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */,
 				9E0A5E27244F272F00188CDE /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,7 +471,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WJR74JV9LN;
-				INFOPLIST_FILE = "Calendar demo/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Calendar demo/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -458,7 +490,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WJR74JV9LN;
-				INFOPLIST_FILE = "Calendar demo/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Calendar demo/Support/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
