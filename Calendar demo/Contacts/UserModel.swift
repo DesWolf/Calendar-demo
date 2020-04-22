@@ -7,3 +7,8 @@
 //
 
 import Foundation
+
+struct Users: Decodable {
+    let id: Int
+    let name: String
+}

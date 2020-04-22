@@ -17,10 +17,7 @@ class DetailedDayVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        meetings.append(MeetingModel(meetingDate: "12:00", studentName: "ВасЯ", studentSurname: "Петров"))
-        meetings.append(MeetingModel(meetingDate: "16:00", studentName: "Оля", studentSurname: "Свиридова"))
-        meetings.append(MeetingModel(meetingDate: "18:00", studentName: "Хрен", studentSurname: "С горы"))
-        
+
         tableView.reloadData()
     }
     

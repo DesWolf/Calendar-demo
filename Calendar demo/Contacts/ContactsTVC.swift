@@ -8,14 +8,21 @@
 
 import UIKit
 
-class ContactsVC: UIViewController {
+class ContactsTVC: UITableViewController {
 
+    var users = [Users]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
     }
     
+    @IBAction func didTapAdd() {
+        let kilo = Users(id: 55, name: "Kilo Loco")
+        print(kilo)
+    }
+   
+    numberOfRowInSection
 
     /*
     // MARK: - Navigation
