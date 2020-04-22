@@ -14,9 +14,10 @@
 		9E0A5E27244F272F00188CDE /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E26244F272F00188CDE /* SettingsVC.swift */; };
 		9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E28244F39C000188CDE /* ColorsConfig.swift */; };
 		9E0A5E2B244F3FC200188CDE /* DetailedDayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2A244F3FC200188CDE /* DetailedDayVC.swift */; };
-		9E0A5E2E244F410900188CDE /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2D244F410900188CDE /* UserModel.swift */; };
+		9E0A5E2E244F410900188CDE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2D244F410900188CDE /* User.swift */; };
 		9E0A5E30244F411400188CDE /* MeetingModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2F244F411400188CDE /* MeetingModel.swift */; };
 		9E1B583C2450960300C35165 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1B583B2450960300C35165 /* Network.swift */; };
+		9E36D04924509EE200B3A83A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36D04824509EE200B3A83A /* UserService.swift */; };
 		9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631936244F4781007DE5F1 /* MeetingCell.swift */; };
 		9E631939244F50B4007DE5F1 /* AddMeetingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631938244F50B4007DE5F1 /* AddMeetingTVC.swift */; };
 		9E63193A244F6101007DE5F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B4244D92AB00FA529B /* Main.storyboard */; };
@@ -40,9 +41,10 @@
 		9E0A5E26244F272F00188CDE /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		9E0A5E28244F39C000188CDE /* ColorsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsConfig.swift; sourceTree = "<group>"; };
 		9E0A5E2A244F3FC200188CDE /* DetailedDayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedDayVC.swift; sourceTree = "<group>"; };
-		9E0A5E2D244F410900188CDE /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
+		9E0A5E2D244F410900188CDE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		9E0A5E2F244F411400188CDE /* MeetingModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingModel.swift; sourceTree = "<group>"; };
 		9E1B583B2450960300C35165 /* Network.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
+		9E36D04824509EE200B3A83A /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		9E631936244F4781007DE5F1 /* MeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCell.swift; sourceTree = "<group>"; };
 		9E631938244F50B4007DE5F1 /* AddMeetingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeetingTVC.swift; sourceTree = "<group>"; };
 		9E7A73AB244D92AB00FA529B /* Calendar demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calendar demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -124,8 +126,9 @@
 		9E0A5E21244F26D300188CDE /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				9E0A5E2D244F410900188CDE /* UserModel.swift */,
+				9E0A5E2D244F410900188CDE /* User.swift */,
 				9E0A5E1F244F26CE00188CDE /* ContactsTVC.swift */,
+				9E36D04824509EE200B3A83A /* UserService.swift */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -322,6 +325,7 @@
 			files = (
 				9E7A73B3244D92AB00FA529B /* CalendarVC.swift in Sources */,
 				9E0A5E30244F411400188CDE /* MeetingModel.swift in Sources */,
+				9E36D04924509EE200B3A83A /* UserService.swift in Sources */,
 				9E7A73AF244D92AB00FA529B /* AppDelegate.swift in Sources */,
 				9E0A5E18244ED4AD00188CDE /* LoginVC.swift in Sources */,
 				9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */,
@@ -329,7 +333,7 @@
 				9E7A73C3244DE51E00FA529B /* LoginVCCode.swift in Sources */,
 				9E0A5E2B244F3FC200188CDE /* DetailedDayVC.swift in Sources */,
 				9E631939244F50B4007DE5F1 /* AddMeetingTVC.swift in Sources */,
-				9E0A5E2E244F410900188CDE /* UserModel.swift in Sources */,
+				9E0A5E2E244F410900188CDE /* User.swift in Sources */,
 				9E1B583C2450960300C35165 /* Network.swift in Sources */,
 				9E0A5E25244F271F00188CDE /* StatisticsVC.swift in Sources */,
 				9E7A73B1244D92AB00FA529B /* SceneDelegate.swift in Sources */,

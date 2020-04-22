@@ -853,7 +853,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="List of Contacts" id="Dcc-Re-FLq">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0OI-M0-K17"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="0OI-M0-K17">
+                            <connections>
+                                <action selector="didTapAdd" destination="U1g-iS-BGO" id="JPV-md-bW6"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="CY2-JT-KJ4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
