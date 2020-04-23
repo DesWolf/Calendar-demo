@@ -17,7 +17,6 @@ enum UserService {
 }
 
 extension UserService: TargetType {
-    
     var baseURL: URL {
         return URL(string: "https://jsonplaceholder.typicode.com")!
     }
@@ -47,13 +46,13 @@ extension UserService: TargetType {
     var sampleData: Data {
         switch self {
         case .createUser(let name):
-            return "{'name:'\(name)}".data(using: .utf8)!
+            return "{'name':'\(name)'}".data(using: .utf8)!
         case .readUsers:
             return Data()
         case .updateUser(let id, let name):
-            return "{'id':\(id)', 'name:'\(name)'}".data(using: .utf8)!
+            return "{'id':'\(id)', 'name':'\(name)'}".data(using: .utf8)!
         case .deleteUser(let id):
-            return "{'id':\(id)'}".data(using: .utf8)!
+            return "{'id':'\(id)'}".data(using: .utf8)!
             
         }
     }
@@ -69,8 +68,7 @@ extension UserService: TargetType {
     }
     
     var headers: [String : String]? {
-        
-        return ["Content-Typer": "application/json"]
+            return ["Cookie" : "__cfduid=d38bf4696d0aaeaf921bb39f3b576ce9e1587634381"]
     }
 }
 

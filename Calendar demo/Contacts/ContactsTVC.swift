@@ -58,8 +58,8 @@ class ContactsTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let user = users[indexPath.row]
         
-        userProvider.request(.updateUser(id:user.id, name:"[Modified] " + user.name)) { (result) in
-            switch result {
+        userProvider.request(.updateUser(id: user.id, name:"[Modified] " + user.name)) { (result) in
+             switch result {
             case .success(let response):
                 let modifiedUser = try! JSONDecoder().decode(User.self, from: response.data)
                 self.users[indexPath.row] = modifiedUser
@@ -73,6 +73,16 @@ class ContactsTVC: UITableViewController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         let user = users[indexPath.row]
-        print(user)
+        
+        userProvider.request(.deleteUser(id: user.id)) { (result) in
+            switch result {
+            case .success(let response):
+                print("Delete: \(response)")
+                self.tableView.deleteRows(at: [indexPath], with: .automatic)
+                self.tableView.reloadData()
+            case .failure(let error):
+                print(error)
+            }
+        }
     }
 }
