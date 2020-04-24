@@ -13,10 +13,12 @@ class AddMeetingTVC: UITableViewController {
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var datePicker: UIDatePicker!
-    @IBOutlet var durationLabel: UILabel!
-    @IBOutlet var durationPicker: UIPickerView!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var durationPicker: UIPickerView!
     @IBOutlet weak var lessonLabel: UILabel!
     @IBOutlet weak var lessonPicker: UIPickerView!
+    @IBOutlet weak var priceTF: UITextField!
+    @IBOutlet weak var commentTF: UITextField!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
     var lessons = ["-", "Французский","Английский"]
@@ -30,24 +32,19 @@ class AddMeetingTVC: UITableViewController {
         datePicker.isHidden = true
         durationPicker.isHidden = true
         lessonPicker.isHidden = true
-        
-        
+        self.hideKeyboardWhenTappedAround()
     }
     
     @IBAction func dateChanged(sender: UIDatePicker) {
         dateLabel.text = "\(datePicker.date)"
     }
     
-    
     @IBAction func saveButtonAction(_ sender: Any) {
     }
-    
-    
 }
 
 //MARK: TableViewDelegate, TableViewDataSource
 extension AddMeetingTVC {
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch indexPath.row {
@@ -61,7 +58,6 @@ extension AddMeetingTVC {
             return super.tableView(tableView, heightForRowAt: indexPath)
         }
     }
-        
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let dateIndexPath = IndexPath(row: 1, section: 0)
@@ -84,14 +80,15 @@ extension AddMeetingTVC {
     }
     
     func pickerAnimation(indexPath: IndexPath) {
-            UIView.animate(withDuration: 0.3, animations: { () -> Void in
-                self.tableView.beginUpdates()
-                self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)
-                self.tableView.endUpdates()
-            })
-        }
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            self.tableView.beginUpdates()
+            self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+            self.tableView.endUpdates()
+        })
+    }
 }
 
+//MARK: PickerView Delegate & DataSource
 extension AddMeetingTVC : UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
@@ -126,7 +123,17 @@ extension AddMeetingTVC : UIPickerViewDelegate, UIPickerViewDataSource {
         default:
             return
         }
-        
     }
 }
 
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}

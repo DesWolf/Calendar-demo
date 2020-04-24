@@ -9,82 +9,136 @@
 import UIKit
 
 class AddUserTVC: UITableViewController {
-
+    
+    @IBOutlet weak var nameTF: UITextField!
+    @IBOutlet weak var surNameTF: UITextField!
+    @IBOutlet weak var phoneTF: UITextField!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var durationLabel: UILabel!
+    @IBOutlet weak var durationPicker: UIPickerView!
+    @IBOutlet weak var lessonLabel: UILabel!
+    @IBOutlet weak var lessonPicker: UIPickerView!
+    @IBOutlet weak var priceTF: UITextField!
+    @IBOutlet weak var commentTF: UITextField!
+    @IBOutlet weak var saveButton: UIBarButtonItem!
+    
+    var lessons = ["-", "Французский","Английский"]
+    var duration = ["45 минут", "60 минут", "90 минут"]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
+        datePicker.date = NSDate() as Date
+        dateLabel.text = "\(datePicker.date)"
+        datePicker.isHidden = true
+        durationPicker.isHidden = true
+        lessonPicker.isHidden = true
+        self.hideKeyboardWhenTappedAround()
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    
+    @IBAction func dateChanged(sender: UIDatePicker) {
+        dateLabel.text = "\(datePicker.date)"
+        print(dateLabel.text)
     }
+    
+    @IBAction func saveButtonAction(_ sender: Any) {
+            guard let url = URL(string: "http://5.63.154.6/api/lesson?key=0194f13efb8487de1fc1b99edb5f598d") else { return }
+                let session = URLSession.shared
+                session.dataTask(with: url) { (data, response, error) in
+                    guard let response = response, let data = data else { return }
+                    
+                    print(data)
+                    do {
+                        let json = try JSONSerialization.jsonObject(with: data, options: [])
+                        print(json)
+                    } catch {
+                        print(error)
+                    }
+                }.resume()
+            }
+}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+
+
+//MARK: TableViewDelegate, TableViewDataSource
+extension AddUserTVC {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 4:
+            return CGFloat(datePicker.isHidden ? 0.0 : 216.0)
+        case 6:
+            return CGFloat(durationPicker.isHidden ? 0.0 : 120.0)
+        case 8:
+            return CGFloat(lessonPicker.isHidden ? 0.0 : 120.0)
+        default:
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        }
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let dateIndexPath = IndexPath(row: 3, section: 0)
+        let durationIndexPath = IndexPath(row: 5, section: 0)
+        let lessonIndexPath = IndexPath(row: 7, section: 0)
+        
+        switch indexPath {
+        case dateIndexPath:
+            datePicker.isHidden = !datePicker.isHidden
+            pickerAnimation(indexPath: indexPath)
+        case durationIndexPath:
+            durationPicker.isHidden = !durationPicker.isHidden
+            pickerAnimation(indexPath: indexPath)
+        case lessonIndexPath:
+            lessonPicker.isHidden = !lessonPicker.isHidden
+            pickerAnimation(indexPath: indexPath)
+        default:
+            return
+        }
     }
-    */
-
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    func pickerAnimation(indexPath: IndexPath) {
+        UIView.animate(withDuration: 0.3, animations: { () -> Void in
+            self.tableView.beginUpdates()
+            self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)
+            self.tableView.endUpdates()
+        })
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+}
+//MARK: PickerView Delegate & DataSource
+extension AddUserTVC : UIPickerViewDelegate, UIPickerViewDataSource {
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 1
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch pickerView.tag {
+        case 0:
+            return duration.count
+        case 1:
+            return lessons.count
+        default:
+            return 0
+        }
     }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch pickerView.tag {
+        case 0:
+            return duration[row]
+        case 1:
+            return lessons[row]
+        default:
+            return ""
+        }
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        switch pickerView.tag {
+        case 0:
+            return durationLabel.text = duration[row]
+        case 1:
+            return lessonLabel.text = lessons[row]
+        default:
+            return
+        }
+        
     }
-    */
-
 }

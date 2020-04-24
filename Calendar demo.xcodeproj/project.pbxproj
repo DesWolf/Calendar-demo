@@ -27,6 +27,10 @@
 		9E7A73B8244D92AC00FA529B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B7244D92AC00FA529B /* Assets.xcassets */; };
 		9E7A73BB244D92AC00FA529B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B9244D92AC00FA529B /* LaunchScreen.storyboard */; };
 		9E7A73C3244DE51E00FA529B /* LoginVCCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A73C2244DE51E00FA529B /* LoginVCCode.swift */; };
+		9E80D0A62453268300FECAF7 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A52453268300FECAF7 /* CalendarModel.swift */; };
+		9E80D0A82453269000FECAF7 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A72453269000FECAF7 /* CalendarService.swift */; };
+		9E80D0AA2453338B00FECAF7 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A92453338B00FECAF7 /* DayModel.swift */; };
+		9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */; };
 		9E8DDB332451E384003EC688 /* AddUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DDB322451E384003EC688 /* AddUserTVC.swift */; };
 		9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */; };
 		A59A3B1226E64E19C5930E69 /* Pods_Calendar_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08140AA01619AD5BB5287FF /* Pods_Calendar_demo.framework */; };
@@ -57,6 +61,10 @@
 		9E7A73BA244D92AC00FA529B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E7A73BC244D92AC00FA529B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E7A73C2244DE51E00FA529B /* LoginVCCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCCode.swift; sourceTree = "<group>"; };
+		9E80D0A52453268300FECAF7 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
+		9E80D0A72453269000FECAF7 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
+		9E80D0A92453338B00FECAF7 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
+		9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTVCell.swift; sourceTree = "<group>"; };
 		9E8DDB322451E384003EC688 /* AddUserTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserTVC.swift; sourceTree = "<group>"; };
 		9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		A08140AA01619AD5BB5287FF /* Pods_Calendar_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calendar_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -109,8 +117,12 @@
 		9E0A5E1D244F26A500188CDE /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				9E80D0A52453268300FECAF7 /* CalendarModel.swift */,
+				9E80D0A92453338B00FECAF7 /* DayModel.swift */,
 				9E631938244F50B4007DE5F1 /* AddMeetingTVC.swift */,
+				9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */,
 				9E7A73B2244D92AB00FA529B /* CalendarVC.swift */,
+				9E80D0A72453269000FECAF7 /* CalendarService.swift */,
 				9E0A5E28244F39C000188CDE /* ColorsConfig.swift */,
 			);
 			path = Calendar;
@@ -327,6 +339,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9E7A73B3244D92AB00FA529B /* CalendarVC.swift in Sources */,
+				9E80D0A62453268300FECAF7 /* CalendarModel.swift in Sources */,
 				9E0A5E30244F411400188CDE /* MeetingModel.swift in Sources */,
 				9E36D04924509EE200B3A83A /* UserService.swift in Sources */,
 				9E7A73AF244D92AB00FA529B /* AppDelegate.swift in Sources */,
@@ -337,6 +350,7 @@
 				9E0A5E2B244F3FC200188CDE /* DetailedDayVC.swift in Sources */,
 				9E631939244F50B4007DE5F1 /* AddMeetingTVC.swift in Sources */,
 				9E0A5E2E244F410900188CDE /* User.swift in Sources */,
+				9E80D0AA2453338B00FECAF7 /* DayModel.swift in Sources */,
 				9E1B583C2450960300C35165 /* Network.swift in Sources */,
 				9E0A5E25244F271F00188CDE /* StatisticsVC.swift in Sources */,
 				9E7A73B1244D92AB00FA529B /* SceneDelegate.swift in Sources */,
@@ -344,6 +358,8 @@
 				9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */,
 				9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */,
 				9E8DDB332451E384003EC688 /* AddUserTVC.swift in Sources */,
+				9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */,
+				9E80D0A82453269000FECAF7 /* CalendarService.swift in Sources */,
 				9E0A5E27244F272F00188CDE /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

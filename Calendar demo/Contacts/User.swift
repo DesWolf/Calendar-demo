@@ -12,3 +12,7 @@ struct User: Decodable {
     let id: Int
     let name: String
 }
+
+struct Message: Decodable {
+    let message: String
+}
