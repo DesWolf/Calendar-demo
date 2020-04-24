@@ -27,6 +27,7 @@
 		9E7A73B8244D92AC00FA529B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B7244D92AC00FA529B /* Assets.xcassets */; };
 		9E7A73BB244D92AC00FA529B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B9244D92AC00FA529B /* LaunchScreen.storyboard */; };
 		9E7A73C3244DE51E00FA529B /* LoginVCCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A73C2244DE51E00FA529B /* LoginVCCode.swift */; };
+		9E8DDB332451E384003EC688 /* AddUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DDB322451E384003EC688 /* AddUserTVC.swift */; };
 		9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */; };
 		A59A3B1226E64E19C5930E69 /* Pods_Calendar_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08140AA01619AD5BB5287FF /* Pods_Calendar_demo.framework */; };
 /* End PBXBuildFile section */
@@ -56,6 +57,7 @@
 		9E7A73BA244D92AC00FA529B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9E7A73BC244D92AC00FA529B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E7A73C2244DE51E00FA529B /* LoginVCCode.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVCCode.swift; sourceTree = "<group>"; };
+		9E8DDB322451E384003EC688 /* AddUserTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserTVC.swift; sourceTree = "<group>"; };
 		9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		A08140AA01619AD5BB5287FF /* Pods_Calendar_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calendar_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -127,6 +129,7 @@
 			isa = PBXGroup;
 			children = (
 				9E0A5E2D244F410900188CDE /* User.swift */,
+				9E8DDB322451E384003EC688 /* AddUserTVC.swift */,
 				9E0A5E1F244F26CE00188CDE /* ContactsTVC.swift */,
 				9E36D04824509EE200B3A83A /* UserService.swift */,
 			);
@@ -340,6 +343,7 @@
 				9E0A5E1A244ED78500188CDE /* EnterVC.swift in Sources */,
 				9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */,
 				9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */,
+				9E8DDB332451E384003EC688 /* AddUserTVC.swift in Sources */,
 				9E0A5E27244F272F00188CDE /* SettingsVC.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -488,6 +492,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WJR74JV9LN;
 				INFOPLIST_FILE = "$(SRCROOT)/Calendar demo/Support/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -507,6 +512,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WJR74JV9LN;
 				INFOPLIST_FILE = "$(SRCROOT)/Calendar demo/Support/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
