@@ -23,8 +23,8 @@ class DayTVCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configere(with meeting: CalendarModel) {
-        self.timeLabel.text = "\(meeting.meetingDate)"
-        self.meetingLabel.text = "\(meeting.studentName)"
+    func configere(with meeting: DayModel) {
+        self.timeLabel.text = "\(meeting.date ?? "00:00")"
+        self.meetingLabel.text = "\(meeting.studentId ?? "test")" 
 }
 }

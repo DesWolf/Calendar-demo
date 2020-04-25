@@ -13,8 +13,12 @@ class MeetingCell: UITableViewCell {
     @IBOutlet var timeOfMeetingLabel: UILabel!
     @IBOutlet var meetingTextLabel: UILabel!
     
-    func configere(with meeting: MeetingModel) {
-        self.timeOfMeetingLabel.text = "\(meeting.meetingDate)"
-        self.meetingTextLabel.text = "\(meeting.studentName) \(meeting.studentSurname)"
+    func configere(with meeting: DayModel) {
+        let time = "\(meeting.duration?.dateStart[11..<16] ?? "10:00")"
+
+        print(time)
+        self.timeOfMeetingLabel.text = "\(time)"
+        self.meetingTextLabel.text = "\(meeting.studentId ?? "")"
     }
 }
+

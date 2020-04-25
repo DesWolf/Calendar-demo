@@ -31,6 +31,7 @@
 		9E80D0A82453269000FECAF7 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A72453269000FECAF7 /* CalendarService.swift */; };
 		9E80D0AA2453338B00FECAF7 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A92453338B00FECAF7 /* DayModel.swift */; };
 		9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */; };
+		9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */; };
 		9E8DDB332451E384003EC688 /* AddUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DDB322451E384003EC688 /* AddUserTVC.swift */; };
 		9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */; };
 		A59A3B1226E64E19C5930E69 /* Pods_Calendar_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08140AA01619AD5BB5287FF /* Pods_Calendar_demo.framework */; };
@@ -65,6 +66,7 @@
 		9E80D0A72453269000FECAF7 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
 		9E80D0A92453338B00FECAF7 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
 		9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTVCell.swift; sourceTree = "<group>"; };
+		9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaledDayService.swift; sourceTree = "<group>"; };
 		9E8DDB322451E384003EC688 /* AddUserTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserTVC.swift; sourceTree = "<group>"; };
 		9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		A08140AA01619AD5BB5287FF /* Pods_Calendar_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calendar_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -170,6 +172,7 @@
 				9E0A5E2F244F411400188CDE /* MeetingModel.swift */,
 				9E0A5E2A244F3FC200188CDE /* DetailedDayVC.swift */,
 				9E631936244F4781007DE5F1 /* MeetingCell.swift */,
+				9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */,
 			);
 			path = DetailedDay;
 			sourceTree = "<group>";
@@ -358,6 +361,7 @@
 				9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */,
 				9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */,
 				9E8DDB332451E384003EC688 /* AddUserTVC.swift in Sources */,
+				9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */,
 				9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */,
 				9E80D0A82453269000FECAF7 /* CalendarService.swift in Sources */,
 				9E0A5E27244F272F00188CDE /* SettingsVC.swift in Sources */,

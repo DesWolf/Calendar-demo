@@ -12,12 +12,12 @@ class DetailedDayVC: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
     
-    var meetings = [MeetingModel]()
+    var todayMeetings = [DayModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-
+        fetchCalendar()
         tableView.reloadData()
     }
     
@@ -34,15 +34,33 @@ class DetailedDayVC: UIViewController {
 
 }
 
+//MARK: Network
+extension DetailedDayVC {
+    private func fetchCalendar() {
+        DetailedDayService.fetchCalendar { (jsonData) in
+            let date = Date()
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let result = formatter.string(from: date)
+            print(result)
+            self.todayMeetings = jsonData.filter{ $0.date == result }
+            print(self.todayMeetings)
+            
+            self.tableView.reloadData()
+            self.tableView.tableFooterView = UIView()
+        }
+    }
+}
+
 // MARK: TableViewDataSource & TableViewDelegate
 extension DetailedDayVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        meetings.count
+        todayMeetings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "meetingCell", for: indexPath) as! MeetingCell
-        let meeting = meetings[indexPath.row]
+        let meeting = todayMeetings[indexPath.row]
         
         cell.configere(with: meeting)
         

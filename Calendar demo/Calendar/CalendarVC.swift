@@ -13,49 +13,51 @@ import Moya
 
 class CalendarVC: UIViewController {
     
+    @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var tableView: UITableView!
     
-    let calendarProvider = MoyaProvider<CalendarService>()
-    var datesDictionary:[String:String] = ["20 April, 2020":"Service","19 April, 2020":"Change Oil","21 April, 2020":"Check brakes"]
-    var dateMeetings = [CalendarModel]()
+    var datesDictionary:[String] = []
+    var calendarMeetings = [DayModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        fetchCalendar()
+        backgroundColor()
         calendarView.delegate = self
         menuView.delegate = self
-        dateFormater(str: "2013-07-21T19:32:00Z")
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
         menuView.commitMenuViewUpdate()
         calendarView.commitCalendarViewUpdate()
-        
-        
     }
     @IBAction func sendRequest(_ sender: Any) {
-        calendarProvider.request(.readMeeting) { (result) in
-            switch result {
-            case .success(let response):
-                let calendar = try! JSONDecoder().decode([DayModel].self, from: response.data)
-                print(calendar)
-                //                self.users = users
-            //                self.tableView.reloadData()
-            case .failure(let error):
-                print(error)
-            }
-        }
+        self.calendarView.commitCalendarViewUpdate()
     }
-    
-    
-    
     
     
     
 }
+//MARK: Network
+extension CalendarVC {
+    private func fetchCalendar() {
+        CalendarService.fetchCalendar { (jsonData) in
+            self.calendarMeetings = jsonData
+            
+            for index in 0..<self.calendarMeetings.count {
+                self.datesDictionary.append(self.calendarMeetings[index].date ?? "")
+            }
+            print(self.datesDictionary)
+            self.calendarView.contentController.refreshPresentedMonth()
+            self.tableView.reloadData()
+            self.tableView.tableFooterView = UIView()
+        }
+    }
+}
+
 extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
     func presentationMode() -> CalendarMode {
         return CalendarMode.monthView
@@ -65,34 +67,68 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
         return Weekday.monday
     }
     
-    func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool{
-        // Look up date in dictionary
-        if(datesDictionary[dayView.date.commonDescription] != nil){
-            return true // date is in the array so draw a dot
+    func dayLabelBackgroundColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
+        
+        return UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1)
+    }
+        func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool{
+            if dayView.date.day == 1 {
+                return false
+            }
+            return true
         }
-        return false
-    }
     func dotMarker(colorOnDayView dayView: DayView) -> [UIColor]{
-        return [UIColor.red]
+        switch preliminaryView(shouldDisplayOnDayView: dayView){
+        case true:
+        return [UIColor(red: 88/255, green: 0/255, blue: 214/255, alpha: 1)]
+        case false:
+        return [UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1)]
+        }
+//        return [UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1)]
     }
-    func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
-        return CGFloat(5)
+        func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
+            return CGFloat(5)
+        }
+    func topMarkerColor() -> UIColor {
+        return UIColor.white //(red: 137/255, green: 177/255, blue: 212/255, alpha: 1)
+    }
+    func topMarker(shouldDisplayOnDayView dayView: DayView) -> Bool {
+        return true
     }
     
     func preliminaryView(viewOnDayView dayView: DayView) -> UIView {
         let circleView = CVAuxiliaryView(dayView: dayView, rect: dayView.frame, shape: CVShape.circle)
-        circleView.fillColor = .green
+        circleView.fillColor = ColorsConfig.meetingFillCircle
         return circleView
     }
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
-        if(datesDictionary[dayView.date.commonDescription] != nil){
-            return true
+        let dateformatter = DateFormatter()
+        dateformatter.dateFormat = "yyyy-MM-dd"
+        let date2 = dateformatter.string(from: dayView.date.convertedDate()!)
+        for elem in 0..<datesDictionary.count {
+            if(date2 == datesDictionary[elem]) {
+                return true
+            }
         }
         return false
     }
     
+//    func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
+//        let dateformatter = DateFormatter()
+//        dateformatter.dateFormat = "yyyy-MM-dd"
+//        let date2 = dateformatter.string(from: dayView.date.convertedDate()!)
+//        for elem in 0..<datesDictionary.count {
+//            let str = datesDictionary[elem]
+//            if(date2 == str.substring(toIndex: str.length - 9)) {
+//                return true
+//            }
+//        }
+//        return false
+//    }
+    
     func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
         
+        print(dayView.date.commonDescription)
         //        dayTextView.text = ""
         // Look up date in dictionary
         //        if(datesDictionary[dayView.date.commonDescription] != nil){
@@ -103,29 +139,32 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
 
 extension CalendarVC: CVCalendarViewAppearanceDelegate {
     
-    // не работает смена шрифта
-    func dayLabelColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
-        switch (weekDay, status, present) {
-        case (_, .selected, _), (_, .highlighted, _): return ColorsConfig.selectedText
-        case (.sunday, .in, _): return ColorsConfig.sundayText
-        case (.sunday, _, _): return ColorsConfig.sundayTextDisabled
-        case (_, .in, _): return ColorsConfig.text
-        //         case (.sunday, .disabled, _): return .red
-        default: return ColorsConfig.textDisabled
-        }
+    func dayOfWeekTextColor() -> UIColor {
+        return .white
     }
     
-    
+    // не работает смена шрифта
+//    func dayLabelColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
+//        switch (weekDay, status, present) {
+//        case (_, _, _), (_, _, _): return .white
+////        case (.sunday, .in, _): return ColorsConfig.sundayText
+////        case (.sunday, _, _): return ColorsConfig.sundayTextDisabled
+////        case (_, .in, _): return ColorsConfig.text
+//        //         case (.sunday, .disabled, _): return .red
+////        default: return ColorsConfig.textDisabled
+//        }
+//    }
 }
 
 extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return datesDictionary.count
+        return calendarMeetings.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "meetingCell", for: indexPath) as! DayTVCell
-        let meeting = dateMeetings[indexPath.row]
+        let meeting = calendarMeetings[indexPath.row]
+        
         cell.configere(with: meeting)
         return cell
     }
@@ -141,7 +180,55 @@ extension CalendarVC {
         let str = str //"2013-07-21T19:32:00Z"
         let formatter = ISO8601DateFormatter()
         guard let date = formatter.date(from: str) else { return formatter.date(from:"2013-07-21T19:32:00Z")! }
-        print (date)
         return date
+    }
+    
+    
+    
+    //    func Data
+}
+//MARK: Background
+extension CalendarVC {
+    func backgroundColor() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.view.bounds
+        let firstColor = UIColor(red: 83/255, green: 185/255, blue: 209/255, alpha: 1)
+        let secondColor = UIColor(red: 88/255, green: 110/255, blue: 180/255, alpha: 1)
+        gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
+        self.backgroundImage.layer.insertSublayer(gradientLayer, at: 0)
+        clearNavigationBar()
+    }
+    
+    func clearNavigationBar(){
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = UIColor.clear
+    }
+}
+extension String {
+    
+    var length: Int {
+        return count
+    }
+    
+    subscript (i: Int) -> String {
+        return self[i ..< i + 1]
+    }
+    
+    func substring(fromIndex: Int) -> String {
+        return self[min(fromIndex, length) ..< length]
+    }
+    
+    func substring(toIndex: Int) -> String {
+        return self[0 ..< max(0, toIndex)]
+    }
+    
+    subscript (r: Range<Int>) -> String {
+        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
+                                            upper: min(length, max(0, r.upperBound))))
+        let start = index(startIndex, offsetBy: range.lowerBound)
+        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
+        return String(self[start ..< end])
     }
 }

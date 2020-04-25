@@ -6,12 +6,12 @@
 //  Copyright © 2020 Максим Окунеев. All rights reserved.
 //
 
-import UIKit
-
-struct MeetingModel {
-    
-    let meetingDate: String
-    let studentName: String
-    let studentSurname: String?
-    
-}
+//import UIKit
+//
+//struct MeetingModel {
+//    
+//    let meetingDate: String
+//    let studentName: String
+//    let studentSurname: String?
+//    
+//}

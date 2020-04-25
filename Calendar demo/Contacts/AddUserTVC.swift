@@ -39,23 +39,23 @@ class AddUserTVC: UITableViewController {
     
     @IBAction func dateChanged(sender: UIDatePicker) {
         dateLabel.text = "\(datePicker.date)"
-        print(dateLabel.text)
+        print(dateLabel.text as Any)
     }
     
     @IBAction func saveButtonAction(_ sender: Any) {
-            guard let url = URL(string: "http://5.63.154.6/api/lesson?key=0194f13efb8487de1fc1b99edb5f598d") else { return }
-                let session = URLSession.shared
-                session.dataTask(with: url) { (data, response, error) in
-                    guard let response = response, let data = data else { return }
-                    
-                    print(data)
-                    do {
-                        let json = try JSONSerialization.jsonObject(with: data, options: [])
-                        print(json)
-                    } catch {
-                        print(error)
-                    }
-                }.resume()
+//            guard let url = URL(string: "http://5.63.154.6/api/lesson?key=0194f13efb8487de1fc1b99edb5f598d") else { return }
+//                let session = URLSession.shared
+//                session.dataTask(with: url) { (data, response, error) in
+//                    guard let response = response, let data = data else { return }
+//                    
+//                    print(data)
+//                    do {
+//                        let json = try JSONSerialization.jsonObject(with: data, options: [])
+//                        print(json)
+//                    } catch {
+//                        print(error)
+//                    }
+//                }.resume()
             }
 }
 

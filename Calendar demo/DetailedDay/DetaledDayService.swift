@@ -1,16 +1,16 @@
 //
-//  CalendarService.swift
+//  DetaledDayService.swift
 //  Calendar demo
 //
-//  Created by Максим Окунеев on 4/24/20.
+//  Created by Максим Окунеев on 4/25/20.
 //  Copyright © 2020 Максим Окунеев. All rights reserved.
 //
 
+
 import UIKit
-//import Moya
 
 
-struct CalendarService {
+struct DetailedDayService {
     
     // MARK: Network
     static func fetchCalendar(completion: @escaping ([DayModel]) -> ()) {

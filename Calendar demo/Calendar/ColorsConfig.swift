@@ -16,5 +16,6 @@ struct ColorsConfig {
     static let sundayText = UIColor(red: 1.0, green: 0.2, blue: 0.2, alpha: 1.0)
     static let sundayTextDisabled = UIColor(red: 1.0, green: 0.6, blue: 0.6, alpha: 1.0)
     static let sundaySelectionBackground = sundayText
+    static let meetingFillCircle = UIColor(red: 251/255, green: 255/255, blue: 56/255, alpha: 1)
 }
 

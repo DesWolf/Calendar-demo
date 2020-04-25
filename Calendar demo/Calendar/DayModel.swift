@@ -9,10 +9,14 @@
 import Foundation
 
 struct DayModel: Decodable{
-    var lesson_id: String?
-    var date_start: String?
-    var date_end: String?
-    var student_id: String?
+    let date: String?
+    let duration: Duration?
+    let studentId: String?
+}
+
+struct Duration: Decodable {
+    let dateStart: String
+    let dateEnd: String
 }
 
 
