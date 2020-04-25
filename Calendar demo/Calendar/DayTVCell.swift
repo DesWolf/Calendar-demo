@@ -10,6 +10,7 @@ import UIKit
 
 class DayTVCell: UITableViewCell {
 
+    @IBOutlet var studentNameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var meetingLabel: UILabel!
     
@@ -24,7 +25,12 @@ class DayTVCell: UITableViewCell {
     }
     
     func configere(with meeting: DayModel) {
-        self.timeLabel.text = "\(meeting.date ?? "00:00")"
-        self.meetingLabel.text = "\(meeting.studentId ?? "test")" 
+        let startTime = "\(meeting.duration?.dateStart[11..<16] ?? "10:00")"
+        let endTime = "\(meeting.duration?.dateEnd[11..<16] ?? "11:00")"
+
+        self.timeLabel.text = "\(startTime)-\(endTime)"
+        self.studentNameLabel.text = "\(meeting.studentId ?? "test")"
+        self.meetingLabel.text = "\(meeting.studentId ?? "test")"
+        
 }
 }

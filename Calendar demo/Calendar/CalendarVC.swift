@@ -18,8 +18,9 @@ class CalendarVC: UIViewController {
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var tableView: UITableView!
     
-    var datesDictionary:[String] = []
-    var calendarMeetings = [DayModel]()
+    private var datesDictionary:[String] = []
+    private var calendarMeetings = [DayModel]()
+    private var selectedDay = [DayModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,11 +35,10 @@ class CalendarVC: UIViewController {
         menuView.commitMenuViewUpdate()
         calendarView.commitCalendarViewUpdate()
     }
+    
     @IBAction func sendRequest(_ sender: Any) {
         self.calendarView.commitCalendarViewUpdate()
     }
-    
-    
     
 }
 //MARK: Network
@@ -52,12 +52,12 @@ extension CalendarVC {
             }
             print(self.datesDictionary)
             self.calendarView.contentController.refreshPresentedMonth()
-            self.tableView.reloadData()
-            self.tableView.tableFooterView = UIView()
+
         }
     }
 }
 
+//MARK: CVCalendar MenuViewDelegate, CVCalendarViewDelegate
 extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
     func presentationMode() -> CalendarMode {
         return CalendarMode.monthView
@@ -71,24 +71,24 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
         
         return UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1)
     }
-        func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool{
-            if dayView.date.day == 1 {
-                return false
-            }
-            return true
+    func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool{
+        if dayView.date.day == 1 {
+            return false
         }
+        return true
+    }
     func dotMarker(colorOnDayView dayView: DayView) -> [UIColor]{
         switch preliminaryView(shouldDisplayOnDayView: dayView){
         case true:
-        return [UIColor(red: 88/255, green: 0/255, blue: 214/255, alpha: 1)]
+            return [UIColor(red: 88/255, green: 0/255, blue: 214/255, alpha: 1)]
         case false:
-        return [UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1)]
+            return [UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1)]
         }
-//        return [UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1)]
+        //        return [UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1)]
     }
-        func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
-            return CGFloat(5)
-        }
+    func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
+        return CGFloat(5)
+    }
     func topMarkerColor() -> UIColor {
         return UIColor.white //(red: 137/255, green: 177/255, blue: 212/255, alpha: 1)
     }
@@ -102,41 +102,38 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
         return circleView
     }
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
-        let dateformatter = DateFormatter()
-        dateformatter.dateFormat = "yyyy-MM-dd"
-        let date2 = dateformatter.string(from: dayView.date.convertedDate()!)
+
+        
         for elem in 0..<datesDictionary.count {
-            if(date2 == datesDictionary[elem]) {
+            if(toNewFormatDate(dateString: "\(dayView.date.commonDescription)") == datesDictionary[elem]) {
                 return true
             }
         }
         return false
     }
     
-//    func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
-//        let dateformatter = DateFormatter()
-//        dateformatter.dateFormat = "yyyy-MM-dd"
-//        let date2 = dateformatter.string(from: dayView.date.convertedDate()!)
-//        for elem in 0..<datesDictionary.count {
-//            let str = datesDictionary[elem]
-//            if(date2 == str.substring(toIndex: str.length - 9)) {
-//                return true
-//            }
-//        }
-//        return false
-//    }
+    
+    //    func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
+    //        let dateformatter = DateFormatter()
+    //        dateformatter.dateFormat = "yyyy-MM-dd"
+    //        let date2 = dateformatter.string(from: dayView.date.convertedDate()!)
+    //        for elem in 0..<datesDictionary.count {
+    //            let str = datesDictionary[elem]
+    //            if(date2 == str.substring(toIndex: str.length - 9)) {
+    //                return true
+    //            }
+    //        }
+    //        return false
+    //    }
     
     func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
-        
-        print(dayView.date.commonDescription)
-        //        dayTextView.text = ""
-        // Look up date in dictionary
-        //        if(datesDictionary[dayView.date.commonDescription] != nil){
-        //            dayTextView.text = datesDictionary[dayView.date.commonDescription] // day is in the dictionary - wrote the corresponding text to dayTextView
-        //        }
+        let selectDay = toNewFormatDate(dateString: "\(dayView.date.commonDescription)")
+        selectedDay = self.calendarMeetings.filter{ $0.date == selectDay }
+        self.tableView.reloadData()
+        self.tableView.tableFooterView = UIView()
     }
 }
-
+//MARK: CVCalendarViewAppearanceDelegate
 extension CalendarVC: CVCalendarViewAppearanceDelegate {
     
     func dayOfWeekTextColor() -> UIColor {
@@ -144,26 +141,49 @@ extension CalendarVC: CVCalendarViewAppearanceDelegate {
     }
     
     // не работает смена шрифта
-//    func dayLabelColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
-//        switch (weekDay, status, present) {
-//        case (_, _, _), (_, _, _): return .white
-////        case (.sunday, .in, _): return ColorsConfig.sundayText
-////        case (.sunday, _, _): return ColorsConfig.sundayTextDisabled
-////        case (_, .in, _): return ColorsConfig.text
-//        //         case (.sunday, .disabled, _): return .red
-////        default: return ColorsConfig.textDisabled
-//        }
-//    }
+    //    func dayLabelColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
+    //        switch (weekDay, status, present) {
+    //        case (_, _, _), (_, _, _): return .white
+    ////        case (.sunday, .in, _): return ColorsConfig.sundayText
+    ////        case (.sunday, _, _): return ColorsConfig.sundayTextDisabled
+    ////        case (_, .in, _): return ColorsConfig.text
+    //        //         case (.sunday, .disabled, _): return .red
+    ////        default: return ColorsConfig.textDisabled
+    //        }
+    //    }
 }
 
+//MARK: DateString
+extension CalendarVC {
+    func dateString(format: String) -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        
+        return formatter.string(from: date)
+    }
+    
+    func toNewFormatDate(dateString: String) -> String{
+      var result = ""
+      let formatter = DateFormatter()
+      formatter.dateFormat = "dd MMMM, yyyy"
+      if let date = formatter.date(from: dateString) {
+        formatter.dateFormat = "yyyy-MM-dd"
+        result = formatter.string(from: date)
+      }
+     return result
+    }
+}
+
+//MARK: TableViewDelegate & TableViewDataSource
 extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return calendarMeetings.count
+        return selectedDay.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "meetingCell", for: indexPath) as! DayTVCell
-        let meeting = calendarMeetings[indexPath.row]
+        let meeting = selectedDay[indexPath.row]
         
         cell.configere(with: meeting)
         return cell
@@ -174,20 +194,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
     }
 }
 
-extension CalendarVC {
-    
-    func dateFormater(str: String) -> Date {
-        let str = str //"2013-07-21T19:32:00Z"
-        let formatter = ISO8601DateFormatter()
-        guard let date = formatter.date(from: str) else { return formatter.date(from:"2013-07-21T19:32:00Z")! }
-        return date
-    }
-    
-    
-    
-    //    func Data
-}
-//MARK: Background
+
+
+//MARK: Background Customization
 extension CalendarVC {
     func backgroundColor() {
         let gradientLayer = CAGradientLayer()
@@ -206,6 +215,8 @@ extension CalendarVC {
         self.navigationController?.view.backgroundColor = UIColor.clear
     }
 }
+
+//MARK: String Sorting
 extension String {
     
     var length: Int {

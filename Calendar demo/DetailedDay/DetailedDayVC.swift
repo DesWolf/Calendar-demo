@@ -9,45 +9,34 @@
 import UIKit
 
 class DetailedDayVC: UIViewController {
-
-    @IBOutlet weak var tableView: UITableView!
+    
+    @IBOutlet weak var todayTableView: UITableView!
+    @IBOutlet weak var todayLabel: UILabel!
+    @IBOutlet var numberOfTodayTask: UILabel!
+    @IBOutlet var nextmeetingLabel: UILabel!
+    @IBOutlet var notificationsTableView: UITableView!
     
     var todayMeetings = [DayModel]()
+    var notifications: [NotificationModel] = [NotificationModel(name: "Через 2 дня необходимо оплатить налог 1430 руб. за Май"), NotificationModel(name: "Сегодня у Чебурашки последнее предоплаченное занятие")]
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        todayLabel.text = self.todayString(format: "dd MMMM YYYY")
         fetchCalendar()
-        tableView.reloadData()
+        todayTableView.reloadData()
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 //MARK: Network
 extension DetailedDayVC {
     private func fetchCalendar() {
         DetailedDayService.fetchCalendar { (jsonData) in
-            let date = Date()
-            let formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd"
-            let result = formatter.string(from: date)
-            print(result)
-            self.todayMeetings = jsonData.filter{ $0.date == result }
-            print(self.todayMeetings)
+            let today = self.todayString(format: "yyyy-MM-dd")
+            self.todayMeetings = jsonData.filter{ $0.date == today }
+            //            self.todayMeetings.sort() { $0.duration?.dateStart < $1.duration?.dateStart }
             
-            self.tableView.reloadData()
-            self.tableView.tableFooterView = UIView()
+            self.todayTableView.reloadData()
+            self.todayTableView.tableFooterView = UIView()
         }
     }
 }
@@ -55,16 +44,37 @@ extension DetailedDayVC {
 // MARK: TableViewDataSource & TableViewDelegate
 extension DetailedDayVC: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        todayMeetings.count
+        if tableView == todayTableView {
+            numberOfTodayTask.text = "\(todayMeetings.count)"
+            return todayMeetings.count
+        } else {
+            return notifications.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "meetingCell", for: indexPath) as! MeetingCell
-        let meeting = todayMeetings[indexPath.row]
-        
-        cell.configere(with: meeting)
-        
-        return cell
+        if tableView == todayTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "todayMeetingCell", for: indexPath) as! MeetingCell
+            let meeting = todayMeetings[indexPath.row]
+            cell.configere(with: meeting)
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "notificationsCell", for: indexPath) as! NotificationCell
+            let notification = notifications[indexPath.row]
+            cell.configere(with: notification)
+            return cell
+        }
     }
 }
+
+extension DetailedDayVC {
+    func todayString(format: String) -> String {
+        let date = Date()
+        let formatter = DateFormatter()
+        formatter.dateFormat = format
+        
+        return formatter.string(from: date)
+    }
+}
+
 
