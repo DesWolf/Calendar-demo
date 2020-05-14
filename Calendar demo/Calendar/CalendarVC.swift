@@ -103,14 +103,15 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
     }
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
 
-        
         for elem in 0..<datesDictionary.count {
             if(toNewFormatDate(dateString: "\(dayView.date.commonDescription)") == datesDictionary[elem]) {
                 return true
             }
         }
+        
         return false
     }
+    
     
     
     //    func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
@@ -189,9 +190,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 50
-    }
+//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+//        return 50
+//    }
 }
 
 

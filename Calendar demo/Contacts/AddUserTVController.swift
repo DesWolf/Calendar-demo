@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AddUserTVC: UITableViewController {
+class AddUserTVController: UITableViewController {
     
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var surNameTF: UITextField!
@@ -43,26 +43,14 @@ class AddUserTVC: UITableViewController {
     }
     
     @IBAction func saveButtonAction(_ sender: Any) {
-//            guard let url = URL(string: "http://5.63.154.6/api/lesson?key=0194f13efb8487de1fc1b99edb5f598d") else { return }
-//                let session = URLSession.shared
-//                session.dataTask(with: url) { (data, response, error) in
-//                    guard let response = response, let data = data else { return }
-//                    
-//                    print(data)
-//                    do {
-//                        let json = try JSONSerialization.jsonObject(with: data, options: [])
-//                        print(json)
-//                    } catch {
-//                        print(error)
-//                    }
-//                }.resume()
+
             }
 }
 
 
 
 //MARK: TableViewDelegate, TableViewDataSource
-extension AddUserTVC {
+extension AddUserTVController {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         switch indexPath.row {
         case 4:
@@ -105,7 +93,7 @@ extension AddUserTVC {
     }
 }
 //MARK: PickerView Delegate & DataSource
-extension AddUserTVC : UIPickerViewDelegate, UIPickerViewDataSource {
+extension AddUserTVController : UIPickerViewDelegate, UIPickerViewDataSource {
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
         return 1
     }

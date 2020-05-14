@@ -9,19 +9,17 @@
 /* Begin PBXBuildFile section */
 		9E0A5E18244ED4AD00188CDE /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E17244ED4AD00188CDE /* LoginVC.swift */; };
 		9E0A5E1A244ED78500188CDE /* EnterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E19244ED78500188CDE /* EnterVC.swift */; };
-		9E0A5E20244F26CE00188CDE /* ContactsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E1F244F26CE00188CDE /* ContactsTVC.swift */; };
+		9E0A5E20244F26CE00188CDE /* ContactsTVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E1F244F26CE00188CDE /* ContactsTVController.swift */; };
 		9E0A5E25244F271F00188CDE /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E24244F271F00188CDE /* StatisticsVC.swift */; };
 		9E0A5E27244F272F00188CDE /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E26244F272F00188CDE /* SettingsVC.swift */; };
 		9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E28244F39C000188CDE /* ColorsConfig.swift */; };
 		9E0A5E2B244F3FC200188CDE /* DetailedDayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2A244F3FC200188CDE /* DetailedDayVC.swift */; };
-		9E0A5E2E244F410900188CDE /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2D244F410900188CDE /* User.swift */; };
+		9E0A5E2E244F410900188CDE /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2D244F410900188CDE /* Contact.swift */; };
 		9E0A5E30244F411400188CDE /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2F244F411400188CDE /* NotificationModel.swift */; };
-		9E36D04924509EE200B3A83A /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E36D04824509EE200B3A83A /* UserService.swift */; };
 		9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631936244F4781007DE5F1 /* MeetingCell.swift */; };
 		9E631939244F50B4007DE5F1 /* AddMeetingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631938244F50B4007DE5F1 /* AddMeetingTVC.swift */; };
 		9E63193A244F6101007DE5F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B4244D92AB00FA529B /* Main.storyboard */; };
 		9E7A73AF244D92AB00FA529B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A73AE244D92AB00FA529B /* AppDelegate.swift */; };
-		9E7A73B1244D92AB00FA529B /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A73B0244D92AB00FA529B /* SceneDelegate.swift */; };
 		9E7A73B3244D92AB00FA529B /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A73B2244D92AB00FA529B /* CalendarVC.swift */; };
 		9E7A73B8244D92AC00FA529B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B7244D92AC00FA529B /* Assets.xcassets */; };
 		9E7A73BB244D92AC00FA529B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B9244D92AC00FA529B /* LaunchScreen.storyboard */; };
@@ -32,8 +30,20 @@
 		9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */; };
 		9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */; };
 		9E80D0D02454AED900FECAF7 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CF2454AED900FECAF7 /* NotificationCell.swift */; };
-		9E8DDB332451E384003EC688 /* AddUserTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DDB322451E384003EC688 /* AddUserTVC.swift */; };
+		9E8DDB332451E384003EC688 /* AddUserTVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DDB322451E384003EC688 /* AddUserTVController.swift */; };
 		9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */; };
+		9EC155A2246D628000D2C776 /* DataEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155A1246D628000D2C776 /* DataEndPoint.swift */; };
+		9EC155A8246D633500D2C776 /* NetworkManagerMainData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155A7246D633500D2C776 /* NetworkManagerMainData.swift */; };
+		9EC155AA246D635500D2C776 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155A9246D635500D2C776 /* EndPointType.swift */; };
+		9EC155AC246D636700D2C776 /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155AB246D636700D2C776 /* Router.swift */; };
+		9EC155AE246D637900D2C776 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155AD246D637900D2C776 /* HTTPMethod.swift */; };
+		9EC155B0246D638800D2C776 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155AF246D638800D2C776 /* HTTPTask.swift */; };
+		9EC155B2246D639600D2C776 /* NetworkLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155B1246D639600D2C776 /* NetworkLogger.swift */; };
+		9EC155B4246D63AA00D2C776 /* ParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155B3246D63AA00D2C776 /* ParameterEncoding.swift */; };
+		9EC155B6246D63C300D2C776 /* URLParameterEncoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155B5246D63C300D2C776 /* URLParameterEncoding.swift */; };
+		9EC155B8246D63D200D2C776 /* JSONParameterEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155B7246D63D200D2C776 /* JSONParameterEncoder.swift */; };
+		9EC155BA246D642B00D2C776 /* AlertService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155B9246D642B00D2C776 /* AlertService.swift */; };
+		9EC155BC246D6B2C00D2C776 /* ContactsTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155BB246D6B2C00D2C776 /* ContactsTVCell.swift */; };
 		A59A3B1226E64E19C5930E69 /* Pods_Calendar_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08140AA01619AD5BB5287FF /* Pods_Calendar_demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -42,19 +52,17 @@
 		1FAFD638F4A42CFBE6FF146F /* Pods-Calendar demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calendar demo.debug.xcconfig"; path = "Target Support Files/Pods-Calendar demo/Pods-Calendar demo.debug.xcconfig"; sourceTree = "<group>"; };
 		9E0A5E17244ED4AD00188CDE /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
 		9E0A5E19244ED78500188CDE /* EnterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterVC.swift; sourceTree = "<group>"; };
-		9E0A5E1F244F26CE00188CDE /* ContactsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTVC.swift; sourceTree = "<group>"; };
+		9E0A5E1F244F26CE00188CDE /* ContactsTVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTVController.swift; sourceTree = "<group>"; };
 		9E0A5E24244F271F00188CDE /* StatisticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsVC.swift; sourceTree = "<group>"; };
 		9E0A5E26244F272F00188CDE /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		9E0A5E28244F39C000188CDE /* ColorsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsConfig.swift; sourceTree = "<group>"; };
 		9E0A5E2A244F3FC200188CDE /* DetailedDayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedDayVC.swift; sourceTree = "<group>"; };
-		9E0A5E2D244F410900188CDE /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		9E0A5E2D244F410900188CDE /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		9E0A5E2F244F411400188CDE /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
-		9E36D04824509EE200B3A83A /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		9E631936244F4781007DE5F1 /* MeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCell.swift; sourceTree = "<group>"; };
 		9E631938244F50B4007DE5F1 /* AddMeetingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeetingTVC.swift; sourceTree = "<group>"; };
 		9E7A73AB244D92AB00FA529B /* Calendar demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calendar demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7A73AE244D92AB00FA529B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		9E7A73B0244D92AB00FA529B /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		9E7A73B2244D92AB00FA529B /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
 		9E7A73B5244D92AB00FA529B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		9E7A73B7244D92AC00FA529B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -67,8 +75,20 @@
 		9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTVCell.swift; sourceTree = "<group>"; };
 		9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaledDayService.swift; sourceTree = "<group>"; };
 		9E80D0CF2454AED900FECAF7 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
-		9E8DDB322451E384003EC688 /* AddUserTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserTVC.swift; sourceTree = "<group>"; };
+		9E8DDB322451E384003EC688 /* AddUserTVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddUserTVController.swift; sourceTree = "<group>"; };
 		9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
+		9EC155A1246D628000D2C776 /* DataEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataEndPoint.swift; sourceTree = "<group>"; };
+		9EC155A7246D633500D2C776 /* NetworkManagerMainData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerMainData.swift; sourceTree = "<group>"; };
+		9EC155A9246D635500D2C776 /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
+		9EC155AB246D636700D2C776 /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
+		9EC155AD246D637900D2C776 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		9EC155AF246D638800D2C776 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
+		9EC155B1246D639600D2C776 /* NetworkLogger.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkLogger.swift; sourceTree = "<group>"; };
+		9EC155B3246D63AA00D2C776 /* ParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParameterEncoding.swift; sourceTree = "<group>"; };
+		9EC155B5246D63C300D2C776 /* URLParameterEncoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLParameterEncoding.swift; sourceTree = "<group>"; };
+		9EC155B7246D63D200D2C776 /* JSONParameterEncoder.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONParameterEncoder.swift; sourceTree = "<group>"; };
+		9EC155B9246D642B00D2C776 /* AlertService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertService.swift; sourceTree = "<group>"; };
+		9EC155BB246D6B2C00D2C776 /* ContactsTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTVCell.swift; sourceTree = "<group>"; };
 		A08140AA01619AD5BB5287FF /* Pods_Calendar_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calendar_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -107,10 +127,9 @@
 		9E0A5E1C244F268900188CDE /* App */ = {
 			isa = PBXGroup;
 			children = (
-				9E7A73AE244D92AB00FA529B /* AppDelegate.swift */,
-				9E7A73B0244D92AB00FA529B /* SceneDelegate.swift */,
-				9E7A73B4244D92AB00FA529B /* Main.storyboard */,
-				9E7A73B9244D92AC00FA529B /* LaunchScreen.storyboard */,
+				9EC155C2246D6F2C00D2C776 /* Controller */,
+				9EC155C3246D6F5900D2C776 /* View */,
+				9EC155A0246D622300D2C776 /* Network */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -141,10 +160,8 @@
 		9E0A5E21244F26D300188CDE /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
-				9E0A5E2D244F410900188CDE /* User.swift */,
-				9E8DDB322451E384003EC688 /* AddUserTVC.swift */,
-				9E0A5E1F244F26CE00188CDE /* ContactsTVC.swift */,
-				9E36D04824509EE200B3A83A /* UserService.swift */,
+				9EC155C0246D6ED300D2C776 /* ListOfContacts */,
+				9EC155C1246D6EF900D2C776 /* AddContact */,
 			);
 			path = Contacts;
 			sourceTree = "<group>";
@@ -208,6 +225,115 @@
 				9E0A5E1E244F26B000188CDE /* Support */,
 			);
 			path = "Calendar demo";
+			sourceTree = "<group>";
+		};
+		9EC155A0246D622300D2C776 /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9EC155A3246D628A00D2C776 /* EndPoint */,
+				9EC155A4246D629F00D2C776 /* Manager */,
+				9EC155A5246D62A700D2C776 /* Service */,
+				9EC155A6246D62AF00D2C776 /* Encoding */,
+				9EC155B9246D642B00D2C776 /* AlertService.swift */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		9EC155A3246D628A00D2C776 /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				9EC155A1246D628000D2C776 /* DataEndPoint.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		9EC155A4246D629F00D2C776 /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9EC155A7246D633500D2C776 /* NetworkManagerMainData.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		9EC155A5246D62A700D2C776 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				9EC155A9246D635500D2C776 /* EndPointType.swift */,
+				9EC155AB246D636700D2C776 /* Router.swift */,
+				9EC155AD246D637900D2C776 /* HTTPMethod.swift */,
+				9EC155AF246D638800D2C776 /* HTTPTask.swift */,
+				9EC155B1246D639600D2C776 /* NetworkLogger.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		9EC155A6246D62AF00D2C776 /* Encoding */ = {
+			isa = PBXGroup;
+			children = (
+				9EC155B3246D63AA00D2C776 /* ParameterEncoding.swift */,
+				9EC155B5246D63C300D2C776 /* URLParameterEncoding.swift */,
+				9EC155B7246D63D200D2C776 /* JSONParameterEncoder.swift */,
+			);
+			path = Encoding;
+			sourceTree = "<group>";
+		};
+		9EC155BD246D6D5900D2C776 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9E0A5E1F244F26CE00188CDE /* ContactsTVController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		9EC155BE246D6D7000D2C776 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9E0A5E2D244F410900188CDE /* Contact.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		9EC155BF246D6D9C00D2C776 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9EC155BB246D6B2C00D2C776 /* ContactsTVCell.swift */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		9EC155C0246D6ED300D2C776 /* ListOfContacts */ = {
+			isa = PBXGroup;
+			children = (
+				9EC155BF246D6D9C00D2C776 /* View */,
+				9EC155BE246D6D7000D2C776 /* Model */,
+				9EC155BD246D6D5900D2C776 /* Controller */,
+			);
+			name = ListOfContacts;
+			sourceTree = "<group>";
+		};
+		9EC155C1246D6EF900D2C776 /* AddContact */ = {
+			isa = PBXGroup;
+			children = (
+				9E8DDB322451E384003EC688 /* AddUserTVController.swift */,
+			);
+			name = AddContact;
+			sourceTree = "<group>";
+		};
+		9EC155C2246D6F2C00D2C776 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9E7A73AE244D92AB00FA529B /* AppDelegate.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9EC155C3246D6F5900D2C776 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9E7A73B4244D92AB00FA529B /* Main.storyboard */,
+				9E7A73B9244D92AC00FA529B /* LaunchScreen.storyboard */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		A518EEC00775C1CB7F1AC38D /* Frameworks */ = {
@@ -336,24 +462,34 @@
 				9E7A73B3244D92AB00FA529B /* CalendarVC.swift in Sources */,
 				9E80D0A62453268300FECAF7 /* CalendarModel.swift in Sources */,
 				9E0A5E30244F411400188CDE /* NotificationModel.swift in Sources */,
-				9E36D04924509EE200B3A83A /* UserService.swift in Sources */,
 				9E7A73AF244D92AB00FA529B /* AppDelegate.swift in Sources */,
 				9E0A5E18244ED4AD00188CDE /* LoginVC.swift in Sources */,
+				9EC155B0246D638800D2C776 /* HTTPTask.swift in Sources */,
+				9EC155B6246D63C300D2C776 /* URLParameterEncoding.swift in Sources */,
 				9E80D0D02454AED900FECAF7 /* NotificationCell.swift in Sources */,
+				9EC155BA246D642B00D2C776 /* AlertService.swift in Sources */,
 				9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */,
-				9E0A5E20244F26CE00188CDE /* ContactsTVC.swift in Sources */,
+				9EC155A2246D628000D2C776 /* DataEndPoint.swift in Sources */,
+				9E0A5E20244F26CE00188CDE /* ContactsTVController.swift in Sources */,
 				9E7A73C3244DE51E00FA529B /* LoginVCCode.swift in Sources */,
+				9EC155AA246D635500D2C776 /* EndPointType.swift in Sources */,
+				9EC155B8246D63D200D2C776 /* JSONParameterEncoder.swift in Sources */,
 				9E0A5E2B244F3FC200188CDE /* DetailedDayVC.swift in Sources */,
 				9E631939244F50B4007DE5F1 /* AddMeetingTVC.swift in Sources */,
-				9E0A5E2E244F410900188CDE /* User.swift in Sources */,
+				9E0A5E2E244F410900188CDE /* Contact.swift in Sources */,
 				9E80D0AA2453338B00FECAF7 /* DayModel.swift in Sources */,
+				9EC155A8246D633500D2C776 /* NetworkManagerMainData.swift in Sources */,
+				9EC155AE246D637900D2C776 /* HTTPMethod.swift in Sources */,
 				9E0A5E25244F271F00188CDE /* StatisticsVC.swift in Sources */,
-				9E7A73B1244D92AB00FA529B /* SceneDelegate.swift in Sources */,
 				9E0A5E1A244ED78500188CDE /* EnterVC.swift in Sources */,
 				9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */,
+				9EC155B2246D639600D2C776 /* NetworkLogger.swift in Sources */,
 				9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */,
-				9E8DDB332451E384003EC688 /* AddUserTVC.swift in Sources */,
+				9EC155BC246D6B2C00D2C776 /* ContactsTVCell.swift in Sources */,
+				9E8DDB332451E384003EC688 /* AddUserTVController.swift in Sources */,
+				9EC155B4246D63AA00D2C776 /* ParameterEncoding.swift in Sources */,
 				9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */,
+				9EC155AC246D636700D2C776 /* Router.swift in Sources */,
 				9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */,
 				9E80D0A82453269000FECAF7 /* CalendarService.swift in Sources */,
 				9E0A5E27244F272F00188CDE /* SettingsVC.swift in Sources */,

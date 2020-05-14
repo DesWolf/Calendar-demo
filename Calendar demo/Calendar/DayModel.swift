@@ -13,6 +13,7 @@ struct DayModel: Decodable{
     let date: String?
     let duration: Duration?
     let studentId: String?
+    let note: String?
 }
 
 struct Duration: Decodable, Comparable {
