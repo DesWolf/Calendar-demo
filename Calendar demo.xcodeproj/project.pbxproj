@@ -116,10 +116,9 @@
 		9E0A5E1B244F265F00188CDE /* Enter */ = {
 			isa = PBXGroup;
 			children = (
-				9E0A5E19244ED78500188CDE /* EnterVC.swift */,
-				9E0A5E17244ED4AD00188CDE /* LoginVC.swift */,
-				9E7A73C2244DE51E00FA529B /* LoginVCCode.swift */,
-				9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */,
+				9EFF46FF246D83F000C5D387 /* LoginScreen */,
+				9EFF46FE246D83DA00C5D387 /* RegisterScreen */,
+				9EFF4700246D842900C5D387 /* EnterScreen */,
 			);
 			path = Enter;
 			sourceTree = "<group>";
@@ -216,9 +215,9 @@
 			isa = PBXGroup;
 			children = (
 				9E0A5E1C244F268900188CDE /* App */,
+				9E0A5E1B244F265F00188CDE /* Enter */,
 				9E0A5E2C244F3FC800188CDE /* DetailedDay */,
 				9E0A5E1D244F26A500188CDE /* Calendar */,
-				9E0A5E1B244F265F00188CDE /* Enter */,
 				9E0A5E21244F26D300188CDE /* Contacts */,
 				9E0A5E22244F26E800188CDE /* Settings */,
 				9E0A5E23244F270400188CDE /* Statistics */,
@@ -334,6 +333,31 @@
 				9E7A73B9244D92AC00FA529B /* LaunchScreen.storyboard */,
 			);
 			path = View;
+			sourceTree = "<group>";
+		};
+		9EFF46FE246D83DA00C5D387 /* RegisterScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */,
+			);
+			path = RegisterScreen;
+			sourceTree = "<group>";
+		};
+		9EFF46FF246D83F000C5D387 /* LoginScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9E0A5E17244ED4AD00188CDE /* LoginVC.swift */,
+				9E7A73C2244DE51E00FA529B /* LoginVCCode.swift */,
+			);
+			path = LoginScreen;
+			sourceTree = "<group>";
+		};
+		9EFF4700246D842900C5D387 /* EnterScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9E0A5E19244ED78500188CDE /* EnterVC.swift */,
+			);
+			path = EnterScreen;
 			sourceTree = "<group>";
 		};
 		A518EEC00775C1CB7F1AC38D /* Frameworks */ = {
@@ -640,7 +664,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WJR74JV9LN;
 				INFOPLIST_FILE = "$(SRCROOT)/Calendar demo/Support/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -660,7 +684,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WJR74JV9LN;
 				INFOPLIST_FILE = "$(SRCROOT)/Calendar demo/Support/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

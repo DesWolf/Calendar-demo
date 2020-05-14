@@ -8,7 +8,6 @@
 
 import UIKit
 import CVCalendar
-import Moya
 
 
 class CalendarVC: UIViewController {
@@ -24,7 +23,7 @@ class CalendarVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchCalendar()
+//        fetchCalendar()
         backgroundColor()
         calendarView.delegate = self
         menuView.delegate = self
@@ -43,18 +42,18 @@ class CalendarVC: UIViewController {
 }
 //MARK: Network
 extension CalendarVC {
-    private func fetchCalendar() {
-        CalendarService.fetchCalendar { (jsonData) in
-            self.calendarMeetings = jsonData
-            
-            for index in 0..<self.calendarMeetings.count {
-                self.datesDictionary.append(self.calendarMeetings[index].date ?? "")
-            }
-            print(self.datesDictionary)
-            self.calendarView.contentController.refreshPresentedMonth()
+//    private func fetchCalendar() {
+//        CalendarService.fetchCalendar { (jsonData) in
+//            self.calendarMeetings = jsonData
+//
+//            for index in 0..<self.calendarMeetings.count {
+//                self.datesDictionary.append(self.calendarMeetings[index].date ?? "")
+//            }
+//            print(self.datesDictionary)
+//            self.calendarView.contentController.refreshPresentedMonth()
 
-        }
-    }
+//        }
+//    }
 }
 
 //MARK: CVCalendar MenuViewDelegate, CVCalendarViewDelegate

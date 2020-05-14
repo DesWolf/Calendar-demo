@@ -32,17 +32,17 @@ struct DetailedDayService {
                 }
             } else {
                 DispatchQueue.main.async {
-                    networkAlert()
+//                    networkAlert()
                 }
             }
         }.resume()
     }
     
-    // MARK: Network Alert
-    static func networkAlert() {
-        let alertController = UIAlertController(title: "Error", message: "Network is unavaliable! Please try again later!", preferredStyle: .alert)
-        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
-        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
-        rootViewController?.present(alertController, animated: true, completion: nil)
-    }
+//    // MARK: Network Alert
+//    static func networkAlert() {
+//        let alertController = UIAlertController(title: "Error", message: "Network is unavaliable! Please try again later!", preferredStyle: .alert)
+//        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+//        let rootViewController = UIApplication.shared.keyWindow?.rootViewController
+//        rootViewController?.present(alertController, animated: true, completion: nil)
+//    }
 }

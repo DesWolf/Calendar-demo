@@ -1,26 +1,16 @@
 PODS:
-  - Alamofire (5.1.0)
   - CVCalendar (1.7.0)
-  - Moya (14.0.0):
-    - Moya/Core (= 14.0.0)
-  - Moya/Core (14.0.0):
-    - Alamofire (~> 5.0)
 
 DEPENDENCIES:
   - CVCalendar (~> 1.7.0)
-  - Moya
 
 SPEC REPOS:
   trunk:
-    - Alamofire
     - CVCalendar
-    - Moya
 
 SPEC CHECKSUMS:
-  Alamofire: 9d5c5f602928e512395b30950c5984eca840093c
   CVCalendar: 1174c1b43c1a258970e14c1e8b19ef4106c5900b
-  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
 
-PODFILE CHECKSUM: bc85697eb82e83a17d60487185336601c808c308
+PODFILE CHECKSUM: c286b8732c6e4a106aa8e0df909da0cb759a172d
 
 COCOAPODS: 1.9.1

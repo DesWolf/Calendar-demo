@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import Moya
+//import Moya
 
 class ContactsTVController: UITableViewController {
 
@@ -23,18 +23,18 @@ class ContactsTVController: UITableViewController {
     }
 }
 
-
+// MARK: Network
 extension ContactsTVController {
     private func fetchUsersData() {
-        networkManagerMainData.fetchUsersData() { [weak self]  (users, error)  in
-            guard let users = users else {
+        networkManagerMainData.fetchUsersData() { [weak self]  (contacts, error)  in
+            guard let contacts = contacts else {
                 print(error ?? "")
                     DispatchQueue.main.async {
                         self?.alertNetwork(message: error ?? "")
                     }
                     return
                 }
-            self?.contacts = users
+            self?.contacts = contacts
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }

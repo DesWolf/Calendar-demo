@@ -28,7 +28,7 @@ struct NetworkManagerMainData {
     private let router = Router<DataApi>()
     
     func fetchUsersData(completion: @escaping (_ users: [Contact]?,_ error: String?)->()){
-        router.request(.users) { data, response, error in
+        router.request(.contacts) { data, response, error in
             
             if error != nil {
                 completion(nil, "Please check your network connection.")

@@ -15,10 +15,11 @@ enum NetworkEnvironment {
 }
 
 public enum DataApi {
-    case users
-//    case albums
-//    case photos(albumId: Int)
-//    case photoImage(imageUrl: String)
+    case contacts
+    case addUser(login: String, password: String)
+    //    case albums
+    //    case photos(albumId: Int)
+    //    case photoImage(imageUrl: String)
 }
 
 extension DataApi: EndPointType {
@@ -38,33 +39,44 @@ extension DataApi: EndPointType {
     
     var path: String {
         switch self {
-        case .users:
+        case .contacts:
             return "users"
-//        case .albums:
-//            return "albums"
-//        case .photos(_):
-//            return "photos"
-//        case .photoImage(let imageUrl):
-//            return "\(imageUrl)"
+        case .addUser(_,_):
+            return "users"
+            //        case .albums:
+            //            return "albums"
+            //        case .photos(_):
+            //            return "photos"
+            //        case .photoImage(let imageUrl):
+            //            return "\(imageUrl)"
         }
     }
     
     var httpMethod: HTTPMethod {
-        return .post
-    }
-    
-    var task: HTTPTask {
         switch self {
-//        case .photos(let albumId):
-//            return .requestParameters(bodyParameters: nil,
-//                                      bodyEncoding: .urlEncoding,
-//                                      urlParameters: ["albumId": albumId])
-        default:
-            return .request
+        case .contacts:
+            return .get
+        case .addUser(login: _, password: _):
+            return .post
         }
     }
-    
-    var headers: HTTPHeaders? {
-        return nil
-    }
+        
+        var task: HTTPTask {
+            switch self {
+            case .addUser(let name, let password):
+                return .requestParameters(bodyParameters: ["title": "\(name)", "body": "\(password)", "userId": "1"],
+                                          bodyEncoding: .jsonEncoding,
+                                          urlParameters: nil)
+                //        case .photos(let albumId):
+                //            return .requestParameters(bodyParameters: nil,
+                //                                      bodyEncoding: .urlEncoding,
+            //                                      urlParameters: ["albumId": albumId])
+            default:
+                return .request
+            }
+        }
+        
+        var headers: HTTPHeaders? {
+            return nil
+        }
 }

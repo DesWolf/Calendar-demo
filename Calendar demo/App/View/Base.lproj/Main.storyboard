@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WSM-Ad-RAF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="eCh-jd-uKY">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
+        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -164,7 +165,7 @@
         <!--Регистрация-->
         <scene sceneID="3lJ-2u-hvG">
             <objects>
-                <viewController id="3xe-gb-NSJ" customClass="LoginVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3xe-gb-NSJ" customClass="RegisterVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="tVt-sm-L1c">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -401,23 +402,23 @@
                                             <rect key="frame" x="0.0" y="0.0" width="349" height="57"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16:00-17:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vxa-vd-hJi">
-                                                    <rect key="frame" x="216" y="18.666666666666668" width="110" height="20.000000000000004"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="16:00-17:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vxa-vd-hJi">
+                                                    <rect key="frame" x="199" y="18.666666666666668" width="127" height="20.000000000000004"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="110" id="Mzq-Ht-733"/>
+                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="110" id="Mzq-Ht-733"/>
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Иванов Артем" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="HY2-UO-4GP">
-                                                    <rect key="frame" x="55" y="11" width="131" height="22"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Иванов Артем" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="HY2-UO-4GP">
+                                                    <rect key="frame" x="55" y="11" width="114" height="22"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Французский" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vch-VQ-ELE">
-                                                    <rect key="frame" x="55" y="33" width="146" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Французский" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="vch-VQ-ELE">
+                                                    <rect key="frame" x="55" y="33" width="129" height="18"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="18" id="bgp-qx-YIT"/>
                                                     </constraints>
@@ -489,13 +490,13 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="25 апреля 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gNS-fT-phX">
-                                <rect key="frame" x="28" y="73.666666666666671" width="157" height="26.666666666666671"/>
+                                <rect key="frame" x="28" y="74" width="157" height="26.666666666666671"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
                                 <color key="textColor" red="0.99993699790000001" green="1" blue="0.99987250569999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="До начала следующего занятия осталось: 4:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xh5-yh-ibd">
-                                <rect key="frame" x="28" y="103.66666666666667" width="309" height="13.333333333333329"/>
+                                <rect key="frame" x="28" y="104" width="309" height="13.333333333333329"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" red="0.99993699790000001" green="1" blue="0.99987250569999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -524,7 +525,7 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Напоминания:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="62j-FK-Cfd">
-                                <rect key="frame" x="15" y="486" width="157" height="27"/>
+                                <rect key="frame" x="15" y="486" width="340" height="27"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="22"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -540,7 +541,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="38.333332061767578"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Оплатить налог за март" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="441-Un-hvV">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Оплатить налог за март" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="441-Un-hvV">
                                                     <rect key="frame" x="37" y="9.9999999999999982" width="323" height="18.333333333333329"/>
                                                     <constraints>
                                                         <constraint firstAttribute="width" constant="323" id="eLv-fP-Uqx"/>
@@ -550,7 +551,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="redDot" translatesAutoresizingMaskIntoConstraints="NO" id="hzx-7H-RXg">
-                                                    <rect key="frame" x="15" y="16.666666666666671" width="5" height="5"/>
+                                                    <rect key="frame" x="15" y="16.666666666666668" width="5" height="5"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="5" id="6sp-uI-6xS"/>
                                                         <constraint firstAttribute="width" constant="5" id="Wji-JE-vLa"/>
@@ -578,7 +579,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Завтра, 27 апреля:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vdL-Wf-QSu">
-                                <rect key="frame" x="15" y="524" width="199" height="20.666666666666629"/>
+                                <rect key="frame" x="15" y="524" width="340" height="20.666666666666629"/>
                                 <fontDescription key="fontDescription" name="AppleSDGothicNeo-Bold" family="Apple SD Gothic Neo" pointSize="17"/>
                                 <color key="textColor" red="0.99993699790000001" green="1" blue="0.99987250569999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -587,7 +588,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="xh5-yh-ibd" firstAttribute="top" secondItem="gNS-fT-phX" secondAttribute="bottom" constant="3.3300000000000001" id="17O-1v-ouZ"/>
-                            <constraint firstItem="mdP-f7-KaX" firstAttribute="trailing" secondItem="62j-FK-Cfd" secondAttribute="trailing" constant="203" id="57k-rR-ZYZ"/>
+                            <constraint firstItem="mdP-f7-KaX" firstAttribute="trailing" secondItem="62j-FK-Cfd" secondAttribute="trailing" constant="20" id="57k-rR-ZYZ"/>
                             <constraint firstItem="mdP-f7-KaX" firstAttribute="trailing" secondItem="XFl-ug-YpE" secondAttribute="trailing" constant="16" id="8B2-gj-mzy"/>
                             <constraint firstItem="xh5-yh-ibd" firstAttribute="leading" secondItem="mdP-f7-KaX" secondAttribute="leading" constant="28" id="9eb-e2-3GC"/>
                             <constraint firstItem="LmR-Sg-Wfe" firstAttribute="top" secondItem="blw-vx-gee" secondAttribute="top" id="D7a-jz-rkI"/>
@@ -607,7 +608,7 @@
                             <constraint firstItem="LmR-Sg-Wfe" firstAttribute="leading" secondItem="mdP-f7-KaX" secondAttribute="leading" id="Se2-5K-cuM"/>
                             <constraint firstItem="XFl-ug-YpE" firstAttribute="top" secondItem="LmR-Sg-Wfe" secondAttribute="bottom" constant="17" id="TML-dn-bW9"/>
                             <constraint firstItem="Xej-na-HwC" firstAttribute="top" secondItem="LmR-Sg-Wfe" secondAttribute="bottom" constant="17" id="UF4-Of-B8s"/>
-                            <constraint firstItem="mdP-f7-KaX" firstAttribute="trailing" secondItem="vdL-Wf-QSu" secondAttribute="trailing" constant="161" id="UQ3-zA-FDn"/>
+                            <constraint firstItem="mdP-f7-KaX" firstAttribute="trailing" secondItem="vdL-Wf-QSu" secondAttribute="trailing" constant="20" id="UQ3-zA-FDn"/>
                             <constraint firstItem="zyO-R0-DH3" firstAttribute="trailing" secondItem="mdP-f7-KaX" secondAttribute="trailing" id="ZSe-k1-J9K"/>
                             <constraint firstItem="mdP-f7-KaX" firstAttribute="trailing" secondItem="CY3-4B-T1E" secondAttribute="trailing" constant="16" id="ZmQ-ew-A9S"/>
                             <constraint firstItem="mdP-f7-KaX" firstAttribute="trailing" secondItem="xh5-yh-ibd" secondAttribute="trailing" constant="38" id="Zrb-le-KG9"/>
@@ -1107,17 +1108,17 @@
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.666667938232422"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lWi-jy-MdH">
-                                            <rect key="frame" x="16" y="11.666666666666664" width="343" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lWi-jy-MdH">
+                                            <rect key="frame" x="16" y="11.666666666666666" width="343" height="20.333333333333336"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailingMargin" secondItem="lWi-jy-MdH" secondAttribute="trailing" id="V8e-Tp-5fY"/>
-                                        <constraint firstAttribute="bottomMargin" secondItem="lWi-jy-MdH" secondAttribute="bottom" id="adK-sA-vY1"/>
-                                        <constraint firstItem="lWi-jy-MdH" firstAttribute="leading" secondItem="BDr-UQ-D7B" secondAttribute="leadingMargin" id="cOK-KG-bEk"/>
+                                        <constraint firstItem="lWi-jy-MdH" firstAttribute="trailing" secondItem="BDr-UQ-D7B" secondAttribute="trailingMargin" id="77s-Rk-Y3v"/>
+                                        <constraint firstItem="lWi-jy-MdH" firstAttribute="centerY" secondItem="BDr-UQ-D7B" secondAttribute="centerY" id="7HB-Qd-v7H"/>
+                                        <constraint firstItem="lWi-jy-MdH" firstAttribute="leading" secondItem="BDr-UQ-D7B" secondAttribute="leadingMargin" id="v9p-5n-egl"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
