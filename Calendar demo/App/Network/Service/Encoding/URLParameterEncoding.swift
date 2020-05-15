@@ -22,8 +22,10 @@ public struct URLParameterEncoder: ParameterEncoder {
                 let queryItem = URLQueryItem(name: key,
                                              value: "\(value)".addingPercentEncoding(withAllowedCharacters: .urlHostAllowed))
                 urlComponents.queryItems?.append(queryItem)
+                
             }
             urlRequest.url = urlComponents.url
+            
         }
         
         if urlRequest.value(forHTTPHeaderField: "Content-Type") == nil {

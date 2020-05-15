@@ -8,26 +8,11 @@
 
 import UIKit
 
-enum NetworkResponse:String {
-    case success
-    case authenticationError = "You need to be authenticated first."
-    case badRequest = "Bad request"
-    case outdated = "The url you requested is outdated."
-    case failed = "Network request failed."
-    case noData = "Response returned with no data to decode."
-    case unableToDecode = "We could not decode the response."
-}
-
-enum Result<String>{
-    case success
-    case failure(String)
-}
-
 struct NetworkManagerMainData {
     static let environment : NetworkEnvironment = .production
     private let router = Router<DataApi>()
     
-    func fetchUsersData(completion: @escaping (_ users: [Contact]?,_ error: String?)->()){
+    func fetchUsersData(completion: @escaping (_ contacts: [Contact]?,_ error: String?)->()){
         router.request(.contacts) { data, response, error in
             
             if error != nil {
@@ -55,7 +40,6 @@ struct NetworkManagerMainData {
             }
         }
     }
-    
     
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String>{
         switch response.statusCode {

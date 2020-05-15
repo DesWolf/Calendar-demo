@@ -36,8 +36,9 @@ public enum ParameterEncoding {
             case .urlAndJsonEncoding:
                 guard let bodyParameters = bodyParameters,
                     let urlParameters = urlParameters else { return }
-                try URLParameterEncoder().encode(urlRequest: &urlRequest, with: urlParameters)
                 try JSONParameterEncoder().encode(urlRequest: &urlRequest, with: bodyParameters)
+                try URLParameterEncoder().encode(urlRequest: &urlRequest, with: urlParameters)
+                
                 
             }
         }catch {

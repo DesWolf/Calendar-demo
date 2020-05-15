@@ -7,8 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		9E0A5E18244ED4AD00188CDE /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E17244ED4AD00188CDE /* LoginVC.swift */; };
-		9E0A5E1A244ED78500188CDE /* EnterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E19244ED78500188CDE /* EnterVC.swift */; };
+		9E0A5E18244ED4AD00188CDE /* StartScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E17244ED4AD00188CDE /* StartScreenVC.swift */; };
 		9E0A5E20244F26CE00188CDE /* ContactsTVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E1F244F26CE00188CDE /* ContactsTVController.swift */; };
 		9E0A5E25244F271F00188CDE /* StatisticsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E24244F271F00188CDE /* StatisticsVC.swift */; };
 		9E0A5E27244F272F00188CDE /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E26244F272F00188CDE /* SettingsVC.swift */; };
@@ -16,6 +15,11 @@
 		9E0A5E2B244F3FC200188CDE /* DetailedDayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2A244F3FC200188CDE /* DetailedDayVC.swift */; };
 		9E0A5E2E244F410900188CDE /* Contact.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2D244F410900188CDE /* Contact.swift */; };
 		9E0A5E30244F411400188CDE /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2F244F411400188CDE /* NotificationModel.swift */; };
+		9E5BD561246EE6EC00EB4F53 /* LoginTVController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BD560246EE6EC00EB4F53 /* LoginTVController.swift */; };
+		9E5BD563246EE9D500EB4F53 /* CheckEmailPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BD562246EE9D500EB4F53 /* CheckEmailPassword.swift */; };
+		9E5C05E7246D8BCE00EADD5C /* ServerAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C05E6246D8BCE00EADD5C /* ServerAnswer.swift */; };
+		9E5C05E9246D930700EADD5C /* LoginEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C05E8246D930700EADD5C /* LoginEndPoint.swift */; };
+		9E5C05EB246D971400EADD5C /* NetworkManagerLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C05EA246D971400EADD5C /* NetworkManagerLogin.swift */; };
 		9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631936244F4781007DE5F1 /* MeetingCell.swift */; };
 		9E631939244F50B4007DE5F1 /* AddMeetingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631938244F50B4007DE5F1 /* AddMeetingTVC.swift */; };
 		9E63193A244F6101007DE5F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B4244D92AB00FA529B /* Main.storyboard */; };
@@ -50,8 +54,7 @@
 /* Begin PBXFileReference section */
 		136BBEDCF1AAC5F1CFAEFD34 /* Pods-Calendar demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calendar demo.release.xcconfig"; path = "Target Support Files/Pods-Calendar demo/Pods-Calendar demo.release.xcconfig"; sourceTree = "<group>"; };
 		1FAFD638F4A42CFBE6FF146F /* Pods-Calendar demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calendar demo.debug.xcconfig"; path = "Target Support Files/Pods-Calendar demo/Pods-Calendar demo.debug.xcconfig"; sourceTree = "<group>"; };
-		9E0A5E17244ED4AD00188CDE /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
-		9E0A5E19244ED78500188CDE /* EnterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterVC.swift; sourceTree = "<group>"; };
+		9E0A5E17244ED4AD00188CDE /* StartScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVC.swift; sourceTree = "<group>"; };
 		9E0A5E1F244F26CE00188CDE /* ContactsTVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContactsTVController.swift; sourceTree = "<group>"; };
 		9E0A5E24244F271F00188CDE /* StatisticsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticsVC.swift; sourceTree = "<group>"; };
 		9E0A5E26244F272F00188CDE /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
@@ -59,6 +62,11 @@
 		9E0A5E2A244F3FC200188CDE /* DetailedDayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedDayVC.swift; sourceTree = "<group>"; };
 		9E0A5E2D244F410900188CDE /* Contact.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Contact.swift; sourceTree = "<group>"; };
 		9E0A5E2F244F411400188CDE /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		9E5BD560246EE6EC00EB4F53 /* LoginTVController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginTVController.swift; sourceTree = "<group>"; };
+		9E5BD562246EE9D500EB4F53 /* CheckEmailPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailPassword.swift; sourceTree = "<group>"; };
+		9E5C05E6246D8BCE00EADD5C /* ServerAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAnswer.swift; sourceTree = "<group>"; };
+		9E5C05E8246D930700EADD5C /* LoginEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndPoint.swift; sourceTree = "<group>"; };
+		9E5C05EA246D971400EADD5C /* NetworkManagerLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerLogin.swift; sourceTree = "<group>"; };
 		9E631936244F4781007DE5F1 /* MeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCell.swift; sourceTree = "<group>"; };
 		9E631938244F50B4007DE5F1 /* AddMeetingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeetingTVC.swift; sourceTree = "<group>"; };
 		9E7A73AB244D92AB00FA529B /* Calendar demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calendar demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -116,9 +124,9 @@
 		9E0A5E1B244F265F00188CDE /* Enter */ = {
 			isa = PBXGroup;
 			children = (
+				9E5C05EE246D9C8D00EADD5C /* Network */,
 				9EFF46FF246D83F000C5D387 /* LoginScreen */,
 				9EFF46FE246D83DA00C5D387 /* RegisterScreen */,
-				9EFF4700246D842900C5D387 /* EnterScreen */,
 			);
 			path = Enter;
 			sourceTree = "<group>";
@@ -159,6 +167,7 @@
 		9E0A5E21244F26D300188CDE /* Contacts */ = {
 			isa = PBXGroup;
 			children = (
+				9E5C05F1246D9D0900EADD5C /* Network */,
 				9EC155C0246D6ED300D2C776 /* ListOfContacts */,
 				9EC155C1246D6EF900D2C776 /* AddContact */,
 			);
@@ -191,6 +200,74 @@
 				9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */,
 			);
 			path = DetailedDay;
+			sourceTree = "<group>";
+		};
+		9E5C05EC246D9C3D00EADD5C /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9E5BD560246EE6EC00EB4F53 /* LoginTVController.swift */,
+				9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */,
+				9E5BD562246EE9D500EB4F53 /* CheckEmailPassword.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		9E5C05ED246D9C4C00EADD5C /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9E5C05E6246D8BCE00EADD5C /* ServerAnswer.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		9E5C05EE246D9C8D00EADD5C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9E5C05EF246D9CA900EADD5C /* EndPoint */,
+				9E5C05F0246D9CB900EADD5C /* Manager */,
+			);
+			path = Network;
+			sourceTree = "<group>";
+		};
+		9E5C05EF246D9CA900EADD5C /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				9E5C05E8246D930700EADD5C /* LoginEndPoint.swift */,
+			);
+			path = EndPoint;
+			sourceTree = "<group>";
+		};
+		9E5C05F0246D9CB900EADD5C /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9E5C05EA246D971400EADD5C /* NetworkManagerLogin.swift */,
+			);
+			path = Manager;
+			sourceTree = "<group>";
+		};
+		9E5C05F1246D9D0900EADD5C /* Network */ = {
+			isa = PBXGroup;
+			children = (
+				9E5C05F2246D9D1400EADD5C /* EndPoint */,
+				9E5C05F3246D9D5D00EADD5C /* Manager */,
+			);
+			name = Network;
+			sourceTree = "<group>";
+		};
+		9E5C05F2246D9D1400EADD5C /* EndPoint */ = {
+			isa = PBXGroup;
+			children = (
+				9EC155A1246D628000D2C776 /* DataEndPoint.swift */,
+			);
+			name = EndPoint;
+			sourceTree = "<group>";
+		};
+		9E5C05F3246D9D5D00EADD5C /* Manager */ = {
+			isa = PBXGroup;
+			children = (
+				9EC155A7246D633500D2C776 /* NetworkManagerMainData.swift */,
+			);
+			name = Manager;
 			sourceTree = "<group>";
 		};
 		9E7A73A2244D92AB00FA529B = {
@@ -232,7 +309,6 @@
 				9EC155A3246D628A00D2C776 /* EndPoint */,
 				9EC155A4246D629F00D2C776 /* Manager */,
 				9EC155A5246D62A700D2C776 /* Service */,
-				9EC155A6246D62AF00D2C776 /* Encoding */,
 				9EC155B9246D642B00D2C776 /* AlertService.swift */,
 			);
 			path = Network;
@@ -241,7 +317,6 @@
 		9EC155A3246D628A00D2C776 /* EndPoint */ = {
 			isa = PBXGroup;
 			children = (
-				9EC155A1246D628000D2C776 /* DataEndPoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -249,7 +324,6 @@
 		9EC155A4246D629F00D2C776 /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				9EC155A7246D633500D2C776 /* NetworkManagerMainData.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -262,6 +336,7 @@
 				9EC155AD246D637900D2C776 /* HTTPMethod.swift */,
 				9EC155AF246D638800D2C776 /* HTTPTask.swift */,
 				9EC155B1246D639600D2C776 /* NetworkLogger.swift */,
+				9EC155A6246D62AF00D2C776 /* Encoding */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -338,7 +413,8 @@
 		9EFF46FE246D83DA00C5D387 /* RegisterScreen */ = {
 			isa = PBXGroup;
 			children = (
-				9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */,
+				9E5C05ED246D9C4C00EADD5C /* Model */,
+				9E5C05EC246D9C3D00EADD5C /* Controller */,
 			);
 			path = RegisterScreen;
 			sourceTree = "<group>";
@@ -346,18 +422,10 @@
 		9EFF46FF246D83F000C5D387 /* LoginScreen */ = {
 			isa = PBXGroup;
 			children = (
-				9E0A5E17244ED4AD00188CDE /* LoginVC.swift */,
+				9E0A5E17244ED4AD00188CDE /* StartScreenVC.swift */,
 				9E7A73C2244DE51E00FA529B /* LoginVCCode.swift */,
 			);
 			path = LoginScreen;
-			sourceTree = "<group>";
-		};
-		9EFF4700246D842900C5D387 /* EnterScreen */ = {
-			isa = PBXGroup;
-			children = (
-				9E0A5E19244ED78500188CDE /* EnterVC.swift */,
-			);
-			path = EnterScreen;
 			sourceTree = "<group>";
 		};
 		A518EEC00775C1CB7F1AC38D /* Frameworks */ = {
@@ -486,8 +554,9 @@
 				9E7A73B3244D92AB00FA529B /* CalendarVC.swift in Sources */,
 				9E80D0A62453268300FECAF7 /* CalendarModel.swift in Sources */,
 				9E0A5E30244F411400188CDE /* NotificationModel.swift in Sources */,
+				9E5C05E7246D8BCE00EADD5C /* ServerAnswer.swift in Sources */,
 				9E7A73AF244D92AB00FA529B /* AppDelegate.swift in Sources */,
-				9E0A5E18244ED4AD00188CDE /* LoginVC.swift in Sources */,
+				9E0A5E18244ED4AD00188CDE /* StartScreenVC.swift in Sources */,
 				9EC155B0246D638800D2C776 /* HTTPTask.swift in Sources */,
 				9EC155B6246D63C300D2C776 /* URLParameterEncoding.swift in Sources */,
 				9E80D0D02454AED900FECAF7 /* NotificationCell.swift in Sources */,
@@ -498,14 +567,17 @@
 				9E7A73C3244DE51E00FA529B /* LoginVCCode.swift in Sources */,
 				9EC155AA246D635500D2C776 /* EndPointType.swift in Sources */,
 				9EC155B8246D63D200D2C776 /* JSONParameterEncoder.swift in Sources */,
+				9E5C05EB246D971400EADD5C /* NetworkManagerLogin.swift in Sources */,
 				9E0A5E2B244F3FC200188CDE /* DetailedDayVC.swift in Sources */,
 				9E631939244F50B4007DE5F1 /* AddMeetingTVC.swift in Sources */,
 				9E0A5E2E244F410900188CDE /* Contact.swift in Sources */,
+				9E5BD563246EE9D500EB4F53 /* CheckEmailPassword.swift in Sources */,
 				9E80D0AA2453338B00FECAF7 /* DayModel.swift in Sources */,
+				9E5BD561246EE6EC00EB4F53 /* LoginTVController.swift in Sources */,
 				9EC155A8246D633500D2C776 /* NetworkManagerMainData.swift in Sources */,
 				9EC155AE246D637900D2C776 /* HTTPMethod.swift in Sources */,
 				9E0A5E25244F271F00188CDE /* StatisticsVC.swift in Sources */,
-				9E0A5E1A244ED78500188CDE /* EnterVC.swift in Sources */,
+				9E5C05E9246D930700EADD5C /* LoginEndPoint.swift in Sources */,
 				9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */,
 				9EC155B2246D639600D2C776 /* NetworkLogger.swift in Sources */,
 				9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */,
