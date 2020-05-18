@@ -11,22 +11,37 @@ import UIKit
 
 class ContactsTVController: UITableViewController {
 
-    var contacts = [Contact]()
-    private let networkManagerMainData =  NetworkManagerMainData()
+    var students = [Student]()
+    private let networkManagerStudents =  NetworkManagerStudents()
+    private let teacherId = "9"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchUsersData()
+        fetchUsersData(teacherId: teacherId)
     }
     
     @IBAction func didTapAdd() {
     }
 }
 
+// MARK: - Navigation
+extension ContactsTVController {
+   override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+       if segue.identifier == "showDetail" {
+           guard let indexPath = tableView.indexPathForSelectedRow else { return }
+           
+        let student = students[indexPath.row]
+           
+           let addStudentTVC = segue.destination as! AddStudentTVController
+        addStudentTVC.student = student
+       }
+   }
+}
+
 // MARK: Network
 extension ContactsTVController {
-    private func fetchUsersData() {
-        networkManagerMainData.fetchUsersData() { [weak self]  (contacts, error)  in
+    private func fetchUsersData(teacherId: String) {
+        networkManagerStudents.fetchStudentsList(teacherId: teacherId) { [weak self]  (contacts, error)  in
             guard let contacts = contacts else {
                 print(error ?? "")
                     DispatchQueue.main.async {
@@ -34,7 +49,7 @@ extension ContactsTVController {
                     }
                     return
                 }
-            self?.contacts = contacts
+            self?.students = contacts
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
@@ -44,28 +59,32 @@ extension ContactsTVController {
 
 // MARK: TableViewDataSource
 extension ContactsTVController {
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return contacts.count
+        return students.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactsTVCell", for: indexPath) as! ContactsTVCell
-        let user = contacts[indexPath.row]
+        let user = students[indexPath.row]
         cell.configere(with: user)
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let contact = contacts[indexPath.row]
-        print("Select \(contact)")
-       
-    }
+//    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        let contact = students[indexPath.row]
+//
+//
+//    }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        guard editingStyle == .delete else { return }
-        let contact = contacts[indexPath.row]
-        print("Editing \(contact)")
-    }
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//        guard editingStyle == .delete else { return }
+//        let contact = students[indexPath.row]
+//        print("Editing \(contact)")
+//    }
 }
 //MARK: Alert
 extension ContactsTVController  {

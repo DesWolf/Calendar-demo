@@ -12,7 +12,7 @@ class ContactsTVCell: UITableViewCell {
        
     @IBOutlet var userNameLabel: UILabel!
      
-    func configere( with user: Contact) {
-        self.userNameLabel.text = user.name
+    func configere( with user: Student) {
+        self.userNameLabel.text = "\(user.name ?? "") \(user.surname ?? "")"
         }
     }

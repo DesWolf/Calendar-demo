@@ -16,7 +16,7 @@ public enum LoginApi {
 extension LoginApi: EndPointType {
   
     var environmentBaseURL : String {
-        switch NetworkManagerMainData.environment {
+        switch NetworkManagerStudents.environment {
         case .qa: return "http://f0435023.xsph.ru/api/"
         case .production: return "http://f0435023.xsph.ru/api/"
         case .staging: return "http://f0435023.xsph.ru/api/"

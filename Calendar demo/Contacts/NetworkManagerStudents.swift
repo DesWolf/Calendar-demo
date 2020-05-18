@@ -1,5 +1,5 @@
 //
-//  NetworkManagerLogin.swift
+//  NetworkManagerMainData.swift
 //  Calendar demo
 //
 //  Created by Максим Окунеев on 5/14/20.
@@ -8,30 +8,12 @@
 
 import UIKit
 
-enum NetworkResponse:String {
-    case success
-    case incorrectAPI = "incorrect API"
-    case dataError = "Data Error"
-    case authenticationError = "You need to be authenticated first."
-    case badRequest = "Bad request"
-    case outdated = "The url you requested is outdated."
-    case failed = "Network request failed."
-    case noData = "Response returned with no data to decode."
-    case unableToDecode = "We could not decode the response."
-}
-
-enum Result<String>{
-    case success
-    case failure(String)
-}
-
-struct NetworkManagerLogin {
+struct NetworkManagerStudents {
     static let environment : NetworkEnvironment = .production
-    static let TeachOrgAPIKey = "924b4134faa490bc658c3847d96d375c"
-    private let router = Router<LoginApi>()
+    private let router = Router<StudentsApi>()
     
-    func registerUser(email: String, password: String, confirmPassword: String, completion: @escaping (_ message: ServerAuthorizationAnswer?,_ error: String?)->()){
-        router.request(.registerUser(email: email, password: password, confirmPassword: confirmPassword)) { data, response, error in
+    func fetchStudentsList(teacherId: String, completion: @escaping (_ contacts: [Student]?,_ error: String?)->()){
+        router.request(.students(teacherId: teacherId)) { data, response, error in
             
             if error != nil {
                 completion(nil, "Please check your network connection.")
@@ -46,7 +28,7 @@ struct NetworkManagerLogin {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode(ServerAuthorizationAnswer.self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode([Student].self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -59,8 +41,8 @@ struct NetworkManagerLogin {
         }
     }
     
-    func loginUser(email: String, password: String, completion: @escaping (_ message: ServerAuthorizationAnswer?,_ error: String?)->()){
-        router.request(.loginUser(email: email, password: password)) { data, response, error in
+    func fetchStudent(studentId: String, completion: @escaping (_ contacts: Student?,_ error: String?)->()){
+        router.request(.showStudent(studentId: studentId)) { data, response, error in
             
             if error != nil {
                 completion(nil, "Please check your network connection.")
@@ -75,7 +57,7 @@ struct NetworkManagerLogin {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode(ServerAuthorizationAnswer.self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(Student.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -87,6 +69,50 @@ struct NetworkManagerLogin {
             }
         }
     }
+    
+    func addStudent(teacherId: String,
+                    name: String,
+                    surname: String,
+                    phone: String,
+                    email: String,
+                    currentDiscipline: String,
+                    note: String,
+                    completion: @escaping (_ student: Student?,_ error: String?)->()){
+        router.request(.newStudent(teacherId: teacherId,
+                                   name: name,
+                                   surname: surname,
+                                   phone: phone,
+                                   email: email,
+                                   currentDiscipline: currentDiscipline,
+                                   note: note))
+        { data, response, error in
+            
+            if error != nil {
+                completion(nil, "Please check your network connection.")
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    do {
+                        let apiResponse = try JSONDecoder().decode(Student.self, from: responseData)
+                        completion(apiResponse,nil)
+                    }catch {
+                        print(error)
+                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                    }
+                case .failure(let networkFailureError):
+                    completion(nil, networkFailureError)
+                }
+            }
+        }
+    }
+    
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String>{
         switch response.statusCode {
         case 200...299: return .success

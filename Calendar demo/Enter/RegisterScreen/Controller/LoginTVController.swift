@@ -14,6 +14,9 @@ class LoginTVController: UITableViewController {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var confirmPasswordTF: UITextField!
     @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var navTitle: UINavigationItem!
+    @IBOutlet weak var changeFormLabel: UILabel!
+    @IBOutlet weak var changeFormButton: UIButton!
     
     private var email = ""
     private var password = ""
@@ -47,22 +50,24 @@ class LoginTVController: UITableViewController {
         reigisterUser()
     }
     
-    @IBAction func changeRegistrationToLogin(_ sender: Any) {
-        
-        if confirmPasswordField == false {
-            self.navigationController?.title = "Вход"
-            self.loginButton.titleLabel?.text = "Войти"
-//            self.loginButton.contentHorizontalAlignment = .center
-            confirmPasswordField = true
-        } else {
-            self.navigationController?.title = "Регистрация"
-            self.loginButton.titleLabel?.text = "Зарегистрироваться"
-//            self.loginButton.contentHorizontalAlignment = .center
-            confirmPasswordField = false
-        }
-//        confirmPasswordField = confirmPasswordField ? false : true
-        self.tableView.reloadData()
-    }
+//    @IBAction func changeRegistrationToLogin(_ sender: Any) {
+//
+//        if confirmPasswordField == false {
+//            self.navTitle.title = "Регистрация"
+//            self.loginButton.titleLabel?.text = "Войти"
+//            self.changeFormLabel.text = "У вас уже есть учетная запись?"
+//            self.changeFormButton.setTitle("Войти", for: .normal)
+//            confirmPasswordField = true
+//        } else {
+//            self.navTitle.title = "Вход"
+//            self.loginButton.titleLabel?.text = "Зарегистрироваться"
+//            self.changeFormLabel.text = "Хотите зарегистрироваться?"
+//            self.changeFormButton.setTitle("Зарегистрироваться", for: .normal)
+//
+//            confirmPasswordField = false
+//        }
+//        self.tableView.reloadData()
+//    }
     
     @objc func textFieldDidChange(textField: UITextField) {
     }
@@ -79,9 +84,7 @@ class LoginTVController: UITableViewController {
 
 //MARK: TableViewDelegate, TableViewDataSource
 extension LoginTVController {
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-       
         switch  indexPath.row {
         case 2:
             return CGFloat(confirmPasswordField ? 100.0 : 0.0)
@@ -91,6 +94,7 @@ extension LoginTVController {
     }
   
 }
+
 
 //MARK: Network
 extension LoginTVController {
