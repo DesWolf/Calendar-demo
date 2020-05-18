@@ -8,16 +8,22 @@
 
 import Foundation
 
-struct Student: Decodable {
+struct StudentModel: Decodable {
     let studentId: String
     let name: String?
     let surname: String?
     let phone: String?
     let email: String?
     let currentDiscipline: String?
-    let disciplines: [String?]
+    let disciplines: [String?]?
     let note: String?
 }
 
-
-
+struct AddStudentModel: Decodable {
+    let name: String?
+    let surname: String?
+    let phone: String?
+    let email: String?
+    let currentDiscipline: String?
+    let note: String?
+}

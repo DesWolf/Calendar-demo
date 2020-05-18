@@ -1155,7 +1155,7 @@
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0OI-M0-K17">
                             <connections>
                                 <action selector="didTapAdd" destination="U1g-iS-BGO" id="JPV-md-bW6"/>
-                                <segue destination="UkH-Ls-YtS" kind="show" id="ad0-qD-guw"/>
+                                <segue destination="UkH-Ls-YtS" kind="presentation" modalPresentationStyle="fullScreen" id="ad0-qD-guw"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -1175,7 +1175,7 @@
                         <sections>
                             <tableViewSection id="ixg-A5-iRT">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="91" id="eai-c1-cSE" userLabel="name">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="91" id="eai-c1-cSE" userLabel="name">
                                         <rect key="frame" x="0.0" y="28" width="375" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eai-c1-cSE" id="FNb-nl-fw5">
@@ -1215,7 +1215,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="91" id="eWv-Wp-FGp" userLabel="surname">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="91" id="eWv-Wp-FGp" userLabel="surname">
                                         <rect key="frame" x="0.0" y="119" width="375" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="eWv-Wp-FGp" id="1MA-qb-eoT">
@@ -1255,7 +1255,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="91" id="gUK-6N-yIB" userLabel="phone">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="91" id="gUK-6N-yIB" userLabel="phone">
                                         <rect key="frame" x="0.0" y="210" width="375" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gUK-6N-yIB" id="8AY-jX-vbr">
@@ -1296,7 +1296,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="91" id="oAQ-F7-JtC" userLabel="phone">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="91" id="oAQ-F7-JtC" userLabel="phone">
                                         <rect key="frame" x="0.0" y="301" width="375" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oAQ-F7-JtC" id="L7M-rv-owC">
@@ -1315,7 +1315,7 @@
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="example@mail.ru" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9qS-uK-bLI">
                                                             <rect key="frame" x="56" y="0.0" width="279" height="45"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                            <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
+                                                            <textInputTraits key="textInputTraits"/>
                                                         </textField>
                                                     </subviews>
                                                 </stackView>
@@ -1337,7 +1337,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="89" id="o0F-vT-tc5" userLabel="subject">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="89" id="o0F-vT-tc5" userLabel="subject">
                                         <rect key="frame" x="0.0" y="392" width="375" height="89"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="o0F-vT-tc5" id="nbr-1R-fXC">
@@ -1380,25 +1380,25 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="120" id="alH-dU-P95" userLabel="subjectPicker">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="120" id="alH-dU-P95" userLabel="subjectPicker">
                                         <rect key="frame" x="0.0" y="481" width="375" height="120"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="alH-dU-P95" id="heI-nY-Zbm">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xuY-CK-IVy">
+                                                <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xuY-CK-IVy">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="120"/>
                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
                                                     <connections>
-                                                        <outlet property="dataSource" destination="1ay-yP-aEP" id="5w9-9e-ss3"/>
-                                                        <outlet property="delegate" destination="1ay-yP-aEP" id="XKC-Fx-d67"/>
+                                                        <outlet property="dataSource" destination="3cJ-3Z-Wn9" id="i0f-mI-5XV"/>
+                                                        <outlet property="delegate" destination="3cJ-3Z-Wn9" id="oA3-Fj-OaJ"/>
                                                     </connections>
                                                 </pickerView>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="91" id="lA4-Xu-15u" userLabel="comment">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" rowHeight="91" id="lA4-Xu-15u" userLabel="comment">
                                         <rect key="frame" x="0.0" y="601" width="375" height="91"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="lA4-Xu-15u" id="8C0-Zu-5sw">
@@ -1462,7 +1462,7 @@
                     <size key="freeformSize" width="375" height="1500"/>
                     <connections>
                         <outlet property="disciplineLabel" destination="rBJ-HL-h7K" id="Q04-p8-tQt"/>
-                        <outlet property="disciplinePicker" destination="xuY-CK-IVy" id="k7o-A6-sD3"/>
+                        <outlet property="disciplinePicker" destination="xuY-CK-IVy" id="JU7-Xk-Yml"/>
                         <outlet property="emailTF" destination="9qS-uK-bLI" id="t59-is-l8d"/>
                         <outlet property="nameTF" destination="Q4e-Kf-m89" id="e8J-nQ-pUs"/>
                         <outlet property="noteTF" destination="SXU-4E-zkl" id="FYo-ny-sRX"/>
@@ -1551,7 +1551,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="YDf-zy-vzg"/>
+        <segue reference="VdF-4U-yye"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Add" width="22" height="22"/>

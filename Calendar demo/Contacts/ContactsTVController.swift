@@ -11,7 +11,7 @@ import UIKit
 
 class ContactsTVController: UITableViewController {
 
-    var students = [Student]()
+    var students = [StudentModel]()
     private let networkManagerStudents =  NetworkManagerStudents()
     private let teacherId = "9"
 
@@ -33,7 +33,7 @@ extension ContactsTVController {
         let student = students[indexPath.row]
            
            let addStudentTVC = segue.destination as! AddStudentTVController
-        addStudentTVC.student = student
+        addStudentTVC.currentStudent = student
        }
    }
 }

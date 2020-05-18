@@ -12,7 +12,7 @@ struct NetworkManagerStudents {
     static let environment : NetworkEnvironment = .production
     private let router = Router<StudentsApi>()
     
-    func fetchStudentsList(teacherId: String, completion: @escaping (_ contacts: [Student]?,_ error: String?)->()){
+    func fetchStudentsList(teacherId: String, completion: @escaping (_ contacts: [StudentModel]?,_ error: String?)->()){
         router.request(.students(teacherId: teacherId)) { data, response, error in
             
             if error != nil {
@@ -28,7 +28,7 @@ struct NetworkManagerStudents {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode([Student].self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode([StudentModel].self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -41,7 +41,7 @@ struct NetworkManagerStudents {
         }
     }
     
-    func fetchStudent(studentId: String, completion: @escaping (_ contacts: Student?,_ error: String?)->()){
+    func fetchStudent(studentId: String, completion: @escaping (_ contacts: StudentModel?,_ error: String?)->()){
         router.request(.showStudent(studentId: studentId)) { data, response, error in
             
             if error != nil {
@@ -57,7 +57,7 @@ struct NetworkManagerStudents {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode(Student.self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(StudentModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -77,7 +77,7 @@ struct NetworkManagerStudents {
                     email: String,
                     currentDiscipline: String,
                     note: String,
-                    completion: @escaping (_ student: Student?,_ error: String?)->()){
+                    completion: @escaping (_ student: StudentModel?,_ error: String?)->()){
         router.request(.newStudent(teacherId: teacherId,
                                    name: name,
                                    surname: surname,
@@ -100,7 +100,7 @@ struct NetworkManagerStudents {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode(Student.self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(StudentModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)

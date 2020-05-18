@@ -17,15 +17,12 @@ class AddStudentTVController: UITableViewController {
     @IBOutlet weak var disciplineLabel: UILabel!
     @IBOutlet weak var disciplinePicker: UIPickerView!
     @IBOutlet weak var noteTF: UITextField!
-    @IBOutlet weak var birthdayLabel: UILabel!
-    @IBOutlet weak var birthdayPicker: UIPickerView!
     
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    var lessons = ["-", "Французский","Английский"]
-    var duration = ["45 минут", "60 минут", "90 минут"]
+    var disciplines = ["-", "Французский","Английский"]
     let teacherId = "9"
-    var student: Student!
+    var currentStudent: StudentModel!
     //    var student = Student(studentId: "", name: "BBB", surname: "", phone: "", email: "", price: "", note: "", birthday: "")
     private let birthday = "1992-11-22"
     private let networkManagerStudents =  NetworkManagerStudents()
@@ -43,48 +40,42 @@ class AddStudentTVController: UITableViewController {
         dismiss(animated: true)
     }
     @IBAction func saveButtonAction(_ sender: Any) {
-        addStudent()
+        saveStudent()
     }
 }
 
 // MARK: Navigation
 extension AddStudentTVController {
     
-    //    func savePlace() {
-    //
-    //        let image = imageIsChanged ? placeImage.image : #imageLiteral(resourceName: "imagePlaceholder")
-    //        let imageData = image?.pngData()
-    //
-    //        let newPlace = Place(name: placeName.text!,
-    //                             location: placeLocation.text,
-    //                             type: placeType.text,
-    //                             imageData: imageData,
-    //                             rating: Double(ratingControl.rating))
-    //
-    //        if currentPlace != nil {
-    //            try! realm.write {
-    //                currentPlace?.name = newPlace.name
-    //                currentPlace?.location = newPlace.location
-    //                currentPlace?.type = newPlace.type
-    //                currentPlace?.imageData = newPlace.imageData
-    //                currentPlace?.rating = newPlace.rating
-    //            }
-    //        } else {
-    //            StorageManager.saveObject(newPlace)
-    //        }
-    //    }
-    //
+        func saveStudent() {
+            let newStudent = AddStudentModel(
+                                name: nameTF.text!,
+                                surname: surnameTF.text,
+                                phone: phoneTF.text,
+                                email: emailTF.text,
+                                currentDiscipline: disciplineLabel.text,
+                                note: noteTF.text )
+    
+            if currentStudent != nil {
+                // вызываем запрос на изменение пользователя
+                print("вызываем запрос на изменение пользователя")
+                } else {
+                // запрос в сеть на сохранение нового пользователя
+                addNewStudent(newStudent: newStudent)
+            }
+    }
+    
     private func setupEditScreen() {
-        if student != nil {
+        if currentStudent != nil {
             
             setupNavigationBar()
             
-            nameTF.text = student.name
-            surnameTF.text = student.surname ?? ""
-            phoneTF.text = student.phone ?? ""
-            emailTF.text = student.email ?? ""
-            disciplineLabel.text = student.currentDiscipline ?? ""
-            noteTF.text = student.note ?? ""
+            nameTF.text = currentStudent.name
+            surnameTF.text = currentStudent.surname ?? ""
+            phoneTF.text = currentStudent.phone ?? ""
+            emailTF.text = currentStudent.email ?? ""
+            disciplineLabel.text = currentStudent.currentDiscipline ?? ""
+            noteTF.text = currentStudent.note ?? ""
             
         }
     }
@@ -94,22 +85,22 @@ extension AddStudentTVController {
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }
         navigationItem.leftBarButtonItem = nil
-        title = "\(student.name ?? "") \(student.surname ?? "")"
-//        saveButton.isEnabled = true
+        title = "\(currentStudent.name ?? "") \(currentStudent.surname ?? "")"
+        saveButton.isEnabled = true
     }
 }
 
 
 //MARK: Network
 extension AddStudentTVController {
-    private func addStudent() {
+    private func addNewStudent(newStudent: AddStudentModel) {
         networkManagerStudents.addStudent(teacherId: teacherId,
-                                          name: student.name  ?? "",
-                                          surname: student.surname ?? "",
-                                          phone: student.phone ?? "",
-                                          email: student.email ?? "",
-                                          currentDiscipline: student.currentDiscipline ?? "",
-                                          note: student.note ?? "")
+                                          name: newStudent.name!,
+                                          surname: newStudent.surname ?? "",
+                                          phone: newStudent.phone ?? "",
+                                          email: newStudent.email ?? "",
+                                          currentDiscipline: newStudent.currentDiscipline ?? "",
+                                          note: newStudent.note ?? "")
         { [weak self]  (responce, error)  in
             guard let responce = responce else {
                 print(error ?? "")
@@ -136,10 +127,10 @@ extension AddStudentTVController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let lessonIndexPath = IndexPath(row: 6, section: 0)
+        let disciplinesIndexPath = IndexPath(row: 4, section: 0)
         
         switch indexPath {
-        case lessonIndexPath:
+        case disciplinesIndexPath:
             disciplinePicker.isHidden = !disciplinePicker.isHidden
             pickerAnimation(indexPath: indexPath)
         default:
@@ -164,28 +155,24 @@ extension AddStudentTVController : UIPickerViewDelegate, UIPickerViewDataSource 
     
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
         switch pickerView.tag {
-        case 0:
-            return duration.count
         case 1:
-            return lessons.count
+            return disciplines.count
         default:
             return 0
         }
     }
     func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
         switch pickerView.tag {
-        case 0:
-            return duration[row]
         case 1:
-            return lessons[row]
+            return disciplines[row]
         default:
             return ""
         }
     }
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         switch pickerView.tag {
-        case 0:
-            return disciplineLabel.text = lessons[row]
+        case 1:
+            return disciplineLabel.text = disciplines[row]
         default:
             return
         }
