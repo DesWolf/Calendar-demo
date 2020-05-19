@@ -32,7 +32,9 @@ class AddStudentTVController: UITableViewController {
         
         disciplinePicker.isHidden = true
         self.hideKeyboardWhenTappedAround()
-        
+        surnameTF.layer.cornerRadius = 25.0
+        surnameTF.layer.borderWidth = 1.0
+        surnameTF.layer.borderColor = UIColor.darkGray.cgColor
         setupEditScreen()
     }
     
@@ -86,7 +88,7 @@ extension AddStudentTVController {
         }
         navigationItem.leftBarButtonItem = nil
         title = "\(currentStudent.name ?? "") \(currentStudent.surname ?? "")"
-        saveButton.isEnabled = true
+//        saveButton.isEnabled = true
     }
 }
 

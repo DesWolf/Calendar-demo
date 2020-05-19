@@ -10,9 +10,13 @@ import UIKit
 
 class ContactsTVCell: UITableViewCell {
        
-    @IBOutlet var userNameLabel: UILabel!
-     
+    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet weak var surnameLabel: UILabel!
+    @IBOutlet weak var currentDisciplineLabel: UILabel!
+    
     func configere( with user: StudentModel) {
-        self.userNameLabel.text = "\(user.name ?? "") \(user.surname ?? "")"
+        self.nameLabel.text = "\(user.name ?? "")"
+        self.surnameLabel.text = "\(user.surname ?? "")"
+        self.currentDisciplineLabel.text = "\(user.currentDiscipline ?? "")"
         }
     }
