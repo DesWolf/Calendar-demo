@@ -107,7 +107,7 @@ extension AddStudentTVController {
             guard let responce = responce else {
                 print(error ?? "")
                 DispatchQueue.main.async {
-                    self?.alertNetwork(message: error ?? "")
+                    self?.simpleAlert(message: error ?? "")
                 }
                 return
             }
@@ -183,7 +183,7 @@ extension AddStudentTVController : UIPickerViewDelegate, UIPickerViewDataSource 
 }
 //MARK: Alert
 extension AddStudentTVController  {
-    func alertNetwork(message: String) {
+    func simpleAlert(message: String) {
         UIAlertController.alert(title:"Error", msg:"\(message)", target: self)
     }
 }

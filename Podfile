@@ -7,4 +7,5 @@ target 'Calendar demo' do
 
   # Pods for Calendar demo
 	pod 'CVCalendar', '~> 1.7.0'
+	pod 'SwiftKeychainWrapper'
 end

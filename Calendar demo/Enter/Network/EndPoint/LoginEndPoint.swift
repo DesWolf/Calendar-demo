@@ -8,6 +8,12 @@
 
 import Foundation
 
+enum NetworkEnvironment {
+    case qa
+    case production
+    case staging
+}
+
 public enum LoginApi {
     case registerUser(email: String, password: String, confirmPassword: String)
     case loginUser(email: String, password: String)
@@ -48,15 +54,17 @@ extension LoginApi: EndPointType {
                                                         "password": "\(password)",
                                                         "confirmPassword": "\(confirmPassword)"],
                                       bodyEncoding: .urlAndJsonEncoding,
-                                      urlParameters: ["key": NetworkManagerLogin.TeachOrgAPIKey],
-                additionHeaders: ["Content-Type":"application/json; charset=utf-8"])
+                                      urlParameters: nil,
+                additionHeaders: ["Content-Type":"application/json; charset=utf-8",
+                                "key": NetworkManagerLogin.TeachOrgAPIKey])
 
         case .loginUser(let email, let password):
             return .requestParametersAndHeaders(bodyParameters: [ "email": "\(email)",
                                                         "password": "\(password)"],
                                     bodyEncoding: .urlAndJsonEncoding,
-                                    urlParameters: ["key":NetworkManagerLogin.TeachOrgAPIKey],
-            additionHeaders: ["Content-Type":"application/json; charset=utf-8"])
+                                    urlParameters: nil,
+            additionHeaders: ["Content-Type":"application/json; charset=utf-8",
+                                "key": NetworkManagerLogin.TeachOrgAPIKey])
         }
     }
     

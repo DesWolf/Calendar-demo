@@ -8,12 +8,6 @@
 
 import Foundation
 
-enum NetworkEnvironment {
-    case qa
-    case production
-    case staging
-}
-
 public enum StudentsApi {
     case students(teacherId: String)
     case newStudent(teacherId: String,
@@ -66,15 +60,16 @@ extension StudentsApi: EndPointType {
     var task: HTTPTask {
         switch self {
         case .students( let teacherId):
-            return .requestParameters(bodyParameters: nil,
-                                      bodyEncoding: .urlEncoding,
-                                      urlParameters: ["key": NetworkManagerLogin.TeachOrgAPIKey,
-                                                      "teacherId": "\(teacherId)"])
+            return .requestParametersAndHeaders(bodyParameters: nil,
+                                      bodyEncoding: .jsonEncoding,
+                                      urlParameters: nil,
+                                      additionHeaders: ["key": NetworkManagerLogin.TeachOrgAPIKey])
             
         case .showStudent(let studentId):
-            return .requestParameters(bodyParameters: nil,
-                                      bodyEncoding: .urlEncoding,
-                                      urlParameters: ["key": NetworkManagerLogin.TeachOrgAPIKey])
+            return .requestParametersAndHeaders(bodyParameters: nil,
+                                      bodyEncoding: .jsonEncoding,
+                                      urlParameters: nil,
+                                      additionHeaders: ["key": NetworkManagerLogin.TeachOrgAPIKey])
             
         case .newStudent(let teacherId, let name, let surname, let phone, let email, let currentDiscipline, let note):
             return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(teacherId)",
@@ -84,9 +79,10 @@ extension StudentsApi: EndPointType {
                                                                 "email":"\(email)",
                                                                 "currentDiscipline":"\(currentDiscipline)",
                                                                 "note":"\(note)"],
-                                                bodyEncoding: .urlAndJsonEncoding,
-                                                urlParameters: ["key": NetworkManagerLogin.TeachOrgAPIKey],
-                                                additionHeaders: ["Content-Type":"application/json; charset=utf-8"])
+                                                bodyEncoding: .jsonEncoding,
+                                                urlParameters: nil,
+                                                additionHeaders: ["Content-Type":"application/json; charset=utf-8",
+                                                                "key": NetworkManagerLogin.TeachOrgAPIKey])
         }
     }
     

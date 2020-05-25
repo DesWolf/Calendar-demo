@@ -13,6 +13,7 @@ struct ServerAuthorizationAnswer: Decodable {
     let message: String?
     let error: ServerAuthorizationError?
     let id: Int?
+    let accessToken: String?
 }
 
 struct ServerAuthorizationError: Decodable {

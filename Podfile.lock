@@ -1,16 +1,20 @@
 PODS:
   - CVCalendar (1.7.0)
+  - SwiftKeychainWrapper (3.4.0)
 
 DEPENDENCIES:
   - CVCalendar (~> 1.7.0)
+  - SwiftKeychainWrapper
 
 SPEC REPOS:
   trunk:
     - CVCalendar
+    - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   CVCalendar: 1174c1b43c1a258970e14c1e8b19ef4106c5900b
+  SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
 
-PODFILE CHECKSUM: c286b8732c6e4a106aa8e0df909da0cb759a172d
+PODFILE CHECKSUM: f6dd7826adf30a1c1ff70a056409f848a723a3d2
 
 COCOAPODS: 1.9.1

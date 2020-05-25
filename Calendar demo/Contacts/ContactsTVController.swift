@@ -31,8 +31,6 @@ class ContactsTVController: UITableViewController {
         confugureSearchBar()
     }
     
-    @IBAction func didTapAdd() {
-    }
 }
 
 // MARK: - Navigation
@@ -56,7 +54,7 @@ extension ContactsTVController {
             guard let contacts = contacts else {
                 print(error ?? "")
                 DispatchQueue.main.async {
-                    self?.alertNetwork(message: error ?? "")
+                    self?.simpleAlert(message: error ?? "")
                 }
                 return
             }
@@ -86,13 +84,6 @@ extension ContactsTVController {
         return cell
     }
     
-    
-    //    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    //        let contact = students[indexPath.row]
-    //
-    //
-    //    }
-    
     //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
     //        guard editingStyle == .delete else { return }
     //        let contact = students[indexPath.row]
@@ -101,8 +92,8 @@ extension ContactsTVController {
 }
 //MARK: Alert
 extension ContactsTVController  {
-    func alertNetwork(message: String) {
-        UIAlertController.alert(title:"Error", msg:"\(message)", target: self)
+    func simpleAlert(message: String) {
+        UIAlertController.alert(title:"Ошибка", msg:"\(message)", target: self)
     }
 }
 
@@ -112,14 +103,17 @@ extension ContactsTVController: UISearchResultsUpdating {
     func confugureSearchBar() {
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search"
+        searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
+        
+//        searchController.obscuresBackgroundDuringPresentation = searchBarisEmpty ? true : false
+
     }
-    
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
+        searchController.obscuresBackgroundDuringPresentation = searchBarisEmpty ? true : false
     }
     
     private func filterContentForSearchText(_ searchText: String){
@@ -127,7 +121,6 @@ extension ContactsTVController: UISearchResultsUpdating {
             return students.name?.lowercased().range(of: searchText.lowercased()) != nil ||
                 students.surname?.lowercased().range(of: searchText.lowercased()) != nil
         }
-        
         tableView.reloadData()
     }
 }

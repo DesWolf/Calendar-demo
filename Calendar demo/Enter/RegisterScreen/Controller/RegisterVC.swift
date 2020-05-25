@@ -38,62 +38,44 @@ class RegisterVC: UIViewController {
         if emailTF.text?.isValidEmail() == true {
             email = emailTF.text!
         } else {
-            alertNetwork(message: "Введите корректный email")
+            alert(message: "Введите корректный email")
         }
     }
     @IBAction func PasswordTFAction(_ sender: Any) {
         if passwordTF.text!.count < 8 {
-            alertNetwork(message: "Пароль должен быть не менее 8 символов с одной заглавной и одной прописной буквой")
+            alert(message: "Пароль должен быть не менее 8 символов с одной заглавной и одной прописной буквой")
         }
     }
     
     @IBAction func confirmPasswordTFAction(_ sender: Any) {
         if passwordTF.text!.count < 8 {
-            alertNetwork(message: "Пароль должен быть не менее 8 символов с одной заглавной и одной прописной буквой")
+            alert(message: "Пароль должен быть не менее 8 символов с одной заглавной и одной прописной буквой")
         }
     }
     
     @IBAction func pressRegisterButton(_ sender: Any) {
-        if emailTF.text! != nil && passwordTF.text! != nil && confirmPasswordTF.text! != nil {
-            reigisterUser()
-        }else {
-            alertNetwork(message: "Пожалуста, заполните поля выше")}
+        let userEmail = emailTF.text
+        let userPassword = passwordTF.text
+        let userConfirmPassword = confirmPasswordTF.text
+        
+        if (userEmail?.isEmpty)! || (userPassword?.isEmpty)! {
+            alert(message: "Пожалуйста, заполните необходимые поля")
+        } else {
+            registerUser(email: userEmail!, password: userPassword!, confirmPassword: userConfirmPassword!)
     }
-    
+    }
 }
 
-//MARK: Check Input
-extension RegisterVC {
-    //    private func checkValidity(email: String, password: String, confirmPassword: String) -> Bool  {
-    //        guard let email = email, let password = password, let confirmPassword = confirmPassword  else {
-    //            return false
-    //        }
-    //
-    //        if email.isValidEmail() == true && password.isValidPassword(password) == true && password.isValidPassword(password) == true {
-    //            return(true)
-    //        }
-    //    }
-    //    @objc func textFieldDidChange(textField: UITextField) {
-    //    }
-    //
-    //    @objc func editingChanged(_ textField: UITextField) {
-    //        if textField.text?.count == 1 {
-    //            if textField.text?.first == " " {
-    //                textField.text = ""
-    //                return
-    //            }
-    //        }
-    //    }
-}
+
 
 //MARK: Network
 extension RegisterVC {
-    private func reigisterUser() {
+    private func registerUser(email: String, password: String, confirmPassword: String) {
         networkManagerLogin.registerUser(email: emailTF.text!, password: passwordTF.text!, confirmPassword: confirmPasswordTF.text!) { [weak self] (message, error)  in
             guard let message = message else {
                 print(error ?? "")
                 DispatchQueue.main.async {
-                    self?.alertNetwork(message: error ?? "")
+                    self?.alert(message: error ?? "")
                 }
                 return
             }
@@ -104,7 +86,7 @@ extension RegisterVC {
 
 //MARK: Alert
 extension RegisterVC  {
-    func alertNetwork(message: String) {
+    func alert(message: String) {
         UIAlertController.alert(title:"Error", msg:"\(message)", target: self)
     }
 }

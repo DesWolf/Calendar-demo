@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -15,10 +16,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
        
-        let memoryCapacity = 500 * 1024 * 1024
-        let diskCapacity = 500 * 1024 * 1024
-        let urlCache = URLCache(memoryCapacity: memoryCapacity, diskCapacity: diskCapacity, diskPath: "diskPath")
-        URLCache.shared = urlCache
+//        let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
+//        if accessToken != nil
+//        {
+            let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+            let homePage = mainStoryboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+            self.window?.rootViewController = homePage
+//        } else {
+//            // Take user to a login page
+//            let mainStoryboard:UIStoryboard = UIStoryboard(name: "LoginStoryboard", bundle: nil)
+//            let loginPage = mainStoryboard.instantiateViewController(withIdentifier: "EnterScreenVC") as! EnterScreenVC
+//            self.window?.rootViewController = loginPage
+//        }
+        
         return true
     }
 
