@@ -11,9 +11,16 @@ import Foundation
 struct ServerAuthorizationAnswer: Decodable {
 
     let message: String?
-    let error: ServerAuthorizationError?
     let id: Int?
-    let accessToken: String?
+    let user: User?
+    let token: String?
+    let error: ServerAuthorizationError?
+}
+
+struct User: Decodable {
+    let email: String?
+    let password: String?
+    let confirmPassword: String?
 }
 
 struct ServerAuthorizationError: Decodable {
@@ -22,3 +29,4 @@ struct ServerAuthorizationError: Decodable {
     let confirmPassword: String?
     let active: Bool?
 }
+

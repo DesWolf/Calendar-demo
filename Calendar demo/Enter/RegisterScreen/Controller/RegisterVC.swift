@@ -14,43 +14,35 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var confirmPasswordTF: UITextField!
     
-    private var email: String = ""
-    private var password: String = ""
-    private var confirmPassword: String = ""
+//    private var email: String = ""
+//    private var password: String = ""
+//    private var confirmPassword: String = ""
     
     private let networkManagerLogin = NetworkManagerLogin()
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        //        let textFields = [emailTF, passwordTF, confirmPasswordTF]
-        //        for textField in textFields {
-        //            textField!.addTarget(self, action: #selector(LoginTVController.textFieldDidChange(textField:)),
-        //                                 for: UIControl.Event.editingDidEnd)
-        //        }
-        //
-        //        emailTF.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        //        passwordTF.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        //        confirmPasswordTF.addTarget(self, action: #selector(editingChanged), for: .editingChanged)
-        
-        
     }
     @IBAction func emailTFAction(_ sender: Any) {
-        if emailTF.text?.isValidEmail() == true {
-            email = emailTF.text!
-        } else {
-            alert(message: "Введите корректный email")
+        guard emailTF.text?.isValidEmail() == true  else {
+            return alert(message: "Введите корректный email")
         }
+        print("email - ok")
     }
-    @IBAction func PasswordTFAction(_ sender: Any) {
-        if passwordTF.text!.count < 8 {
-            alert(message: "Пароль должен быть не менее 8 символов с одной заглавной и одной прописной буквой")
+    
+    @IBAction func passwordTFAction(_ sender: Any) {
+        guard passwordTF.text?.isValidPassword() == true  else {
+            return alert(message: "Пароль должен быть не менее 8 символов с одной заглавной и одной прописной буквой")
         }
+        print("password - ok")
     }
     
     @IBAction func confirmPasswordTFAction(_ sender: Any) {
-        if passwordTF.text!.count < 8 {
-            alert(message: "Пароль должен быть не менее 8 символов с одной заглавной и одной прописной буквой")
+        guard confirmPasswordTF.text?.isValidPassword() == true &&
+                confirmPasswordTF.text == passwordTF.text  else{
+            return alert(message: "Пароль должен быть не менее 8 символов с одной заглавной и одной прописной буквой")
         }
+        print("confirmPassword - ok")
     }
     
     @IBAction func pressRegisterButton(_ sender: Any) {
@@ -58,7 +50,7 @@ class RegisterVC: UIViewController {
         let userPassword = passwordTF.text
         let userConfirmPassword = confirmPasswordTF.text
         
-        if (userEmail?.isEmpty)! || (userPassword?.isEmpty)! {
+        if (userEmail?.isEmpty)! || (userPassword?.isEmpty)! || (userConfirmPassword?.isEmpty)! {
             alert(message: "Пожалуйста, заполните необходимые поля")
         } else {
             registerUser(email: userEmail!, password: userPassword!, confirmPassword: userConfirmPassword!)

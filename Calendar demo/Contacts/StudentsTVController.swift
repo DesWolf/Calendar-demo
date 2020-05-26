@@ -9,7 +9,7 @@
 import UIKit
 //import Moya
 
-class ContactsTVController: UITableViewController {
+class StudentsTVController: UITableViewController {
     
     private let searchController = UISearchController(searchResultsController: nil)
     private var students = [StudentModel]()
@@ -34,7 +34,7 @@ class ContactsTVController: UITableViewController {
 }
 
 // MARK: - Navigation
-extension ContactsTVController {
+extension StudentsTVController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -48,7 +48,7 @@ extension ContactsTVController {
 }
 
 // MARK: Network
-extension ContactsTVController {
+extension StudentsTVController {
     private func fetchUsersData(teacherId: String) {
         networkManagerStudents.fetchStudentsList(teacherId: teacherId) { [weak self]  (contacts, error)  in
             guard let contacts = contacts else {
@@ -67,7 +67,7 @@ extension ContactsTVController {
 }
 
 // MARK: TableViewDataSource
-extension ContactsTVController {
+extension StudentsTVController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
@@ -91,14 +91,14 @@ extension ContactsTVController {
     //    }
 }
 //MARK: Alert
-extension ContactsTVController  {
+extension StudentsTVController  {
     func simpleAlert(message: String) {
         UIAlertController.alert(title:"Ошибка", msg:"\(message)", target: self)
     }
 }
 
 //MARK: SearchBar
-extension ContactsTVController: UISearchResultsUpdating {
+extension StudentsTVController: UISearchResultsUpdating {
     
     func confugureSearchBar() {
         searchController.searchResultsUpdater = self

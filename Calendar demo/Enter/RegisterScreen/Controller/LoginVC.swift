@@ -22,10 +22,23 @@ class LoginVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
+    @IBAction func emailTFAction(_ sender: Any) {
+        guard emailTF.text?.isValidEmail() == true  else {
+            return alert(message: "Введите корректный email")
+        }
+        print("email - ok")
+    }
+    
+    @IBAction func passwordTFAction(_ sender: Any) {
+        guard passwordTF.text?.isValidPassword() == true  else {
+            return alert(message: "Пароль должен быть не менее 8 символов с одной заглавной и одной прописной буквой")
+        }
+        print("password - ok")
+    }
+    
+
     
     @IBAction func loginButtonPress(_ sender: Any) {
         print("Sign in button tapped")
