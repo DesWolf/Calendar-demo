@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ContactsTVCell: UITableViewCell {
+class StudentsTVCell: UITableViewCell {
        
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet weak var surnameLabel: UILabel!
