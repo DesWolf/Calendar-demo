@@ -16,18 +16,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
        
-        let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
-        if accessToken != nil
-        {
+//        let accessToken: String? = KeychainWrapper.standard.string(forKey: "accessToken")
+//        if accessToken != nil
+//        {
             let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
             let homePage = mainStoryboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
             self.window?.rootViewController = homePage
-        } else {
-            // Take user to a login page
-            let mainStoryboard:UIStoryboard = UIStoryboard(name: "LoginStoryboard", bundle: nil)
-            let loginPage = mainStoryboard.instantiateViewController(withIdentifier: "EnterScreenVC") as! EnterScreenVC
-            self.window?.rootViewController = loginPage
-        }
+//        } else {
+//            // Take user to a login page
+//            let mainStoryboard:UIStoryboard = UIStoryboard(name: "LoginStoryboard", bundle: nil)
+//            let loginPage = mainStoryboard.instantiateViewController(withIdentifier: "EnterScreenVC") as! EnterScreenVC
+//            self.window?.rootViewController = loginPage
+//        }
         
         return true
     }

@@ -14,13 +14,41 @@ class StudentProfileVController: UIViewController {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
     
+    @IBOutlet weak var profileView: UIView!
+    @IBOutlet weak var statisticView: UIView!
+    @IBOutlet weak var lessonsView: UIView!
+    
+    
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        
     }
     
+    @IBAction func switchViewSegmControl(_ sender: UISegmentedControl) {
+        switch sender.selectedSegmentIndex {
+        case 0:
+            profileView.alpha = 1
+            lessonsView.alpha = 0
+            statisticView.alpha = 0
+        case 1:
+            profileView.alpha = 0
+            lessonsView.alpha = 1
+            statisticView.alpha = 0
+        case 2:
+            profileView.alpha = 0
+            lessonsView.alpha = 0
+            statisticView.alpha = 1
+        default:
+            return
+        }
+    
 
+    
+    }
+    
     /*
     // MARK: - Navigation
 

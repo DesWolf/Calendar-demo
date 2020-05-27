@@ -59,6 +59,7 @@
 		9EF22899247A681200C1AE56 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF22898247A681200C1AE56 /* StartScreen.swift */; };
 		9EF2289B247A72A300C1AE56 /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EF2289A247A72A300C1AE56 /* LoginStoryboard.storyboard */; };
 		9EFD254B247143C700876D48 /* LoginVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFD254A247143C700876D48 /* LoginVC.swift */; };
+		9EFFE705247E783D00DEA528 /* StudentProfileDetaledVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EFFE704247E783D00DEA528 /* StudentProfileDetaledVC.swift */; };
 		A59A3B1226E64E19C5930E69 /* Pods_Calendar_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A08140AA01619AD5BB5287FF /* Pods_Calendar_demo.framework */; };
 /* End PBXBuildFile section */
 
@@ -119,6 +120,7 @@
 		9EF22898247A681200C1AE56 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 		9EF2289A247A72A300C1AE56 /* LoginStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginStoryboard.storyboard; sourceTree = "<group>"; };
 		9EFD254A247143C700876D48 /* LoginVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginVC.swift; sourceTree = "<group>"; };
+		9EFFE704247E783D00DEA528 /* StudentProfileDetaledVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfileDetaledVC.swift; sourceTree = "<group>"; };
 		A08140AA01619AD5BB5287FF /* Pods_Calendar_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Calendar_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -474,6 +476,7 @@
 			children = (
 				9E0A5E1F244F26CE00188CDE /* StudentsTVController.swift */,
 				9E7C1349247D47A70095C57E /* StudentProfileVController.swift */,
+				9EFFE704247E783D00DEA528 /* StudentProfileDetaledVC.swift */,
 				9E8DDB322451E384003EC688 /* AddStudentTVController.swift */,
 			);
 			name = Controller;
@@ -694,6 +697,7 @@
 				9E0538AC247C0EE500AAC0AA /* UIColor+Additions.swift in Sources */,
 				9EC155B2246D639600D2C776 /* NetworkLogger.swift in Sources */,
 				9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */,
+				9EFFE705247E783D00DEA528 /* StudentProfileDetaledVC.swift in Sources */,
 				9EC155BC246D6B2C00D2C776 /* ContactsTVCell.swift in Sources */,
 				9E8DDB332451E384003EC688 /* AddStudentTVController.swift in Sources */,
 				9EC155B4246D63AA00D2C776 /* ParameterEncoding.swift in Sources */,
