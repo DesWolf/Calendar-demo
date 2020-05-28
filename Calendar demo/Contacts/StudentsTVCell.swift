@@ -17,6 +17,6 @@ class StudentsTVCell: UITableViewCell {
     func configere( with user: StudentModel) {
         self.nameLabel.text = "\(user.name ?? "")"
         self.surnameLabel.text = "\(user.surname ?? "")"
-        self.currentDisciplineLabel.text = "\(user.currentDiscipline ?? "")"
+        self.currentDisciplineLabel.text = "\(user.disciplines ?? [])"
         }
     }

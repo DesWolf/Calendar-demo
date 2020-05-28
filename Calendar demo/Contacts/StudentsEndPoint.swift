@@ -11,11 +11,13 @@ import Foundation
 public enum StudentsApi {
     case students(teacherId: String)
     case newStudent(teacherId: String,
+                    studentId: String,
                     name: String,
                     surname: String,
+                    disciplines: [String],
                     phone: String,
                     email: String,
-                    currentDiscipline: String,
+                    
                     note: String)
     case showStudent(studentId: String)
 }
@@ -41,7 +43,7 @@ extension StudentsApi: EndPointType {
             return "students/show"
         case .showStudent(let studentId):
             return "students/\(studentId)"
-        case .newStudent(_, _, _, _, _, _, _):
+        case .newStudent(_, _, _, _, _, _, _, _):
             return "students/add"
         }
     }
@@ -52,7 +54,7 @@ extension StudentsApi: EndPointType {
             return .get
         case .showStudent(_):
             return .get
-        case .newStudent(_, _, _, _, _, _, _):
+        case .newStudent(_, _, _, _, _, _, _, _):
             return .post
         }
     }
@@ -71,13 +73,14 @@ extension StudentsApi: EndPointType {
                                       urlParameters: nil,
                                       additionHeaders: ["key": NetworkManagerLogin.TeachOrgAPIKey])
             
-        case .newStudent(let teacherId, let name, let surname, let phone, let email, let currentDiscipline, let note):
+        case .newStudent(let teacherId, let studentId, let name, let surname, let disciplines, let phone, let email, let note):
             return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(teacherId)",
+                                                                "studentId": "\(studentId)",
                                                                 "name":"\(name)",
                                                                 "surname":"\(surname)",
+                                                                "disciplines":"\(disciplines)",
                                                                 "phone":"\(phone)",
                                                                 "email":"\(email)",
-                                                                "currentDiscipline":"\(currentDiscipline)",
                                                                 "note":"\(note)"],
                                                 bodyEncoding: .jsonEncoding,
                                                 urlParameters: nil,

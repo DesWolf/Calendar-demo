@@ -71,21 +71,23 @@ struct NetworkManagerStudents {
     }
     
     func addStudent(teacherId: String,
+                    studentId: String,
                     name: String,
                     surname: String,
+                    disciplines: [String],
                     phone: String,
                     email: String,
-                    currentDiscipline: String,
                     note: String,
                     completion: @escaping (_ student: StudentModel?,_ error: String?)->()){
         router.request(.newStudent(teacherId: teacherId,
-                                   name: name,
-                                   surname: surname,
-                                   phone: phone,
-                                   email: email,
-                                   currentDiscipline: currentDiscipline,
-                                   note: note))
-        { data, response, error in
+                                   studentId: studentId,
+                                    name: name,
+                                    surname: surname,
+                                    disciplines: disciplines,
+                                    phone: phone,
+                                    email: email,
+                                    note: note))
+                                    { data, response, error in
             
             if error != nil {
                 completion(nil, "Please check your network connection.")
