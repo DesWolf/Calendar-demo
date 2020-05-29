@@ -7,7 +7,6 @@
 //
 
 import UIKit
-//import Moya
 
 class StudentsTVC: UITableViewController {
     
@@ -106,9 +105,6 @@ extension StudentsTVC: UISearchResultsUpdating {
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
-        
-//        searchController.obscuresBackgroundDuringPresentation = searchBarisEmpty ? true : false
-
     }
     
     func updateSearchResults(for searchController: UISearchController) {

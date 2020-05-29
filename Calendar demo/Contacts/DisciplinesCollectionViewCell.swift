@@ -12,10 +12,7 @@ class DisciplinesCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var textLabel: UILabel!
     
-    
-    func configere(with discipline: String) {
-        
+    func configure(with discipline: String) {
         textLabel.text = discipline
-        
     }
 }

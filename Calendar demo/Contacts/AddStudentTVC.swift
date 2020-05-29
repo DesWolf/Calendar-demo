@@ -19,10 +19,9 @@ class AddStudentTVC: UITableViewController {
     @IBOutlet weak var disciplinesCollectionView: UICollectionView!
     @IBOutlet weak var saveButton: UIBarButtonItem!
     
-    var myObject = ""
-    var disciplines = ["Немецкий", "Хуй"]
+
+    var chousedDisciplines = ["Немецкий"]
     let teacherId = "9"
-    //    let emailTF = "ddfd"
     var currentStudent: StudentModel!
     private let birthday = "1992-11-22"
     private let networkManagerStudents =  NetworkManagerStudents()
@@ -31,32 +30,36 @@ class AddStudentTVC: UITableViewController {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         
-        
         setupEditScreen()
         
         
     }
     
-    @IBAction func cancelAction(_ sender: Any) {
+    @IBAction func AddButtonAction(_ sender: Any) {
         dismiss(animated: true)
     }
     @IBAction func saveButtonAction(_ sender: Any) {
         saveStudent()
     }
-    
-    
-    @IBAction func unwiSegue(_ segue: UIStoryboardSegue) {
-        guard let disciplinesTVC = segue.source as? DisciplinesTVC else { return }
-        for elem in 0..<disciplinesTVC.chousedDisciplines.count - 1 {
-            disciplines.append(contentsOf: disciplinesTVC.chousedDisciplines)
-            print(disciplines)
-        }
-        
-        tableView.reloadData()
-    }
-    
+
 }
 
+// MARK: - Navigation
+extension AddStudentTVC {
+    @IBAction func unwiSegue(_ segue: UIStoryboardSegue) {
+           guard let disciplinesTVC = segue.source as? DisciplinesTVC else { return }
+           chousedDisciplines = disciplinesTVC.chousedDisciplines
+           disciplinesCollectionView.reloadData()
+           tableView.reloadData()
+       }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "discilinesTVC" {
+            let disciplinesTVC = segue.destination as! DisciplinesTVC
+            disciplinesTVC.chousedDisciplines = chousedDisciplines
+        }
+    }
+}
 
 
 // MARK: Navigation
@@ -66,7 +69,7 @@ extension AddStudentTVC {
         let newStudent = StudentModel(studentId: "",
                                       name: nameTF.text!,
                                       surname: surnameTF.text,
-                                      disciplines: disciplines,
+                                      disciplines: chousedDisciplines,
                                       phone: phoneTF.text,
                                       email: emailTF.text,
                                       note: commentTF.text )
@@ -135,7 +138,12 @@ extension AddStudentTVC {
 extension AddStudentTVC {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return super.tableView(tableView, heightForRowAt: indexPath)
+        switch indexPath.row {
+        case 2:
+            return UITableView.automaticDimension
+        default:
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        }
     }
 }
 
@@ -161,15 +169,15 @@ extension AddStudentTVC: UICollectionViewDataSource, UICollectionViewDelegateFlo
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return disciplines.count
+        return chousedDisciplines.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DisciplinesCell", for: indexPath) as! DisciplinesCollectionViewCell
-        let discipline = disciplines[indexPath.row]
-        cell.configere(with: discipline)
+        let discipline = chousedDisciplines[indexPath.row]
+        cell.configure(with: discipline)
         return cell
     }
 }

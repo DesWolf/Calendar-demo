@@ -9,89 +9,59 @@
 import UIKit
 
 class DisciplinesTVC: UITableViewController {
-
-    private let disciplines = ["Французский", "Английский"]
-    var chousedDisciplines: [String] = []
     
+    public var chousedDisciplines: [String] = []
+    private var disciplines: [String] = DisciplinesList.all
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        
     }
+}
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 1
-    }
-
+// MARK: - Table view data source
+extension DisciplinesTVC {
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return disciplines.count
+        return DisciplinesList.all.count
     }
-
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "discilineCell", for: indexPath)
-        cell.textLabel?.text = disciplines[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: "disciplinesCell", for: indexPath) as! DisciplinesTVCell
+        let discipline = disciplines[indexPath.row]
+        var image = #imageLiteral(resourceName: "checkboxEmpty")
+        
+        for elem in chousedDisciplines {
+            if  discipline == elem {
+                image = #imageLiteral(resourceName: "checkBoxFill")
+            }
+        }
+        cell.configure(discipline: discipline, image: image)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "disciplinesCell", for: indexPath) as! DisciplinesTVCell
         let discipline = disciplines[indexPath.row]
-        chousedDisciplines.append(discipline)
-       
+        
+        if chousedDisciplines.contains(discipline) {
+            cell.checkImage.image = #imageLiteral(resourceName: "checkboxEmpty")
+            chousedDisciplines = chousedDisciplines.filter{$0 != discipline}
+        } else {
+            cell.checkImage.image = #imageLiteral(resourceName: "checkBoxFill")
+            chousedDisciplines.append(discipline)
+        }
+        
+        tableView.reloadData()
+        print(chousedDisciplines)
+        print(DisciplinesList.all)
     }
     
- 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+    
+    
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 44
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    
+    
 }

@@ -53,7 +53,7 @@ extension StudentProfileDetaledTVC: UICollectionViewDataSource, UICollectionView
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DisciplinesCell", for: indexPath) as! DisciplinesCollectionViewCell
         let discipline = disciplines[indexPath.row]
-        cell.configere(with: discipline)
+        cell.configure(with: discipline)
         return cell
     }
 }
