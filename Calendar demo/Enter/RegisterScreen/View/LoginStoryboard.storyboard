@@ -222,7 +222,7 @@
                                             <constraint firstAttribute="height" constant="57" id="jeX-y2-ho6"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                         <connections>
                                             <action selector="passwordTFAction:" destination="bVw-e6-gmB" eventType="editingDidEnd" id="Z0Q-GV-7mB"/>
                                         </connections>
@@ -240,7 +240,7 @@
                                             <constraint firstAttribute="height" constant="57" id="iCs-aD-DKZ"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits" autocorrectionType="no" secureTextEntry="YES"/>
+                                        <textInputTraits key="textInputTraits" autocorrectionType="no"/>
                                         <connections>
                                             <action selector="confirmPasswordTFAction:" destination="bVw-e6-gmB" eventType="editingDidEnd" id="XQK-qX-mC6"/>
                                         </connections>

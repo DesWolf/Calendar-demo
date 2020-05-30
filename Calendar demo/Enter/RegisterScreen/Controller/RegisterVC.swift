@@ -71,7 +71,7 @@ extension RegisterVC {
                 }
                 return
             }
-            print(message)
+//            print(message.message)
         }
     }
 }
@@ -79,6 +79,6 @@ extension RegisterVC {
 //MARK: Alert
 extension RegisterVC  {
     func alert(message: String) {
-        UIAlertController.alert(title:"Error", msg:"\(message)", target: self)
+        UIAlertController.simpleAlert(title:"Error", msg:"\(message)", target: self)
     }
 }

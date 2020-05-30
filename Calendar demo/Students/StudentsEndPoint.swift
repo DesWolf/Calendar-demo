@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import SwiftKeychainWrapper
 
 public enum StudentsApi {
     case students(teacherId: String)
@@ -61,17 +62,19 @@ extension StudentsApi: EndPointType {
     
     var task: HTTPTask {
         switch self {
-        case .students( let teacherId):
+        case .students(_):
             return .requestParametersAndHeaders(bodyParameters: nil,
                                       bodyEncoding: .jsonEncoding,
                                       urlParameters: nil,
-                                      additionHeaders: ["key": NetworkManagerLogin.TeachOrgAPIKey])
+                                      additionHeaders: ["key": NetworkManagerLogin.TeachOrgAPIKey,
+                                                        "token": KeychainWrapper.standard.string(forKey: "accessToken") ?? ""])
             
-        case .showStudent(let studentId):
+        case .showStudent(_):
             return .requestParametersAndHeaders(bodyParameters: nil,
                                       bodyEncoding: .jsonEncoding,
                                       urlParameters: nil,
-                                      additionHeaders: ["key": NetworkManagerLogin.TeachOrgAPIKey])
+                                      additionHeaders: ["key": NetworkManagerLogin.TeachOrgAPIKey,
+                                                        "token": KeychainWrapper.standard.string(forKey: "accessToken") ?? ""])
             
         case .newStudent(let teacherId, let studentId, let name, let surname, let disciplines, let phone, let email, let note):
             return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(teacherId)",
@@ -85,7 +88,8 @@ extension StudentsApi: EndPointType {
                                                 bodyEncoding: .jsonEncoding,
                                                 urlParameters: nil,
                                                 additionHeaders: ["Content-Type":"application/json; charset=utf-8",
-                                                                "key": NetworkManagerLogin.TeachOrgAPIKey])
+                                                                "key": NetworkManagerLogin.TeachOrgAPIKey,
+                                                                "token": KeychainWrapper.standard.string(forKey: "accessToken") ?? ""])
         }
     }
     

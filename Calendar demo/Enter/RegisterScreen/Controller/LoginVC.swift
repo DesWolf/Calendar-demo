@@ -16,8 +16,8 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-//    private var email: String = "ossqqk@mail.ru"
-//    private var password: String = "Aa12345678"
+    //    private var email: String = "ossqqk@mail.ru"
+    //    private var password: String = "Aa12345678"
     private let networkManagerLogin = NetworkManagerLogin()
     
     override func viewDidLoad() {
@@ -38,7 +38,7 @@ class LoginVC: UIViewController {
         print("password - ok")
     }
     
-
+    
     
     @IBAction func loginButtonPress(_ sender: Any) {
         print("Sign in button tapped")
@@ -60,36 +60,39 @@ class LoginVC: UIViewController {
 extension LoginVC {
     private func loginUser(email: String, password: String) {
         networkManagerLogin.loginUser(email: email, password: password) { [weak self] (message, error)  in
-            guard let message = message else {
-                print(error ?? "")
+            
+            guard (message?.token) != nil else {
+                print("\(error ?? ""), \(message?.error ?? [""])")
                 DispatchQueue.main.async {
                     self?.alert(message: error ?? "")
+                    self?.alert(message: message?.error?.first ?? "")
                 }
                 return
             }
-            print(message)
-            self?.saveDataToKeychein(accessToken: "\(message.id!)", userId: "\(message.id!)")
-                        
+
+            self?.saveDataToKeychein(accessToken: "\(String(describing: message?.token!))", teacherId: "\(String(describing: message?.teacherId!))")
             DispatchQueue.main.async {
                 let homePage = self?.storyboard?.instantiateViewController(withIdentifier: "Main") as! UITabBarController
-                    let appDelegate = UIApplication.shared.delegate
-                    appDelegate?.window??.rootViewController = homePage
+                let appDelegate = UIApplication.shared.delegate
+                appDelegate?.window??.rootViewController = homePage
             }
+            
+            
         }
     }
 }
 
 //MARK: KeyChain
 extension LoginVC {
-    func saveDataToKeychein(accessToken: String, userId: String) {
-        let saveAccesssToken: Bool = KeychainWrapper.standard.set(accessToken, forKey: "accessToken")
-        let saveUserId: Bool = KeychainWrapper.standard.set(userId, forKey: "userId")
+    func saveDataToKeychein(accessToken: String, teacherId: String) {
+        let _ = KeychainWrapper.standard.set(accessToken, forKey: "accessToken")
+        let _ = KeychainWrapper.standard.set(teacherId, forKey: "userId")
     }
 }
 
 //MARK: Alert
 extension LoginVC  {
     func alert(message: String) {
-        UIAlertController.alert(title:"Error", msg:"\(message)", target: self)
+        UIAlertController.simpleAlert(title:"Error", msg:"\(message)", target: self)
     }
 }

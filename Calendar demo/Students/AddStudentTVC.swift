@@ -22,7 +22,7 @@ class AddStudentTVC: UITableViewController {
 
     var chousedDisciplines = ["Немецкий"]
     let teacherId = "9"
-    var currentStudent: StudentModel!
+    var currentStudent: StudentModel?
     private let birthday = "1992-11-22"
     private let networkManagerStudents =  NetworkManagerStudents()
     
@@ -31,13 +31,12 @@ class AddStudentTVC: UITableViewController {
         self.hideKeyboardWhenTappedAround()
         
         setupEditScreen()
-        
-        
     }
     
-    @IBAction func AddButtonAction(_ sender: Any) {
+    @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: true)
     }
+    
     @IBAction func saveButtonAction(_ sender: Any) {
         saveStudent()
     }
@@ -88,11 +87,11 @@ extension AddStudentTVC {
             
             setupNavigationBar()
             
-            nameTF.text = currentStudent.name
-            surnameTF.text = currentStudent.surname ?? ""
-            phoneTF.text = currentStudent.phone ?? ""
-            emailTF.text = currentStudent.email ?? ""
-            commentTF.text = currentStudent.note ?? ""
+            nameTF.text = currentStudent?.name
+            surnameTF.text = currentStudent?.surname ?? ""
+            phoneTF.text = currentStudent?.phone ?? ""
+            emailTF.text = currentStudent?.email ?? ""
+            commentTF.text = currentStudent?.note ?? ""
             
         }
         self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
@@ -103,7 +102,7 @@ extension AddStudentTVC {
             topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
         }
         navigationItem.leftBarButtonItem = nil
-        title = "\(currentStudent.name ?? "") \(currentStudent.surname ?? "")"
+        title = "\(currentStudent?.name ?? "") \(currentStudent?.surname ?? "")"
         //        saveButton.isEnabled = true
     }
 }
@@ -157,7 +156,7 @@ extension AddStudentTVC: UITextViewDelegate {
 //MARK: Alert
 extension AddStudentTVC  {
     func simpleAlert(message: String) {
-        UIAlertController.alert(title:"Error", msg:"\(message)", target: self)
+        UIAlertController.simpleAlert(title:"Error", msg:"\(message)", target: self)
     }
 }
 

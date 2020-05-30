@@ -12,9 +12,28 @@ class DisciplinesTVC: UITableViewController {
     
     public var chousedDisciplines: [String] = []
     private var disciplines: [String] = DisciplinesList.all
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    }
+    
+    @IBAction func AddButton(_ sender: Any) {
+        addDiscipline()
+    }
+}
+
+// MARK: - Add Discipline
+extension DisciplinesTVC {
+    func addDiscipline() {
+        UIAlertController.addTextAlert(title: "Какую дисциплину вы бы хотели добавить?",
+                                       target: self) { (newDiscipline: String?) in
+                                        guard let newDiscipline = newDiscipline else { return }
+                                        DisciplinesList.all.append(newDiscipline)
+                                        self.tableView.reloadData()
+//                                        DispatchQueue.main.async {
+//                                            self.tableView.reloadData()
+//                                        }
+        }
     }
 }
 
@@ -27,7 +46,7 @@ extension DisciplinesTVC {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "disciplinesCell", for: indexPath) as! DisciplinesTVCell
-        let discipline = disciplines[indexPath.row]
+        let discipline = DisciplinesList.all[indexPath.row]
         var image = #imageLiteral(resourceName: "checkboxEmpty")
         
         for elem in chousedDisciplines {
@@ -41,7 +60,7 @@ extension DisciplinesTVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "disciplinesCell", for: indexPath) as! DisciplinesTVCell
-        let discipline = disciplines[indexPath.row]
+        let discipline = DisciplinesList.all[indexPath.row]
         
         if chousedDisciplines.contains(discipline) {
             cell.checkImage.image = #imageLiteral(resourceName: "checkboxEmpty")
@@ -56,12 +75,7 @@ extension DisciplinesTVC {
         print(DisciplinesList.all)
     }
     
-    
-    
-    
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }
-    
-    
 }

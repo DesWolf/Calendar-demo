@@ -290,7 +290,7 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		9E0A5E21244F26D300188CDE /* Contacts */ = {
+		9E0A5E21244F26D300188CDE /* Students */ = {
 			isa = PBXGroup;
 			children = (
 				9E5C05F1246D9D0900EADD5C /* Network */,
@@ -298,7 +298,7 @@
 				9EC155BF246D6D9C00D2C776 /* View */,
 				9EC155BD246D6D5900D2C776 /* Controller */,
 			);
-			path = Contacts;
+			path = Students;
 			sourceTree = "<group>";
 		};
 		9E0A5E22244F26E800188CDE /* Settings */ = {
@@ -425,7 +425,7 @@
 				9E0A5E1B244F265F00188CDE /* Enter */,
 				9E0A5E2C244F3FC800188CDE /* DetailedDay */,
 				9E0A5E1D244F26A500188CDE /* Calendar */,
-				9E0A5E21244F26D300188CDE /* Contacts */,
+				9E0A5E21244F26D300188CDE /* Students */,
 				9E0A5E22244F26E800188CDE /* Settings */,
 				9E0A5E23244F270400188CDE /* Statistics */,
 				9E0A5E1E244F26B000188CDE /* Support */,

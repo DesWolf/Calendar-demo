@@ -53,7 +53,7 @@ extension LoginApi: EndPointType {
             return .requestParametersAndHeaders(bodyParameters: [ "email": "\(email)",
                                                         "password": "\(password)",
                                                         "confirmPassword": "\(confirmPassword)"],
-                                      bodyEncoding: .urlAndJsonEncoding,
+                                      bodyEncoding: .jsonEncoding,
                                       urlParameters: nil,
                 additionHeaders: ["Content-Type":"application/json; charset=utf-8",
                                 "key": NetworkManagerLogin.TeachOrgAPIKey])
@@ -61,7 +61,7 @@ extension LoginApi: EndPointType {
         case .loginUser(let email, let password):
             return .requestParametersAndHeaders(bodyParameters: [ "email": "\(email)",
                                                         "password": "\(password)"],
-                                    bodyEncoding: .urlAndJsonEncoding,
+                                    bodyEncoding: .jsonEncoding,
                                     urlParameters: nil,
             additionHeaders: ["Content-Type":"application/json; charset=utf-8",
                                 "key": NetworkManagerLogin.TeachOrgAPIKey])

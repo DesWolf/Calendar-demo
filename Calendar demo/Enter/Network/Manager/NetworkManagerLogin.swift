@@ -12,6 +12,7 @@ enum NetworkResponse:String {
     case success
     case incorrectAPI = "incorrect API"
     case dataError = "Data Error"
+    case incorrectToken = "Token incorrect"
     case authenticationError = "You need to be authenticated first."
     case badRequest = "Bad request"
     case outdated = "The url you requested is outdated."
@@ -32,11 +33,9 @@ struct NetworkManagerLogin {
     
     func registerUser(email: String, password: String, confirmPassword: String, completion: @escaping (_ message: ServerAuthorizationAnswer?,_ error: String?)->()){
         router.request(.registerUser(email: email, password: password, confirmPassword: confirmPassword)) { data, response, error in
-            
             if error != nil {
                 completion(nil, "Please check your network connection.")
             }
-            
             if let response = response as? HTTPURLResponse {
                 let result = self.handleNetworkResponse(response)
                 switch result {
@@ -91,6 +90,7 @@ struct NetworkManagerLogin {
         switch response.statusCode {
         case 200...299: return .success
         case 400: return .failure(NetworkResponse.dataError.rawValue)
+        case 401: return .failure(NetworkResponse.incorrectToken.rawValue)
         case 403: return .failure(NetworkResponse.incorrectAPI.rawValue)
         case 404...500: return .failure(NetworkResponse.authenticationError.rawValue)
         case 501...599: return .failure(NetworkResponse.badRequest.rawValue)

@@ -13,18 +13,15 @@ class StudentProfileVC: UIViewController {
     @IBOutlet weak var backgroundImage: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var commentLabel: UILabel!
-    
     @IBOutlet weak var profileView: UIView!
     @IBOutlet weak var statisticView: UIView!
     @IBOutlet weak var lessonsView: UIView!
     
-    
+    var student: StudentModel?
 
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        
+        configure()
     }
     
     @IBAction func switchViewSegmControl(_ sender: UISegmentedControl) {
@@ -44,19 +41,26 @@ class StudentProfileVC: UIViewController {
         default:
             return
         }
-    
-
-    
     }
     
-    /*
-    // MARK: - Navigation
+    func configure() {
+        nameLabel.text = "\(student?.surname ?? "") \(student?.name ?? "")"
+        commentLabel.text = "Макс уже нашел работу"
+    }
+}
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+// MARK: - Navigation
+extension StudentProfileVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        switch segue.identifier {
+        case "profileContainer":
+            let profileContainer = segue.destination as! StudentProfileDetaledTVC
+            profileContainer.student = student!
+        case "editStudent":
+            let addStudentTVC = segue.destination as! AddStudentTVC
+            addStudentTVC.currentStudent = student!
+        default:
+            return
+        }
     }
-    */
-
 }

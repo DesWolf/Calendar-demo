@@ -40,8 +40,8 @@ extension StudentsTVC {
             
             let student = isFiltering ? filtredStudents[indexPath.row] : students[indexPath.row]
             
-            let addStudentTVC = segue.destination as! AddStudentTVC
-            addStudentTVC.currentStudent = student
+            let studentProfileVC = segue.destination as! StudentProfileVC
+            studentProfileVC.student = student
         }
     }
 }
@@ -92,7 +92,7 @@ extension StudentsTVC {
 //MARK: Alert
 extension StudentsTVC  {
     func simpleAlert(message: String) {
-        UIAlertController.alert(title:"Ошибка", msg:"\(message)", target: self)
+        UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
     }
 }
 
@@ -101,7 +101,7 @@ extension StudentsTVC: UISearchResultsUpdating {
     
     func confugureSearchBar() {
         searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
+//        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
         definesPresentationContext = true
