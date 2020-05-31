@@ -16,8 +16,6 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
-    //    private var email: String = "ossqqk@mail.ru"
-    //    private var password: String = "Aa12345678"
     private let networkManagerLogin = NetworkManagerLogin()
     
     override func viewDidLoad() {
@@ -61,23 +59,28 @@ extension LoginVC {
     private func loginUser(email: String, password: String) {
         networkManagerLogin.loginUser(email: email, password: password) { [weak self] (message, error)  in
             
-            guard (message?.token) != nil else {
+            if message?.token == nil {
                 print("\(error ?? ""), \(message?.error ?? [""])")
                 DispatchQueue.main.async {
                     self?.alert(message: error ?? "")
                     self?.alert(message: message?.error?.first ?? "")
                 }
-                return
-            }
-
-            self?.saveDataToKeychein(accessToken: "\(String(describing: message?.token!))", teacherId: "\(String(describing: message?.teacherId!))")
+            } else {
+                
+                let token = message?.token
+                let id = message?.teacherId
+                guard let token2 = token else { return }
+                guard let id2 = id else { return }
+                
+                self?.saveDataToKeychein(accessToken: token2, teacherId: "\(id2)" )
             DispatchQueue.main.async {
-                let homePage = self?.storyboard?.instantiateViewController(withIdentifier: "Main") as! UITabBarController
+                
+                let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                let homePage = mainStoryboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
                 let appDelegate = UIApplication.shared.delegate
                 appDelegate?.window??.rootViewController = homePage
             }
-            
-            
+            }
         }
     }
 }
@@ -86,7 +89,7 @@ extension LoginVC {
 extension LoginVC {
     func saveDataToKeychein(accessToken: String, teacherId: String) {
         let _ = KeychainWrapper.standard.set(accessToken, forKey: "accessToken")
-        let _ = KeychainWrapper.standard.set(teacherId, forKey: "userId")
+        let _ = KeychainWrapper.standard.set(teacherId, forKey: "teacherId")
     }
 }
 

@@ -10,17 +10,15 @@ import Foundation
 import SwiftKeychainWrapper
 
 public enum StudentsApi {
-    case students(teacherId: String)
-    case newStudent(teacherId: String,
-                    studentId: String,
+    case students
+    case newStudent(studentId: String,
                     name: String,
                     surname: String,
                     disciplines: [String],
                     phone: String,
                     email: String,
-                    
                     note: String)
-    case showStudent(studentId: String)
+    case showStudent(studentId: Int)
 }
 
 extension StudentsApi: EndPointType {
@@ -44,7 +42,7 @@ extension StudentsApi: EndPointType {
             return "students/show"
         case .showStudent(let studentId):
             return "students/\(studentId)"
-        case .newStudent(_, _, _, _, _, _, _, _):
+        case .newStudent( _, _, _, _, _, _, _):
             return "students/add"
         }
     }
@@ -55,29 +53,26 @@ extension StudentsApi: EndPointType {
             return .get
         case .showStudent(_):
             return .get
-        case .newStudent(_, _, _, _, _, _, _, _):
+        case .newStudent(_, _, _, _, _, _, _):
             return .post
         }
     }
     
     var task: HTTPTask {
         switch self {
-        case .students(_):
+        case .students:
             return .requestParametersAndHeaders(bodyParameters: nil,
-                                      bodyEncoding: .jsonEncoding,
-                                      urlParameters: nil,
-                                      additionHeaders: ["key": NetworkManagerLogin.TeachOrgAPIKey,
-                                                        "token": KeychainWrapper.standard.string(forKey: "accessToken") ?? ""])
-            
-        case .showStudent(_):
+                                      bodyEncoding: .urlEncoding,
+                                      urlParameters: ["teacherId": KeychainWrapper.standard.string(forKey: "teacherId")!],
+                                      additionHeaders: headers)
+        case .showStudent(let studentId):
             return .requestParametersAndHeaders(bodyParameters: nil,
-                                      bodyEncoding: .jsonEncoding,
-                                      urlParameters: nil,
-                                      additionHeaders: ["key": NetworkManagerLogin.TeachOrgAPIKey,
-                                                        "token": KeychainWrapper.standard.string(forKey: "accessToken") ?? ""])
+                                      bodyEncoding: .urlEncoding,
+                                      urlParameters: ["studentId": studentId],
+                                      additionHeaders: headers)
             
-        case .newStudent(let teacherId, let studentId, let name, let surname, let disciplines, let phone, let email, let note):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(teacherId)",
+        case .newStudent(let studentId, let name, let surname, let disciplines, let phone, let email, let note):
+            return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(KeychainWrapper.standard.string(forKey: "accessToken")!)",
                                                                 "studentId": "\(studentId)",
                                                                 "name":"\(name)",
                                                                 "surname":"\(surname)",
@@ -87,14 +82,13 @@ extension StudentsApi: EndPointType {
                                                                 "note":"\(note)"],
                                                 bodyEncoding: .jsonEncoding,
                                                 urlParameters: nil,
-                                                additionHeaders: ["Content-Type":"application/json; charset=utf-8",
-                                                                "key": NetworkManagerLogin.TeachOrgAPIKey,
-                                                                "token": KeychainWrapper.standard.string(forKey: "accessToken") ?? ""])
+                                                additionHeaders: headers)
         }
     }
     
     var headers: HTTPHeaders? {
-        return nil
+        return ["key": NetworkManagerLogin.TeachOrgAPIKey,
+                "token": KeychainWrapper.standard.string(forKey: "accessToken")!]
     }
 }
 

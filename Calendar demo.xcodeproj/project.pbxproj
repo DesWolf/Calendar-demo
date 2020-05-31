@@ -14,7 +14,7 @@
 		9E0538C0247C1BD100AAC0AA /* DetaledDay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538BF247C1BD100AAC0AA /* DetaledDay.storyboard */; };
 		9E0538C2247C224A00AAC0AA /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538C1247C224A00AAC0AA /* Calendar.storyboard */; };
 		9E0A5E18244ED4AD00188CDE /* StartScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E17244ED4AD00188CDE /* StartScreenVC.swift */; };
-		9E0A5E20244F26CE00188CDE /* StudentsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E1F244F26CE00188CDE /* StudentsTVC.swift */; };
+		9E0A5E20244F26CE00188CDE /* StudentsListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E1F244F26CE00188CDE /* StudentsListTVC.swift */; };
 		9E0A5E25244F271F00188CDE /* StatisticVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E24244F271F00188CDE /* StatisticVC.swift */; };
 		9E0A5E27244F272F00188CDE /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E26244F272F00188CDE /* SettingsVC.swift */; };
 		9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E28244F39C000188CDE /* ColorsConfig.swift */; };
@@ -77,7 +77,7 @@
 		9E0538BF247C1BD100AAC0AA /* DetaledDay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetaledDay.storyboard; sourceTree = "<group>"; };
 		9E0538C1247C224A00AAC0AA /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		9E0A5E17244ED4AD00188CDE /* StartScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVC.swift; sourceTree = "<group>"; };
-		9E0A5E1F244F26CE00188CDE /* StudentsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsTVC.swift; sourceTree = "<group>"; };
+		9E0A5E1F244F26CE00188CDE /* StudentsListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsListTVC.swift; sourceTree = "<group>"; };
 		9E0A5E24244F271F00188CDE /* StatisticVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticVC.swift; sourceTree = "<group>"; };
 		9E0A5E26244F272F00188CDE /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
 		9E0A5E28244F39C000188CDE /* ColorsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsConfig.swift; sourceTree = "<group>"; };
@@ -90,6 +90,7 @@
 		9E5C05EA246D971400EADD5C /* NetworkManagerLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerLogin.swift; sourceTree = "<group>"; };
 		9E631936244F4781007DE5F1 /* MeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCell.swift; sourceTree = "<group>"; };
 		9E631938244F50B4007DE5F1 /* AddMeetingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeetingTVC.swift; sourceTree = "<group>"; };
+		9E6C0E622482E75C0099F300 /* Calendar demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Calendar demo.entitlements"; sourceTree = "<group>"; };
 		9E7A73AB244D92AB00FA529B /* Calendar demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calendar demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7A73AE244D92AB00FA529B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7A73B2244D92AB00FA529B /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
@@ -421,6 +422,7 @@
 		9E7A73AD244D92AB00FA529B /* Calendar demo */ = {
 			isa = PBXGroup;
 			children = (
+				9E6C0E622482E75C0099F300 /* Calendar demo.entitlements */,
 				9E0A5E1C244F268900188CDE /* App */,
 				9E0A5E1B244F265F00188CDE /* Enter */,
 				9E0A5E2C244F3FC800188CDE /* DetailedDay */,
@@ -436,25 +438,9 @@
 		9EC155A0246D622300D2C776 /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				9EC155A3246D628A00D2C776 /* EndPoint */,
-				9EC155A4246D629F00D2C776 /* Manager */,
 				9EC155A5246D62A700D2C776 /* Service */,
 			);
 			path = Network;
-			sourceTree = "<group>";
-		};
-		9EC155A3246D628A00D2C776 /* EndPoint */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = EndPoint;
-			sourceTree = "<group>";
-		};
-		9EC155A4246D629F00D2C776 /* Manager */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Manager;
 			sourceTree = "<group>";
 		};
 		9EC155A5246D62A700D2C776 /* Service */ = {
@@ -483,7 +469,7 @@
 		9EC155BD246D6D5900D2C776 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9E0A5E1F244F26CE00188CDE /* StudentsTVC.swift */,
+				9E0A5E1F244F26CE00188CDE /* StudentsListTVC.swift */,
 				9E7C1349247D47A70095C57E /* StudentProfileVC.swift */,
 				9EFFE704247E783D00DEA528 /* StudentProfileDetaledVC.swift */,
 				9E8DDB322451E384003EC688 /* AddStudentTVC.swift */,
@@ -693,7 +679,7 @@
 				9EC155BA246D642B00D2C776 /* AlertService.swift in Sources */,
 				9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */,
 				9EC155A2246D628000D2C776 /* StudentsEndPoint.swift in Sources */,
-				9E0A5E20244F26CE00188CDE /* StudentsTVC.swift in Sources */,
+				9E0A5E20244F26CE00188CDE /* StudentsListTVC.swift in Sources */,
 				9EC155AA246D635500D2C776 /* EndPointType.swift in Sources */,
 				9EC155B8246D63D200D2C776 /* JSONParameterEncoder.swift in Sources */,
 				9E5C05EB246D971400EADD5C /* NetworkManagerLogin.swift in Sources */,
@@ -869,6 +855,7 @@
 			baseConfigurationReference = 1FAFD638F4A42CFBE6FF146F /* Pods-Calendar demo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Calendar demo/Calendar demo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WJR74JV9LN;
 				INFOPLIST_FILE = "$(SRCROOT)/Calendar demo/Support/Info.plist";
@@ -877,7 +864,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-.Calendar-demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "-.Calendar-demo.Okuneev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -889,6 +876,7 @@
 			baseConfigurationReference = 136BBEDCF1AAC5F1CFAEFD34 /* Pods-Calendar demo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "Calendar demo/Calendar demo.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WJR74JV9LN;
 				INFOPLIST_FILE = "$(SRCROOT)/Calendar demo/Support/Info.plist";
@@ -897,7 +885,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "-.Calendar-demo";
+				PRODUCT_BUNDLE_IDENTIFIER = "-.Calendar-demo.Okuneev";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

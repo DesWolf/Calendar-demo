@@ -16,14 +16,16 @@ class StudentProfileDetaledTVC: UITableViewController {
     @IBOutlet weak var disciplinesCollectionView: UICollectionView!
     
     var student: StudentModel?
+    private let networkManagerStudents =  NetworkManagerStudents()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configure()
     }
     
     func configure() {
+        
+        fetchDetailedStudent(studentId: student?.studentId ?? 0)
         phoneTV.text = student?.phone ?? ""
         emailTV.text = student?.email ?? ""
         noteTV.text = student?.note ?? ""
@@ -31,8 +33,28 @@ class StudentProfileDetaledTVC: UITableViewController {
                                                               y: 0,
                                                               width: tableView.frame.size.width,
                                                               height: 1))
+        
     }
 }
+
+//MARK: Network
+extension StudentProfileDetaledTVC {
+    func fetchDetailedStudent(studentId: Int) {
+        networkManagerStudents.fetchStudent(studentId: studentId) { [weak self]  (student, error) in
+            guard let student = student else {
+                        print(error ?? "")
+                        DispatchQueue.main.async {
+                            self?.simpleAlert(message: error ?? "")
+                        }
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self?.student = student.first
+                    }
+                }
+            }
+        }
+
 
 //MARK: UITextViewDelegate
 extension StudentProfileDetaledTVC: UITextViewDelegate{
@@ -73,5 +95,12 @@ extension StudentProfileDetaledTVC {
     }
 }
 
+
+//MARK: Alert
+extension StudentProfileDetaledTVC  {
+    func simpleAlert(message: String) {
+        UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
+    }
+}
 
 

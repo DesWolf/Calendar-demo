@@ -90,7 +90,6 @@
                                 <state key="normal" image="enterButton"/>
                                 <connections>
                                     <action selector="loginButtonPress:" destination="OgJ-Ed-9Nf" eventType="touchUpInside" id="GBD-uV-a00"/>
-                                    <segue destination="5fU-Cw-fLo" kind="presentation" modalPresentationStyle="fullScreen" id="mE3-sc-dEe"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" restorationIdentifier="register" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bLF-gM-6nT">
@@ -296,16 +295,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PKM-ok-hzQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2800" y="1650.6696428571429"/>
-        </scene>
-        <!--Main-->
-        <scene sceneID="FDg-KB-m8l">
-            <objects>
-                <viewControllerPlaceholder storyboardIdentifier="Main" storyboardName="Main" id="5fU-Cw-fLo" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="342-yU-zEL"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="tuO-gm-7Ws" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3476.811594202899" y="929.46428571428567"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Idj-Ms-uYB">

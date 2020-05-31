@@ -9,7 +9,7 @@
 import Foundation
 
 struct StudentModel: Decodable {
-    let studentId: String?
+    let studentId: Int?
     let name: String?
     let surname: String?
     let disciplines: [String]?

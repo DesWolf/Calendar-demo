@@ -7,14 +7,14 @@
 //
 
 import UIKit
+import SwiftKeychainWrapper
 
-class StudentsTVC: UITableViewController {
+class StudentsListTVC: UITableViewController {
     
     private let searchController = UISearchController(searchResultsController: nil)
     private var students = [StudentModel]()
     private var filtredStudents = [StudentModel]()
     private let networkManagerStudents =  NetworkManagerStudents()
-    private let teacherId = "9"
     private var search = false
     private var searchBarisEmpty: Bool {
         guard let text = searchController.searchBar.text else { return false }
@@ -26,14 +26,16 @@ class StudentsTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchUsersData(teacherId: teacherId)
+        fetchUsersData()
         confugureSearchBar()
+        
+        }
     }
     
-}
+
 
 // MARK: - Navigation
-extension StudentsTVC {
+extension StudentsListTVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "showDetail" {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
@@ -47,9 +49,9 @@ extension StudentsTVC {
 }
 
 // MARK: Network
-extension StudentsTVC {
-    private func fetchUsersData(teacherId: String) {
-        networkManagerStudents.fetchStudentsList(teacherId: teacherId) { [weak self]  (contacts, error)  in
+extension StudentsListTVC {
+    private func fetchUsersData() {
+        networkManagerStudents.fetchStudentsList() { [weak self]  (contacts, error)  in
             guard let contacts = contacts else {
                 print(error ?? "")
                 DispatchQueue.main.async {
@@ -66,7 +68,7 @@ extension StudentsTVC {
 }
 
 // MARK: TableViewDataSource
-extension StudentsTVC {
+extension StudentsListTVC {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 60
@@ -90,21 +92,21 @@ extension StudentsTVC {
     //    }
 }
 //MARK: Alert
-extension StudentsTVC  {
+extension StudentsListTVC  {
     func simpleAlert(message: String) {
         UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
     }
 }
 
 //MARK: SearchBar
-extension StudentsTVC: UISearchResultsUpdating {
+extension StudentsListTVC: UISearchResultsUpdating {
     
     func confugureSearchBar() {
         searchController.searchResultsUpdater = self
-//        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
-        definesPresentationContext = true
+//        definesPresentationContext = true
     }
     
     func updateSearchResults(for searchController: UISearchController) {

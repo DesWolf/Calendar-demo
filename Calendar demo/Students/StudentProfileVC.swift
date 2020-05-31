@@ -46,6 +46,11 @@ class StudentProfileVC: UIViewController {
     func configure() {
         nameLabel.text = "\(student?.surname ?? "") \(student?.name ?? "")"
         commentLabel.text = "Макс уже нашел работу"
+        
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default) //UIImage.init(named: "transparent.png")
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
     }
 }
 
@@ -55,10 +60,10 @@ extension StudentProfileVC {
         switch segue.identifier {
         case "profileContainer":
             let profileContainer = segue.destination as! StudentProfileDetaledTVC
-            profileContainer.student = student!
+            profileContainer.student = student
         case "editStudent":
             let addStudentTVC = segue.destination as! AddStudentTVC
-            addStudentTVC.currentStudent = student!
+            addStudentTVC.currentStudent = student
         default:
             return
         }

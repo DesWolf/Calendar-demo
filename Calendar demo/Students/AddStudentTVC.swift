@@ -65,7 +65,7 @@ extension AddStudentTVC {
 extension AddStudentTVC {
     
     func saveStudent() {
-        let newStudent = StudentModel(studentId: "",
+        let newStudent = StudentModel(studentId: 0,
                                       name: nameTF.text!,
                                       surname: surnameTF.text,
                                       disciplines: chousedDisciplines,

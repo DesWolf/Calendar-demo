@@ -9,14 +9,12 @@
 import UIKit
 
 class StudentsTVCell: UITableViewCell {
-       
+    
     @IBOutlet var nameLabel: UILabel!
-    @IBOutlet weak var surnameLabel: UILabel!
     @IBOutlet weak var currentDisciplineLabel: UILabel!
     
     func configere( with user: StudentModel) {
-        self.nameLabel.text = "\(user.name ?? "")"
-        self.surnameLabel.text = "\(user.surname ?? "")"
-        self.currentDisciplineLabel.text = "\(user.disciplines ?? [])"
-        }
+        self.nameLabel.text = "\(user.name ?? "") \(user.surname ?? "")"
+        self.currentDisciplineLabel.text = user.disciplines?.joined(separator: ", ") ?? ""
     }
+}

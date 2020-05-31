@@ -30,9 +30,6 @@ extension DisciplinesTVC {
                                         guard let newDiscipline = newDiscipline else { return }
                                         DisciplinesList.all.append(newDiscipline)
                                         self.tableView.reloadData()
-//                                        DispatchQueue.main.async {
-//                                            self.tableView.reloadData()
-//                                        }
         }
     }
 }

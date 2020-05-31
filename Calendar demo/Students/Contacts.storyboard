@@ -34,7 +34,7 @@
         <!--Ученики-->
         <scene sceneID="imh-zH-cDM">
             <objects>
-                <tableViewController id="WXJ-hB-faI" customClass="StudentsTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="WXJ-hB-faI" customClass="StudentsListTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HjS-sG-xvu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -47,46 +47,32 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" translatesAutoresizingMaskIntoConstraints="NO" id="x7U-aX-Zpz">
-                                            <rect key="frame" x="20" y="12.5" width="374" height="35"/>
-                                            <subviews>
-                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="TGl-55-XNu">
-                                                    <rect key="frame" x="0.0" y="0.0" width="125" height="20.5"/>
-                                                    <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mg9-Ry-uPW">
-                                                            <rect key="frame" x="0.0" y="0.0" width="45" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Surname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="lkM-v1-hO6">
-                                                            <rect key="frame" x="53" y="0.0" width="72" height="20.5"/>
-                                                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                                            <nil key="textColor"/>
-                                                            <nil key="highlightedColor"/>
-                                                        </label>
-                                                    </subviews>
-                                                </stackView>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="currentDiscipline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7hl-ic-867">
-                                                    <rect key="frame" x="0.0" y="20.5" width="96" height="14.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                                                    <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Surname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mg9-Ry-uPW">
+                                            <rect key="frame" x="15" y="13" width="384" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="currentDiscipline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7hl-ic-867">
+                                            <rect key="frame" x="15" y="33" width="384" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="x7U-aX-Zpz" firstAttribute="centerY" secondItem="kcc-Er-qqN" secondAttribute="centerY" id="9NC-59-0pg"/>
-                                        <constraint firstAttribute="trailingMargin" secondItem="x7U-aX-Zpz" secondAttribute="trailing" id="cbY-vK-TCT"/>
-                                        <constraint firstItem="x7U-aX-Zpz" firstAttribute="leading" secondItem="kcc-Er-qqN" secondAttribute="leadingMargin" id="pWK-2L-M3v"/>
+                                        <constraint firstItem="7hl-ic-867" firstAttribute="leading" secondItem="kcc-Er-qqN" secondAttribute="leading" constant="15" id="NBQ-Ub-BHT"/>
+                                        <constraint firstItem="Mg9-Ry-uPW" firstAttribute="leading" secondItem="kcc-Er-qqN" secondAttribute="leading" constant="15" id="RWi-Hz-aON"/>
+                                        <constraint firstAttribute="trailing" secondItem="7hl-ic-867" secondAttribute="trailing" constant="15" id="Us1-D5-cv4"/>
+                                        <constraint firstAttribute="trailing" secondItem="Mg9-Ry-uPW" secondAttribute="trailing" constant="15" id="aeb-Np-nSj"/>
+                                        <constraint firstItem="Mg9-Ry-uPW" firstAttribute="top" secondItem="kcc-Er-qqN" secondAttribute="top" constant="13" id="cAW-kr-jvu"/>
+                                        <constraint firstAttribute="bottom" secondItem="7hl-ic-867" secondAttribute="bottom" constant="12.5" id="cYZ-2O-61s"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
                                     <outlet property="currentDisciplineLabel" destination="7hl-ic-867" id="JRS-WQ-0Il"/>
                                     <outlet property="nameLabel" destination="Mg9-Ry-uPW" id="7N3-a9-YoP"/>
-                                    <outlet property="surnameLabel" destination="lkM-v1-hO6" id="Jec-hS-Ngq"/>
-                                    <segue destination="AMC-Ks-NKn" kind="show" id="dkt-eD-XJH"/>
+                                    <segue destination="AMC-Ks-NKn" kind="show" identifier="showDetail" id="dkt-eD-XJH"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -106,7 +92,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cfb-XZ-HsZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3655" y="329"/>
+            <point key="canvasLocation" x="3653.6231884057975" y="328.79464285714283"/>
         </scene>
         <!--Student ProfileVC-->
         <scene sceneID="KhW-j5-Ymv">
@@ -637,7 +623,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="B0C-eI-wpE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6119" y="619"/>
+            <point key="canvasLocation" x="6125" y="600"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="372-eU-2OI">
@@ -652,12 +638,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fMs-Rg-mH5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="6829" y="619"/>
+            <point key="canvasLocation" x="6825" y="601"/>
         </scene>
         <!--Student Profile DetaledTVC-->
         <scene sceneID="ekx-QL-4Uf">
             <objects>
-                <tableViewController id="CPt-Ad-ZuJ" customClass="StudentProfileDetaledTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="CPt-Ad-ZuJ" customClass="StudentProfileDetaledTVC" customModule="Calendar_demo" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="YWg-MI-40t">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="638"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -666,11 +652,11 @@
                         <sections>
                             <tableViewSection id="wxU-eV-6ZC">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Discipline" rowHeight="90" id="Ub3-Vh-pOT">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="90"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Discipline" rowHeight="95" id="Ub3-Vh-pOT">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Ub3-Vh-pOT" id="Jxw-Zl-bfd">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="90"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Занимается по предмету" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DwU-ot-wEp">
@@ -683,17 +669,17 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsVerticalScrollIndicator="NO" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="ws1-WB-lXV">
-                                                    <rect key="frame" x="20" y="33" width="374" height="49"/>
+                                                    <rect key="frame" x="20" y="33" width="374" height="54"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="aWp-w5-0iR">
-                                                        <size key="itemSize" width="125" height="45"/>
+                                                        <size key="itemSize" width="125" height="38"/>
                                                         <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                         <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                         <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                     </collectionViewFlowLayout>
                                                     <cells>
                                                         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" restorationIdentifier="DisciplinesCell" reuseIdentifier="DisciplinesCell" id="UUe-dY-U1i" customClass="DisciplinesCollectionViewCell" customModule="Calendar_demo" customModuleProvider="target">
-                                                            <rect key="frame" x="0.0" y="5.5" width="134" height="38"/>
+                                                            <rect key="frame" x="0.0" y="8" width="134" height="38"/>
                                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="tAC-AP-KIF">
                                                                 <rect key="frame" x="0.0" y="0.0" width="134" height="38"/>
@@ -742,7 +728,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Telephone" rowHeight="65" id="gIa-x7-P9I">
-                                        <rect key="frame" x="0.0" y="118" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="123" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="gIa-x7-P9I" id="mpf-py-4qk">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
@@ -754,7 +740,7 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="+7-913-207-30-95" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KjD-EV-lJh" customClass="StudentDetaled">
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="+7-913-207-30-95" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="KjD-EV-lJh">
                                                     <rect key="frame" x="20" y="27" width="374" height="30"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <color key="textColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -775,7 +761,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Email" rowHeight="65" id="73u-0k-pjV">
-                                        <rect key="frame" x="0.0" y="183" width="414" height="65"/>
+                                        <rect key="frame" x="0.0" y="188" width="414" height="65"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="73u-0k-pjV" id="zJ8-Ky-yTd">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="65"/>
@@ -808,7 +794,7 @@
                                         </tableViewCellContentView>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Comment" rowHeight="250" id="cHS-aJ-bH4">
-                                        <rect key="frame" x="0.0" y="248" width="414" height="250"/>
+                                        <rect key="frame" x="0.0" y="253" width="414" height="250"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" userInteractionEnabled="NO" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="cHS-aJ-bH4" id="czC-xd-mBD">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="250"/>
@@ -858,7 +844,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="aXN-fI-IRt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5332" y="619"/>
+            <point key="canvasLocation" x="5328.985507246377" y="600"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
