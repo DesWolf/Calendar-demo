@@ -29,21 +29,28 @@ class StudentsListTVC: UITableViewController {
         fetchUsersData()
         confugureSearchBar()
         
-        }
     }
-    
-
+}
 
 // MARK: - Navigation
 extension StudentsListTVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "showDetail" {
+        switch segue.identifier {
+        case "showDetail":
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            
             let student = isFiltering ? filtredStudents[indexPath.row] : students[indexPath.row]
             
-            let studentProfileVC = segue.destination as! StudentProfileVC
-            studentProfileVC.student = student
+            if let studentProfileVC = segue.destination as? StudentProfileVC {
+                studentProfileVC.student = student
+            }
+        case "newStudent":
+            if let navVC = segue.destination as? UINavigationController,
+                let addVC = navVC.topViewController as? AddOrEditStudentTVC {
+            }
+        case .none:
+            return
+        case .some(_):
+            return
         }
     }
 }
@@ -106,7 +113,7 @@ extension StudentsListTVC: UISearchResultsUpdating {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
-//        definesPresentationContext = true
+        //        definesPresentationContext = true
     }
     
     func updateSearchResults(for searchController: UISearchController) {

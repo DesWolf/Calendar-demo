@@ -11,14 +11,24 @@ import SwiftKeychainWrapper
 
 public enum StudentsApi {
     case students
-    case newStudent(studentId: String,
+    
+    case showStudent(studentId: Int)
+    
+    case addStudent(studentId: Int,
                     name: String,
                     surname: String,
                     disciplines: [String],
                     phone: String,
                     email: String,
                     note: String)
-    case showStudent(studentId: Int)
+    
+    case changeStudent(studentId: Int,
+                    name: String,
+                    surname: String,
+                    disciplines: [String],
+                    phone: String,
+                    email: String,
+                    note: String)
 }
 
 extension StudentsApi: EndPointType {
@@ -42,8 +52,10 @@ extension StudentsApi: EndPointType {
             return "students/show"
         case .showStudent(let studentId):
             return "students/\(studentId)"
-        case .newStudent( _, _, _, _, _, _, _):
+        case .addStudent( _, _, _, _, _, _, _):
             return "students/add"
+        case .changeStudent( _, _, _, _, _, _, _):
+            return "students/update"
         }
     }
     
@@ -53,8 +65,10 @@ extension StudentsApi: EndPointType {
             return .get
         case .showStudent(_):
             return .get
-        case .newStudent(_, _, _, _, _, _, _):
+        case .addStudent(_, _, _, _, _, _, _):
             return .post
+        case .changeStudent( _, _, _, _, _, _, _):
+            return .patch
         }
     }
     
@@ -62,24 +76,37 @@ extension StudentsApi: EndPointType {
         switch self {
         case .students:
             return .requestParametersAndHeaders(bodyParameters: nil,
-                                      bodyEncoding: .urlEncoding,
-                                      urlParameters: ["teacherId": KeychainWrapper.standard.string(forKey: "teacherId")!],
-                                      additionHeaders: headers)
+                                                bodyEncoding: .urlEncoding,
+                                                urlParameters: ["teacherId": KeychainWrapper.standard.string(forKey: "teacherId")!],
+                                                additionHeaders: headers)
         case .showStudent(let studentId):
             return .requestParametersAndHeaders(bodyParameters: nil,
-                                      bodyEncoding: .urlEncoding,
-                                      urlParameters: ["studentId": studentId],
-                                      additionHeaders: headers)
+                                                bodyEncoding: .urlEncoding,
+                                                urlParameters: ["studentId": studentId],
+                                                additionHeaders: headers)
             
-        case .newStudent(let studentId, let name, let surname, let disciplines, let phone, let email, let note):
+        case .addStudent(let studentId, let name, let surname, let disciplines, let phone, let email, let note):
             return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(KeychainWrapper.standard.string(forKey: "accessToken")!)",
-                                                                "studentId": "\(studentId)",
-                                                                "name":"\(name)",
-                                                                "surname":"\(surname)",
-                                                                "disciplines":"\(disciplines)",
-                                                                "phone":"\(phone)",
-                                                                "email":"\(email)",
-                                                                "note":"\(note)"],
+                                                                "studentId": studentId,
+                                                                "name": name,
+                                                                "surname": surname,
+                                                                "disciplines": disciplines,
+                                                                "phone": phone,
+                                                                "email": email,
+                                                                "note": note],
+                                                bodyEncoding: .jsonEncoding,
+                                                urlParameters: nil,
+                                                additionHeaders: headers)
+            
+        case .changeStudent(let studentId, let name, let surname, let disciplines, let phone, let email, let note):
+            return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(KeychainWrapper.standard.string(forKey: "accessToken")!)",
+                                                                "studentId": studentId,
+                                                                "name": name,
+                                                                "surname": surname,
+                                                                "disciplines": disciplines,
+                                                                "phone": phone,
+                                                                "email": email,
+                                                                "note": note],
                                                 bodyEncoding: .jsonEncoding,
                                                 urlParameters: nil,
                                                 additionHeaders: headers)

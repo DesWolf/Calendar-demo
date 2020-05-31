@@ -43,7 +43,7 @@ struct NetworkManagerStudents {
         }
     }
     
-    func fetchStudent(studentId: Int, completion: @escaping (_ contacts: [StudentModel]?,_ error: String?)->()){
+    func fetchStudent(studentId: Int, completion: @escaping (_ contacts: StudentModel?,_ error: String?)->()){
         router.request(.showStudent(studentId: studentId)) { data, response, error in
             
             if error != nil {
@@ -59,7 +59,7 @@ struct NetworkManagerStudents {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode([StudentModel].self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(StudentModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -72,8 +72,7 @@ struct NetworkManagerStudents {
         }
     }
     
-    func addStudent(teacherId: String,
-                    studentId: String,
+    func addStudent(studentId: Int,
                     name: String,
                     surname: String,
                     disciplines: [String],
@@ -81,7 +80,50 @@ struct NetworkManagerStudents {
                     email: String,
                     note: String,
                     completion: @escaping (_ student: StudentModel?,_ error: String?)->()){
-        router.request(.newStudent( studentId: studentId,
+        router.request(.addStudent( studentId: studentId,
+                                    name: name,
+                                    surname: surname,
+                                    disciplines: disciplines,
+                                    phone: phone,
+                                    email: email,
+                                    note: note))
+                                    { data, response, error in
+            
+            if error != nil {
+                completion(nil, "Please check your network connection.")
+            }
+            
+            if let response = response as? HTTPURLResponse {
+                let result = self.handleNetworkResponse(response)
+                switch result {
+                case .success:
+                    guard let responseData = data else {
+                        completion(nil, NetworkResponse.noData.rawValue)
+                        return
+                    }
+                    do {
+                        let apiResponse = try JSONDecoder().decode(StudentModel.self, from: responseData)
+                        completion(apiResponse,nil)
+                    }catch {
+                        print(error)
+                        completion(nil, NetworkResponse.unableToDecode.rawValue)
+                    }
+                case .failure(let networkFailureError):
+                    completion(nil, networkFailureError)
+                }
+            }
+        }
+    }
+    
+    func changeStudent(studentId: Int,
+                    name: String,
+                    surname: String,
+                    disciplines: [String],
+                    phone: String,
+                    email: String,
+                    note: String,
+                    completion: @escaping (_ student: StudentModel?,_ error: String?)->()){
+        router.request(.changeStudent( studentId: studentId,
                                     name: name,
                                     surname: surname,
                                     disciplines: disciplines,

@@ -40,7 +40,7 @@
 		9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */; };
 		9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */; };
 		9E80D0D02454AED900FECAF7 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CF2454AED900FECAF7 /* NotificationCell.swift */; };
-		9E8DDB332451E384003EC688 /* AddStudentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DDB322451E384003EC688 /* AddStudentTVC.swift */; };
+		9E8DDB332451E384003EC688 /* AddOrEditStudentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DDB322451E384003EC688 /* AddOrEditStudentTVC.swift */; };
 		9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */; };
 		9E92C00124815455000B45A5 /* DisciplinesTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92C00024815455000B45A5 /* DisciplinesTVCell.swift */; };
 		9EA67387247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA67386247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift */; };
@@ -106,7 +106,7 @@
 		9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTVCell.swift; sourceTree = "<group>"; };
 		9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaledDayService.swift; sourceTree = "<group>"; };
 		9E80D0CF2454AED900FECAF7 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
-		9E8DDB322451E384003EC688 /* AddStudentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddStudentTVC.swift; sourceTree = "<group>"; };
+		9E8DDB322451E384003EC688 /* AddOrEditStudentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditStudentTVC.swift; sourceTree = "<group>"; };
 		9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		9E92C00024815455000B45A5 /* DisciplinesTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesTVCell.swift; sourceTree = "<group>"; };
 		9EA67386247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -472,7 +472,7 @@
 				9E0A5E1F244F26CE00188CDE /* StudentsListTVC.swift */,
 				9E7C1349247D47A70095C57E /* StudentProfileVC.swift */,
 				9EFFE704247E783D00DEA528 /* StudentProfileDetaledVC.swift */,
-				9E8DDB322451E384003EC688 /* AddStudentTVC.swift */,
+				9E8DDB322451E384003EC688 /* AddOrEditStudentTVC.swift */,
 				9ECECBEB248042740053AC78 /* DisciplinesTVC.swift */,
 			);
 			name = Controller;
@@ -699,7 +699,7 @@
 				9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */,
 				9EFFE705247E783D00DEA528 /* StudentProfileDetaledVC.swift in Sources */,
 				9EC155BC246D6B2C00D2C776 /* StudentsTVCell.swift in Sources */,
-				9E8DDB332451E384003EC688 /* AddStudentTVC.swift in Sources */,
+				9E8DDB332451E384003EC688 /* AddOrEditStudentTVC.swift in Sources */,
 				9EC155B4246D63AA00D2C776 /* ParameterEncoding.swift in Sources */,
 				9ED2EAC9247D5720001E3767 /* String Extention.swift in Sources */,
 				9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */,
