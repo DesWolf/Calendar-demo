@@ -21,10 +21,9 @@ class AddOrEditStudentTVC: UITableViewController {
     
     
     var chousedDisciplines: [String] = []
-//    let teacherId = "9"
+
     var student: StudentModel?
 
-//    private let birthday = "1992-11-22"
     private let networkManagerStudents =  NetworkManagerStudents()
     
     override func viewDidLoad() {
@@ -38,13 +37,34 @@ class AddOrEditStudentTVC: UITableViewController {
         dismiss(animated: true)
     }
     
-    @IBAction func saveButtonAction(_ sender: Any) {
-        saveStudent()
-        
-    }
+
 
     deinit {
         print("deinit", AddOrEditStudentTVC.self)
+    }
+}
+
+//MARK: Setup Screen
+extension AddOrEditStudentTVC {
+    private func setupEditScreen() {
+        if student != nil {
+            setupNavigationBar()
+            nameTF.text = student?.name
+            surnameTF.text = student?.surname ?? ""
+            phoneTF.text = student?.phone ?? ""
+            emailTF.text = student?.email ?? ""
+            commentTF.text = student?.note ?? ""
+            student?.disciplines?.forEach { chousedDisciplines.append($0) }
+        }
+        self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
+    }
+    
+    private func setupNavigationBar() {
+        if let topItem = navigationController?.navigationBar.topItem {
+            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+        }
+        navigationItem.leftBarButtonItem = nil
+        title = "\(student?.name ?? "") \(student?.surname ?? "")"
     }
 }
 
@@ -74,12 +94,7 @@ extension AddOrEditStudentTVC {
     //            return
     //        }
     //    }
-}
-
-
-// MARK: Navigation
-extension AddOrEditStudentTVC {
-    
+ 
     func saveStudent() {
         student = StudentModel(studentId: student != nil ? student?.studentId : 0,
                                           name: nameTF.text!,
@@ -94,30 +109,7 @@ extension AddOrEditStudentTVC {
             addNewStudent(newStudent: student!)
         }
     }
-    
-    private func setupEditScreen() {
-        if student != nil {
-            setupNavigationBar()
-            
-            nameTF.text = student?.name
-            surnameTF.text = student?.surname ?? ""
-            phoneTF.text = student?.phone ?? ""
-            emailTF.text = student?.email ?? ""
-            commentTF.text = student?.note ?? ""
-            student?.disciplines?.forEach { chousedDisciplines.append($0) }
-        }
-        self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
-    }
-    
-    private func setupNavigationBar() {
-        if let topItem = navigationController?.navigationBar.topItem {
-            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
-        }
-        navigationItem.leftBarButtonItem = nil
-        title = "\(student?.name ?? "") \(student?.surname ?? "")"
-    }
 }
-
 
 //MARK: Network
 extension AddOrEditStudentTVC {

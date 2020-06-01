@@ -40,7 +40,7 @@ extension StudentsListTVC {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
             let student = isFiltering ? filtredStudents[indexPath.row] : students[indexPath.row]
             
-            if let studentProfileVC = segue.destination as? StudentProfileVC {
+            if let studentProfileVC = segue.destination as? StudentProfileTVC {
                 studentProfileVC.student = student
             }
         case "newStudent":
@@ -58,21 +58,22 @@ extension StudentsListTVC {
 // MARK: Network
 extension StudentsListTVC {
     private func fetchUsersData() {
-        networkManagerStudents.fetchStudentsList() { [weak self]  (contacts, error)  in
-            guard let contacts = contacts else {
+        networkManagerStudents.fetchStudentsList() { [weak self]  (students, error)  in
+            guard let students = students else {
                 print(error ?? "")
                 DispatchQueue.main.async {
                     self?.simpleAlert(message: error ?? "")
                 }
                 return
             }
-            self?.students = contacts
+            self?.students = students
             DispatchQueue.main.async {
                 self?.tableView.reloadData()
             }
         }
     }
-}
+    }
+
 
 // MARK: TableViewDataSource
 extension StudentsListTVC {
