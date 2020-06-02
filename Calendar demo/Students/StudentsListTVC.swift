@@ -26,7 +26,7 @@ class StudentsListTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchUsersData()
+        fetchStudents()
         confugureSearchBar()
         
     }
@@ -34,6 +34,13 @@ class StudentsListTVC: UITableViewController {
 
 // MARK: - Navigation
 extension StudentsListTVC {
+    @IBAction func unwiSegue(_ segue: UIStoryboardSegue) {
+        fetchStudents()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
         case "showDetail":
@@ -44,20 +51,24 @@ extension StudentsListTVC {
                 studentProfileVC.student = student
             }
         case "newStudent":
-            if let navVC = segue.destination as? UINavigationController,
-                let addVC = navVC.topViewController as? AddOrEditStudentTVC {
-            }
+//            if let navVC = segue.destination as? UINavigationController,
+//                let addVC = navVC.topViewController as? AddOrEditStudentTVC {
+//            }
+            guard let studentProfileTVC = StudentProfileTVC.self else { return }
+            studentProfileTVC.
+            
         case .none:
             return
         case .some(_):
             return
         }
     }
+    
 }
 
 // MARK: Network
 extension StudentsListTVC {
-    private func fetchUsersData() {
+    private func fetchStudents() {
         networkManagerStudents.fetchStudentsList() { [weak self]  (students, error)  in
             guard let students = students else {
                 print(error ?? "")

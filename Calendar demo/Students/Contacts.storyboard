@@ -12,8 +12,9 @@
         <scene sceneID="bBl-2m-KTQ">
             <objects>
                 <navigationController title="ContactsNC" automaticallyAdjustsScrollViewInsets="NO" id="7TF-VW-MlM" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ученики" image="Contacts" id="IEc-Tx-pjz"/>
+                    <tabBarItem key="tabBarItem" title="Ученики" image="Contacts" id="AfD-B4-inM"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Vy5-tA-vW9">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -21,6 +22,7 @@
                     <nil name="viewControllers"/>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="APd-kf-o0R">
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.31764705879999999" green="0.42352941179999998" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </toolbar>
                     <connections>
                         <segue destination="WXJ-hB-faI" kind="relationship" relationship="rootViewController" id="kIS-yU-C2p"/>
@@ -83,8 +85,7 @@
                     <navigationItem key="navigationItem" title="Ученики" id="ach-Aq-rLg">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0CE-Os-x55">
                             <connections>
-                                <action selector="didTapAdd" destination="WXJ-hB-faI" id="EMJ-Vj-nGT"/>
-                                <segue destination="ZNA-WT-0rz" kind="presentation" identifier="newStudent" modalPresentationStyle="fullScreen" id="qKk-bI-KrL"/>
+                                <segue destination="ZNA-WT-0rz" kind="presentation" modalPresentationStyle="fullScreen" id="e8J-au-Rig"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -248,7 +249,7 @@
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="R4D-QS-uOm">
                                                     <rect key="frame" x="377" y="68" width="22" height="22"/>
-                                                    <state key="normal" image="Add-1"/>
+                                                    <state key="normal" image="Add"/>
                                                     <connections>
                                                         <segue destination="4l1-jS-ASn" kind="show" identifier="discilinesTVC" id="dDc-BE-0Hi"/>
                                                     </connections>
@@ -326,11 +327,11 @@
                                         </tableViewCellContentView>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="15" maxY="0.0"/>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Comment" id="R9V-H7-z5R">
-                                        <rect key="frame" x="0.0" y="456" width="414" height="44"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Comment" rowHeight="223" id="R9V-H7-z5R">
+                                        <rect key="frame" x="0.0" y="456" width="414" height="223"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="R9V-H7-z5R" id="icl-kA-hTE">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="223"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Комментарий" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oBG-8p-b36">
@@ -340,7 +341,7 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalCompressionResistancePriority="749" scrollEnabled="NO" text="Lorem ipsum dolor sit er elit lam" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="oFY-xl-YrS">
-                                                    <rect key="frame" x="15" y="30" width="384" height="14"/>
+                                                    <rect key="frame" x="15" y="30" width="384" height="193"/>
                                                     <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                     <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -378,25 +379,23 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Готово" id="hGG-bO-hJ3">
                             <connections>
-                                <action selector="saveButtonAction:" destination="67y-bq-6A6" id="hHY-I4-eNX"/>
                                 <segue destination="aTW-LM-jXz" kind="unwind" unwindAction="unwiSegue:" id="8R6-Yz-AoW"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
-                        <outlet property="commentTF" destination="oFY-xl-YrS" id="ijx-eG-ufw"/>
                         <outlet property="disciplinesCollectionView" destination="7iN-Ui-ZiC" id="pfz-Ao-22K"/>
                         <outlet property="emailTF" destination="Ym9-Nw-Ndr" id="dke-Sa-Cgg"/>
                         <outlet property="nameTF" destination="aJu-dd-HwM" id="otq-o2-dm8"/>
+                        <outlet property="noteTF" destination="oFY-xl-YrS" id="ijx-eG-ufw"/>
                         <outlet property="phoneTF" destination="MiV-DH-hM7" id="R74-Vd-1Zc"/>
-                        <outlet property="saveButton" destination="hGG-bO-hJ3" id="R1H-rP-RT0"/>
                         <outlet property="surnameTF" destination="JRV-Oj-zn2" id="0Hp-4L-urP"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Exe-hs-tad" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="aTW-LM-jXz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5342" y="329"/>
+            <point key="canvasLocation" x="5340.579710144928" y="328.79464285714283"/>
         </scene>
         <!--Дисциплины-->
         <scene sceneID="1Ds-bp-zGp">
@@ -473,7 +472,7 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZNA-WT-0rz" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="aE8-Cx-ni7"/>
+                    <navigationItem key="navigationItem" id="aE8-Cx-ni7"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="a5w-BZ-8he">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -498,7 +497,7 @@
                         <sections>
                             <tableViewSection id="SKN-8a-T2A">
                                 <cells>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="NameSurname" rowHeight="145" id="ICu-j7-W4o">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="NameSurname" rowHeight="145" id="ICu-j7-W4o">
                                         <rect key="frame" x="0.0" y="28" width="414" height="145"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="ICu-j7-W4o" id="tZE-Zz-yfQ">
@@ -538,7 +537,7 @@
                                                 <constraint firstItem="QIV-M3-1ba" firstAttribute="top" secondItem="tZE-Zz-yfQ" secondAttribute="top" id="dWZ-Re-nj0"/>
                                             </constraints>
                                         </tableViewCellContentView>
-                                        <color key="backgroundColor" red="0.2040748" green="0.76277369260000005" blue="0.90101224179999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="Discipline" rowHeight="95" id="KeJ-Wb-Jxd">
                                         <rect key="frame" x="0.0" y="173" width="414" height="95"/>
@@ -598,6 +597,10 @@
                                                             </connections>
                                                         </collectionViewCell>
                                                     </cells>
+                                                    <connections>
+                                                        <outlet property="dataSource" destination="Ok9-Xy-cmW" id="vp7-j7-5Ee"/>
+                                                        <outlet property="delegate" destination="Ok9-Xy-cmW" id="SLc-hO-rfK"/>
+                                                    </connections>
                                                 </collectionView>
                                             </subviews>
                                             <constraints>
@@ -720,7 +723,18 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="qAz-g1-Cll">
-                        <barButtonItem key="rightBarButtonItem" title="Правка" id="65C-0S-Og0"/>
+                        <barButtonItem key="leftBarButtonItem" title="Назад" style="plain" id="oyh-vg-00V">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <connections>
+                                <segue destination="eJ6-bD-f4b" kind="unwind" unwindAction="unwiSegue:" id="AoP-NQ-dM4"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Правка" id="65C-0S-Og0">
+                            <color key="tintColor" red="0.99993699790000001" green="1" blue="0.99987250569999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="67y-bq-6A6" kind="show" identifier="editStudent" id="v9s-fh-S1u"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <outlet property="commentLabel" destination="ThS-a4-Rzt" id="ZkX-oj-gfS"/>
@@ -732,12 +746,16 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t8O-M0-FXJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="eJ6-bD-f4b" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="4496" y="327"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="v9s-fh-S1u"/>
+    </inferredMetricsTieBreakers>
     <resources>
-        <image name="Add-1" width="22" height="22"/>
+        <image name="Add" width="22" height="22"/>
         <image name="Contacts" width="25" height="25"/>
         <image name="Mail" width="22" height="17"/>
         <image name="Muted" width="1" height="32"/>

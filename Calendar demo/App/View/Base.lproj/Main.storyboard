@@ -11,27 +11,27 @@
         <scene sceneID="g8p-QX-UtO">
             <objects>
                 <viewControllerPlaceholder storyboardName="DetaledDay" id="rzq-qV-oiA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="lIw-eY-Lwf"/>
+                    <tabBarItem key="tabBarItem" title="Профиль" image="User" id="lIw-eY-Lwf"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVN-QJ-MX5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1712" y="1651"/>
+            <point key="canvasLocation" x="1243" y="1651"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="RiK-jO-Egb">
             <objects>
                 <viewControllerPlaceholder storyboardName="Calendar" id="Rpp-hV-Lis" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="c2u-fO-iQe"/>
+                    <tabBarItem key="tabBarItem" title="Календарь" image="Calendar" id="c2u-fO-iQe"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U81-ha-oJx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1481" y="1651"/>
+            <point key="canvasLocation" x="1718" y="1651"/>
         </scene>
         <!--Settings-->
         <scene sceneID="Ve5-wA-N5c">
             <objects>
                 <viewControllerPlaceholder storyboardName="Settings" id="WoO-rb-91P" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="laB-qh-irs"/>
+                    <tabBarItem key="tabBarItem" title="Финансы" image="Wallet" id="laB-qh-irs"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Hj-yn-ia3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -41,7 +41,7 @@
         <scene sceneID="HMF-xl-QsK">
             <objects>
                 <viewControllerPlaceholder storyboardName="Statistic" id="pou-wv-BOi" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="d8S-FV-ON8"/>
+                    <tabBarItem key="tabBarItem" title="Статистика" image="Statistic" id="d8S-FV-ON8"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86p-V3-aFW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -50,19 +50,18 @@
         <!--TabBarController-->
         <scene sceneID="4KF-ZP-laa">
             <objects>
-                <tabBarController storyboardIdentifier="TabBarController" title="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="WSM-Ad-RAF" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="TabBarController" title="TabBarController" automaticallyAdjustsScrollViewInsets="NO" id="WSM-Ad-RAF" customClass="TabBarConroller" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="hS3-51-1PB"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gVd-tt-MCd">
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" red="0.99993699790000001" green="1" blue="0.99987250569999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                        <color key="tintColor" red="0.60392156860000001" green="0.60392156860000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="tintColor" red="0.99993699790000001" green="1" blue="0.99987250569999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
+                        <segue destination="rzq-qV-oiA" kind="relationship" relationship="viewControllers" id="wfE-Ld-72U"/>
                         <segue destination="9L6-Fy-W6F" kind="relationship" relationship="viewControllers" id="Kx9-xA-qmS"/>
                         <segue destination="Rpp-hV-Lis" kind="relationship" relationship="viewControllers" id="mX7-Ns-x6o"/>
-                        <segue destination="rzq-qV-oiA" kind="relationship" relationship="viewControllers" id="wfE-Ld-72U"/>
                         <segue destination="pou-wv-BOi" kind="relationship" relationship="viewControllers" id="GQG-Si-lnW"/>
                         <segue destination="WoO-rb-91P" kind="relationship" relationship="viewControllers" id="j9l-er-QQf"/>
                     </connections>
@@ -75,11 +74,18 @@
         <scene sceneID="aKU-tF-zhk">
             <objects>
                 <viewControllerPlaceholder storyboardName="Contacts" id="9L6-Fy-W6F" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Item" id="0qk-dq-CZP"/>
+                    <tabBarItem key="tabBarItem" title="Контакты" image="Contacts" id="0qk-dq-CZP"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yYM-zr-HAn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1244" y="1651"/>
+            <point key="canvasLocation" x="1481" y="1651"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Calendar" width="28" height="25"/>
+        <image name="Contacts" width="25" height="25"/>
+        <image name="Statistic" width="26" height="24"/>
+        <image name="User" width="26" height="26"/>
+        <image name="Wallet" width="26" height="24"/>
+    </resources>
 </document>

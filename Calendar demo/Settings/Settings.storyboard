@@ -45,7 +45,7 @@
         <scene sceneID="PGN-qg-fg6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fsX-7Q-JjA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Настройки" image="Profile" id="usI-d0-LSe"/>
+                    <tabBarItem key="tabBarItem" title="Настройки" image="Wallet" id="usI-d0-LSe"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vH0-af-eoO">
@@ -63,6 +63,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Profile" width="26" height="26"/>
+        <image name="Wallet" width="26" height="24"/>
     </resources>
 </document>

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="S8b-22-Vdd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="heX-c7-M0U">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -11,7 +11,7 @@
         <!--Список событий на сегодня-->
         <scene sceneID="Bld-Qh-y9d">
             <objects>
-                <viewController id="S8b-22-Vdd" customClass="DetailedDayVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="S8b-22-Vdd" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="W9q-V2-u4M">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -126,7 +126,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="До начала следующего занятия осталось: 4:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LJq-44-mkz">
-                                <rect key="frame" x="28" y="104" width="348" height="13.5"/>
+                                <rect key="frame" x="28" y="103.5" width="348" height="13.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                 <color key="textColor" red="0.99993699790000001" green="1" blue="0.99987250569999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -260,7 +260,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AFq-lZ-ulp"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Сегодня" image="Home" id="l1A-z5-Acc"/>
+                    <tabBarItem key="tabBarItem" title="Сегодня" image="User" id="l1A-z5-Acc"/>
                     <navigationItem key="navigationItem" title="Список событий на сегодня" id="Xd5-lb-ZQB"/>
                     <connections>
                         <outlet property="nextmeetingLabel" destination="LJq-44-mkz" id="Qd0-vs-JTH"/>
@@ -272,12 +272,29 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Y7h-Lw-8vR" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2783" y="1878"/>
+            <point key="canvasLocation" x="4080" y="1886"/>
+        </scene>
+        <!--Сегодня-->
+        <scene sceneID="H0h-py-Ryk">
+            <objects>
+                <viewController id="heX-c7-M0U" customClass="DetailedDayVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YXo-Ej-pbg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="Lec-tV-Ior"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Сегодня" image="User" id="5Bf-uq-3MM"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gs7-2T-uOy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3411" y="1886"/>
         </scene>
     </scenes>
     <resources>
         <image name="Add" width="22" height="22"/>
-        <image name="Home" width="28" height="26"/>
+        <image name="User" width="26" height="26"/>
         <image name="redDot" width="7" height="7"/>
         <image name="task" width="33" height="33"/>
     </resources>
