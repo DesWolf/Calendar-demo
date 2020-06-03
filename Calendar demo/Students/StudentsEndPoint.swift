@@ -29,15 +29,17 @@ public enum StudentsApi {
                     phone: String,
                     email: String,
                     note: String)
+    
+    case deleteStudent(studentId: Int)
 }
 
 extension StudentsApi: EndPointType {
     
     var environmentBaseURL : String {
         switch NetworkManagerStudents.environment {
-        case .qa: return "http://f0435023.xsph.ru/api/"
-        case .production: return "http://f0435023.xsph.ru/api/"
-        case .staging: return "http://f0435023.xsph.ru/api/"
+        case .qa: return "http://f0435023.xsph.ru/api/students/"
+        case .production: return "http://f0435023.xsph.ru/api/students/"
+        case .staging: return "http://f0435023.xsph.ru/api/students/"
         }
     }
     
@@ -49,13 +51,15 @@ extension StudentsApi: EndPointType {
     var path: String {
         switch self {
         case .students:
-            return "students/show"
+            return "show"
         case .showStudent(let studentId):
-            return "students/\(studentId)"
+            return "\(studentId)"
         case .addStudent( _, _, _, _, _, _, _):
-            return "students/add"
+            return "add"
         case .changeStudent( _, _, _, _, _, _, _):
-            return "students/update"
+            return "update"
+        case .deleteStudent(_):
+            return "delete"
         }
     }
     
@@ -69,6 +73,8 @@ extension StudentsApi: EndPointType {
             return .post
         case .changeStudent( _, _, _, _, _, _, _):
             return .patch
+        case .deleteStudent(_):
+            return .delete
         }
     }
     
@@ -86,7 +92,7 @@ extension StudentsApi: EndPointType {
                                                 additionHeaders: headers)
             
         case .addStudent(let studentId, let name, let surname, let disciplines, let phone, let email, let note):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(KeychainWrapper.standard.string(forKey: "accessToken")!)",
+            return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(KeychainWrapper.standard.string(forKey: "teacherId")!)",
                                                                 "studentId": studentId,
                                                                 "name": name,
                                                                 "surname": surname,
@@ -99,7 +105,7 @@ extension StudentsApi: EndPointType {
                                                 additionHeaders: headers)
             
         case .changeStudent(let studentId, let name, let surname, let disciplines, let phone, let email, let note):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(KeychainWrapper.standard.string(forKey: "accessToken")!)",
+            return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(KeychainWrapper.standard.string(forKey: "teacherId")!)",
                                                                 "studentId": studentId,
                                                                 "name": name,
                                                                 "surname": surname,
@@ -107,6 +113,12 @@ extension StudentsApi: EndPointType {
                                                                 "phone": phone,
                                                                 "email": email,
                                                                 "note": note],
+                                                bodyEncoding: .jsonEncoding,
+                                                urlParameters: nil,
+                                                additionHeaders: headers)
+        case .deleteStudent(let studentId):
+            return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(KeychainWrapper.standard.string(forKey: "teacherId")!)",
+                                                                "studentId": studentId],
                                                 bodyEncoding: .jsonEncoding,
                                                 urlParameters: nil,
                                                 additionHeaders: headers)

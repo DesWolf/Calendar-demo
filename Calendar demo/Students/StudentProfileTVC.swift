@@ -22,26 +22,24 @@ class StudentProfileTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setNavigationController()
         fetchDetailedStudent(studentId: student?.studentId ?? 0)
     }
     
+    deinit {
+        print("deinit", StudentProfileTVC.self)
+    }
 }
 //MARK: Setup Screen
 extension StudentProfileTVC {
     func setupScreen(student: StudentModel?) {
-        
-        print(student)
-        setNavigationController()
         
         nameLabel.text = "\(student?.name ?? "") \(student?.surname ?? "")"
         commentLabel.text = "Макс уже нашел работу"
         phoneTV.text = student?.phone ?? ""
         emailTV.text = student?.email ?? ""
         noteTV.text = student?.note ?? ""
-        //        self.tableView.tableFooterView = UIView(frame: CGRect(x: 0,
-        //                                                              y: 0,
-        //                                                              width: tableView.frame.size.width,
-        //                                                              height: 1))
+        
         phoneTV.isScrollEnabled = false
         emailTV.isScrollEnabled = false
     }
@@ -89,7 +87,7 @@ extension StudentProfileTVC {
         let secondCellHeight: CGFloat = 95
         let thirdCellHeight: CGFloat = 65
         let fourthCellHeight: CGFloat = 65
-        
+        let tabBarHeight: CGFloat = self.tabBarController?.tabBar.frame.height ?? 100
         switch indexPath.row {
         case 0:
             return firstCellHeight
@@ -100,7 +98,7 @@ extension StudentProfileTVC {
         case 3:
             return fourthCellHeight
         case 4:
-            let height = self.view.frame.height - firstCellHeight - secondCellHeight - thirdCellHeight - fourthCellHeight - (self.tabBarController?.tabBar.frame)!.height
+            let height = self.view.frame.height - firstCellHeight - secondCellHeight - thirdCellHeight - fourthCellHeight - tabBarHeight
             return  height //UITableView.automaticDimension
         default:
             return super.tableView(tableView, heightForRowAt: indexPath)
@@ -121,9 +119,11 @@ extension StudentProfileTVC {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier  == "editStudent" {
-            guard let addStudentTVC = segue.destination as? AddOrEditStudentTVC else { return }
-            addStudentTVC.student = student
+        if segue.identifier == "editStudent" {
+            if let destVC = segue.destination as? UINavigationController,
+                let targetController = destVC.topViewController as? AddOrEditStudentTVC {
+                targetController.student = student
+            }
         }
     }
 }

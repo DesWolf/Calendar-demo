@@ -17,7 +17,7 @@ class AddOrEditStudentTVC: UITableViewController {
     @IBOutlet weak var noteTF: UITextView!
     
     @IBOutlet weak var disciplinesCollectionView: UICollectionView!
-//    @IBOutlet weak var saveButton: UIBarButtonItem!
+    //    @IBOutlet weak var saveButton: UIBarButtonItem!
     
     
     var chousedDisciplines: [String] = []
@@ -32,6 +32,8 @@ class AddOrEditStudentTVC: UITableViewController {
         
         setupEditScreen()
     }
+    
+    
     
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: true)
@@ -91,7 +93,7 @@ extension AddOrEditStudentTVC {
                                phone: phoneTF.text,
                                email: emailTF.text,
                                note: noteTF.text )
-        if student != nil {
+        if student?.studentId != 0 {
             changeStudent(student: student!)
         } else {
             addNewStudent(newStudent: student!)
@@ -119,7 +121,7 @@ extension AddOrEditStudentTVC {
                 }
                 return
             }
-            print(responce)
+            print("Add:",responce)
         }
     }
     
@@ -139,7 +141,8 @@ extension AddOrEditStudentTVC {
                 }
                 return
             }
-            print(responce)
+            
+            print("change:",responce)
         }
     }
 }
@@ -149,64 +152,64 @@ extension AddOrEditStudentTVC {
 extension AddOrEditStudentTVC {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-
-            let firstCellHeight: CGFloat = 78
-            let secondCellHeight: CGFloat = 40
-            let thirdCellHeight: CGFloat = 230
-            let fourthCellHeight: CGFloat = 80
+        
+        let firstCellHeight: CGFloat = 78
+        let secondCellHeight: CGFloat = 40
+        let thirdCellHeight: CGFloat = 230
+        let fourthCellHeight: CGFloat = 80
         let tabBarHeight: CGFloat = self.tabBarController?.tabBar.frame.height ?? 100
-            
-            switch indexPath.row {
-            case 0:
+        
+        switch indexPath.row {
+        case 0:
             return firstCellHeight
-            case 1:
+        case 1:
             return secondCellHeight
-            case 2:
+        case 2:
             return thirdCellHeight
-            case 3:
+        case 3:
             return fourthCellHeight
-            case 4:
-                let height = self.view.frame.height - firstCellHeight - secondCellHeight - thirdCellHeight - fourthCellHeight - tabBarHeight
+        case 4:
+            let height = self.view.frame.height - firstCellHeight - secondCellHeight - thirdCellHeight - fourthCellHeight - tabBarHeight
             return  height //UITableView.automaticDimension
-            default:
+        default:
             return super.tableView(tableView, heightForRowAt: indexPath)
-            }
         }
-        
+    }
+    
 }
+
+extension AddOrEditStudentTVC: UITextViewDelegate {
+    func textViewDidChange(_ textView: UITextView) {
+        tableView.beginUpdates()
+        tableView.endUpdates()
+    }
+}
+
+//MARK: Alert
+extension AddOrEditStudentTVC  {
+    func simpleAlert(message: String) {
+        UIAlertController.simpleAlert(title:"Error", msg:"\(message)", target: self)
+    }
+}
+
+//MARK: UICollectionView, UICollectionViewDelegateFlowLayout
+extension AddOrEditStudentTVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return chousedDisciplines.count
+    }
+    
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        extension AddOrEditStudentTVC: UITextViewDelegate {
-            func textViewDidChange(_ textView: UITextView) {
-                tableView.beginUpdates()
-                tableView.endUpdates()
-            }
-        }
-        
-        //MARK: Alert
-        extension AddOrEditStudentTVC  {
-            func simpleAlert(message: String) {
-                UIAlertController.simpleAlert(title:"Error", msg:"\(message)", target: self)
-            }
-        }
-        
-        //MARK: UICollectionView, UICollectionViewDelegateFlowLayout
-        extension AddOrEditStudentTVC: UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
-            
-            func numberOfSections(in collectionView: UICollectionView) -> Int {
-                return 1
-            }
-            
-            func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-                return chousedDisciplines.count
-            }
-            
-            
-            func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-                
-                let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DisciplinesCell", for: indexPath) as! DisciplinesCollectionViewCell
-                let discipline = chousedDisciplines[indexPath.row]
-                cell.configure(with: discipline)
-                return cell
-            }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DisciplinesCell", for: indexPath) as! DisciplinesCollectionViewCell
+        let discipline = chousedDisciplines[indexPath.row]
+        cell.configure(with: discipline)
+        return cell
+    }
 }
 

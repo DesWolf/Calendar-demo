@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -14,6 +15,7 @@
                 <navigationController title="ContactsNC" automaticallyAdjustsScrollViewInsets="NO" id="7TF-VW-MlM" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Ученики" image="Contacts" id="AfD-B4-inM"/>
                     <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Unh-Y1-8Qd"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Vy5-tA-vW9">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -30,7 +32,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M85-1H-tVv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2929" y="327"/>
+            <point key="canvasLocation" x="2996" y="329"/>
         </scene>
         <!--Ученики-->
         <scene sceneID="imh-zH-cDM">
@@ -83,21 +85,26 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Ученики" id="ach-Aq-rLg">
+                        <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="nWK-TE-Zyi">
+                            <connections>
+                                <action selector="refreshButton:" destination="WXJ-hB-faI" id="NNV-44-7NN"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0CE-Os-x55">
                             <connections>
-                                <segue destination="ZNA-WT-0rz" kind="presentation" modalPresentationStyle="fullScreen" id="e8J-au-Rig"/>
+                                <segue destination="7gx-wT-xaD" kind="show" identifier="newStudent" id="PeG-PI-Sdt"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Cfb-XZ-HsZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3653.6231884057975" y="328.79464285714283"/>
+            <point key="canvasLocation" x="3754" y="329"/>
         </scene>
-        <!--Ученик-->
+        <!--AddOrEditStudentTVC-->
         <scene sceneID="RiN-hI-2Om">
             <objects>
-                <tableViewController id="67y-bq-6A6" customClass="AddOrEditStudentTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddOrEditStudentTVC" title="AddOrEditStudentTVC" id="67y-bq-6A6" customClass="AddOrEditStudentTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="VUa-Nm-mdq">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -379,7 +386,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Готово" id="hGG-bO-hJ3">
                             <connections>
-                                <segue destination="aTW-LM-jXz" kind="unwind" unwindAction="unwiSegue:" id="8R6-Yz-AoW"/>
+                                <segue destination="aTW-LM-jXz" kind="unwind" unwindAction="unwiSegueListOfContacts:" id="6wT-xy-yDR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -395,7 +402,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Exe-hs-tad" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="aTW-LM-jXz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5340.579710144928" y="328.79464285714283"/>
+            <point key="canvasLocation" x="5274" y="327"/>
         </scene>
         <!--Дисциплины-->
         <scene sceneID="1Ds-bp-zGp">
@@ -465,31 +472,12 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ut-DZ-ApY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="8bU-F1-01O" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6196" y="329"/>
+            <point key="canvasLocation" x="6068" y="329"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="ty8-41-NAs">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="ZNA-WT-0rz" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationItem key="navigationItem" id="aE8-Cx-ni7"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="a5w-BZ-8he">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="67y-bq-6A6" kind="relationship" relationship="rootViewController" id="cB8-5H-nC2"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="fTu-gY-cDz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5341" y="-431"/>
-        </scene>
-        <!--Student ProfileTVC-->
+        <!--StudentProfileTVC-->
         <scene sceneID="NXb-B1-4yx">
             <objects>
-                <tableViewController id="Ok9-Xy-cmW" customClass="StudentProfileTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="StudentProfileTVC" title="StudentProfileTVC" id="Ok9-Xy-cmW" customClass="StudentProfileTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="InZ-8L-N3n">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -726,13 +714,13 @@
                         <barButtonItem key="leftBarButtonItem" title="Назад" style="plain" id="oyh-vg-00V">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="eJ6-bD-f4b" kind="unwind" unwindAction="unwiSegue:" id="AoP-NQ-dM4"/>
+                                <segue destination="eJ6-bD-f4b" kind="unwind" unwindAction="unwiSegueListOfContacts:" id="nLZ-H6-JWy"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Правка" id="65C-0S-Og0">
                             <color key="tintColor" red="0.99993699790000001" green="1" blue="0.99987250569999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             <connections>
-                                <segue destination="67y-bq-6A6" kind="show" identifier="editStudent" id="v9s-fh-S1u"/>
+                                <segue destination="7gx-wT-xaD" kind="presentation" identifier="editStudent" modalPresentationStyle="fullScreen" id="Wha-ju-4SR"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -750,9 +738,62 @@
             </objects>
             <point key="canvasLocation" x="4496" y="327"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Lqv-xn-swy">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7gx-wT-xaD" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="K32-Gu-FYX"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zqo-62-scK">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="67y-bq-6A6" kind="relationship" relationship="rootViewController" id="D9m-MP-3HA"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rpc-P6-BHl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5274" y="-346"/>
+        </scene>
+        <!--Pop UpVC-->
+        <scene sceneID="2H2-GG-hG2">
+            <objects>
+                <viewController storyboardIdentifier="popUpVC" id="7qe-Pz-sFJ" customClass="PopUpVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="hPE-0e-v2u">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ученик добавлен" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZu-r8-KEX">
+                                <rect key="frame" x="20" y="854" width="374" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7Hh-m7-zUT"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="CZu-r8-KEX" firstAttribute="leading" secondItem="me8-9U-vFn" secondAttribute="leading" constant="20" id="DaA-bI-AO5"/>
+                            <constraint firstItem="CZu-r8-KEX" firstAttribute="trailing" secondItem="me8-9U-vFn" secondAttribute="trailing" constant="-20" id="QMD-Fx-0eA"/>
+                            <constraint firstItem="CZu-r8-KEX" firstAttribute="bottom" secondItem="me8-9U-vFn" secondAttribute="bottom" constant="22" id="o83-Ko-74j"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="me8-9U-vFn"/>
+                    </view>
+                    <connections>
+                        <outlet property="messageLablel" destination="CZu-r8-KEX" id="6aa-M0-jE2"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="aYO-IY-wnW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6066.666666666667" y="-346.20535714285711"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="v9s-fh-S1u"/>
+        <segue reference="Wha-ju-4SR"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Add" width="22" height="22"/>

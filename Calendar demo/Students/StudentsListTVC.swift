@@ -30,15 +30,24 @@ class StudentsListTVC: UITableViewController {
         confugureSearchBar()
         
     }
+    @IBAction func refreshButton(_ sender: Any) {
+        fetchStudents()
+        simplePopup(text: "Хей Хей")
+    }
 }
 
 // MARK: - Navigation
 extension StudentsListTVC {
-    @IBAction func unwiSegue(_ segue: UIStoryboardSegue) {
-        fetchStudents()
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
+    @IBAction func unwiSegueListOfContacts (_ segue: UIStoryboardSegue) {
+        if let addOrEditStudentTVC = segue.source as? AddOrEditStudentTVC {
+            addOrEditStudentTVC.saveStudent()
+            fetchStudents()
+            simplePopup(text: "Добавлен новый ученик!")
+        } else if let studentProfileTVC = segue.source as? StudentProfileTVC {
+            fetchStudents()
+            simplePopup(text: "Ученик изменен")
         }
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -47,16 +56,12 @@ extension StudentsListTVC {
             guard let indexPath = tableView.indexPathForSelectedRow else { return }
             let student = isFiltering ? filtredStudents[indexPath.row] : students[indexPath.row]
             
-            if let studentProfileVC = segue.destination as? StudentProfileTVC {
-                studentProfileVC.student = student
-            }
-        case "newStudent":
-//            if let navVC = segue.destination as? UINavigationController,
-//                let addVC = navVC.topViewController as? AddOrEditStudentTVC {
-//            }
-            guard let studentProfileTVC = StudentProfileTVC.self else { return }
-            studentProfileTVC.
+            guard let studentProfileTVC = segue.destination as? StudentProfileTVC else { return }
+            studentProfileTVC.student = student
             
+        case "newStudent":
+            guard let navVC = segue.destination as? UINavigationController else { return }
+            let addVC = navVC.topViewController as? AddOrEditStudentTVC
         case .none:
             return
         case .some(_):
@@ -83,7 +88,20 @@ extension StudentsListTVC {
             }
         }
     }
+    
+    private func deleteStudent(studentId: Int) {
+        networkManagerStudents.deleteStudent(studentId: studentId) { [weak self]  (deleteStudent, error)  in
+            guard let deleteStudent = deleteStudent else {
+                print(error ?? "")
+                DispatchQueue.main.async {
+                    self?.simpleAlert(message: error ?? "")
+                }
+                return
+            }
+            print("Delete from server:",deleteStudent)
+        }
     }
+}
 
 
 // MARK: TableViewDataSource
@@ -104,16 +122,41 @@ extension StudentsListTVC {
         return cell
     }
     
-    //    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-    //        guard editingStyle == .delete else { return }
-    //        let contact = students[indexPath.row]
-    //        print("Editing \(contact)")
-    //    }
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        let selectedStudent = students[indexPath.row]
+        print("Editing \(selectedStudent)")
+        students.remove(at: indexPath.row)
+        deleteStudent(studentId: selectedStudent.studentId ?? 0)
+        
+    }
 }
-//MARK: Alert
+//MARK: Alert & Notification
 extension StudentsListTVC  {
     func simpleAlert(message: String) {
         UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
+    }
+    
+    func simplePopup(text: String) {
+        let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Contacts", bundle:nil)
+        let popUpVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "popUpVC") as! PopUpVC
+        
+        let tabBarHeight: CGFloat = self.tabBarController?.tabBar.frame.height ?? 40
+        let navHeight: CGFloat = self.navigationController?.navigationBar.frame.height ?? 20
+        let windowWidth = self.view.frame.width
+        let windowHeight = self.view.frame.height - tabBarHeight - navHeight
+        
+        popUpVC.message = text
+        self.addChild(popUpVC)
+        popUpVC.view.frame = CGRect(x: 0, y: 0, width: windowWidth, height: windowHeight)
+        self.view.addSubview(popUpVC.view)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            popUpVC.moveOut()
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                popUpVC.view.removeFromSuperview()
+            }
+        }
     }
 }
 

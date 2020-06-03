@@ -20,6 +20,10 @@ class DisciplinesTVC: UITableViewController {
     @IBAction func AddButton(_ sender: Any) {
         addDiscipline()
     }
+    
+    deinit {
+        print("deinit", DisciplinesTVC.self)
+    }
 }
 
 // MARK: - Add Discipline
