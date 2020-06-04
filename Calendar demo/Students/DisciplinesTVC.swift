@@ -11,7 +11,7 @@ import UIKit
 class DisciplinesTVC: UITableViewController {
     
     public var chousedDisciplines: [String] = []
-    private var disciplines: [String] = DisciplinesList.all
+//    private var disciplines: [String] = DisciplinesList.all
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -70,13 +70,16 @@ extension DisciplinesTVC {
             cell.checkImage.image = #imageLiteral(resourceName: "checkBoxFill")
             chousedDisciplines.append(discipline)
         }
-        
         tableView.reloadData()
-        print(chousedDisciplines)
-        print(DisciplinesList.all)
     }
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
+    }
+    
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        DisciplinesList.all.remove(at: indexPath.row)
+        tableView.reloadData()
     }
 }

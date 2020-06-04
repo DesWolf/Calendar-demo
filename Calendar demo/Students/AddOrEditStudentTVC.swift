@@ -32,6 +32,15 @@ class AddOrEditStudentTVC: UITableViewController {
         
         setupEditScreen()
     }
+    @IBAction func emailTFAction(_ sender: Any) {
+        guard emailTF.text?.isValidEmail() == true  else {
+                   return simpleAlert(message: "Введите корректный email")
+               }
+               print("email - ok")
+    }
+    @IBAction func nameTFAction(_ sender: Any) {
+
+    }
     
     
     
@@ -212,4 +221,3 @@ extension AddOrEditStudentTVC: UICollectionViewDataSource, UICollectionViewDeleg
         return cell
     }
 }
-

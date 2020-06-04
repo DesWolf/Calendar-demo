@@ -24,14 +24,14 @@ class LoginVC: UIViewController {
     
     @IBAction func emailTFAction(_ sender: Any) {
         guard emailTF.text?.isValidEmail() == true  else {
-            return alert(message: "Введите корректный email")
+            return simpleAlert(message: "Введите корректный email")
         }
         print("email - ok")
     }
     
     @IBAction func passwordTFAction(_ sender: Any) {
         guard passwordTF.text?.isValidPassword() == true  else {
-            return alert(message: "Пароль должен быть не менее 8 символов с одной заглавной и одной прописной буквой")
+            return simpleAlert(message: "Пароль должен быть не менее 8 символов с одной заглавной и одной прописной буквой")
         }
         print("password - ok")
     }
@@ -45,7 +45,7 @@ class LoginVC: UIViewController {
         let userPassword = passwordTF.text
         
         if (userEmail?.isEmpty)! || (userPassword?.isEmpty)! {
-            alert(message: "Пожалуйста, заполните необходимые поля")
+            simpleAlert(message: "Пожалуйста, заполните необходимые поля")
         } else {
             loginUser(email: userEmail!, password: userPassword!)
         }
@@ -62,8 +62,8 @@ extension LoginVC {
             if message?.token == nil {
                 print("\(error ?? ""), \(message?.error ?? [""])")
                 DispatchQueue.main.async {
-                    self?.alert(message: error ?? "")
-                    self?.alert(message: message?.error?.first ?? "")
+                    self?.simpleAlert(message: error ?? "")
+                    self?.simpleAlert(message: message?.error?.first ?? "")
                 }
             } else {
                 
@@ -95,7 +95,7 @@ extension LoginVC {
 
 //MARK: Alert
 extension LoginVC  {
-    func alert(message: String) {
+    func simpleAlert(message: String) {
         UIAlertController.simpleAlert(title:"Error", msg:"\(message)", target: self)
     }
 }

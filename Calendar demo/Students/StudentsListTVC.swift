@@ -43,7 +43,7 @@ extension StudentsListTVC {
             addOrEditStudentTVC.saveStudent()
             fetchStudents()
             simplePopup(text: "Добавлен новый ученик!")
-        } else if let studentProfileTVC = segue.source as? StudentProfileTVC {
+        } else if segue.source is StudentProfileTVC {
             fetchStudents()
             simplePopup(text: "Ученик изменен")
         }
@@ -61,7 +61,7 @@ extension StudentsListTVC {
             
         case "newStudent":
             guard let navVC = segue.destination as? UINavigationController else { return }
-            let addVC = navVC.topViewController as? AddOrEditStudentTVC
+            _ = navVC.topViewController as? AddOrEditStudentTVC
         case .none:
             return
         case .some(_):
@@ -125,12 +125,11 @@ extension StudentsListTVC {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
         let selectedStudent = students[indexPath.row]
-        print("Editing \(selectedStudent)")
         students.remove(at: indexPath.row)
         deleteStudent(studentId: selectedStudent.studentId ?? 0)
-        
     }
 }
+
 //MARK: Alert & Notification
 extension StudentsListTVC  {
     func simpleAlert(message: String) {

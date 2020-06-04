@@ -131,6 +131,9 @@
                                                     <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="nameTFAction:" destination="67y-bq-6A6" eventType="editingDidEnd" id="zfl-2W-Xj3"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -316,6 +319,9 @@
                                                     </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <textInputTraits key="textInputTraits"/>
+                                                    <connections>
+                                                        <action selector="emailTFAction:" destination="67y-bq-6A6" eventType="editingDidEnd" id="Mx0-Y6-aND"/>
+                                                    </connections>
                                                 </textField>
                                             </subviews>
                                             <constraints>
@@ -711,7 +717,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="qAz-g1-Cll">
-                        <barButtonItem key="leftBarButtonItem" title="Назад" style="plain" id="oyh-vg-00V">
+                        <barButtonItem key="leftBarButtonItem" title="Назад" id="oyh-vg-00V">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <segue destination="eJ6-bD-f4b" kind="unwind" unwindAction="unwiSegueListOfContacts:" id="nLZ-H6-JWy"/>

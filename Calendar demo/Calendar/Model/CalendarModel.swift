@@ -9,6 +9,15 @@
 import Foundation
 
 struct CalendarModel: Decodable {
-    let meetingDate: String
-    let studentName: String
+    let lessonId: Int?
+    let lessonName: String?
+    let studentName: String?
+    let studentSurname: String?
+    let dateStart: String?
+    let dateEnd: String?
+    let note: String?
+    let price: Int?
+    let discipline: String?
+    let place: String?
+    let statusPay: Bool?
 }
