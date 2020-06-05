@@ -41,9 +41,9 @@ extension CalendarApi: EndPointType {
     
     var environmentBaseURL : String {
         switch NetworkManagerStudents.environment {
-        case .qa: return "http://f0435023.xsph.ru/api/lesson/"
-        case .production: return "http://f0435023.xsph.ru/api/lesson/"
-        case .staging:  return "http://f0435023.xsph.ru/api/lesson/"
+        case .qa: return "http://f0435023.xsph.ru/api/lessons/"
+        case .production: return "http://f0435023.xsph.ru/api/lessons/"
+        case .staging:  return "http://f0435023.xsph.ru/api/lessons/"
         }
     }
     
@@ -84,13 +84,14 @@ extension CalendarApi: EndPointType {
     
     var task: HTTPTask {
         let teacheId = "\(KeychainWrapper.standard.string(forKey: "teacherId")!)"
+        
         switch self {
         case .calendar(let dateStart, let dateEnd):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacheId,
-                                                                 "dateStart": dateStart,
-                                                                 "dateEnd": dateEnd],
+            return .requestParametersAndHeaders(bodyParameters: nil,
                                                 bodyEncoding: .urlEncoding,
-                                                urlParameters: nil,
+                                                urlParameters: ["teacherId": teacheId,
+                                                                "dateStart": dateStart,
+                                                                "dateEnd": dateEnd],
                                                 additionHeaders: headers)
         case .showLesson(let lessonId):
             return .requestParametersAndHeaders(bodyParameters: nil,

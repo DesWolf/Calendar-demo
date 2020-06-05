@@ -11,26 +11,30 @@
         <!--Календарь-->
         <scene sceneID="hTz-4x-v6a">
             <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="crc-cs-zyC" sceneMemberID="firstResponder"/>
                 <viewController id="KaI-3w-aNX" customClass="CalendarVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cgt-6W-3CX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZUm-fx-5Oa">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="595"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rJ1-T4-e9a" userLabel="Calendar Menu View" customClass="CVCalendarMenuView" customModule="CVCalendar">
-                                <rect key="frame" x="0.0" y="88" width="414" height="48"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="Gri-F9-dKP"/>
+                                </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r3w-uj-xvL" userLabel="Calendar View" customClass="CVCalendarView" customModule="CVCalendar">
-                                <rect key="frame" x="0.0" y="146" width="414" height="441"/>
+                                <rect key="frame" x="0.0" y="148" width="414" height="449"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="449" id="DAn-La-yD5"/>
+                                </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yGT-7Q-c4S">
-                                <rect key="frame" x="0.0" y="595" width="414" height="218"/>
+                                <rect key="frame" x="0.0" y="597" width="414" height="216"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="218" id="96L-eT-8dE"/>
-                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="meetingCell" rowHeight="95" id="JOp-K4-3VU" customClass="DayTVCell" customModule="Calendar_demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="95"/>
@@ -86,21 +90,20 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="r3w-uj-xvL" firstAttribute="top" secondItem="rJ1-T4-e9a" secondAttribute="bottom" constant="10" id="0bC-ZO-wIb"/>
-                            <constraint firstItem="ZUm-fx-5Oa" firstAttribute="leading" secondItem="Fse-8Y-0Zl" secondAttribute="leading" id="6dL-zk-kOh"/>
-                            <constraint firstItem="yGT-7Q-c4S" firstAttribute="trailing" secondItem="Fse-8Y-0Zl" secondAttribute="trailing" id="97l-JF-hxj"/>
-                            <constraint firstItem="yGT-7Q-c4S" firstAttribute="bottom" secondItem="Fse-8Y-0Zl" secondAttribute="bottom" id="Bmn-xI-NLV"/>
+                            <constraint firstItem="rJ1-T4-e9a" firstAttribute="top" secondItem="Fse-8Y-0Zl" secondAttribute="top" id="3pO-lO-cS1"/>
+                            <constraint firstItem="ZUm-fx-5Oa" firstAttribute="bottom" secondItem="Fse-8Y-0Zl" secondAttribute="bottom" id="5Qi-py-Iyf"/>
                             <constraint firstItem="Fse-8Y-0Zl" firstAttribute="trailing" secondItem="r3w-uj-xvL" secondAttribute="trailing" id="DQY-8c-Mgz"/>
-                            <constraint firstItem="r3w-uj-xvL" firstAttribute="top" secondItem="cgt-6W-3CX" secondAttribute="top" constant="146" id="HAT-fJ-N8U"/>
-                            <constraint firstItem="yGT-7Q-c4S" firstAttribute="leading" secondItem="Fse-8Y-0Zl" secondAttribute="leading" id="NRc-zV-b4u"/>
+                            <constraint firstItem="rJ1-T4-e9a" firstAttribute="leading" secondItem="Fse-8Y-0Zl" secondAttribute="leading" id="E0D-fl-wmZ"/>
+                            <constraint firstItem="yGT-7Q-c4S" firstAttribute="bottom" secondItem="Fse-8Y-0Zl" secondAttribute="bottom" id="E4t-r2-jRi"/>
+                            <constraint firstItem="ZUm-fx-5Oa" firstAttribute="top" secondItem="cgt-6W-3CX" secondAttribute="top" id="Lrf-2a-k1T"/>
                             <constraint firstItem="r3w-uj-xvL" firstAttribute="leading" secondItem="Fse-8Y-0Zl" secondAttribute="leading" id="OJe-7Z-X6k"/>
-                            <constraint firstItem="yGT-7Q-c4S" firstAttribute="top" secondItem="ZUm-fx-5Oa" secondAttribute="bottom" id="ZYd-xY-Oal"/>
-                            <constraint firstItem="yGT-7Q-c4S" firstAttribute="top" secondItem="r3w-uj-xvL" secondAttribute="bottom" constant="8" id="aoz-d3-f0c"/>
-                            <constraint firstItem="Fse-8Y-0Zl" firstAttribute="trailing" secondItem="rJ1-T4-e9a" secondAttribute="trailing" id="dYS-Vp-gfy"/>
-                            <constraint firstItem="ZUm-fx-5Oa" firstAttribute="trailing" secondItem="Fse-8Y-0Zl" secondAttribute="trailing" id="n7o-Ub-MTn"/>
-                            <constraint firstItem="ZUm-fx-5Oa" firstAttribute="top" secondItem="cgt-6W-3CX" secondAttribute="top" id="rDZ-We-FPL"/>
-                            <constraint firstItem="rJ1-T4-e9a" firstAttribute="leading" secondItem="Fse-8Y-0Zl" secondAttribute="leading" id="tq5-NY-h5j"/>
-                            <constraint firstItem="rJ1-T4-e9a" firstAttribute="top" secondItem="Fse-8Y-0Zl" secondAttribute="top" id="wXd-7O-ach"/>
+                            <constraint firstItem="yGT-7Q-c4S" firstAttribute="trailing" secondItem="Fse-8Y-0Zl" secondAttribute="trailing" id="Qb9-09-p0x"/>
+                            <constraint firstItem="r3w-uj-xvL" firstAttribute="top" secondItem="rJ1-T4-e9a" secondAttribute="bottom" constant="10" id="Wxf-Ab-eXW"/>
+                            <constraint firstItem="rJ1-T4-e9a" firstAttribute="trailing" secondItem="Fse-8Y-0Zl" secondAttribute="trailing" id="hof-ze-7nL"/>
+                            <constraint firstItem="ZUm-fx-5Oa" firstAttribute="trailing" secondItem="Fse-8Y-0Zl" secondAttribute="trailing" id="idt-ng-mKu"/>
+                            <constraint firstItem="yGT-7Q-c4S" firstAttribute="leading" secondItem="Fse-8Y-0Zl" secondAttribute="leading" id="keG-Yx-qsr"/>
+                            <constraint firstItem="ZUm-fx-5Oa" firstAttribute="leading" secondItem="Fse-8Y-0Zl" secondAttribute="leading" id="qIw-bd-KJM"/>
+                            <constraint firstItem="yGT-7Q-c4S" firstAttribute="top" secondItem="r3w-uj-xvL" secondAttribute="bottom" id="tzY-ym-kuA"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fse-8Y-0Zl"/>
                     </view>
@@ -110,11 +113,7 @@
                                 <action selector="sendRequest:" destination="KaI-3w-aNX" id="7UT-Uv-Hfc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mGv-rZ-jHg">
-                            <connections>
-                                <segue destination="BLU-dC-jNH" kind="show" id="itY-ir-l3D"/>
-                            </connections>
-                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mGv-rZ-jHg"/>
                     </navigationItem>
                     <connections>
                         <outlet property="backgroundImage" destination="ZUm-fx-5Oa" id="ka7-Da-Zhd"/>
@@ -123,7 +122,6 @@
                         <outlet property="tableView" destination="yGT-7Q-c4S" id="FVS-rz-LKi"/>
                     </connections>
                 </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="crc-cs-zyC" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-4228.985507246377" y="-2412.0535714285711"/>
         </scene>
@@ -152,16 +150,16 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <stackView opaque="NO" contentMode="scaleToFill" spacing="11" translatesAutoresizingMaskIntoConstraints="NO" id="ose-YH-YHw">
-                                                    <rect key="frame" x="20" y="36" width="335" height="43"/>
+                                                    <rect key="frame" x="20" y="36" width="335" height="34"/>
                                                     <subviews>
                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="User" translatesAutoresizingMaskIntoConstraints="NO" id="iTa-zj-Ph0">
-                                                            <rect key="frame" x="0.0" y="0.0" width="43" height="43"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="34" height="34"/>
                                                             <constraints>
                                                                 <constraint firstAttribute="width" secondItem="iTa-zj-Ph0" secondAttribute="height" multiplier="1:1" id="7ei-Rx-4Ye"/>
                                                             </constraints>
                                                         </imageView>
                                                         <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="q5g-0I-ZQC">
-                                                            <rect key="frame" x="54" y="0.0" width="281" height="43"/>
+                                                            <rect key="frame" x="45" y="0.0" width="290" height="34"/>
                                                             <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                             <textInputTraits key="textInputTraits"/>
                                                         </textField>
@@ -506,6 +504,6 @@
         <image name="Calendar" width="28" height="25"/>
         <image name="Comment" width="45" height="39"/>
         <image name="MoneyBag" width="38" height="46"/>
-        <image name="User" width="43" height="43"/>
+        <image name="User" width="26" height="26"/>
     </resources>
 </document>

@@ -79,11 +79,12 @@ extension StudentsApi: EndPointType {
     }
     
     var task: HTTPTask {
+        let teacheId = "\(KeychainWrapper.standard.string(forKey: "teacherId")!)"
         switch self {
         case .students:
             return .requestParametersAndHeaders(bodyParameters: nil,
                                                 bodyEncoding: .urlEncoding,
-                                                urlParameters: ["teacherId": KeychainWrapper.standard.string(forKey: "teacherId")!],
+                                                urlParameters: ["teacherId": teacheId],
                                                 additionHeaders: headers)
         case .showStudent(let studentId):
             return .requestParametersAndHeaders(bodyParameters: nil,
@@ -91,8 +92,14 @@ extension StudentsApi: EndPointType {
                                                 urlParameters: ["studentId": studentId],
                                                 additionHeaders: headers)
             
-        case .addStudent(let studentId, let name, let surname, let disciplines, let phone, let email, let note):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(KeychainWrapper.standard.string(forKey: "teacherId")!)",
+        case .addStudent(let studentId,
+                         let name,
+                         let surname,
+                         let disciplines,
+                         let phone,
+                         let email,
+                         let note):
+            return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacheId,
                                                                 "studentId": studentId,
                                                                 "name": name,
                                                                 "surname": surname,
@@ -104,8 +111,14 @@ extension StudentsApi: EndPointType {
                                                 urlParameters: nil,
                                                 additionHeaders: headers)
             
-        case .changeStudent(let studentId, let name, let surname, let disciplines, let phone, let email, let note):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(KeychainWrapper.standard.string(forKey: "teacherId")!)",
+        case .changeStudent(let studentId,
+                            let name,
+                            let surname,
+                            let disciplines,
+                            let phone,
+                            let email,
+                            let note):
+            return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacheId,
                                                                 "studentId": studentId,
                                                                 "name": name,
                                                                 "surname": surname,
@@ -117,7 +130,7 @@ extension StudentsApi: EndPointType {
                                                 urlParameters: nil,
                                                 additionHeaders: headers)
         case .deleteStudent(let studentId):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": "\(KeychainWrapper.standard.string(forKey: "teacherId")!)",
+            return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacheId,
                                                                 "studentId": studentId],
                                                 bodyEncoding: .jsonEncoding,
                                                 urlParameters: nil,

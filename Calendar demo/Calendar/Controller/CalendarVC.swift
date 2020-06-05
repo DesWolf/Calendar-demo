@@ -17,13 +17,17 @@ class CalendarVC: UIViewController {
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var tableView: UITableView!
     
+    private let networkManagerCalendar = NetworkManagerCalendar()
+    private var calendar: [CalendarModel]?
+//    private let currentCalendar: [CalendarModel]?
+    
     private var datesDictionary:[String] = []
-    private var calendarMeetings = [DayModel]()
-    private var selectedDay = [DayModel]()
+//    private var calendarMeetings = [CalendarModel]()
+    private var selectedDay = [CalendarModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        fetchCalendar()
+        fetchCalendar(startDate: "2020-06-01 00:00:00", endDate: "2020-06-30 23:59:59")
         backgroundColor()
         calendarView.delegate = self
         menuView.delegate = self
@@ -36,12 +40,42 @@ class CalendarVC: UIViewController {
     }
     
     @IBAction func sendRequest(_ sender: Any) {
+        fetchCalendar(startDate: "2020-06-01 00:00:00", endDate: "2020-06-30 23:59:59")
         self.calendarView.commitCalendarViewUpdate()
     }
     
 }
 //MARK: Network
 extension CalendarVC {
+    private func fetchCalendar(startDate: String, endDate: String) {
+        networkManagerCalendar.fetchCalendar(startDate: startDate, endDate: endDate) { [weak self]  (calendar, error)  in
+            guard let calendar = calendar else {
+                print(error ?? "")
+                DispatchQueue.main.async {
+                    self?.simpleAlert(message: error ?? "")
+                }
+                return
+            }
+            self?.calendar = calendar
+            self?.datesDictionary.append(contentsOf: (self?.calendar.map ({ $0.map ({($0.dateStart ?? "")}) }) ?? [""]))
+            for index in 0..<calendar.count {
+                self?.datesDictionary.append(calendar[index].dateStart ?? "")
+}
+            print(self?.datesDictionary)
+            self?.calendarView.contentController.refreshPresentedMonth()
+//            DispatchQueue.main.async {
+//                self?.setCalendar(calendar: calendar)
+//            }
+        }
+    }
+}
+
+//MARK: Alert
+extension CalendarVC {
+    func simpleAlert(message: String) {
+        UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
+    }
+}
 //    private func fetchCalendar() {
 //        CalendarService.fetchCalendar { (jsonData) in
 //            self.calendarMeetings = jsonData
@@ -54,6 +88,13 @@ extension CalendarVC {
 
 //        }
 //    }
+
+//MARK: Set Screen
+extension CalendarVC {
+    private func setCalendarDates(calendar: [CalendarModel]) {
+    
+        
+    }
 }
 
 //MARK: CVCalendar MenuViewDelegate, CVCalendarViewDelegate
@@ -101,12 +142,18 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
         return circleView
     }
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
+        
+        let cvCalendarDate = toNewFormatDate(dateString: "\(dayView.date.commonDescription)")
 
         for elem in 0..<datesDictionary.count {
-            if(toNewFormatDate(dateString: "\(dayView.date.commonDescription)") == datesDictionary[elem]) {
+            if cvCalendarDate == datesDictionary[elem] {
                 return true
             }
         }
+////            if(toNewFormatDate(dateString: "\(dayView.date.commonDescription)") == datesDictionary[elem]) {
+////                return true
+////            }
+//        }
         
         return false
     }
@@ -126,12 +173,12 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
     //        return false
     //    }
     
-    func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
-        let selectDay = toNewFormatDate(dateString: "\(dayView.date.commonDescription)")
-        selectedDay = self.calendarMeetings.filter{ $0.date == selectDay }
-        self.tableView.reloadData()
-        self.tableView.tableFooterView = UIView()
-    }
+//    func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
+//        let day = toNewFormatDate(dateString: "\(dayView.date.commonDescription)")
+//        selectedDay = self.calendar?.filter{ $0.dateStart == day } as! [CalendarModel]
+//        self.tableView.reloadData()
+//        self.tableView.tableFooterView = UIView()
+//    }
 }
 //MARK: CVCalendarViewAppearanceDelegate
 extension CalendarVC: CVCalendarViewAppearanceDelegate {
@@ -164,14 +211,14 @@ extension CalendarVC {
     }
     
     func toNewFormatDate(dateString: String) -> String{
-      var result = ""
-      let formatter = DateFormatter()
-      formatter.dateFormat = "dd MMMM, yyyy"
-      if let date = formatter.date(from: dateString) {
-        formatter.dateFormat = "yyyy-MM-dd"
-        result = formatter.string(from: date)
-      }
-     return result
+        var result = ""
+        let formatter = DateFormatter()
+        formatter.dateFormat = "dd MMMM, yyyy"
+        if let date = formatter.date(from: dateString) {
+            formatter.dateFormat = "yyyy-MM-dd"
+            result = formatter.string(from: date)
+        }
+        return result
     }
 }
 
@@ -189,9 +236,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-//    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 50
-//    }
+    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    //        return 50
+    //    }
 }
 
 

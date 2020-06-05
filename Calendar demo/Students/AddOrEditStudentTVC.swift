@@ -15,34 +15,26 @@ class AddOrEditStudentTVC: UITableViewController {
     @IBOutlet weak var phoneTF: UITextField!
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var noteTF: UITextView!
-    
     @IBOutlet weak var disciplinesCollectionView: UICollectionView!
-    //    @IBOutlet weak var saveButton: UIBarButtonItem!
-    
-    
+
     var chousedDisciplines: [String] = []
-    
     var student: StudentModel?
-    
     private let networkManagerStudents =  NetworkManagerStudents()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        
+        setNavigationController()
+        setupNavigationBar()
         setupEditScreen()
     }
+    
     @IBAction func emailTFAction(_ sender: Any) {
         guard emailTF.text?.isValidEmail() == true  else {
-                   return simpleAlert(message: "Введите корректный email")
-               }
-               print("email - ok")
+            return simpleAlert(message: "Введите корректный email")
+        }
+        print("email - ok")
     }
-    @IBAction func nameTFAction(_ sender: Any) {
-
-    }
-    
-    
     
     @IBAction func cancelButton(_ sender: Any) {
         dismiss(animated: true)
@@ -57,7 +49,6 @@ class AddOrEditStudentTVC: UITableViewController {
 extension AddOrEditStudentTVC {
     private func setupEditScreen() {
         if student != nil {
-            setupNavigationBar()
             nameTF.text = student?.name
             surnameTF.text = student?.surname ?? ""
             phoneTF.text = student?.phone ?? ""
@@ -65,15 +56,32 @@ extension AddOrEditStudentTVC {
             noteTF.text = student?.note ?? ""
             student?.disciplines?.forEach { chousedDisciplines.append($0) }
         }
-        self.tableView.tableFooterView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: 1))
     }
     
     private func setupNavigationBar() {
-        if let topItem = navigationController?.navigationBar.topItem {
-            topItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+       var nav = self.navigationController?.navigationBar
+        
+        if student == nil {
+            nav?.prefersLargeTitles = true
+            nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            nav?.topItem?.title = "Новый ученик"
         }
         navigationItem.leftBarButtonItem?.title = "Отмена"
-        title = "\(student?.name ?? "") \(student?.surname ?? "")"
+        navigationItem.leftBarButtonItem?.tintColor = .white
+        navigationItem.rightBarButtonItem?.tintColor = .white
+        nav?.setBackgroundImage(UIImage(), for: .default)
+        nav?.shadowImage = UIImage()
+        nav?.isTranslucent = true
+        nav?.prefersLargeTitles = true
+        nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+//        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        
+        
+        tableView.backgroundColor = .bgStudent
+    }
+    private func setNavigationController() {
+
     }
 }
 
@@ -96,7 +104,7 @@ extension AddOrEditStudentTVC {
     
     func saveStudent() {
         student = StudentModel(studentId: student != nil ? student?.studentId : 0,
-                               name: nameTF.text!,
+                               name: nameTF.text ?? "a",
                                surname: surnameTF.text,
                                disciplines: chousedDisciplines,
                                phone: phoneTF.text,
@@ -106,8 +114,6 @@ extension AddOrEditStudentTVC {
             changeStudent(student: student!)
         } else {
             addNewStudent(newStudent: student!)
-            
-            
         }
     }
 }
@@ -150,17 +156,15 @@ extension AddOrEditStudentTVC {
                 }
                 return
             }
-            
             print("change:",responce)
         }
     }
 }
 
-
 //MARK: TableViewDelegate, TableViewDataSource
 extension AddOrEditStudentTVC {
-    
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView,
+                            heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         let firstCellHeight: CGFloat = 78
         let secondCellHeight: CGFloat = 40
@@ -179,7 +183,7 @@ extension AddOrEditStudentTVC {
             return fourthCellHeight
         case 4:
             let height = self.view.frame.height - firstCellHeight - secondCellHeight - thirdCellHeight - fourthCellHeight - tabBarHeight
-            return  height //UITableView.automaticDimension
+            return height
         default:
             return super.tableView(tableView, heightForRowAt: indexPath)
         }

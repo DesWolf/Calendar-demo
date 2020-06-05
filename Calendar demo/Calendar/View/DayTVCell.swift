@@ -24,12 +24,12 @@ class DayTVCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func configere(with meeting: DayModel) {
-        let startTime = "\(meeting.duration?.dateStart[11..<16] ?? "10:00")"
-        let endTime = "\(meeting.duration?.dateEnd[11..<16] ?? "11:00")"
+    func configere(with meeting: CalendarModel) {
+        let startTime = "1" //"\(meeting.duration?.dateStart[11..<16] ?? "10:00")"
+        let endTime =  "2" //"\(meeting.duration?.dateEnd[11..<16] ?? "11:00")"
 
         self.timeLabel.text = "\(startTime)-\(endTime)"
-        self.studentNameLabel.text = "\(meeting.studentId ?? "test")"
+        self.studentNameLabel.text = "\(meeting.studentName ?? "test")"
         self.meetingLabel.text = "\(meeting.note ?? "test")"
         
 }
