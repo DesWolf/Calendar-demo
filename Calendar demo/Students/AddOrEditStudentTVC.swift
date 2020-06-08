@@ -65,8 +65,6 @@ extension AddOrEditStudentTVC {
         let nav = self.navigationController?.navigationBar
         
         if student == nil {
-            nav?.prefersLargeTitles = true
-            nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
             nav?.topItem?.title = "Новый ученик"
         }
         navigationItem.leftBarButtonItem?.title = "Отмена"
@@ -78,6 +76,7 @@ extension AddOrEditStudentTVC {
         nav?.isTranslucent = true
         nav?.prefersLargeTitles = true
         nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
 }
 
@@ -99,14 +98,14 @@ extension AddOrEditStudentTVC {
     }
     
     func saveStudent() {
-        student = StudentModel(studentId: student != nil ? student?.studentId : 0,
-                               name: nameTF.text ?? "a",
+        student = StudentModel(studentId: student != nil ? student?.studentId : nil,
+                               name: nameTF.text ?? "",
                                surname: surnameTF.text,
                                disciplines: chousedDisciplines,
                                phone: phoneTF.text,
                                email: emailTF.text,
                                note: noteTF.text )
-        if student?.studentId != 0 {
+        if student?.studentId != nil {
             changeStudent(student: student!)
         } else {
             addNewStudent(newStudent: student!)

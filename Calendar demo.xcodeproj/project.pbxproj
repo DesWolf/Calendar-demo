@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9E01A2A6248E75840044AD7F /* RepeatTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01A2A5248E75840044AD7F /* RepeatTVC.swift */; };
 		9E0538AC247C0EE500AAC0AA /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0538AB247C0EE500AAC0AA /* UIColor+Additions.swift */; };
 		9E0538AE247C0F7100AAC0AA /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538AD247C0F7100AAC0AA /* Contacts.storyboard */; };
 		9E0538B7247C1A8800AAC0AA /* Statistic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538B6247C1A8800AAC0AA /* Statistic.storyboard */; };
@@ -40,7 +41,6 @@
 		9E7C134A247D47A70095C57E /* StudentProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7C1349247D47A70095C57E /* StudentProfileTVC.swift */; };
 		9E80D0A62453268300FECAF7 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A52453268300FECAF7 /* CalendarModel.swift */; };
 		9E80D0A82453269000FECAF7 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A72453269000FECAF7 /* CalendarService.swift */; };
-		9E80D0AA2453338B00FECAF7 /* DayModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A92453338B00FECAF7 /* DayModel.swift */; };
 		9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */; };
 		9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */; };
 		9E80D0D02454AED900FECAF7 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CF2454AED900FECAF7 /* NotificationCell.swift */; };
@@ -76,6 +76,7 @@
 /* Begin PBXFileReference section */
 		136BBEDCF1AAC5F1CFAEFD34 /* Pods-Calendar demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calendar demo.release.xcconfig"; path = "Target Support Files/Pods-Calendar demo/Pods-Calendar demo.release.xcconfig"; sourceTree = "<group>"; };
 		1FAFD638F4A42CFBE6FF146F /* Pods-Calendar demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calendar demo.debug.xcconfig"; path = "Target Support Files/Pods-Calendar demo/Pods-Calendar demo.debug.xcconfig"; sourceTree = "<group>"; };
+		9E01A2A5248E75840044AD7F /* RepeatTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatTVC.swift; sourceTree = "<group>"; };
 		9E0538AB247C0EE500AAC0AA /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		9E0538AD247C0F7100AAC0AA /* Contacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
 		9E0538B6247C1A8800AAC0AA /* Statistic.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Statistic.storyboard; sourceTree = "<group>"; };
@@ -112,7 +113,6 @@
 		9E7C1349247D47A70095C57E /* StudentProfileTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfileTVC.swift; sourceTree = "<group>"; };
 		9E80D0A52453268300FECAF7 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
 		9E80D0A72453269000FECAF7 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
-		9E80D0A92453338B00FECAF7 /* DayModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayModel.swift; sourceTree = "<group>"; };
 		9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTVCell.swift; sourceTree = "<group>"; };
 		9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaledDayService.swift; sourceTree = "<group>"; };
 		9E80D0CF2454AED900FECAF7 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
@@ -195,7 +195,6 @@
 			isa = PBXGroup;
 			children = (
 				9E80D0A52453268300FECAF7 /* CalendarModel.swift */,
-				9E80D0A92453338B00FECAF7 /* DayModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -203,8 +202,9 @@
 		9E0538B2247C196300AAC0AA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9E631938244F50B4007DE5F1 /* AddMeetingTVC.swift */,
 				9E7A73B2244D92AB00FA529B /* CalendarVC.swift */,
+				9E631938244F50B4007DE5F1 /* AddMeetingTVC.swift */,
+				9E01A2A5248E75840044AD7F /* RepeatTVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -663,7 +663,6 @@
 				9E7C134A247D47A70095C57E /* StudentProfileTVC.swift in Sources */,
 				9E0A5E2E244F410900188CDE /* StudentModel.swift in Sources */,
 				9E5BD563246EE9D500EB4F53 /* CheckEmailPassword.swift in Sources */,
-				9E80D0AA2453338B00FECAF7 /* DayModel.swift in Sources */,
 				9E3570DA2488DFC400F8F997 /* NetworkManagerCalendar.swift in Sources */,
 				9EC155A8246D633500D2C776 /* NetworkManagerStudents.swift in Sources */,
 				9EC155AE246D637900D2C776 /* HTTPMethod.swift in Sources */,
@@ -678,6 +677,7 @@
 				9EC155B4246D63AA00D2C776 /* ParameterEncoding.swift in Sources */,
 				9ED2EAC9247D5720001E3767 /* TF Extention.swift in Sources */,
 				9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */,
+				9E01A2A6248E75840044AD7F /* RepeatTVC.swift in Sources */,
 				9EC155AC246D636700D2C776 /* Router.swift in Sources */,
 				9E6B56A8248B945C00042E2B /* StringExtention.swift in Sources */,
 				9EFD254B247143C700876D48 /* LoginVC.swift in Sources */,

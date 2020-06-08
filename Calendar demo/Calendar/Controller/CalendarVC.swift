@@ -79,12 +79,10 @@ extension CalendarVC {
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
+//        self.navigationController?.view.backgroundColor = .clear
     }
     
 }
-
-
 
 //MARK: Network
 extension CalendarVC {
@@ -118,7 +116,6 @@ extension CalendarVC {
         UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
     }
 }
-
 
 //MARK: CVCalendar MenuViewDelegate, CVCalendarViewDelegate
 extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
