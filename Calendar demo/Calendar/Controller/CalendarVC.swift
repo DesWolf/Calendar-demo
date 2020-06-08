@@ -9,7 +9,6 @@
 import UIKit
 import CVCalendar
 
-
 class CalendarVC: UIViewController {
     
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -19,18 +18,16 @@ class CalendarVC: UIViewController {
     
     private let networkManagerCalendar = NetworkManagerCalendar()
     private var calendar: [CalendarModel]?
-//    private let currentCalendar: [CalendarModel]?
     
     private var datesDictionary:[String] = []
-//    private var calendarMeetings = [CalendarModel]()
     private var selectedDay = [CalendarModel]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchCalendar(startDate: "2020-06-01 00:00:00", endDate: "2020-06-30 23:59:59")
-        backgroundColor()
-        calendarView.delegate = self
-        menuView.delegate = self
+        configureScreen()
+        fetchCalendar(startDate: "2020-06-01", endDate: "2020-06-30")
+        
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -40,11 +37,55 @@ class CalendarVC: UIViewController {
     }
     
     @IBAction func sendRequest(_ sender: Any) {
-        fetchCalendar(startDate: "2020-06-01 00:00:00", endDate: "2020-06-30 23:59:59")
+        fetchCalendar(startDate: "2020-06-01", endDate: "2020-06-30")
         self.calendarView.commitCalendarViewUpdate()
     }
     
 }
+
+//MARK: Set Screen
+extension CalendarVC {
+    private func configureScreen() {
+        var startDate = Date().monthMinusOne
+        var endDate = Date().monthPlusOne
+        print(startDate, endDate)
+        
+        setupNavigationBar()
+        self.view.backgroundColor = .bgStudent
+        //        backgroundColor()
+        calendarView.delegate = self
+        menuView.delegate = self
+    }
+    
+    private func backgroundColor() {
+        let gradientLayer = CAGradientLayer()
+        gradientLayer.frame = self.view.bounds
+        let firstColor = UIColor(red: 83/255, green: 185/255, blue: 209/255, alpha: 1)
+        let secondColor = UIColor(red: 88/255, green: 110/255, blue: 180/255, alpha: 1)
+        gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
+        self.backgroundImage.layer.insertSublayer(gradientLayer, at: 0)
+    }
+    
+    private func setupNavigationBar(){
+        let nav = self.navigationController?.navigationBar
+        
+        navigationItem.leftBarButtonItem?.title = "Отмена"
+        navigationItem.leftBarButtonItem?.tintColor = .white
+        navigationItem.rightBarButtonItem?.tintColor = .white
+        
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        nav?.topItem?.title = "Июнь"
+        
+        nav?.setBackgroundImage(UIImage(), for: .default)
+        nav?.shadowImage = UIImage()
+        nav?.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+    }
+    
+}
+
+
+
 //MARK: Network
 extension CalendarVC {
     private func fetchCalendar(startDate: String, endDate: String) {
@@ -56,16 +97,17 @@ extension CalendarVC {
                 }
                 return
             }
+            print(calendar)
             self?.calendar = calendar
             self?.datesDictionary.append(contentsOf: (self?.calendar.map ({ $0.map ({($0.dateStart ?? "")}) }) ?? [""]))
             for index in 0..<calendar.count {
                 self?.datesDictionary.append(calendar[index].dateStart ?? "")
-}
+            }
             print(self?.datesDictionary)
-            self?.calendarView.contentController.refreshPresentedMonth()
-//            DispatchQueue.main.async {
-//                self?.setCalendar(calendar: calendar)
-//            }
+            DispatchQueue.main.async {
+                self?.calendarView.contentController.refreshPresentedMonth()
+                self?.tableView.reloadData()
+            }
         }
     }
 }
@@ -76,26 +118,7 @@ extension CalendarVC {
         UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
     }
 }
-//    private func fetchCalendar() {
-//        CalendarService.fetchCalendar { (jsonData) in
-//            self.calendarMeetings = jsonData
-//
-//            for index in 0..<self.calendarMeetings.count {
-//                self.datesDictionary.append(self.calendarMeetings[index].date ?? "")
-//            }
-//            print(self.datesDictionary)
-//            self.calendarView.contentController.refreshPresentedMonth()
 
-//        }
-//    }
-
-//MARK: Set Screen
-extension CalendarVC {
-    private func setCalendarDates(calendar: [CalendarModel]) {
-    
-        
-    }
-}
 
 //MARK: CVCalendar MenuViewDelegate, CVCalendarViewDelegate
 extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
@@ -108,23 +131,24 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
     }
     
     func dayLabelBackgroundColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
-        
         return UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1)
     }
+    
     func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool{
         if dayView.date.day == 1 {
             return false
         }
         return true
     }
+    
     func dotMarker(colorOnDayView dayView: DayView) -> [UIColor]{
         switch preliminaryView(shouldDisplayOnDayView: dayView){
         case true:
-            return [UIColor(red: 88/255, green: 0/255, blue: 214/255, alpha: 1)]
+            return [UIColor.white]
         case false:
-            return [UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1)]
+            return [UIColor.white]
         }
-        //        return [UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1)]
+        
     }
     func dotMarker(sizeOnDayView dayView: DayView) -> CGFloat {
         return CGFloat(5)
@@ -142,43 +166,24 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
         return circleView
     }
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
+        let cvCalendarDate = Date().convertCVCalendarDate(date: "\(dayView.date.commonDescription)")
         
-        let cvCalendarDate = toNewFormatDate(dateString: "\(dayView.date.commonDescription)")
-
         for elem in 0..<datesDictionary.count {
             if cvCalendarDate == datesDictionary[elem] {
                 return true
             }
         }
-////            if(toNewFormatDate(dateString: "\(dayView.date.commonDescription)") == datesDictionary[elem]) {
-////                return true
-////            }
-//        }
-        
         return false
     }
     
-    
-    
-    //    func dotMarker(shouldShowOnDayView dayView: CVCalendarDayView) -> Bool {
-    //        let dateformatter = DateFormatter()
-    //        dateformatter.dateFormat = "yyyy-MM-dd"
-    //        let date2 = dateformatter.string(from: dayView.date.convertedDate()!)
-    //        for elem in 0..<datesDictionary.count {
-    //            let str = datesDictionary[elem]
-    //            if(date2 == str.substring(toIndex: str.length - 9)) {
-    //                return true
-    //            }
-    //        }
-    //        return false
-    //    }
-    
-//    func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
-//        let day = toNewFormatDate(dateString: "\(dayView.date.commonDescription)")
-//        selectedDay = self.calendar?.filter{ $0.dateStart == day } as! [CalendarModel]
-//        self.tableView.reloadData()
-//        self.tableView.tableFooterView = UIView()
-//    }
+    func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
+        let day = Date().convertCVCalendarDate(date: "\(dayView.date.commonDescription)")
+        selectedDay = self.calendar?.filter{ $0.dateStart == day } ?? []
+        
+        self.tableView.reloadData()
+        self.tableView.tableFooterView = UIView()
+        print(day, selectedDay)
+    }
 }
 //MARK: CVCalendarViewAppearanceDelegate
 extension CalendarVC: CVCalendarViewAppearanceDelegate {
@@ -198,28 +203,6 @@ extension CalendarVC: CVCalendarViewAppearanceDelegate {
     ////        default: return ColorsConfig.textDisabled
     //        }
     //    }
-}
-
-//MARK: DateString
-extension CalendarVC {
-    func dateString(format: String) -> String {
-        let date = Date()
-        let formatter = DateFormatter()
-        formatter.dateFormat = format
-        
-        return formatter.string(from: date)
-    }
-    
-    func toNewFormatDate(dateString: String) -> String{
-        var result = ""
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMMM, yyyy"
-        if let date = formatter.date(from: dateString) {
-            formatter.dateFormat = "yyyy-MM-dd"
-            result = formatter.string(from: date)
-        }
-        return result
-    }
 }
 
 //MARK: TableViewDelegate & TableViewDataSource
@@ -243,50 +226,5 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
 
 
 
-//MARK: Background Customization
-extension CalendarVC {
-    func backgroundColor() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.frame = self.view.bounds
-        let firstColor = UIColor(red: 83/255, green: 185/255, blue: 209/255, alpha: 1)
-        let secondColor = UIColor(red: 88/255, green: 110/255, blue: 180/255, alpha: 1)
-        gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
-        self.backgroundImage.layer.insertSublayer(gradientLayer, at: 0)
-        clearNavigationBar()
-    }
-    
-    func clearNavigationBar(){
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: UIBarMetrics.default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = UIColor.clear
-    }
-}
 
-//MARK: String Sorting
-extension String {
-    
-    var length: Int {
-        return count
-    }
-    
-    subscript (i: Int) -> String {
-        return self[i ..< i + 1]
-    }
-    
-    func substring(fromIndex: Int) -> String {
-        return self[min(fromIndex, length) ..< length]
-    }
-    
-    func substring(toIndex: Int) -> String {
-        return self[0 ..< max(0, toIndex)]
-    }
-    
-    subscript (r: Range<Int>) -> String {
-        let range = Range(uncheckedBounds: (lower: max(0, min(length, r.lowerBound)),
-                                            upper: min(length, max(0, r.upperBound))))
-        let start = index(startIndex, offsetBy: range.lowerBound)
-        let end = index(start, offsetBy: range.upperBound - range.lowerBound)
-        return String(self[start ..< end])
-    }
-}
+

@@ -32,7 +32,7 @@ class StudentsListTVC: UITableViewController {
     }
     @IBAction func refreshButton(_ sender: Any) {
         fetchStudents()
-        simplePopup(text: "Хей Хей")
+//        simplePopup(text: "Хей Хей")
     }
 }
 
@@ -127,6 +127,7 @@ extension StudentsListTVC {
         let selectedStudent = students[indexPath.row]
         students.remove(at: indexPath.row)
         deleteStudent(studentId: selectedStudent.studentId ?? 0)
+        tableView.reloadData()
     }
 }
 

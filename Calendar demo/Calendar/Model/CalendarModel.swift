@@ -15,25 +15,24 @@ struct CalendarModel: Decodable {
     let studentSurname: String?
     let dateStart: String?
     let dateEnd: String?
-    let duration: [String]?
     let note: String?
     let price: Int?
     let discipline: String?
     let place: String?
-    let statusPay: Bool?
+    let statusPay: Int?
 }
 
-struct Duration: Decodable, Comparable {
-    let dateStart: String
-    let dateEnd: String
-    
-static func < (lhs: Duration, rhs: Duration) -> Bool {
-    if lhs.dateStart != rhs.dateStart {
-        return lhs.dateStart < rhs.dateStart
-    } else if lhs.dateStart != rhs.dateStart {
-        return lhs.dateStart < rhs.dateStart
-    } else {
-        return lhs.dateStart < rhs.dateStart
-    }
-}
-}
+//struct Duration: Decodable, Comparable {
+//    let dateStart: String
+//    let dateEnd: String
+//
+//static func < (lhs: Duration, rhs: Duration) -> Bool {
+//    if lhs.dateStart != rhs.dateStart {
+//        return lhs.dateStart < rhs.dateStart
+//    } else if lhs.dateStart != rhs.dateStart {
+//        return lhs.dateStart < rhs.dateStart
+//    } else {
+//        return lhs.dateStart < rhs.dateStart
+//    }
+//}
+//}

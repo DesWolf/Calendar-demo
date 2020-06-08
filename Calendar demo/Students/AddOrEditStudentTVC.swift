@@ -16,7 +16,7 @@ class AddOrEditStudentTVC: UITableViewController {
     @IBOutlet weak var emailTF: UITextField!
     @IBOutlet weak var noteTF: UITextView!
     @IBOutlet weak var disciplinesCollectionView: UICollectionView!
-
+    
     var chousedDisciplines: [String] = []
     var student: StudentModel?
     private let networkManagerStudents =  NetworkManagerStudents()
@@ -24,9 +24,7 @@ class AddOrEditStudentTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        setNavigationController()
-        setupNavigationBar()
-        setupEditScreen()
+        configureScreen()
     }
     
     @IBAction func emailTFAction(_ sender: Any) {
@@ -47,7 +45,8 @@ class AddOrEditStudentTVC: UITableViewController {
 
 //MARK: Setup Screen
 extension AddOrEditStudentTVC {
-    private func setupEditScreen() {
+    
+    private func configureScreen() {
         if student != nil {
             nameTF.text = student?.name
             surnameTF.text = student?.surname ?? ""
@@ -56,10 +55,14 @@ extension AddOrEditStudentTVC {
             noteTF.text = student?.note ?? ""
             student?.disciplines?.forEach { chousedDisciplines.append($0) }
         }
+        
+        setupNavigationBar()
+        tableView.backgroundColor = .bgStudent
+        
     }
     
     private func setupNavigationBar() {
-       var nav = self.navigationController?.navigationBar
+        let nav = self.navigationController?.navigationBar
         
         if student == nil {
             nav?.prefersLargeTitles = true
@@ -69,19 +72,12 @@ extension AddOrEditStudentTVC {
         navigationItem.leftBarButtonItem?.title = "Отмена"
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
+        
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.isTranslucent = true
         nav?.prefersLargeTitles = true
         nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-//        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        
-        
-        
-        tableView.backgroundColor = .bgStudent
-    }
-    private func setNavigationController() {
-
     }
 }
 
@@ -225,3 +221,5 @@ extension AddOrEditStudentTVC: UICollectionViewDataSource, UICollectionViewDeleg
         return cell
     }
 }
+
+

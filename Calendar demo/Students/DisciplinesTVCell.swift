@@ -13,7 +13,7 @@ class DisciplinesTVCell: UITableViewCell {
     @IBOutlet weak var disciplineLabel: UILabel!
     @IBOutlet weak var checkImage: UIImageView!
     
-    func configure(discipline: String, image: UIImage) {
+    func configure(discipline: String, image: UIImage?) {
         disciplineLabel.text = discipline
         checkImage.image = image
     }

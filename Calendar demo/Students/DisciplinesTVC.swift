@@ -19,11 +19,30 @@ class DisciplinesTVC: UITableViewController {
     
     @IBAction func AddButton(_ sender: Any) {
         addDiscipline()
+        setupNavigationBar()
     }
     
     deinit {
         print("deinit", DisciplinesTVC.self)
     }
+}
+
+//MARK: Set Navigation Bar
+extension DisciplinesTVC {
+private func setupNavigationBar() {
+   var nav = self.navigationController?.navigationBar
+    
+    navigationItem.leftBarButtonItem?.title = "Отмена"
+    navigationItem.leftBarButtonItem?.tintColor = .white
+    navigationItem.rightBarButtonItem?.tintColor = .white
+    nav?.setBackgroundImage(UIImage(), for: .default)
+    nav?.shadowImage = UIImage()
+    nav?.isTranslucent = true
+    nav?.prefersLargeTitles = true
+    nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+
+    tableView.backgroundColor = .bgStudent
+}
 }
 
 // MARK: - Add Discipline
@@ -48,11 +67,11 @@ extension DisciplinesTVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "disciplinesCell", for: indexPath) as! DisciplinesTVCell
         let discipline = DisciplinesList.all[indexPath.row]
-        var image = #imageLiteral(resourceName: "checkboxEmpty")
+        var image = UIImage()
         
         for elem in chousedDisciplines {
             if  discipline == elem {
-                image = #imageLiteral(resourceName: "checkBoxFill")
+                image = #imageLiteral(resourceName: "check")
             }
         }
         cell.configure(discipline: discipline, image: image)
@@ -64,10 +83,10 @@ extension DisciplinesTVC {
         let discipline = DisciplinesList.all[indexPath.row]
         
         if chousedDisciplines.contains(discipline) {
-            cell.checkImage.image = #imageLiteral(resourceName: "checkboxEmpty")
+            cell.checkImage.image = #imageLiteral(resourceName: "check")
             chousedDisciplines = chousedDisciplines.filter{$0 != discipline}
         } else {
-            cell.checkImage.image = #imageLiteral(resourceName: "checkBoxFill")
+            cell.checkImage.image = UIImage()
             chousedDisciplines.append(discipline)
         }
         tableView.reloadData()
