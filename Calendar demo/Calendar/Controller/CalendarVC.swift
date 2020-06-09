@@ -163,7 +163,9 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
         return circleView
     }
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
-        let cvCalendarDate = Date().convertCVCalendarDate(date: "\(dayView.date.commonDescription)")
+        let cvCalendarDate = Date().convertStrDate( date: "\(dayView.date.commonDescription)",
+                                                    formatFrom: "dd MMMM, yyyy",
+                                                    formatTo: "yyyy-MM-dd")
         
         for elem in 0..<datesDictionary.count {
             if cvCalendarDate == datesDictionary[elem] {
@@ -174,7 +176,10 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
     }
     
     func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
-        let day = Date().convertCVCalendarDate(date: "\(dayView.date.commonDescription)")
+        let day = Date().convertStrDate(date: "\(dayView.date.commonDescription)",
+                                        formatFrom: "dd MMMM, yyyy",
+                                        formatTo: "yyyy-MM-dd")
+        
         selectedDay = self.calendar?.filter{ $0.dateStart == day } ?? []
         
         self.tableView.reloadData()

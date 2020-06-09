@@ -35,10 +35,11 @@ class AddMeetingTVC: UITableViewController {
     
     
     @IBAction func startDateChanged(sender: UIDatePicker) {
-        startLessonLabel.text = "\(startLessonDatePicker.date)"
+        startLessonLabel.text = displayedDate(str: "\(endLessonDatePicker.date)")
     }
+    
     @IBAction func endDateChanged(sender: UIDatePicker) {
-        endLessonLabel.text = "\(endLessonDatePicker.date)"
+        endLessonLabel.text = displayedDate(str: "\(startLessonDatePicker.date)")
     }
     
 }
@@ -59,7 +60,6 @@ extension AddMeetingTVC {
             notificationTypeLabel.text = "\(editLesson?.notificationType ?? 0)"
             noteTV.text = editLesson?.note ?? ""
         }
-        
         
         startLessonDatePicker.date = NSDate() as Date
         startLessonLabel.text = "\(startLessonDatePicker.date)"
@@ -96,6 +96,11 @@ extension AddMeetingTVC {
         nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
     }
+    
+    private func displayedDate(str: String) -> String {
+       return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "dd.MM.yyyy HH:mm")
+        
+    }
 }
 
 
@@ -106,6 +111,7 @@ extension AddMeetingTVC {
         
         guard let repeatTVC = segue.source as? RepeatTVC else { return }
         self.repeatLessonLabel.text = repeatTVC.repeatLesson.rawValue
+        self.endOfRepeatLessonLabel.text = "\(repeatTVC.endOfRepeat)"
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -158,76 +164,3 @@ extension AddMeetingTVC {
         })
     }
 }
-
-////MARK: PickerView Delegate & DataSource
-//extension AddMeetingTVC : UIPickerViewDelegate, UIPickerViewDataSource {
-//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
-//        return 1
-//    }
-
-//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-//        switch pickerView.tag {
-//        case 0:
-//            return duration.count
-//        case 1:
-//            return lessons.count
-//        default:
-//            return 0
-//        }
-//    }
-//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
-//        switch pickerView.tag {
-//        case 0:
-//            return duration[row]
-//        case 1:
-//            return lessons[row]
-//        default:
-//            return ""
-//        }
-//    }
-//    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
-//        switch pickerView.tag {
-//        case 0:
-//            return durationLabel.text = duration[row]
-//        case 1:
-//            return lessonLabel.text = lessons[row]
-//        default:
-//            return
-//        }
-//    }
-//}
-//    var lessons = ["-", "Французский","Английский"]
-//    var duration = ["45 минут", "60 минут", "90 минут"]
-//    
-//    override func viewDidLoad() {
-//        super.viewDidLoad()
-//        
-//        datePicker.date = NSDate() as Date
-//        dateLabel.text = "\(datePicker.date)"
-//        datePicker.isHidden = true
-//        durationPicker.isHidden = true
-//        lessonPicker.isHidden = true
-//        self.hideKeyboardWhenTappedAround()
-//    }
-//    
-//    @IBAction func dateChanged(sender: UIDatePicker) {
-//        dateLabel.text = "\(datePicker.date)"
-//    }
-//    
-//    @IBAction func saveButtonAction(_ sender: Any) {
-//    }
-//}
-//
-
-//
-//extension UIViewController {
-//    func hideKeyboardWhenTappedAround() {
-//        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-//        tap.cancelsTouchesInView = false
-//        view.addGestureRecognizer(tap)
-//    }
-//
-//    @objc func dismissKeyboard() {
-//        view.endEditing(true)
-//    }
-//}

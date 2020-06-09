@@ -48,5 +48,18 @@ extension Date {
         }
         return result
     }
+    
+    func convertStrDate(date: String, formatFrom: String, formatTo: String) -> String {
+        var result = ""
+        let formatter = DateFormatter()
+        formatter.dateFormat = formatFrom //"dd MMMM, yyyy"
+        guard let date = formatter.date(from: date) else { return "Wrong format" }
+        formatter.dateFormat = formatTo //"yyyy-MM-dd"
+        result = formatter.string(from: date)
+        
+        return result
+    }
+    
+
 }
 

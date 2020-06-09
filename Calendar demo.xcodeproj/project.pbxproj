@@ -40,7 +40,6 @@
 		9E7C1348247D45EE0095C57E /* UIImage Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7C1347247D45EE0095C57E /* UIImage Extentions.swift */; };
 		9E7C134A247D47A70095C57E /* StudentProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7C1349247D47A70095C57E /* StudentProfileTVC.swift */; };
 		9E80D0A62453268300FECAF7 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A52453268300FECAF7 /* CalendarModel.swift */; };
-		9E80D0A82453269000FECAF7 /* CalendarService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A72453269000FECAF7 /* CalendarService.swift */; };
 		9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */; };
 		9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */; };
 		9E80D0D02454AED900FECAF7 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CF2454AED900FECAF7 /* NotificationCell.swift */; };
@@ -112,7 +111,6 @@
 		9E7C1347247D45EE0095C57E /* UIImage Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extentions.swift"; sourceTree = "<group>"; };
 		9E7C1349247D47A70095C57E /* StudentProfileTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfileTVC.swift; sourceTree = "<group>"; };
 		9E80D0A52453268300FECAF7 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
-		9E80D0A72453269000FECAF7 /* CalendarService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarService.swift; sourceTree = "<group>"; };
 		9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTVCell.swift; sourceTree = "<group>"; };
 		9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaledDayService.swift; sourceTree = "<group>"; };
 		9E80D0CF2454AED900FECAF7 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
@@ -209,14 +207,6 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
-		9E0538B3247C19C000AAC0AA /* Support */ = {
-			isa = PBXGroup;
-			children = (
-				9E80D0A72453269000FECAF7 /* CalendarService.swift */,
-			);
-			path = Support;
-			sourceTree = "<group>";
-		};
 		9E0538BA247C1B6C00AAC0AA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,7 +275,6 @@
 				9E0538B0247C195300AAC0AA /* Model */,
 				9E0538AF247C194C00AAC0AA /* View */,
 				9E0538B2247C196300AAC0AA /* Controller */,
-				9E0538B3247C19C000AAC0AA /* Support */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -684,7 +673,6 @@
 				9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */,
 				9EA67387247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift in Sources */,
 				9E7C1348247D45EE0095C57E /* UIImage Extentions.swift in Sources */,
-				9E80D0A82453269000FECAF7 /* CalendarService.swift in Sources */,
 				9E0A5E27244F272F00188CDE /* SettingsVC.swift in Sources */,
 				9ECECBEF248103E60053AC78 /* DisciplinesList.swift in Sources */,
 			);
