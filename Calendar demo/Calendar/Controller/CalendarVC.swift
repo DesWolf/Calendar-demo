@@ -189,7 +189,6 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
 }
 //MARK: CVCalendarViewAppearanceDelegate
 extension CalendarVC: CVCalendarViewAppearanceDelegate {
-    
     func dayOfWeekTextColor() -> UIColor {
         return .white
     }

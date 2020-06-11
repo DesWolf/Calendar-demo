@@ -21,17 +21,16 @@ class RepeatTVC: UITableViewController {
     @IBOutlet weak var endRepeatPicker: UIDatePicker!
     
     var repeatLesson: RepeatLesson = .never
-    var endOfRepeat: Date?
+    var endOfRepeat: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(repeatLesson.rawValue)
         configureScreen()
     }
     
     @IBAction func endDateChanged(sender: UIDatePicker) {
         endRepeatLabel.text = displayedDate(str: "\(endRepeatPicker.date)")
-        endOfRepeat = endRepeatPicker.date
+        endOfRepeat = "\(endRepeatPicker.date)"
     }
 }
 
@@ -50,9 +49,7 @@ extension RepeatTVC {
     
     private func setupNavigationBar(){
         let nav = self.navigationController?.navigationBar
-        
         nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
-        nav?.topItem?.title = "Повтор"
     }
     
     private func setupPicker() {
@@ -67,7 +64,7 @@ extension RepeatTVC {
     }
     
     private func displayedDate(str: String) -> String {
-       return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "dd.MM.yyyy HH:mm")
+       return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "dd.MM.yyyy")
         
     }
 }

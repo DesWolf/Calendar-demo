@@ -99,7 +99,7 @@ extension StudentProfileTVC {
             return fourthCellHeight
         case 4:
             let height = self.view.frame.height - firstCellHeight - secondCellHeight - thirdCellHeight - fourthCellHeight - tabBarHeight
-            return  height //UITableView.automaticDimension
+            return height
         default:
             return super.tableView(tableView, heightForRowAt: indexPath)
         }

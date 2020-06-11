@@ -31,6 +31,5 @@ class DayTVCell: UITableViewCell {
         self.timeLabel.text = "\(startTime)-\(endTime)"
         self.studentNameLabel.text = "\(meeting.studentName ?? "test")"
         self.meetingLabel.text = "\(meeting.note ?? "test")"
-        
 }
 }
