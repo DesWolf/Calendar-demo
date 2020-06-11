@@ -595,7 +595,6 @@
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empyCheck" translatesAutoresizingMaskIntoConstraints="NO" id="BQP-IP-Skr">
                                                     <rect key="frame" x="349" y="0.0" width="25" height="34"/>
                                                     <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="Dbt-v6-Fdg"/>
                                                         <constraint firstAttribute="width" constant="25" id="vDB-Xw-Jqg"/>
                                                     </constraints>
                                                 </imageView>
@@ -836,7 +835,7 @@
             </objects>
             <point key="canvasLocation" x="-3433" y="-3147"/>
         </scene>
-        <!--Students For LessonTVC-->
+        <!--Ученики-->
         <scene sceneID="2ha-us-Y0V">
             <objects>
                 <tableViewController id="Ckj-6e-gdg" customClass="StudentsForLessonTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
@@ -845,13 +844,50 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" id="oAq-9b-901">
-                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="studentsForLessonTVCell" rowHeight="60" id="oAq-9b-901" customClass="StudentsForLessonTVCell" customModule="Calendar_demo" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="oAq-9b-901" id="zui-Gq-b2w">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="60"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IUd-9g-seM">
+                                            <rect key="frame" x="20" y="13" width="341" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="currentDiscipline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="kph-S5-bsa">
+                                            <rect key="frame" x="20" y="33" width="341" height="15"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" verticalHuggingPriority="251" image="oval" translatesAutoresizingMaskIntoConstraints="NO" id="tj4-Zv-wKs">
+                                            <rect key="frame" x="369" y="18" width="25" height="25"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="tj4-Zv-wKs" secondAttribute="height" multiplier="1:1" id="AHc-93-gxU"/>
+                                            </constraints>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="tj4-Zv-wKs" firstAttribute="leading" secondItem="IUd-9g-seM" secondAttribute="trailing" constant="8" id="42E-2I-4AJ"/>
+                                        <constraint firstItem="tj4-Zv-wKs" firstAttribute="leading" secondItem="kph-S5-bsa" secondAttribute="trailing" constant="8" id="BuM-W0-fBv"/>
+                                        <constraint firstItem="IUd-9g-seM" firstAttribute="leading" secondItem="zui-Gq-b2w" secondAttribute="leadingMargin" id="Hbq-h1-ghH"/>
+                                        <constraint firstItem="IUd-9g-seM" firstAttribute="top" secondItem="zui-Gq-b2w" secondAttribute="topMargin" constant="2" id="Ogm-87-AGr"/>
+                                        <constraint firstItem="kph-S5-bsa" firstAttribute="top" secondItem="IUd-9g-seM" secondAttribute="bottom" constant="-1" id="c2w-Hj-Qjh"/>
+                                        <constraint firstItem="tj4-Zv-wKs" firstAttribute="trailing" secondItem="zui-Gq-b2w" secondAttribute="trailingMargin" id="ghW-qN-oby"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="tj4-Zv-wKs" secondAttribute="bottom" constant="6" id="igS-Vg-vK4"/>
+                                        <constraint firstItem="tj4-Zv-wKs" firstAttribute="top" secondItem="zui-Gq-b2w" secondAttribute="topMargin" constant="7" id="juJ-Tx-Qf2"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="kph-S5-bsa" secondAttribute="bottom" constant="1" id="tCF-c9-5Sr"/>
+                                        <constraint firstItem="kph-S5-bsa" firstAttribute="leading" secondItem="zui-Gq-b2w" secondAttribute="leadingMargin" id="z1S-Ny-ReU"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="checkBox" destination="tj4-Zv-wKs" id="grf-EG-aBw"/>
+                                    <outlet property="currentDisciplineLabel" destination="kph-S5-bsa" id="EmV-eg-4k6"/>
+                                    <outlet property="nameLabel" destination="IUd-9g-seM" id="jWO-FN-bFo"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -859,15 +895,23 @@
                             <outlet property="delegate" destination="Ckj-6e-gdg" id="wa5-KH-COV"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="ggz-1B-ybA"/>
+                    <navigationItem key="navigationItem" title="Ученики" largeTitleDisplayMode="never" id="ggz-1B-ybA">
+                        <barButtonItem key="leftBarButtonItem" title="Назад" id="owY-Dq-S1j">
+                            <connections>
+                                <segue destination="C5Z-tQ-MFd" kind="unwind" unwindAction="unwiSegueAddMeeting:" id="daQ-fW-0ef"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9oC-4x-m0S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="C5Z-tQ-MFd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2607" y="-3150"/>
+            <point key="canvasLocation" x="-2633.3333333333335" y="-3147.3214285714284"/>
         </scene>
     </scenes>
     <resources>
         <image name="Calendar" width="28" height="25"/>
         <image name="empyCheck" width="15" height="16"/>
+        <image name="oval" width="22" height="22"/>
     </resources>
 </document>

@@ -110,11 +110,12 @@ extension AddMeetingTVC {
 extension AddMeetingTVC {
     @IBAction func unwiSegueAddMeeting (_ segue: UIStoryboardSegue) {
         
-        //        guard let disciplineTVC = segue.source as? StudentsListForLessonTVC else { return }
-        //        self.studentLabel.text = "\(disciplineTVC.student)"
+        if let studentTVC = segue.source as? StudentsForLessonTVC {
+        self.studentLabel.text = "\(studentTVC.selectedStudents)"
+        }
         
         if let disciplineTVC = segue.source as? DisciplinesForLessonTVC {
-            self.disciplineLabel.text = "\(disciplineTVC.chousedDiscipline)"
+            self.disciplineLabel.text = "\(disciplineTVC.selectedDiscipline)"
         }
         
         if let repeatTVC = segue.source as? RepeatTVC {
@@ -128,10 +129,8 @@ extension AddMeetingTVC {
         
         switch segue.identifier {
         case "disciplines":
-            //            guard let destVC = segue.destination as? UINavigationController,
-            //               let targetController = destVC.topViewController as? DisciplinesForLessonTVC else { return }
-            guard let disTVC = segue.destination as? DisciplinesForLessonTVC else { return }
-            disTVC.chousedDiscipline = editLesson?.discipline ?? ""
+                guard let disTVC = segue.destination as? DisciplinesForLessonTVC else { return }
+            disTVC.selectedDiscipline = editLesson?.discipline ?? ""
         case "repeatLesson":
             guard let repeatTVC = segue.destination as? RepeatTVC else { return }
             repeatTVC.repeatLesson = RepeatLesson(rawValue: editLesson?.repeatLesson ?? "") ?? RepeatLesson.never

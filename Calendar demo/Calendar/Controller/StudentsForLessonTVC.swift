@@ -10,76 +10,130 @@ import UIKit
 
 class StudentsForLessonTVC: UITableViewController {
 
+    private let searchController = UISearchController(searchResultsController: nil)
+    private var students = [StudentModel]()
+    private var filtredStudents = [StudentModel]()
+    var selectedStudents = ""
+    private let networkManagerStudents =  NetworkManagerStudents()
+    private var search = false
+    private var searchBarisEmpty: Bool {
+        guard let text = searchController.searchBar.text else { return false }
+        return text.isEmpty
+    }
+    private var isFiltering: Bool {
+        return searchController.isActive && !searchBarisEmpty
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+    
+        setupNavigationBar()
     }
+}
 
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+//MARK: Set Screen
+extension StudentsForLessonTVC {
+    private func setupNavigationBar() {
+        fetchStudents()
+        let nav = self.navigationController?.navigationBar
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
+        
     }
+}
 
+// MARK: Network
+extension StudentsForLessonTVC {
+    private func fetchStudents() {
+        networkManagerStudents.fetchStudentsList() { [weak self]  (students, error)  in
+            guard let students = students else {
+                print(error ?? "")
+                DispatchQueue.main.async {
+                    self?.simpleAlert(message: error ?? "")
+                }
+                return
+            }
+            self?.students = students
+            DispatchQueue.main.async {
+                self?.tableView.reloadData()
+            }
+        }
+    }
+}
+
+// MARK: TableViewDataSource
+extension StudentsForLessonTVC {
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 60
+    }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+        return isFiltering ? filtredStudents.count : students.count
     }
-
-    /*
+    
+    
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
+        let cell = tableView.dequeueReusableCell(withIdentifier: "studentsForLessonTVCell", for: indexPath) as! StudentsForLessonTVCell
+        let student = isFiltering ? filtredStudents[indexPath.row] : students[indexPath.row]
+        var image = #imageLiteral(resourceName: "oval")
+        let studentNameSurname = "\(student.name ?? "") \(student.surname ?? "")"
+        if studentNameSurname == selectedStudents {
+            image = #imageLiteral(resourceName: "checkmark")
+        }
+        
+        cell.configere(with: student, image: image)
         return cell
     }
-    */
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+
+override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    let cell = tableView.dequeueReusableCell(withIdentifier: "studentsForLessonTVCell", for: indexPath) as! StudentsForLessonTVCell
+    
+    let student = isFiltering ? filtredStudents[indexPath.row] : students[indexPath.row]
+    let studentNameSurname = "\(student.name ?? "") \(student.surname ?? "")"
+   
+    
+    if selectedStudents == studentNameSurname {
+        cell.checkBox.image = #imageLiteral(resourceName: "oval")
+        selectedStudents = ""
+        
+    } else {
+        cell.checkBox.image = #imageLiteral(resourceName: "checkmark")
+        selectedStudents = studentNameSurname
+        print(selectedStudents)
     }
-    */
-
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
-    }
-    */
-
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
-    }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+    tableView.reloadData()
 }
+}
+
+//MARK: Alert & Notification
+extension StudentsForLessonTVC  {
+    func simpleAlert(message: String) {
+        UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
+    }
+}
+
+//MARK: SearchBar
+extension StudentsForLessonTVC: UISearchResultsUpdating {
+    
+    func confugureSearchBar() {
+        searchController.searchResultsUpdater = self
+        searchController.obscuresBackgroundDuringPresentation = false
+        searchController.searchBar.placeholder = "Поиск"
+        navigationItem.searchController = searchController
+        //        definesPresentationContext = true
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        filterContentForSearchText(searchController.searchBar.text!)
+        searchController.obscuresBackgroundDuringPresentation = searchBarisEmpty ? true : false
+    }
+    
+    private func filterContentForSearchText(_ searchText: String){
+        filtredStudents = students.filter { (students: StudentModel) -> Bool in
+            return students.name?.lowercased().range(of: searchText.lowercased()) != nil ||
+                students.surname?.lowercased().range(of: searchText.lowercased()) != nil
+        }
+        tableView.reloadData()
+    }
+}
+

@@ -10,7 +10,7 @@ import UIKit
 
 class DisciplinesForLessonTVC: UITableViewController {
     
-    public var chousedDiscipline: String = ""
+    public var selectedDiscipline: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,7 +54,7 @@ extension DisciplinesForLessonTVC {
         let discipline = DisciplinesList.all[indexPath.row]
         var image = UIImage()
         
-        if discipline == chousedDiscipline {
+        if discipline == selectedDiscipline {
             image = #imageLiteral(resourceName: "check")
         }
         
@@ -66,12 +66,12 @@ extension DisciplinesForLessonTVC {
         let cell = tableView.dequeueReusableCell(withIdentifier: "disciplinesLessonCell", for: indexPath) as! DisciplineLessonTVCell
         let discipline = DisciplinesList.all[indexPath.row]
         
-        if chousedDiscipline == discipline {
+        if selectedDiscipline == discipline {
             cell.checkImage.image = UIImage()
-            chousedDiscipline = ""
+            selectedDiscipline = ""
         } else {
             cell.checkImage.image = #imageLiteral(resourceName: "check")
-            chousedDiscipline = discipline
+            selectedDiscipline = discipline
         }
         tableView.reloadData()
     }

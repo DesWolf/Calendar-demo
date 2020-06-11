@@ -27,6 +27,7 @@
 		9E374A9B24922FA30082A119 /* DisciplinesForLessonTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374A9A24922FA20082A119 /* DisciplinesForLessonTVC.swift */; };
 		9E374A9D249241CF0082A119 /* DisciplineLessonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374A9C249241CF0082A119 /* DisciplineLessonTVCell.swift */; };
 		9E374A9F2492896B0082A119 /* StudentsForLessonTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374A9E2492896B0082A119 /* StudentsForLessonTVC.swift */; };
+		9E374AA1249299410082A119 /* StudentsForLessonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374AA0249299410082A119 /* StudentsForLessonTVCell.swift */; };
 		9E5BD563246EE9D500EB4F53 /* CheckEmailPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BD562246EE9D500EB4F53 /* CheckEmailPassword.swift */; };
 		9E5C05E7246D8BCE00EADD5C /* ServerAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C05E6246D8BCE00EADD5C /* ServerAnswer.swift */; };
 		9E5C05E9246D930700EADD5C /* LoginEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C05E8246D930700EADD5C /* LoginEndPoint.swift */; };
@@ -98,6 +99,7 @@
 		9E374A9A24922FA20082A119 /* DisciplinesForLessonTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesForLessonTVC.swift; sourceTree = "<group>"; };
 		9E374A9C249241CF0082A119 /* DisciplineLessonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineLessonTVCell.swift; sourceTree = "<group>"; };
 		9E374A9E2492896B0082A119 /* StudentsForLessonTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsForLessonTVC.swift; sourceTree = "<group>"; };
+		9E374AA0249299410082A119 /* StudentsForLessonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsForLessonTVCell.swift; sourceTree = "<group>"; };
 		9E5BD562246EE9D500EB4F53 /* CheckEmailPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckEmailPassword.swift; sourceTree = "<group>"; };
 		9E5C05E6246D8BCE00EADD5C /* ServerAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAnswer.swift; sourceTree = "<group>"; };
 		9E5C05E8246D930700EADD5C /* LoginEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndPoint.swift; sourceTree = "<group>"; };
@@ -191,6 +193,7 @@
 			children = (
 				9E0538C1247C224A00AAC0AA /* Calendar.storyboard */,
 				9E374A9C249241CF0082A119 /* DisciplineLessonTVCell.swift */,
+				9E374AA0249299410082A119 /* StudentsForLessonTVCell.swift */,
 				9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */,
 			);
 			path = View;
@@ -671,6 +674,7 @@
 				9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */,
 				9E0538AC247C0EE500AAC0AA /* UIColor+Additions.swift in Sources */,
 				9EC155B2246D639600D2C776 /* NetworkLogger.swift in Sources */,
+				9E374AA1249299410082A119 /* StudentsForLessonTVCell.swift in Sources */,
 				9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */,
 				9EC155BC246D6B2C00D2C776 /* StudentsTVCell.swift in Sources */,
 				9E8DDB332451E384003EC688 /* AddOrEditStudentTVC.swift in Sources */,

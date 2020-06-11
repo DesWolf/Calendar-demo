@@ -32,7 +32,6 @@ class StudentsListTVC: UITableViewController {
     }
     @IBAction func refreshButton(_ sender: Any) {
         fetchStudents()
-//        simplePopup(text: "Хей Хей")
     }
 }
 
