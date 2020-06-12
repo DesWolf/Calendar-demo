@@ -10,7 +10,7 @@ import UIKit
 
 class DisciplinesForLessonTVC: UITableViewController {
     
-    public var selectedDiscipline: String = ""
+    public var selectedDiscipline = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()

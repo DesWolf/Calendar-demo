@@ -9,35 +9,32 @@
 import UIKit
 
 class StudentsForLessonTVC: UITableViewController {
-
-    private let searchController = UISearchController(searchResultsController: nil)
+    
+    @IBOutlet weak var searchBar: UISearchBar!
+    
     private var students = [StudentModel]()
     private var filtredStudents = [StudentModel]()
-    var selectedStudents = ""
+    var selectedStudent: StudentModel?
     private let networkManagerStudents =  NetworkManagerStudents()
-    private var search = false
-    private var searchBarisEmpty: Bool {
-        guard let text = searchController.searchBar.text else { return false }
-        return text.isEmpty
-    }
-    private var isFiltering: Bool {
-        return searchController.isActive && !searchBarisEmpty
-    }
+    private var isFiltering: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-        setupNavigationBar()
+        setScreen()
     }
 }
 
 //MARK: Set Screen
 extension StudentsForLessonTVC {
-    private func setupNavigationBar() {
+    
+    private func setScreen(){
         fetchStudents()
+        setupNavigationBar()
+    }
+    
+    private func setupNavigationBar() {
         let nav = self.navigationController?.navigationBar
-        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
-        
+        nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
     }
 }
 
@@ -75,34 +72,31 @@ extension StudentsForLessonTVC {
         let cell = tableView.dequeueReusableCell(withIdentifier: "studentsForLessonTVCell", for: indexPath) as! StudentsForLessonTVCell
         let student = isFiltering ? filtredStudents[indexPath.row] : students[indexPath.row]
         var image = #imageLiteral(resourceName: "oval")
-        let studentNameSurname = "\(student.name ?? "") \(student.surname ?? "")"
-        if studentNameSurname == selectedStudents {
+
+        if student.studentId == selectedStudent?.studentId {
             image = #imageLiteral(resourceName: "checkmark")
         }
         
         cell.configere(with: student, image: image)
         return cell
     }
-
-
-override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-    let cell = tableView.dequeueReusableCell(withIdentifier: "studentsForLessonTVCell", for: indexPath) as! StudentsForLessonTVCell
     
-    let student = isFiltering ? filtredStudents[indexPath.row] : students[indexPath.row]
-    let studentNameSurname = "\(student.name ?? "") \(student.surname ?? "")"
-   
     
-    if selectedStudents == studentNameSurname {
-        cell.checkBox.image = #imageLiteral(resourceName: "oval")
-        selectedStudents = ""
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "studentsForLessonTVCell", for: indexPath) as! StudentsForLessonTVCell
         
-    } else {
-        cell.checkBox.image = #imageLiteral(resourceName: "checkmark")
-        selectedStudents = studentNameSurname
-        print(selectedStudents)
+        let student = isFiltering ? filtredStudents[indexPath.row] : students[indexPath.row]
+        
+        if student.studentId == selectedStudent?.studentId {
+            cell.checkBox.image = #imageLiteral(resourceName: "oval")
+            selectedStudent = nil
+            
+        } else {
+            cell.checkBox.image = #imageLiteral(resourceName: "checkmark")
+            selectedStudent = student
+        }
+        tableView.reloadData()
     }
-    tableView.reloadData()
-}
 }
 
 //MARK: Alert & Notification
@@ -113,27 +107,19 @@ extension StudentsForLessonTVC  {
 }
 
 //MARK: SearchBar
-extension StudentsForLessonTVC: UISearchResultsUpdating {
-    
-    func confugureSearchBar() {
-        searchController.searchResultsUpdater = self
-        searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Поиск"
-        navigationItem.searchController = searchController
-        //        definesPresentationContext = true
-    }
-    
-    func updateSearchResults(for searchController: UISearchController) {
-        filterContentForSearchText(searchController.searchBar.text!)
-        searchController.obscuresBackgroundDuringPresentation = searchBarisEmpty ? true : false
-    }
-    
-    private func filterContentForSearchText(_ searchText: String){
+extension StudentsForLessonTVC: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        guard searchText != "" && searchText != " " else {
+            isFiltering = false
+            tableView.reloadData()
+            return
+        }
+        isFiltering = true
+        
         filtredStudents = students.filter { (students: StudentModel) -> Bool in
             return students.name?.lowercased().range(of: searchText.lowercased()) != nil ||
-                students.surname?.lowercased().range(of: searchText.lowercased()) != nil
+                    students.surname?.lowercased().range(of: searchText.lowercased()) != nil
         }
         tableView.reloadData()
-    }
 }
-
+}

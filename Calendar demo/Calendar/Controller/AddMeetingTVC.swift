@@ -26,6 +26,7 @@ class AddMeetingTVC: UITableViewController {
     
     
     var editLesson: CalendarModel?
+    var student: StudentModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,7 +61,7 @@ extension AddMeetingTVC {
             repeatLessonLabel.text = editLesson?.repeatLesson ?? ""
             endOfRepeatLessonLabel.text = editLesson?.endRepeatLesson ?? ""
             priceTF.text = "\(editLesson?.price ?? 0)"
-            notificationTypeLabel.text = "\(editLesson?.notificationType ?? 0)"
+            notificationTypeLabel.text = "\(editLesson?.notificationType ?? "")"
             noteTV.text = editLesson?.note ?? ""
         }
         
@@ -111,11 +112,15 @@ extension AddMeetingTVC {
     @IBAction func unwiSegueAddMeeting (_ segue: UIStoryboardSegue) {
         
         if let studentTVC = segue.source as? StudentsForLessonTVC {
-        self.studentLabel.text = "\(studentTVC.selectedStudents)"
+            self.student = studentTVC.selectedStudent
+            self.studentLabel.text = "\(self.student?.name ?? "") \(self.student?.surname ?? "")"
+
+            let nav = self.navigationController?.navigationBar
+            nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
         }
         
         if let disciplineTVC = segue.source as? DisciplinesForLessonTVC {
-            self.disciplineLabel.text = "\(disciplineTVC.selectedDiscipline)"
+            self.disciplineLabel.text = "\(disciplineTVC.selectedDiscipline ?? "")"
         }
         
         if let repeatTVC = segue.source as? RepeatTVC {
@@ -123,18 +128,27 @@ extension AddMeetingTVC {
             guard let date = repeatTVC.endOfRepeat else { return }
             self.endOfRepeatLessonLabel.text = displayedDate(str: "\(date)")
         }
+        
+        if let notifTVC = segue.source as? NotificationTVC {
+            self.notificationTypeLabel.text = "\(notifTVC.selectedNotification ?? "")"
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
+        case "student":
+            guard let studTVC = segue.destination as? StudentsForLessonTVC else { return }
+            studTVC.selectedStudent = student
         case "disciplines":
-                guard let disTVC = segue.destination as? DisciplinesForLessonTVC else { return }
-            disTVC.selectedDiscipline = editLesson?.discipline ?? ""
+            guard let disTVC = segue.destination as? DisciplinesForLessonTVC else { return }
+            disTVC.selectedDiscipline =  disciplineLabel.text ?? ""
         case "repeatLesson":
             guard let repeatTVC = segue.destination as? RepeatTVC else { return }
             repeatTVC.repeatLesson = RepeatLesson(rawValue: editLesson?.repeatLesson ?? "") ?? RepeatLesson.never
-            
+        case "notification":
+            guard let notifTVC = segue.destination as? NotificationTVC else { return }
+            notifTVC.selectedNotification =  notificationTypeLabel.text ?? ""
         default:
             return
         }

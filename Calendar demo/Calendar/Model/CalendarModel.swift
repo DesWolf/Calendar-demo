@@ -22,9 +22,8 @@ struct CalendarModel: Decodable {
     let repeatLesson: String?
     let endRepeatLesson: String?
     let price: Int?
-    let notificationType: Int?
+    let notificationType: String?
     let note: String?
-    
     let statusPay: Int?
 }
 
