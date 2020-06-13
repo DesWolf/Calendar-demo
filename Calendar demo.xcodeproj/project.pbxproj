@@ -11,15 +11,15 @@
 		9E0538AC247C0EE500AAC0AA /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0538AB247C0EE500AAC0AA /* UIColor+Additions.swift */; };
 		9E0538AE247C0F7100AAC0AA /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538AD247C0F7100AAC0AA /* Contacts.storyboard */; };
 		9E0538B7247C1A8800AAC0AA /* Statistic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538B6247C1A8800AAC0AA /* Statistic.storyboard */; };
-		9E0538B9247C1A9E00AAC0AA /* Settings.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538B8247C1A9E00AAC0AA /* Settings.storyboard */; };
-		9E0538C0247C1BD100AAC0AA /* DetaledDay.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538BF247C1BD100AAC0AA /* DetaledDay.storyboard */; };
+		9E0538B9247C1A9E00AAC0AA /* Finance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538B8247C1A9E00AAC0AA /* Finance.storyboard */; };
+		9E0538C0247C1BD100AAC0AA /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538BF247C1BD100AAC0AA /* Profile.storyboard */; };
 		9E0538C2247C224A00AAC0AA /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538C1247C224A00AAC0AA /* Calendar.storyboard */; };
 		9E0A5E18244ED4AD00188CDE /* StartScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E17244ED4AD00188CDE /* StartScreenVC.swift */; };
 		9E0A5E20244F26CE00188CDE /* StudentsListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E1F244F26CE00188CDE /* StudentsListTVC.swift */; };
 		9E0A5E25244F271F00188CDE /* StatisticVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E24244F271F00188CDE /* StatisticVC.swift */; };
-		9E0A5E27244F272F00188CDE /* SettingsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E26244F272F00188CDE /* SettingsVC.swift */; };
+		9E0A5E27244F272F00188CDE /* FinanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E26244F272F00188CDE /* FinanceVC.swift */; };
 		9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E28244F39C000188CDE /* ColorsConfig.swift */; };
-		9E0A5E2B244F3FC200188CDE /* DetailedDayVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2A244F3FC200188CDE /* DetailedDayVC.swift */; };
+		9E0A5E2B244F3FC200188CDE /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2A244F3FC200188CDE /* ProfileVC.swift */; };
 		9E0A5E2E244F410900188CDE /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2D244F410900188CDE /* StudentModel.swift */; };
 		9E0A5E30244F411400188CDE /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2F244F411400188CDE /* NotificationModel.swift */; };
 		9E3570D82488DF6D00F8F997 /* CalendarEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3570D72488DF6D00F8F997 /* CalendarEndPoint.swift */; };
@@ -50,6 +50,8 @@
 		9E862343248BBDBF0004B3FD /* UIVewControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E862342248BBDBF0004B3FD /* UIVewControllerExtention.swift */; };
 		9E86E9162493784A00FD63AA /* NotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E86E9152493784A00FD63AA /* NotificationTVC.swift */; };
 		9E86E9182493789600FD63AA /* NotificationTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E86E9172493789600FD63AA /* NotificationTVCell.swift */; };
+		9E8C5F0B2494DBCF00332B61 /* LessonDetailedTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8C5F0A2494DBCF00332B61 /* LessonDetailedTVC.swift */; };
+		9E8C5F0D2494DE1000332B61 /* PaymentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8C5F0C2494DE1000332B61 /* PaymentTVC.swift */; };
 		9E8DDB332451E384003EC688 /* AddOrEditStudentTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8DDB322451E384003EC688 /* AddOrEditStudentTVC.swift */; };
 		9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */; };
 		9E92C00124815455000B45A5 /* DisciplinesTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92C00024815455000B45A5 /* DisciplinesTVCell.swift */; };
@@ -85,15 +87,15 @@
 		9E0538AB247C0EE500AAC0AA /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
 		9E0538AD247C0F7100AAC0AA /* Contacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
 		9E0538B6247C1A8800AAC0AA /* Statistic.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Statistic.storyboard; sourceTree = "<group>"; };
-		9E0538B8247C1A9E00AAC0AA /* Settings.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Settings.storyboard; sourceTree = "<group>"; };
-		9E0538BF247C1BD100AAC0AA /* DetaledDay.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DetaledDay.storyboard; sourceTree = "<group>"; };
+		9E0538B8247C1A9E00AAC0AA /* Finance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Finance.storyboard; sourceTree = "<group>"; };
+		9E0538BF247C1BD100AAC0AA /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
 		9E0538C1247C224A00AAC0AA /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		9E0A5E17244ED4AD00188CDE /* StartScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVC.swift; sourceTree = "<group>"; };
 		9E0A5E1F244F26CE00188CDE /* StudentsListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsListTVC.swift; sourceTree = "<group>"; };
 		9E0A5E24244F271F00188CDE /* StatisticVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticVC.swift; sourceTree = "<group>"; };
-		9E0A5E26244F272F00188CDE /* SettingsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsVC.swift; sourceTree = "<group>"; };
+		9E0A5E26244F272F00188CDE /* FinanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceVC.swift; sourceTree = "<group>"; };
 		9E0A5E28244F39C000188CDE /* ColorsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsConfig.swift; sourceTree = "<group>"; };
-		9E0A5E2A244F3FC200188CDE /* DetailedDayVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailedDayVC.swift; sourceTree = "<group>"; };
+		9E0A5E2A244F3FC200188CDE /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		9E0A5E2D244F410900188CDE /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 		9E0A5E2F244F411400188CDE /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		9E3570D72488DF6D00F8F997 /* CalendarEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEndPoint.swift; sourceTree = "<group>"; };
@@ -127,6 +129,8 @@
 		9E862342248BBDBF0004B3FD /* UIVewControllerExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVewControllerExtention.swift; sourceTree = "<group>"; };
 		9E86E9152493784A00FD63AA /* NotificationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTVC.swift; sourceTree = "<group>"; };
 		9E86E9172493789600FD63AA /* NotificationTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTVCell.swift; sourceTree = "<group>"; };
+		9E8C5F0A2494DBCF00332B61 /* LessonDetailedTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDetailedTVC.swift; sourceTree = "<group>"; };
+		9E8C5F0C2494DE1000332B61 /* PaymentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentTVC.swift; sourceTree = "<group>"; };
 		9E8DDB322451E384003EC688 /* AddOrEditStudentTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditStudentTVC.swift; sourceTree = "<group>"; };
 		9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		9E92C00024815455000B45A5 /* DisciplinesTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesTVCell.swift; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 				9E374A9E2492896B0082A119 /* StudentsForLessonTVC.swift */,
 				9E374A9A24922FA20082A119 /* DisciplinesForLessonTVC.swift */,
 				9E01A2A5248E75840044AD7F /* RepeatTVC.swift */,
+				9E8C5F0A2494DBCF00332B61 /* LessonDetailedTVC.swift */,
+				9E8C5F0C2494DE1000332B61 /* PaymentTVC.swift */,
 				9E86E9152493784A00FD63AA /* NotificationTVC.swift */,
 			);
 			path = Controller;
@@ -228,7 +234,7 @@
 		9E0538BA247C1B6C00AAC0AA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9E0A5E2A244F3FC200188CDE /* DetailedDayVC.swift */,
+				9E0A5E2A244F3FC200188CDE /* ProfileVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -236,7 +242,7 @@
 		9E0538BB247C1B7B00AAC0AA /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9E0538BF247C1BD100AAC0AA /* DetaledDay.storyboard */,
+				9E0538BF247C1BD100AAC0AA /* Profile.storyboard */,
 				9E631936244F4781007DE5F1 /* MeetingCell.swift */,
 				9E80D0CF2454AED900FECAF7 /* NotificationCell.swift */,
 			);
@@ -257,13 +263,6 @@
 				9E0A5E2F244F411400188CDE /* NotificationModel.swift */,
 			);
 			path = Model;
-			sourceTree = "<group>";
-		};
-		9E0538BE247C1B9E00AAC0AA /* Network */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Network;
 			sourceTree = "<group>";
 		};
 		9E0A5E1B244F265F00188CDE /* Enter */ = {
@@ -316,13 +315,13 @@
 			path = Students;
 			sourceTree = "<group>";
 		};
-		9E0A5E22244F26E800188CDE /* Settings */ = {
+		9E0A5E22244F26E800188CDE /* Finance */ = {
 			isa = PBXGroup;
 			children = (
-				9E0538B8247C1A9E00AAC0AA /* Settings.storyboard */,
-				9E0A5E26244F272F00188CDE /* SettingsVC.swift */,
+				9E0538B8247C1A9E00AAC0AA /* Finance.storyboard */,
+				9E0A5E26244F272F00188CDE /* FinanceVC.swift */,
 			);
-			path = Settings;
+			path = Finance;
 			sourceTree = "<group>";
 		};
 		9E0A5E23244F270400188CDE /* Statistics */ = {
@@ -334,16 +333,15 @@
 			path = Statistics;
 			sourceTree = "<group>";
 		};
-		9E0A5E2C244F3FC800188CDE /* DetailedDay */ = {
+		9E0A5E2C244F3FC800188CDE /* Profile */ = {
 			isa = PBXGroup;
 			children = (
-				9E0538BE247C1B9E00AAC0AA /* Network */,
 				9E0538BD247C1B9600AAC0AA /* Model */,
 				9E0538BB247C1B7B00AAC0AA /* View */,
 				9E0538BA247C1B6C00AAC0AA /* Controller */,
 				9E0538BC247C1B8300AAC0AA /* Service */,
 			);
-			path = DetailedDay;
+			path = Profile;
 			sourceTree = "<group>";
 		};
 		9E5C05EC246D9C3D00EADD5C /* Controller */ = {
@@ -409,11 +407,11 @@
 				9E6C0E622482E75C0099F300 /* Calendar demo.entitlements */,
 				9E0A5E1C244F268900188CDE /* App */,
 				9E0A5E1B244F265F00188CDE /* Enter */,
+				9E0A5E2C244F3FC800188CDE /* Profile */,
 				9E0A5E21244F26D300188CDE /* Students */,
 				9E0A5E1D244F26A500188CDE /* Calendar */,
-				9E0A5E22244F26E800188CDE /* Settings */,
 				9E0A5E23244F270400188CDE /* Statistics */,
-				9E0A5E2C244F3FC800188CDE /* DetailedDay */,
+				9E0A5E22244F26E800188CDE /* Finance */,
 				9E0A5E1E244F26B000188CDE /* Support */,
 			);
 			path = "Calendar demo";
@@ -581,12 +579,12 @@
 			files = (
 				9E63193A244F6101007DE5F1 /* Main.storyboard in Resources */,
 				9EF2289B247A72A300C1AE56 /* LoginStoryboard.storyboard in Resources */,
-				9E0538C0247C1BD100AAC0AA /* DetaledDay.storyboard in Resources */,
+				9E0538C0247C1BD100AAC0AA /* Profile.storyboard in Resources */,
 				9E7A73BB244D92AC00FA529B /* LaunchScreen.storyboard in Resources */,
 				9E0538B7247C1A8800AAC0AA /* Statistic.storyboard in Resources */,
 				9E0538AE247C0F7100AAC0AA /* Contacts.storyboard in Resources */,
 				9EF22897247A67C100C1AE56 /* StartScreen.xib in Resources */,
-				9E0538B9247C1A9E00AAC0AA /* Settings.storyboard in Resources */,
+				9E0538B9247C1A9E00AAC0AA /* Finance.storyboard in Resources */,
 				9E0538C2247C224A00AAC0AA /* Calendar.storyboard in Resources */,
 				9E7A73B8244D92AC00FA529B /* Assets.xcassets in Resources */,
 			);
@@ -659,13 +657,15 @@
 				9E80D0D02454AED900FECAF7 /* NotificationCell.swift in Sources */,
 				9E86E9182493789600FD63AA /* NotificationTVCell.swift in Sources */,
 				9EC155BA246D642B00D2C776 /* AlertService.swift in Sources */,
+				9E8C5F0D2494DE1000332B61 /* PaymentTVC.swift in Sources */,
 				9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */,
+				9E8C5F0B2494DBCF00332B61 /* LessonDetailedTVC.swift in Sources */,
 				9EC155A2246D628000D2C776 /* StudentsEndPoint.swift in Sources */,
 				9E0A5E20244F26CE00188CDE /* StudentsListTVC.swift in Sources */,
 				9EC155AA246D635500D2C776 /* EndPointType.swift in Sources */,
 				9EC155B8246D63D200D2C776 /* JSONParameterEncoder.swift in Sources */,
 				9E5C05EB246D971400EADD5C /* NetworkManagerLogin.swift in Sources */,
-				9E0A5E2B244F3FC200188CDE /* DetailedDayVC.swift in Sources */,
+				9E0A5E2B244F3FC200188CDE /* ProfileVC.swift in Sources */,
 				9E3570D82488DF6D00F8F997 /* CalendarEndPoint.swift in Sources */,
 				9EE848AF2487C868008BABB3 /* PopUpVC.swift in Sources */,
 				9E631939244F50B4007DE5F1 /* AddMeetingTVC.swift in Sources */,
@@ -696,7 +696,7 @@
 				9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */,
 				9EA67387247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift in Sources */,
 				9E7C1348247D45EE0095C57E /* UIImage Extentions.swift in Sources */,
-				9E0A5E27244F272F00188CDE /* SettingsVC.swift in Sources */,
+				9E0A5E27244F272F00188CDE /* FinanceVC.swift in Sources */,
 				9E374A9F2492896B0082A119 /* StudentsForLessonTVC.swift in Sources */,
 				9ECECBEF248103E60053AC78 /* DisciplinesList.swift in Sources */,
 			);

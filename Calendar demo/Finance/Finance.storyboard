@@ -11,27 +11,26 @@
         <!--Настройки-->
         <scene sceneID="Opj-Tj-3zR">
             <objects>
-                <viewController id="3ja-LD-70u" customClass="SettingsVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3ja-LD-70u" customClass="FinanceVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="lCd-Fw-Pwn">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AUY-T7-yJ2">
-                                <rect key="frame" x="116" y="748" width="188" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Экран Финансы находится в разработке" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sUM-B1-ogv">
+                                <rect key="frame" x="20" y="409" width="374" height="79"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="149" id="8bx-sF-vKp"/>
+                                    <constraint firstAttribute="height" constant="79" id="3Nk-cG-wwt"/>
                                 </constraints>
-                                <state key="normal" title="SignOut"/>
-                                <connections>
-                                    <action selector="signOut:" destination="3ja-LD-70u" eventType="touchUpInside" id="Bp5-vf-1yL"/>
-                                </connections>
-                            </button>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="0.60392156860000001" green="0.60392156860000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="wM9-Zz-TUb" firstAttribute="bottom" secondItem="AUY-T7-yJ2" secondAttribute="bottom" constant="35" id="Ai8-HC-lFA"/>
-                            <constraint firstItem="wM9-Zz-TUb" firstAttribute="trailing" secondItem="AUY-T7-yJ2" secondAttribute="trailing" constant="110" id="Xef-Gb-nz3"/>
-                            <constraint firstItem="AUY-T7-yJ2" firstAttribute="leading" secondItem="wM9-Zz-TUb" secondAttribute="leading" constant="116" id="t2Z-NK-HBZ"/>
+                            <constraint firstItem="sUM-B1-ogv" firstAttribute="top" secondItem="wM9-Zz-TUb" secondAttribute="top" constant="321" id="M2o-ZT-4fP"/>
+                            <constraint firstItem="wM9-Zz-TUb" firstAttribute="trailing" secondItem="sUM-B1-ogv" secondAttribute="trailing" constant="20" id="YZV-AD-Q83"/>
+                            <constraint firstItem="sUM-B1-ogv" firstAttribute="leading" secondItem="wM9-Zz-TUb" secondAttribute="leading" constant="20" id="ZpX-6V-vE1"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="wM9-Zz-TUb"/>
                     </view>
@@ -41,11 +40,11 @@
             </objects>
             <point key="canvasLocation" x="4449.275362318841" y="2554.0178571428569"/>
         </scene>
-        <!--Настройки-->
+        <!--Финансы-->
         <scene sceneID="PGN-qg-fg6">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="fsX-7Q-JjA" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Настройки" image="Wallet" id="usI-d0-LSe"/>
+                    <tabBarItem key="tabBarItem" title="Финансы" image="Wallet" id="usI-d0-LSe"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="vH0-af-eoO">

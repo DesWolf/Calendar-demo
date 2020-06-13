@@ -7,10 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--DetaledDay-->
+        <!--Profile-->
         <scene sceneID="g8p-QX-UtO">
             <objects>
-                <viewControllerPlaceholder storyboardName="DetaledDay" id="rzq-qV-oiA" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Profile" id="rzq-qV-oiA" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Профиль" image="User" id="lIw-eY-Lwf"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVN-QJ-MX5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -27,10 +27,10 @@
             </objects>
             <point key="canvasLocation" x="1718" y="1651"/>
         </scene>
-        <!--Settings-->
+        <!--Finance-->
         <scene sceneID="Ve5-wA-N5c">
             <objects>
-                <viewControllerPlaceholder storyboardName="Settings" id="WoO-rb-91P" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Finance" id="WoO-rb-91P" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Финансы" image="Wallet" id="laB-qh-irs"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1Hj-yn-ia3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

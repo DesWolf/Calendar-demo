@@ -15,21 +15,35 @@
                     <view key="view" contentMode="scaleToFill" id="0BW-wF-Tqr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Экран Статистики находится в разработке" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3sG-r8-kh7">
+                                <rect key="frame" x="20" y="409" width="374" height="60"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                <color key="textColor" red="0.60392156860000001" green="0.60392156860000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="aPZ-cV-Ic1" firstAttribute="trailing" secondItem="3sG-r8-kh7" secondAttribute="trailing" constant="20" id="Eei-co-qvL"/>
+                            <constraint firstItem="3sG-r8-kh7" firstAttribute="leading" secondItem="aPZ-cV-Ic1" secondAttribute="leading" constant="20" id="If7-6L-Bh5"/>
+                            <constraint firstItem="3sG-r8-kh7" firstAttribute="top" secondItem="aPZ-cV-Ic1" secondAttribute="top" constant="321" id="eex-pf-QK4"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="aPZ-cV-Ic1"/>
                     </view>
                     <navigationItem key="navigationItem" title="Статистика" id="qhW-qH-aCR"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0JO-OK-hJi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3540" y="3232.7586206896553"/>
+            <point key="canvasLocation" x="3539.130434782609" y="3232.3660714285711"/>
         </scene>
         <!--Статистика-->
         <scene sceneID="X7K-R5-aTu">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Wh9-fT-ckm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Статистика" image="Statistic" id="0OA-Oe-lx1"/>
+                    <tabBarItem key="tabBarItem" title="Статистика" image="Statistic" id="rbU-Me-Pdf"/>
                     <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HrX-sa-PCM">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

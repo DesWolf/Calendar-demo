@@ -26,11 +26,12 @@ class RepeatTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureScreen()
+        print(endOfRepeat)
     }
     
     @IBAction func endDateChanged(sender: UIDatePicker) {
         endRepeatLabel.text = displayedDate(str: "\(endRepeatPicker.date)")
-        endOfRepeat = "\(endRepeatPicker.date)"
+        endOfRepeat = displayedDate(str: "\(endRepeatPicker.date)")
     }
 }
 
@@ -38,12 +39,14 @@ class RepeatTVC: UITableViewController {
 extension RepeatTVC {
     private func configureScreen() {
         setupNavigationBar()
-        setupPicker()
-
-        if repeatLesson == .never {
+        setupPicker(str: endOfRepeat ?? "")
+        
+        if endOfRepeat == RepeatLesson.never.rawValue {
             neverCheckImage.image =  #imageLiteral(resourceName: "check")
+            repeatLesson = .never
         }  else {
             everyWeekCheckImage.image = #imageLiteral(resourceName: "check")
+            repeatLesson = .weekly
         }
     }
     
@@ -52,19 +55,28 @@ extension RepeatTVC {
         nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
     }
     
-    private func setupPicker() {
+    private func setupPicker(str: String) {
         let oneMonth = TimeInterval(60 * 60 * 24 * 30)
-
-        endRepeatLabel.text = displayedDate(str: "\(endRepeatPicker.date.addingTimeInterval(oneMonth))")
-        endRepeatLabel.isHidden = true
         
-        endRepeatPicker.datePickerMode = .date
-        endRepeatPicker.setDate(Date().addingTimeInterval(oneMonth), animated: true)
-        endRepeatPicker.isHidden = true
+        if str == RepeatLesson.never.rawValue {
+            endRepeatLabel.text = displayedDate(str: "\(endRepeatPicker.date.addingTimeInterval(oneMonth))")
+            endRepeatLabel.isHidden = true
+            
+            endRepeatPicker.datePickerMode = .date
+            endRepeatPicker.setDate(Date().addingTimeInterval(oneMonth), animated: true)
+            endRepeatPicker.isHidden = true
+        } else {
+            endRepeatLabel.text = endOfRepeat
+            endRepeatLabel.isHidden = false
+            
+            endRepeatPicker.datePickerMode = .date
+            endRepeatPicker.setDate(Date().convertStrToDate(str: endOfRepeat ?? "01.01.2021"), animated: true)
+            endRepeatPicker.isHidden = false
+        }
     }
     
     private func displayedDate(str: String) -> String {
-       return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "dd.MM.yyyy")
+        return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "dd.MM.yyyy")
         
     }
 }

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="heX-c7-M0U">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Профиль-->
+        <scene sceneID="H0h-py-Ryk">
+            <objects>
+                <viewController id="heX-c7-M0U" customClass="ProfileVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YXo-Ej-pbg">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJt-T2-FrE">
+                                <rect key="frame" x="113" y="753" width="188" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="149" id="L7z-El-bKV"/>
+                                </constraints>
+                                <state key="normal" title="SignOut"/>
+                                <connections>
+                                    <action selector="signOut:" destination="heX-c7-M0U" eventType="touchUpInside" id="OZi-fB-1c4"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Lec-tV-Ior" firstAttribute="trailing" secondItem="pJt-T2-FrE" secondAttribute="trailing" constant="113" id="XAm-9Y-lsK"/>
+                            <constraint firstItem="Lec-tV-Ior" firstAttribute="bottom" secondItem="pJt-T2-FrE" secondAttribute="bottom" constant="30" id="imy-ws-TRQ"/>
+                            <constraint firstItem="pJt-T2-FrE" firstAttribute="leading" secondItem="Lec-tV-Ior" secondAttribute="leading" constant="113" id="ysa-T3-87w"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Lec-tV-Ior"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Профиль" image="User" id="5Bf-uq-3MM"/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="gs7-2T-uOy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3411" y="1886"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="User" width="26" height="26"/>
+    </resources>
+</document>

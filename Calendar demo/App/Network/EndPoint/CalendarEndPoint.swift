@@ -108,7 +108,7 @@ extension CalendarApi: EndPointType {
                         let note,
                         let price,
                         let discipline):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacheId,
+            return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacherId,
                                                                  "name": name,
                                                                  "studentId": studentId,
                                                                  "dateStart": dateStart,
@@ -129,7 +129,7 @@ extension CalendarApi: EndPointType {
                            let note,
                            let price,
                            let discipline):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacheId,
+            return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacherId,
                                                                  "name": name,
                                                                  "studentId": studentId,
                                                                  "dateStart": dateStart,

@@ -46,8 +46,8 @@ class CalendarVC: UIViewController {
 //MARK: Set Screen
 extension CalendarVC {
     private func configureScreen() {
-        var startDate = Date().monthMinusOne
-        var endDate = Date().monthPlusOne
+        let startDate = Date().monthMinusOne
+        let endDate = Date().monthPlusOne
         print(startDate, endDate)
         
         setupNavigationBar()
@@ -101,7 +101,7 @@ extension CalendarVC {
             for index in 0..<calendar.count {
                 self?.datesDictionary.append(calendar[index].dateStart ?? "")
             }
-            print(self?.datesDictionary)
+            
             DispatchQueue.main.async {
                 self?.calendarView.contentController.refreshPresentedMonth()
                 self?.tableView.reloadData()

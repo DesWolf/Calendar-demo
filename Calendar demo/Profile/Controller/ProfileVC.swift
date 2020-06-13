@@ -1,5 +1,5 @@
 //
-//  SettingsVC.swift
+//  DetailedDayVC.swift
 //  Calendar demo
 //
 //  Created by Максим Окунеев on 4/21/20.
@@ -9,12 +9,11 @@
 import UIKit
 import SwiftKeychainWrapper
 
-class SettingsVC: UIViewController {
-
+class ProfileVC: UIViewController {
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
     }
     
     @IBAction func signOut(_ sender: Any) {
@@ -28,6 +27,7 @@ class SettingsVC: UIViewController {
         appDelegate?.window??.rootViewController = loginPage
         
     }
-    
-
 }
+
+
+

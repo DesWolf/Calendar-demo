@@ -19,11 +19,12 @@ class AddMeetingTVC: UITableViewController {
     @IBOutlet weak var endLessonLabel: UILabel!
     @IBOutlet weak var endLessonDatePicker: UIDatePicker!
     @IBOutlet weak var repeatLessonLabel: UILabel!
+    @IBOutlet weak var endOfRepeatLessonCell: UITableViewCell!
     @IBOutlet weak var endOfRepeatLessonLabel: UILabel!
+    @IBOutlet weak var priceCell: UITableViewCell!
     @IBOutlet weak var priceTF: UITextField!
     @IBOutlet weak var notificationTypeLabel: UILabel!
     @IBOutlet weak var noteTV: UITextView!
-    
     
     var editLesson: CalendarModel?
     var student: StudentModel?
@@ -70,6 +71,8 @@ extension AddMeetingTVC {
         setupStartLesson()
         setupEndLesson()
         setupNavigationBar()
+        priceCell.backgroundColor = .bgStudent
+        endOfRepeatLessonCell.isHidden  = true
         tableView.backgroundColor = .bgStudent
     }
     
@@ -120,17 +123,22 @@ extension AddMeetingTVC {
         }
         
         if let disciplineTVC = segue.source as? DisciplinesForLessonTVC {
-            self.disciplineLabel.text = "\(disciplineTVC.selectedDiscipline ?? "")"
+            self.disciplineLabel.text = disciplineTVC.selectedDiscipline
         }
         
         if let repeatTVC = segue.source as? RepeatTVC {
             self.repeatLessonLabel.text = repeatTVC.repeatLesson.rawValue
-            guard let date = repeatTVC.endOfRepeat else { return }
-            self.endOfRepeatLessonLabel.text = displayedDate(str: "\(date)")
+            if repeatTVC.repeatLesson.rawValue != RepeatLesson.never.rawValue {
+            self.endOfRepeatLessonLabel.text = repeatTVC.endOfRepeat ?? ""
+            endOfRepeatLessonCell.isHidden = false
+            } else {
+            endOfRepeatLessonCell.isHidden = true
+            }
+            tableView.reloadData()
         }
         
         if let notifTVC = segue.source as? NotificationTVC {
-            self.notificationTypeLabel.text = "\(notifTVC.selectedNotification ?? "")"
+            self.notificationTypeLabel.text = "\(notifTVC.selectedNotification )"
         }
     }
     
@@ -145,10 +153,10 @@ extension AddMeetingTVC {
             disTVC.selectedDiscipline =  disciplineLabel.text ?? ""
         case "repeatLesson":
             guard let repeatTVC = segue.destination as? RepeatTVC else { return }
-            repeatTVC.repeatLesson = RepeatLesson(rawValue: editLesson?.repeatLesson ?? "") ?? RepeatLesson.never
+            repeatTVC.endOfRepeat = endOfRepeatLessonLabel.text ?? ""
         case "notification":
             guard let notifTVC = segue.destination as? NotificationTVC else { return }
-            notifTVC.selectedNotification =  notificationTypeLabel.text ?? ""
+            notifTVC.selectedNotification =  notificationTypeLabel.text ?? RepeatLesson.never.rawValue
         default:
             return
         }
@@ -160,12 +168,15 @@ extension AddMeetingTVC {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let startDatePicker = IndexPath(row: 1, section: 2)
         let endDatePicker = IndexPath(row: 3, section: 2)
+        let endOfRepeat = IndexPath(row: 5, section: 2)
         
         switch indexPath{
         case startDatePicker:
             return CGFloat(startLessonDatePicker.isHidden ? 0.0 : 216.0)
         case endDatePicker:
             return CGFloat(endLessonDatePicker.isHidden ? 0.0 : 216.0)
+        case endOfRepeat:
+                return CGFloat(endOfRepeatLessonCell.isHidden ? 0.0 : 43.5)
         default:
             return super.tableView(tableView, heightForRowAt: indexPath)
         }

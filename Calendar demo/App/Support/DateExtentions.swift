@@ -30,13 +30,11 @@ extension Date {
         return Calendar(identifier: .gregorian).date(byAdding: components, to: currentMonth)!
     }
     
-//    func convertCVCalendarDate(format: String) -> String {
-//        let date = Date()
-//        let formatter = DateFormatter()
-//        formatter.dateFormat = format
-//
-//        return formatter.string(from: date)
-//    }
+    func convertStrToDate(str: String) -> Date {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "dd.MM.yyyy"
+        return dateFormatter.date(from: str)!
+    }
     
     func convertCVCalendarDate(date: String) -> String{
         var result = ""

@@ -29,7 +29,7 @@ class DisciplinesTVC: UITableViewController {
 //MARK: Set Navigation Bar
 extension DisciplinesTVC {
 private func setupNavigationBar() {
-   var nav = self.navigationController?.navigationBar
+    let nav = self.navigationController?.navigationBar
     
     navigationItem.leftBarButtonItem?.title = "Отмена"
     navigationItem.leftBarButtonItem?.tintColor = .white
