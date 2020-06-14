@@ -17,7 +17,7 @@ struct CalendarModel: Decodable {
     let discipline: String?
     let dateStart: String?
     let timeStart: String?
-    let duration: String?
+    let duration: [String]?
     let dateEnd: String?
     let timeEnd:  String?
     let repeatLesson: String?
@@ -26,6 +26,7 @@ struct CalendarModel: Decodable {
     let notificationType: String?
     let note: String?
     let statusPay: Int?
+    let paymentDate: String?
 }
 
 //struct Duration: Decodable, Comparable {

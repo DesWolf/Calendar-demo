@@ -110,12 +110,7 @@ extension CalendarVC {
     }
 }
 
-//MARK: Alert
-extension CalendarVC {
-    func simpleAlert(message: String) {
-        UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
-    }
-}
+
 
 //MARK: CVCalendar MenuViewDelegate, CVCalendarViewDelegate
 extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
@@ -229,3 +224,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
 
 
 
+//MARK: Alert
+extension CalendarVC {
+    func simpleAlert(message: String) {
+        UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
+    }
+}

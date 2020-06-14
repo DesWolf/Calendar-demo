@@ -15,18 +15,18 @@ class PaymentTVC: UITableViewController {
     @IBOutlet weak var paymentPicker: UIDatePicker!
     @IBOutlet weak var notPaidCheckImage: UIImageView!
     
-//    var repeatLesson: RepeatLesson = .never
-    
+    var payment = ""
     var paymentDate: String?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureScreen()
+        print(payment)
     }
     
     @IBAction func paimentChanged(sender: UIDatePicker) {
         dateOfPaymentLabel.text = displayedDate(str: "\(paymentPicker.date)")
-        paymentDate = "\(paymentPicker.date)"
+        paymentDate = displayedDate(str: "\(paymentPicker.date)")
     }
 }
 
@@ -36,10 +36,12 @@ extension PaymentTVC {
         setupNavigationBar()
         setupPicker()
         
-        if paymentDate == nil {
-            notPaidCheckImage.image =  #imageLiteral(resourceName: "check")
+        if payment == "Не оплаченно" {
+            notPaidCheckImage.image =  #imageLiteral(resourceName: "checkmark")
+            payment = "Не оплаченно"
         }  else {
-            paidCheckImage.image = #imageLiteral(resourceName: "check")
+            paidCheckImage.image = #imageLiteral(resourceName: "checkmark")
+            payment = "Оплаченно"
             dateOfPaymentLabel.text = paymentDate ?? ""
         }
     }
@@ -51,12 +53,22 @@ extension PaymentTVC {
     
     private func setupPicker() {
         
-        dateOfPaymentLabel.text = displayedDate(str: "\(paymentPicker.date)")
-        dateOfPaymentLabel.isHidden = true
+        if payment == "Не оплаченно" {
+            dateOfPaymentLabel.text = displayedDate(str: "\(paymentPicker.date)")
+            dateOfPaymentLabel.isHidden = true
+            
+            paymentPicker.datePickerMode = .date
+            paymentPicker.setDate(Date(), animated: true)
+            paymentPicker.isHidden = true
+        } else {
+            dateOfPaymentLabel.text = paymentDate
+            dateOfPaymentLabel.isHidden = false
+            
+            paymentPicker.datePickerMode = .date
+            paymentPicker.setDate(Date().convertStrToDate(str: paymentDate ?? "01.01.2021"), animated: true)
+            paymentPicker.isHidden = false
+        }
         
-        paymentPicker.datePickerMode = .date
-        paymentPicker.setDate(Date(), animated: true)
-        paymentPicker.isHidden = true
     }
     
     private func displayedDate(str: String) -> String {
@@ -70,9 +82,9 @@ extension PaymentTVC {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
         switch indexPath.row{
-        case 1:
-            return CGFloat(dateOfPaymentLabel.isHidden ? 0.0 : 44.0)
         case 2:
+            return CGFloat(dateOfPaymentLabel.isHidden ? 0.0 : 44.0)
+        case 3:
             return CGFloat(paymentPicker.isHidden ? 0.0 : 216.0)
         default:
             return super.tableView(tableView, heightForRowAt: indexPath)
@@ -82,18 +94,19 @@ extension PaymentTVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-         
-            paidCheckImage.image =  #imageLiteral(resourceName: "check")
-            notPaidCheckImage.image = UIImage()
+            payment = "Не оплаченно"
+            notPaidCheckImage.image =  #imageLiteral(resourceName: "checkmark")
+            paidCheckImage.image = #imageLiteral(resourceName: "oval")
             if !dateOfPaymentLabel.isHidden {
                 dateOfPaymentLabel.isHidden = true
                 paymentPicker.isHidden = true
                 pickerAnimation(indexPath: indexPath)
+                
             }
-        case 3:
-
-            notPaidCheckImage.image = #imageLiteral(resourceName: "check")
-            paidCheckImage.image = UIImage()
+        case 1:
+            payment = "Оплаченно"
+            notPaidCheckImage.image =  #imageLiteral(resourceName: "oval")
+            paidCheckImage.image = #imageLiteral(resourceName: "checkmark")
             if dateOfPaymentLabel.isHidden {
                 dateOfPaymentLabel.isHidden = false
                 paymentPicker.isHidden = false

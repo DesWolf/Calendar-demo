@@ -14,25 +14,40 @@ public enum CalendarApi {
     
     case showLesson(lessonId: Int)
     
-    case addLesson(teacherId: String,
-        name: String,
-        studentId: String,
-        dateStart: String,
-        dateEnd: String,
+    case addLesson(lessonName: String,
         place: String,
+        studentName: String,
+        studentSurname: String,
+        discipline: String,
+        dateStart: String,
+        timeStart: String,
+        dateEnd: String,
+        timeEnd: String,
+        repeatLesson: String,
+        endRepeatLesson: String,
+        price: Int,
+        notificationType: String,
         note: String,
-        price: String,
-        discipline: String)
+        statusPay: Int)
     
-    case changeLesson(teacherId: String,
-        name: String,
-        studentId: String,
-        dateStart: String,
-        dateEnd: String,
+    case changeLesson(lessonId: Int,
+        lessonName: String,
         place: String,
+        studentName: String,
+        studentSurname: String,
+        discipline: String,
+        dateStart: String,
+        timeStart: String,
+        duration: [String],
+        dateEnd: String,
+        timeEnd: String,
+        repeatLesson: String,
+        endRepeatLesson: String,
+        price: Int,
+        notificationType: String,
         note: String,
-        price: String,
-        discipline: String)
+        statusPay: Int,
+        paymentDate: String)
     
     case deleteLesson(lessonId: Int)
 }
@@ -58,9 +73,9 @@ extension CalendarApi: EndPointType {
             return "show"
         case .showLesson(let studentId):
             return "\(studentId)"
-        case .addLesson(_, _, _, _, _, _, _, _, _):
+        case .addLesson(_, _, _, _, _, _, _, _, _, _, _, _, _, _, _):
             return "add"
-        case .changeLesson(_, _, _, _, _, _, _, _, _):
+        case .changeLesson(_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _):
             return "update"
         case .deleteLesson(_):
             return "delete"
@@ -73,9 +88,9 @@ extension CalendarApi: EndPointType {
             return .get
         case .showLesson(_):
             return .get
-        case .addLesson(_, _, _, _, _, _, _, _, _):
+        case .addLesson(_, _, _, _, _, _, _, _, _, _, _, _, _, _, _):
             return .post
-        case .changeLesson(_, _, _, _, _, _, _, _, _):
+        case .changeLesson(_, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _, _):
             return .patch
         case .deleteLesson(_):
             return .delete
@@ -99,52 +114,84 @@ extension CalendarApi: EndPointType {
                                                 urlParameters: ["lessonId": lessonId],
                                                 additionHeaders: headers)
             
-        case .addLesson(let teacherId,
-                        let name,
-                        let studentId,
-                        let dateStart,
-                        let dateEnd,
-                        let place,
-                        let note,
-                        let price,
-                        let discipline):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacherId,
-                                                                 "name": name,
-                                                                 "studentId": studentId,
-                                                                 "dateStart": dateStart,
-                                                                 "dateEnd": dateEnd,
-                                                                 "place": place,
-                                                                 "note": note,
-                                                                 "price": price,
-                                                                 "discipline": discipline],
-                                                bodyEncoding: .jsonEncoding,
-                                                urlParameters: nil,
+        case .addLesson(
+            let lessonName,
+            let place,
+            let studentName,
+            let studentSurname,
+            let discipline,
+            let dateStart,
+            let timeStart,
+            let dateEnd,
+            let timeEnd,
+            let repeatLesson,
+            let endRepeatLesson,
+            let price,
+            let notificationType,
+            let note,
+            let statusPay):
+            return .requestParametersAndHeaders(bodyParameters: [
+                "lessonName": lessonName,
+                "place": place,
+                "studentName": studentName,
+                "studentSurname": studentSurname,
+                "discipline": discipline,
+                "dateStart": dateStart,
+                "timeStart": timeStart,
+                "dateEnd": dateEnd,
+                "timeEnd": timeEnd,
+                "repeatLesson": repeatLesson,
+                "endRepeatLesson": endRepeatLesson,
+                "price": price,
+                "notificationType": notificationType,
+                "note": note,
+                "statusPay": statusPay],
+                                                bodyEncoding: .urlAndJsonEncoding,
+                                                urlParameters: ["teacherId": teacheId],
                                                 additionHeaders: headers)
-        case .changeLesson(let teacherId,
-                           let name,
-                           let studentId,
-                           let dateStart,
-                           let dateEnd,
+        case .changeLesson(let lessonId,
+                           let lessonName,
                            let place,
-                           let note,
+                           let studentName,
+                           let studentSurname,
+                           let discipline,
+                           let dateStart,
+                           let timeStart,
+                           let duration,
+                           let dateEnd,
+                           let timeEnd,
+                           let repeatLesson,
+                           let endRepeatLesson,
                            let price,
-                           let discipline):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacherId,
-                                                                 "name": name,
-                                                                 "studentId": studentId,
-                                                                 "dateStart": dateStart,
-                                                                 "dateEnd": dateEnd,
+                           let notificationType,
+                           let note,
+                           let statusPay,
+                           let paymentDate):
+            return .requestParametersAndHeaders(bodyParameters: ["lessonId": lessonId,
+                                                                 "lessonName": lessonName,
                                                                  "place": place,
-                                                                 "note": note,
+                                                                 "studentName": studentName,
+                                                                 "studentSurname": studentSurname,
+                                                                 "discipline": discipline,
+                                                                 "dateStart": dateStart,
+                                                                 "timeStart": timeStart,
+                                                                 "duration": duration,
+                                                                 "dateEnd": dateEnd,
+                                                                 "timeEnd": timeEnd,
+                                                                 "repeatLesson": repeatLesson,
+                                                                 "endRepeatLesson": endRepeatLesson,
                                                                  "price": price,
-                                                                 "discipline": discipline],
-                                                bodyEncoding: .jsonEncoding,
-                                                urlParameters: nil,
+                                                                 "notificationType": notificationType,
+                                                                 "note": note,
+                                                                 "statusPay": statusPay,
+                                                                 "paymentDate": paymentDate],
+                                                bodyEncoding: .urlAndJsonEncoding,
+                                                urlParameters: ["teacherId": teacheId],
                                                 additionHeaders: headers)
             
         case .deleteLesson(let lessonId):
             return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacheId,
-                                                                "lessonId": lessonId],
+                                                                 "lessonId": lessonId],
                                                 bodyEncoding: .jsonEncoding,
                                                 urlParameters: nil,
                                                 additionHeaders: headers)

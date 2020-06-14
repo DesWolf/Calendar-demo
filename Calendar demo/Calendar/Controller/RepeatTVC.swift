@@ -26,7 +26,7 @@ class RepeatTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureScreen()
-        print(endOfRepeat)
+        
     }
     
     @IBAction func endDateChanged(sender: UIDatePicker) {

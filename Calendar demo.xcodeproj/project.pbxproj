@@ -33,7 +33,7 @@
 		9E5C05E9246D930700EADD5C /* LoginEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C05E8246D930700EADD5C /* LoginEndPoint.swift */; };
 		9E5C05EB246D971400EADD5C /* NetworkManagerLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C05EA246D971400EADD5C /* NetworkManagerLogin.swift */; };
 		9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631936244F4781007DE5F1 /* MeetingCell.swift */; };
-		9E631939244F50B4007DE5F1 /* AddMeetingTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631938244F50B4007DE5F1 /* AddMeetingTVC.swift */; };
+		9E631939244F50B4007DE5F1 /* AddOrEditLessonTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631938244F50B4007DE5F1 /* AddOrEditLessonTVC.swift */; };
 		9E63193A244F6101007DE5F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B4244D92AB00FA529B /* Main.storyboard */; };
 		9E6B56A8248B945C00042E2B /* StringExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6B56A7248B945C00042E2B /* StringExtention.swift */; };
 		9E6B56AA248B987E00042E2B /* DateExtentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6B56A9248B987E00042E2B /* DateExtentions.swift */; };
@@ -109,7 +109,7 @@
 		9E5C05E8246D930700EADD5C /* LoginEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndPoint.swift; sourceTree = "<group>"; };
 		9E5C05EA246D971400EADD5C /* NetworkManagerLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerLogin.swift; sourceTree = "<group>"; };
 		9E631936244F4781007DE5F1 /* MeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCell.swift; sourceTree = "<group>"; };
-		9E631938244F50B4007DE5F1 /* AddMeetingTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMeetingTVC.swift; sourceTree = "<group>"; };
+		9E631938244F50B4007DE5F1 /* AddOrEditLessonTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditLessonTVC.swift; sourceTree = "<group>"; };
 		9E6B56A7248B945C00042E2B /* StringExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtention.swift; sourceTree = "<group>"; };
 		9E6B56A9248B987E00042E2B /* DateExtentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtentions.swift; sourceTree = "<group>"; };
 		9E6C0E622482E75C0099F300 /* Calendar demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Calendar demo.entitlements"; sourceTree = "<group>"; };
@@ -220,11 +220,11 @@
 			isa = PBXGroup;
 			children = (
 				9E7A73B2244D92AB00FA529B /* CalendarVC.swift */,
-				9E631938244F50B4007DE5F1 /* AddMeetingTVC.swift */,
+				9E8C5F0A2494DBCF00332B61 /* LessonDetailedTVC.swift */,
+				9E631938244F50B4007DE5F1 /* AddOrEditLessonTVC.swift */,
 				9E374A9E2492896B0082A119 /* StudentsForLessonTVC.swift */,
 				9E374A9A24922FA20082A119 /* DisciplinesForLessonTVC.swift */,
 				9E01A2A5248E75840044AD7F /* RepeatTVC.swift */,
-				9E8C5F0A2494DBCF00332B61 /* LessonDetailedTVC.swift */,
 				9E8C5F0C2494DE1000332B61 /* PaymentTVC.swift */,
 				9E86E9152493784A00FD63AA /* NotificationTVC.swift */,
 			);
@@ -376,9 +376,9 @@
 		9E5C05F0246D9CB900EADD5C /* Manager */ = {
 			isa = PBXGroup;
 			children = (
-				9E3570D92488DFC400F8F997 /* NetworkManagerCalendar.swift */,
-				9EC155A7246D633500D2C776 /* NetworkManagerStudents.swift */,
 				9E5C05EA246D971400EADD5C /* NetworkManagerLogin.swift */,
+				9EC155A7246D633500D2C776 /* NetworkManagerStudents.swift */,
+				9E3570D92488DFC400F8F997 /* NetworkManagerCalendar.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -668,7 +668,7 @@
 				9E0A5E2B244F3FC200188CDE /* ProfileVC.swift in Sources */,
 				9E3570D82488DF6D00F8F997 /* CalendarEndPoint.swift in Sources */,
 				9EE848AF2487C868008BABB3 /* PopUpVC.swift in Sources */,
-				9E631939244F50B4007DE5F1 /* AddMeetingTVC.swift in Sources */,
+				9E631939244F50B4007DE5F1 /* AddOrEditLessonTVC.swift in Sources */,
 				9E374A9B24922FA30082A119 /* DisciplinesForLessonTVC.swift in Sources */,
 				9E86E9162493784A00FD63AA /* NotificationTVC.swift in Sources */,
 				9E7C134A247D47A70095C57E /* StudentProfileTVC.swift in Sources */,

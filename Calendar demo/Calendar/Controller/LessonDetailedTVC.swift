@@ -9,82 +9,149 @@
 import UIKit
 
 class LessonDetailedTVC: UITableViewController {
-
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var placeLabel: UILabel!
+    @IBOutlet weak var disciplineLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var studentLabel: UILabel!
+    @IBOutlet weak var noteTV: UITextView!
+    @IBOutlet weak var repeatLabel: UILabel!
+    @IBOutlet weak var notificationLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var paymentLabel: UILabel!
+    
+    var lesson: CalendarModel?
+    private var paymentDate: String?
+    private let networkManagerCalendar =  NetworkManagerCalendar()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem
+        setNavigationController()
+        fetchDetailedLesson(lessonId: lesson?.lessonId ?? 0)
     }
-
-    // MARK: - Table view data source
-
-    override func numberOfSections(in tableView: UITableView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+    
+    deinit {
+        print("deinit", LessonDetailedTVC.self)
     }
+}
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return 0
+//MARK: Setup Screen
+extension LessonDetailedTVC {
+    func setupScreen(lesson: CalendarModel?) {
+        nameLabel.text = lesson?.lessonName ?? ""
+        placeLabel.text = lesson?.place ?? ""
+        disciplineLabel.text = lesson?.discipline ?? ""
+        timeLabel.text = "\(lesson?.timeStart ?? "") - \(lesson?.timeEnd ?? "")"
+        dateLabel.text = "\(lesson?.dateStart ?? "") - \(lesson?.dateEnd ?? "")"
+        studentLabel.text = "\(lesson?.studentName ?? "") - \(lesson?.studentSurname ?? "")"
+        noteTV.text = lesson?.note ?? ""
+        repeatLabel.text = lesson?.repeatLesson ?? ""
+        notificationLabel.text = lesson?.notificationType ?? ""
+        priceLabel.text = "\(lesson?.price ?? 0)"
+        paymentLabel.text = "\(lesson?.statusPay ?? 0)"
     }
-
-    /*
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
-
-        // Configure the cell...
-
-        return cell
+    
+    private func setNavigationController() {
+        let navBar = self.navigationController?.navigationBar
+        
+        navBar?.setBackgroundImage(UIImage(), for: .default)
+        navBar?.shadowImage = UIImage()
+        navBar?.isTranslucent = true
+        
+        navigationItem.leftBarButtonItem?.title = "Отмена"
+        navigationItem.leftBarButtonItem?.tintColor = .white
+        navigationItem.rightBarButtonItem?.tintColor = .white
+        
+        tableView.backgroundColor = .bgStudent
+        
     }
-    */
+}
 
-    /*
-    // Override to support conditional editing of the table view.
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
+//MARK: UITextViewDelegate
+extension LessonDetailedTVC: UITextViewDelegate{
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL,
+                  in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        UIApplication.shared.open(URL)
+        return false
     }
-    */
+}
 
-    /*
-    // Override to support editing the table view.
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
+
+
+//MARK: TableViewDelegate
+extension LessonDetailedTVC {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        switch indexPath.row {
+        case 3:
+            return UITableView.automaticDimension
+        default:
+            return super.tableView(tableView, heightForRowAt: indexPath)
+        }
     }
-    */
-
-    /*
-    // Override to support rearranging the table view.
-    override func tableView(_ tableView: UITableView, moveRowAt fromIndexPath: IndexPath, to: IndexPath) {
-
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.backgroundColor = indexPath == [2,0] ? .bgStudent : .white
     }
-    */
+}
 
-    /*
-    // Override to support conditional rearranging of the table view.
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the item to be re-orderable.
-        return true
+// MARK: Navigation
+extension LessonDetailedTVC {
+    @IBAction func unwiSegueCurrentLesson(_ segue: UIStoryboardSegue) {
+
+        
+        guard let desTVC = segue.source as? PaymentTVC else { return }
+        let textCollor: UIColor = desTVC.payment == "Не оплаченно" ? .systemRed : .systemGreen
+        self.paymentLabel.textColor = textCollor
+        self.paymentLabel.text = desTVC.payment
+        self.paymentDate = desTVC.dateOfPaymentLabel.text
+        print(self.paymentDate)
+        self.tableView.reloadData()
     }
-    */
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+        switch segue.identifier {
+        case "editLesson":
+            guard let destVC = segue.destination as? UINavigationController,
+                let targetController = destVC.topViewController as? AddOrEditLessonTVC else { return }
+            targetController.lesson = lesson
+            
+        case "payment":
+            guard let destVC = segue.destination as? PaymentTVC else { return }
+            destVC.payment = paymentLabel.text ?? "Не оплаченно"
+            destVC.paymentDate = paymentDate
+        case .none:
+            return
+        case .some(_):
+            return
+        }
     }
-    */
+}
 
+//MARK: Network
+extension LessonDetailedTVC {
+    func fetchDetailedLesson(lessonId: Int) {
+        networkManagerCalendar.fetchLesson(lessonId: lessonId) { [weak self]  (lesson, error) in
+            guard let lesson = lesson else {
+                print(error ?? "")
+                DispatchQueue.main.async {
+                    self?.simpleAlert(message: error ?? "")
+                }
+                return
+            }
+            DispatchQueue.main.async {
+                self?.lesson = lesson
+                self?.setupScreen(lesson: lesson)
+                self?.tableView.reloadData()
+            }
+        }
+    }
+}
+
+//MARK: Alert
+extension LessonDetailedTVC  {
+    func simpleAlert(message: String) {
+        UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
+    }
 }
