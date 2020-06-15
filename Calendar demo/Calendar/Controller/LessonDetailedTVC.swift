@@ -60,7 +60,7 @@ extension LessonDetailedTVC {
         navBar?.shadowImage = UIImage()
         navBar?.isTranslucent = true
         
-        navigationItem.leftBarButtonItem?.title = "Отмена"
+        navigationItem.leftBarButtonItem?.title = "Назад"
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
         
