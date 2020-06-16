@@ -63,7 +63,7 @@ extension AddOrEditLessonTVC {
             repeatLessonLabel.text = lesson?.repeatLesson ?? ""
             endOfRepeatLessonLabel.text = lesson?.endRepeatLesson ?? ""
             priceTF.text = "\(lesson?.price ?? 0)"
-            notificationTypeLabel.text = "\(lesson?.notificationType ?? "")"
+//            notificationTypeLabel.text = "\(lesson?.notificationType ?? "")"
             noteTV.text = lesson?.note ?? ""
         }
         
@@ -167,6 +167,7 @@ extension AddOrEditLessonTVC {
         lesson = CalendarModel(lessonId: lesson != nil ? lesson?.lessonId : nil,
                                lessonName: nameTF.text,
                                place: placeTF.text,
+                               studentId: lesson != nil ? lesson?.studentId : nil,
                                studentName: student?.name,
                                studentSurname: student?.surname,
                                discipline: disciplineLabel.text,
@@ -178,7 +179,7 @@ extension AddOrEditLessonTVC {
                                repeatLesson: repeatLessonLabel.text,
                                endRepeatLesson: endOfRepeatLessonLabel.text,
                                price:  Int(priceTF.text ?? "0"),
-                               notificationType: notificationTypeLabel.text,
+//                               notificationType: notificationTypeLabel.text,
                                note: noteTV.text,
                                statusPay: 0,
                                paymentDate: "")
@@ -195,8 +196,7 @@ extension AddOrEditLessonTVC {
     private func addNewLesson(lesson: CalendarModel) {
         networkManagerCalendar.addLesson(lessonName: lesson.lessonName ?? "",
                                          place: lesson.place ?? "",
-                                         studentName: lesson.studentName ?? "",
-                                         studentSurname: lesson.studentSurname ?? "",
+                                         studentId: lesson.studentId ?? 0,
                                          discipline: lesson.discipline ?? "",
                                          dateStart: lesson.dateStart ?? "",
                                          timeStart: lesson.timeStart ?? "",
@@ -205,9 +205,8 @@ extension AddOrEditLessonTVC {
                                          repeatLesson: lesson.repeatLesson ?? "",
                                          endRepeatLesson: lesson.endRepeatLesson ?? "",
                                          price: lesson.price ?? 0,
-                                         notificationType: lesson.notificationType ?? "",
-                                         note: lesson.note ?? "",
-                                         statusPay: lesson.statusPay ?? 0)
+//                                         notificationType: lesson.notificationType ?? "",
+                                         note: lesson.note ?? "")
         { [weak self]  (responce, error)  in
             guard let responce = responce else {
                 print(error ?? "")
@@ -224,18 +223,16 @@ extension AddOrEditLessonTVC {
         networkManagerCalendar.changeLesson(lessonId: lesson.lessonId ?? 0,
                                             lessonName: lesson.lessonName ?? "",
                                             place: lesson.place ?? "",
-                                            studentName: lesson.studentName ?? "",
-                                            studentSurname: lesson.studentSurname ?? "",
+                                            studentId: lesson.studentId ?? 0,
                                             discipline: lesson.discipline ?? "",
                                             dateStart: lesson.dateStart ?? "",
-                                            duration: lesson.duration ?? [""],
                                             timeStart: lesson.timeStart ?? "",
                                             dateEnd: lesson.dateEnd ?? "",
                                             timeEnd: lesson.timeEnd ?? "",
                                             repeatLesson: lesson.repeatLesson ?? "",
                                             endRepeatLesson: lesson.endRepeatLesson ?? "",
                                             price: lesson.price ?? 0,
-                                            notificationType: lesson.notificationType ?? "",
+//                                            notificationType: lesson.notificationType ?? "",
                                             note: lesson.note ?? "",
                                             statusPay: lesson.statusPay ?? 0,
                                             paymentDate: lesson.paymentDate ?? "")

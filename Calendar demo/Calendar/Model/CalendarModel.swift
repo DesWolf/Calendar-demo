@@ -12,6 +12,7 @@ struct CalendarModel: Decodable {
     let lessonId: Int?
     let lessonName: String?
     let place: String?
+    let studentId: Int?
     let studentName: String?
     let studentSurname: String?
     let discipline: String?
@@ -23,23 +24,10 @@ struct CalendarModel: Decodable {
     let repeatLesson: String?
     let endRepeatLesson: String?
     let price: Int?
-    let notificationType: String?
+//    let notificationType: String?
     let note: String?
     let statusPay: Int?
     let paymentDate: String?
 }
 
-//struct Duration: Decodable, Comparable {
-//    let dateStart: String
-//    let dateEnd: String
-//
-//static func < (lhs: Duration, rhs: Duration) -> Bool {
-//    if lhs.dateStart != rhs.dateStart {
-//        return lhs.dateStart < rhs.dateStart
-//    } else if lhs.dateStart != rhs.dateStart {
-//        return lhs.dateStart < rhs.dateStart
-//    } else {
-//        return lhs.dateStart < rhs.dateStart
-//    }
-//}
-//}
+

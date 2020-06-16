@@ -48,7 +48,7 @@ extension LessonDetailedTVC {
         studentLabel.text = "\(lesson?.studentName ?? "") - \(lesson?.studentSurname ?? "")"
         noteTV.text = lesson?.note ?? ""
         repeatLabel.text = lesson?.repeatLesson ?? ""
-        notificationLabel.text = lesson?.notificationType ?? ""
+//        notificationLabel.text = lesson?.notificationType ?? ""
         priceLabel.text = "\(lesson?.price ?? 0)"
         paymentLabel.text = "\(lesson?.statusPay ?? 0)"
     }
