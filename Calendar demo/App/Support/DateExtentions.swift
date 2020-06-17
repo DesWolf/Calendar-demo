@@ -57,7 +57,5 @@ extension Date {
         
         return result
     }
-    
-
 }
 

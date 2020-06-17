@@ -1041,7 +1041,23 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Новая встреча" largeTitleDisplayMode="always" id="Sdb-kX-ZaT">
-                        <barButtonItem key="rightBarButtonItem" title="Готово" id="6CP-1M-sVV"/>
+                        <barButtonItem key="leftBarButtonItem" title="Назад" id="f3d-Lq-4Zd">
+                            <connections>
+                                <action selector="cancelButton:" destination="szI-nx-dll" id="wZW-kd-F0y"/>
+                            </connections>
+                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem title="Готово" id="6CP-1M-sVV">
+                                <connections>
+                                    <segue destination="bom-sM-eKo" kind="unwind" unwindAction="unwiSegueCurrentLesson:" id="P4q-SQ-gYb"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Notif" id="jl5-gE-fdd">
+                                <connections>
+                                    <action selector="notifCheck:" destination="szI-nx-dll" id="NbB-b6-WVm"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
@@ -1063,6 +1079,7 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceo-cR-O4v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="bom-sM-eKo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-3432" y="-2210"/>
         </scene>
@@ -1484,7 +1501,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="B1o-IL-lVB"/>
+        <segue reference="vrN-SS-x7m"/>
         <segue reference="Fp8-DV-5fm"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -22,6 +22,7 @@
 		9E0A5E2B244F3FC200188CDE /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2A244F3FC200188CDE /* ProfileVC.swift */; };
 		9E0A5E2E244F410900188CDE /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2D244F410900188CDE /* StudentModel.swift */; };
 		9E0A5E30244F411400188CDE /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2F244F411400188CDE /* NotificationModel.swift */; };
+		9E1B30A6249A32BB00166117 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1B30A5249A32BB00166117 /* Notifications.swift */; };
 		9E3570D82488DF6D00F8F997 /* CalendarEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3570D72488DF6D00F8F997 /* CalendarEndPoint.swift */; };
 		9E3570DA2488DFC400F8F997 /* NetworkManagerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3570D92488DFC400F8F997 /* NetworkManagerCalendar.swift */; };
 		9E374A9B24922FA30082A119 /* DisciplinesForLessonTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374A9A24922FA20082A119 /* DisciplinesForLessonTVC.swift */; };
@@ -46,7 +47,6 @@
 		9E80D0A62453268300FECAF7 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A52453268300FECAF7 /* CalendarModel.swift */; };
 		9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */; };
 		9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */; };
-		9E80D0D02454AED900FECAF7 /* NotificationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CF2454AED900FECAF7 /* NotificationCell.swift */; };
 		9E862343248BBDBF0004B3FD /* UIVewControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E862342248BBDBF0004B3FD /* UIVewControllerExtention.swift */; };
 		9E86E9162493784A00FD63AA /* NotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E86E9152493784A00FD63AA /* NotificationTVC.swift */; };
 		9E86E9182493789600FD63AA /* NotificationTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E86E9172493789600FD63AA /* NotificationTVCell.swift */; };
@@ -98,6 +98,7 @@
 		9E0A5E2A244F3FC200188CDE /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		9E0A5E2D244F410900188CDE /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 		9E0A5E2F244F411400188CDE /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		9E1B30A5249A32BB00166117 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		9E3570D72488DF6D00F8F997 /* CalendarEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEndPoint.swift; sourceTree = "<group>"; };
 		9E3570D92488DFC400F8F997 /* NetworkManagerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerCalendar.swift; sourceTree = "<group>"; };
 		9E374A9A24922FA20082A119 /* DisciplinesForLessonTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesForLessonTVC.swift; sourceTree = "<group>"; };
@@ -125,7 +126,6 @@
 		9E80D0A52453268300FECAF7 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
 		9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTVCell.swift; sourceTree = "<group>"; };
 		9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaledDayService.swift; sourceTree = "<group>"; };
-		9E80D0CF2454AED900FECAF7 /* NotificationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCell.swift; sourceTree = "<group>"; };
 		9E862342248BBDBF0004B3FD /* UIVewControllerExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVewControllerExtention.swift; sourceTree = "<group>"; };
 		9E86E9152493784A00FD63AA /* NotificationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTVC.swift; sourceTree = "<group>"; };
 		9E86E9172493789600FD63AA /* NotificationTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTVCell.swift; sourceTree = "<group>"; };
@@ -212,6 +212,7 @@
 			isa = PBXGroup;
 			children = (
 				9E80D0A52453268300FECAF7 /* CalendarModel.swift */,
+				9E0A5E2F244F411400188CDE /* NotificationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -244,7 +245,6 @@
 			children = (
 				9E0538BF247C1BD100AAC0AA /* Profile.storyboard */,
 				9E631936244F4781007DE5F1 /* MeetingCell.swift */,
-				9E80D0CF2454AED900FECAF7 /* NotificationCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -260,7 +260,6 @@
 		9E0538BD247C1B9600AAC0AA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9E0A5E2F244F411400188CDE /* NotificationModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -485,6 +484,7 @@
 			isa = PBXGroup;
 			children = (
 				9E7A73AE244D92AB00FA529B /* AppDelegate.swift */,
+				9E1B30A5249A32BB00166117 /* Notifications.swift */,
 				9EE848AC2486924B008BABB3 /* TabBarConroller.swift */,
 			);
 			path = Controller;
@@ -639,6 +639,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9E1B30A6249A32BB00166117 /* Notifications.swift in Sources */,
 				9E7A73B3244D92AB00FA529B /* CalendarVC.swift in Sources */,
 				9E80D0A62453268300FECAF7 /* CalendarModel.swift in Sources */,
 				9EF22899247A681200C1AE56 /* StartScreen.swift in Sources */,
@@ -654,7 +655,6 @@
 				9EC155B0246D638800D2C776 /* HTTPTask.swift in Sources */,
 				9E374A9D249241CF0082A119 /* DisciplineLessonTVCell.swift in Sources */,
 				9EC155B6246D63C300D2C776 /* URLParameterEncoding.swift in Sources */,
-				9E80D0D02454AED900FECAF7 /* NotificationCell.swift in Sources */,
 				9E86E9182493789600FD63AA /* NotificationTVCell.swift in Sources */,
 				9EC155BA246D642B00D2C776 /* AlertService.swift in Sources */,
 				9E8C5F0D2494DE1000332B61 /* PaymentTVC.swift in Sources */,

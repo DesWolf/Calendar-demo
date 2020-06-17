@@ -26,14 +26,25 @@ class AddOrEditLessonTVC: UITableViewController {
     @IBOutlet weak var notificationTypeLabel: UILabel!
     @IBOutlet weak var noteTV: UITextView!
     
+    var notifications = Notifications()
     var lesson: CalendarModel?
     var student: StudentModel?
+    var notifInSeconds: Double?
     private let networkManagerCalendar =  NetworkManagerCalendar()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureScreen()
+        
+    }
+    @IBAction func notifCheck(_ sender: Any) {
+        setNotification(meetingId: 1,
+                        date: startLessonDatePicker.date,
+                        notifInSeconds: notifInSeconds ?? 0,
+                        notifDescription: notificationTypeLabel.text ?? "нет",
+                        meetingName: nameTF.text ?? "Занятие",
+                        student: "\(student?.name) \(student?.surname)")
     }
     
     @IBAction func startDateChanged(sender: UIDatePicker) {
@@ -47,7 +58,15 @@ class AddOrEditLessonTVC: UITableViewController {
     @IBAction func endDateChanged(sender: UIDatePicker) {
         endLessonLabel.text = displayedHour(str: "\(endLessonDatePicker.date)")
     }
+    @IBAction func cancelButton(_ sender: Any) {
+         dismiss(animated: true)
+    }
     
+
+    
+    deinit {
+        print("deinit", AddOrEditLessonTVC.self)
+    }
 }
 
 //MARK: Set Screen
@@ -63,7 +82,6 @@ extension AddOrEditLessonTVC {
             repeatLessonLabel.text = lesson?.repeatLesson ?? ""
             endOfRepeatLessonLabel.text = lesson?.endRepeatLesson ?? ""
             priceTF.text = "\(lesson?.price ?? 0)"
-//            notificationTypeLabel.text = "\(lesson?.notificationType ?? "")"
             noteTV.text = lesson?.note ?? ""
         }
         
@@ -139,7 +157,9 @@ extension AddOrEditLessonTVC {
         }
         
         if let notifTVC = segue.source as? NotificationTVC {
-            self.notificationTypeLabel.text = "\(notifTVC.selectedNotification )"
+            self.notificationTypeLabel.text = "\(notifTVC.selectedNotification)"
+            self.notifInSeconds = notifTVC.notifInSeconds
+            print(self.notifInSeconds)
         }
     }
     
@@ -157,7 +177,8 @@ extension AddOrEditLessonTVC {
             repeatTVC.endOfRepeat = endOfRepeatLessonLabel.text ?? ""
         case "notification":
             guard let notifTVC = segue.destination as? NotificationTVC else { return }
-            notifTVC.selectedNotification =  notificationTypeLabel.text ?? RepeatLesson.never.rawValue
+            notifTVC.selectedNotification =  notificationTypeLabel.text ?? "Нет"
+            notifTVC.notifInSeconds = notifInSeconds ?? 0
         default:
             return
         }
@@ -179,7 +200,6 @@ extension AddOrEditLessonTVC {
                                repeatLesson: repeatLessonLabel.text,
                                endRepeatLesson: endOfRepeatLessonLabel.text,
                                price:  Int(priceTF.text ?? "0"),
-//                               notificationType: notificationTypeLabel.text,
                                note: noteTV.text,
                                statusPay: 0,
                                paymentDate: "")
@@ -205,7 +225,6 @@ extension AddOrEditLessonTVC {
                                          repeatLesson: lesson.repeatLesson ?? "",
                                          endRepeatLesson: lesson.endRepeatLesson ?? "",
                                          price: lesson.price ?? 0,
-//                                         notificationType: lesson.notificationType ?? "",
                                          note: lesson.note ?? "")
         { [weak self]  (responce, error)  in
             guard let responce = responce else {
@@ -232,7 +251,6 @@ extension AddOrEditLessonTVC {
                                             repeatLesson: lesson.repeatLesson ?? "",
                                             endRepeatLesson: lesson.endRepeatLesson ?? "",
                                             price: lesson.price ?? 0,
-//                                            notificationType: lesson.notificationType ?? "",
                                             note: lesson.note ?? "",
                                             statusPay: lesson.statusPay ?? 0,
                                             paymentDate: lesson.paymentDate ?? "")
@@ -318,5 +336,16 @@ extension AddOrEditLessonTVC {
 extension AddOrEditLessonTVC  {
     func simpleAlert(message: String) {
         UIAlertController.simpleAlert(title:"Error", msg:"\(message)", target: self)
+    }
+}
+
+//MARK: Set Notification
+extension AddOrEditLessonTVC {
+    func setNotification(meetingId: Int, date: Date, notifInSeconds: Double, notifDescription: String, meetingName: String, student: String) {
+        
+        let notifDate = date.addingTimeInterval(-notifInSeconds)
+        let message = student == "" ? "Через \(notifDescription) запланировано \(meetingName) с \(student)" : "Через \(notifDescription) запланировано \(meetingName)"
+        
+        self.notifications.scheduleNotification(meetingId: meetingId, date: notifDate, title: meetingName, message: message)
     }
 }

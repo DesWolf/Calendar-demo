@@ -100,14 +100,18 @@ extension LessonDetailedTVC {
 extension LessonDetailedTVC {
     @IBAction func unwiSegueCurrentLesson(_ segue: UIStoryboardSegue) {
 
-        
-        guard let desTVC = segue.source as? PaymentTVC else { return }
+        if let desTVC = segue.source as? PaymentTVC {
         let textCollor: UIColor = desTVC.payment == "Не оплаченно" ? .systemRed : .systemGreen
         self.paymentLabel.textColor = textCollor
         self.paymentLabel.text = desTVC.payment
         self.paymentDate = desTVC.dateOfPaymentLabel.text
-        print(self.paymentDate)
+        }
+        
+        if let desTVC = segue.source as? AddOrEditLessonTVC {
+            desTVC.saveLesson()
+        }
         self.tableView.reloadData()
+            
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

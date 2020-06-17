@@ -9,13 +9,25 @@
 import UIKit
 
 class NotificationTVC: UITableViewController {
+       
+    var listOfNotif: [NotifModel] = [NotifModel(name: "Нет", description: "Нет", seconds: 0),
+                                     NotifModel(name: "5 сек", description: "За 5 сек", seconds: 5), // для теста, удалить
+                                     NotifModel(name: "5 мин", description: "За 5 мин", seconds: 60 * 5),
+                                     NotifModel(name: "15 мин", description: "За 15 мин", seconds: 60 * 15),
+                                     NotifModel(name: "30 мин", description: "За 30 мин", seconds: 60 * 30),
+                                     NotifModel(name: "1 час", description: "За 1 час", seconds: 60 * 60),
+                                     NotifModel(name: "2 часа", description: "За 2 часа", seconds: 60 * 60 * 2),
+                                     NotifModel(name: "1 день", description: "За 1 день", seconds: 60 * 60 * 24),
+                                     NotifModel(name: "2 дня", description: "За 2 дня", seconds: 60 * 60 * 24 * 2)]
     
-    var listOfNotification = ["Нет", "За 5 мин","За 15 мин","За 30 мин","За 1 час","За 2 часа","За 1 день","За 2 день"]
     public var selectedNotification = ""
+    public var notifInSeconds = 0.0
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print(selectedNotification)
         configureScreen()
+        
     }
 }
 
@@ -39,33 +51,36 @@ extension NotificationTVC {
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return listOfNotification.count
+        return listOfNotif.count
     }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell", for: indexPath) as! NotificationTVCell
-        let notif = listOfNotification[indexPath.row]
+        let notif = listOfNotif[indexPath.row]
+        
         var image = UIImage()
         
-        if selectedNotification == notif {
+        if notifInSeconds == notif.seconds {
             image = #imageLiteral(resourceName: "check")
         }
         
-        cell.configure(notification: notif, image: image)
+        cell.configure(notification: notif.description, image: image)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let cell = tableView.dequeueReusableCell(withIdentifier: "notificationCell", for: indexPath) as! NotificationTVCell
-        let notif = listOfNotification[indexPath.row]
+        let notif = listOfNotif[indexPath.row]
         
-        if notif == selectedNotification {
+        if notif.seconds == notifInSeconds {
             cell.checkImage.image = nil
-            selectedNotification = ""
+            notifInSeconds = 0
+            selectedNotification = "Нет"
         } else {
             cell.checkImage.image = #imageLiteral(resourceName: "check")
-            selectedNotification = notif
+            notifInSeconds = notif.seconds
+            selectedNotification = notif.name
         }
         tableView.reloadData()
     }
