@@ -131,7 +131,7 @@ extension AddOrEditStudentTVC {
                 }
                 return
             }
-            print("Add:",responce)
+            print("Add:",responce.studentId)
         }
     }
     
@@ -151,7 +151,7 @@ extension AddOrEditStudentTVC {
                 }
                 return
             }
-            print("change:",responce)
+            print("change:",responce.message)
         }
     }
 }

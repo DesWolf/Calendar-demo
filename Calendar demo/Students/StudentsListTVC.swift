@@ -89,15 +89,15 @@ extension StudentsListTVC {
     }
     
     private func deleteStudent(studentId: Int) {
-        networkManagerStudents.deleteStudent(studentId: studentId) { [weak self]  (deleteStudent, error)  in
-            guard let deleteStudent = deleteStudent else {
+        networkManagerStudents.deleteStudent(studentId: studentId) { [weak self]  (message, error)  in
+            guard let message = message else {
                 print(error ?? "")
                 DispatchQueue.main.async {
                     self?.simpleAlert(message: error ?? "")
                 }
                 return
             }
-            print("Delete from server:",deleteStudent)
+            print("Delete from server:",message.message)
         }
     }
 }

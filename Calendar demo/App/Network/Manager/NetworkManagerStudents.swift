@@ -79,7 +79,7 @@ struct NetworkManagerStudents {
                     phone: String,
                     email: String,
                     note: String,
-                    completion: @escaping (_ message: [String: String]?,_ error: String?)->()){
+                    completion: @escaping (_ message: ServerAnswerModel?,_ error: String?)->()){
         router.request(.addStudent( studentId: studentId,
                                     name: name,
                                     surname: surname,
@@ -102,7 +102,7 @@ struct NetworkManagerStudents {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode([String: String].self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(ServerAnswerModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -122,7 +122,7 @@ struct NetworkManagerStudents {
                     phone: String,
                     email: String,
                     note: String,
-                    completion: @escaping (_ message: [String: String]?,_ error: String?)->()){
+                    completion: @escaping (_ message: ServerAnswerModel?,_ error: String?)->()){
         router.request(.changeStudent( studentId: studentId,
                                     name: name,
                                     surname: surname,
@@ -145,7 +145,7 @@ struct NetworkManagerStudents {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode([String: String].self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(ServerAnswerModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -159,7 +159,7 @@ struct NetworkManagerStudents {
     }
 
         
-        func deleteStudent(studentId: Int, completion: @escaping (_ message: [String: String]?,_ error: String?)->()){
+        func deleteStudent(studentId: Int, completion: @escaping (_ message: ServerAnswerModel?,_ error: String?)->()){
                 router.request(.deleteStudent(studentId: studentId)) { data, response, error in
             
             if error != nil {
@@ -175,7 +175,7 @@ struct NetworkManagerStudents {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode([String: String].self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(ServerAnswerModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -187,7 +187,6 @@ struct NetworkManagerStudents {
             }
         }
     }
-    
     
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String>{
         switch response.statusCode {
