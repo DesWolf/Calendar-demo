@@ -16,7 +16,7 @@
 		9E0538C2247C224A00AAC0AA /* Calendar.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538C1247C224A00AAC0AA /* Calendar.storyboard */; };
 		9E0A5E18244ED4AD00188CDE /* StartScreenVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E17244ED4AD00188CDE /* StartScreenVC.swift */; };
 		9E0A5E20244F26CE00188CDE /* StudentsListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E1F244F26CE00188CDE /* StudentsListTVC.swift */; };
-		9E0A5E25244F271F00188CDE /* StatisticVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E24244F271F00188CDE /* StatisticVC.swift */; };
+		9E0A5E25244F271F00188CDE /* StatisticTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E24244F271F00188CDE /* StatisticTVC.swift */; };
 		9E0A5E27244F272F00188CDE /* FinanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E26244F272F00188CDE /* FinanceVC.swift */; };
 		9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E28244F39C000188CDE /* ColorsConfig.swift */; };
 		9E0A5E2B244F3FC200188CDE /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2A244F3FC200188CDE /* ProfileVC.swift */; };
@@ -57,6 +57,11 @@
 		9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */; };
 		9E92C00124815455000B45A5 /* DisciplinesTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92C00024815455000B45A5 /* DisciplinesTVCell.swift */; };
 		9EA67387247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA67386247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift */; };
+		9EB0356D249AAD0100F22C57 /* StatisticEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB0356C249AAD0100F22C57 /* StatisticEndPoint.swift */; };
+		9EB0356F249AAD0F00F22C57 /* FinaceEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB0356E249AAD0F00F22C57 /* FinaceEndPoint.swift */; };
+		9EB03571249AAD2E00F22C57 /* NetworkManagerStatistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB03570249AAD2E00F22C57 /* NetworkManagerStatistic.swift */; };
+		9EB03573249AAD3F00F22C57 /* NetworkManagerFinance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB03572249AAD3F00F22C57 /* NetworkManagerFinance.swift */; };
+		9EB03577249B6DDC00F22C57 /* StudentsNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB03576249B6DDC00F22C57 /* StudentsNavController.swift */; };
 		9EC155A2246D628000D2C776 /* StudentsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155A1246D628000D2C776 /* StudentsEndPoint.swift */; };
 		9EC155A8246D633500D2C776 /* NetworkManagerStudents.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155A7246D633500D2C776 /* NetworkManagerStudents.swift */; };
 		9EC155AA246D635500D2C776 /* EndPointType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EC155A9246D635500D2C776 /* EndPointType.swift */; };
@@ -93,7 +98,7 @@
 		9E0538C1247C224A00AAC0AA /* Calendar.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Calendar.storyboard; sourceTree = "<group>"; };
 		9E0A5E17244ED4AD00188CDE /* StartScreenVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreenVC.swift; sourceTree = "<group>"; };
 		9E0A5E1F244F26CE00188CDE /* StudentsListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsListTVC.swift; sourceTree = "<group>"; };
-		9E0A5E24244F271F00188CDE /* StatisticVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticVC.swift; sourceTree = "<group>"; };
+		9E0A5E24244F271F00188CDE /* StatisticTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticTVC.swift; sourceTree = "<group>"; };
 		9E0A5E26244F272F00188CDE /* FinanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceVC.swift; sourceTree = "<group>"; };
 		9E0A5E28244F39C000188CDE /* ColorsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsConfig.swift; sourceTree = "<group>"; };
 		9E0A5E2A244F3FC200188CDE /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
@@ -137,6 +142,11 @@
 		9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		9E92C00024815455000B45A5 /* DisciplinesTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesTVCell.swift; sourceTree = "<group>"; };
 		9EA67386247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesCollectionViewCell.swift; sourceTree = "<group>"; };
+		9EB0356C249AAD0100F22C57 /* StatisticEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticEndPoint.swift; sourceTree = "<group>"; };
+		9EB0356E249AAD0F00F22C57 /* FinaceEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinaceEndPoint.swift; sourceTree = "<group>"; };
+		9EB03570249AAD2E00F22C57 /* NetworkManagerStatistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerStatistic.swift; sourceTree = "<group>"; };
+		9EB03572249AAD3F00F22C57 /* NetworkManagerFinance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerFinance.swift; sourceTree = "<group>"; };
+		9EB03576249B6DDC00F22C57 /* StudentsNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsNavController.swift; sourceTree = "<group>"; };
 		9EC155A1246D628000D2C776 /* StudentsEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsEndPoint.swift; sourceTree = "<group>"; };
 		9EC155A7246D633500D2C776 /* NetworkManagerStudents.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerStudents.swift; sourceTree = "<group>"; };
 		9EC155A9246D635500D2C776 /* EndPointType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndPointType.swift; sourceTree = "<group>"; };
@@ -329,7 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				9E0538B6247C1A8800AAC0AA /* Statistic.storyboard */,
-				9E0A5E24244F271F00188CDE /* StatisticVC.swift */,
+				9E0A5E24244F271F00188CDE /* StatisticTVC.swift */,
 			);
 			path = Statistics;
 			sourceTree = "<group>";
@@ -370,6 +380,8 @@
 				9E5C05E8246D930700EADD5C /* LoginEndPoint.swift */,
 				9EC155A1246D628000D2C776 /* StudentsEndPoint.swift */,
 				9E3570D72488DF6D00F8F997 /* CalendarEndPoint.swift */,
+				9EB0356C249AAD0100F22C57 /* StatisticEndPoint.swift */,
+				9EB0356E249AAD0F00F22C57 /* FinaceEndPoint.swift */,
 			);
 			path = EndPoint;
 			sourceTree = "<group>";
@@ -380,6 +392,8 @@
 				9E5C05EA246D971400EADD5C /* NetworkManagerLogin.swift */,
 				9EC155A7246D633500D2C776 /* NetworkManagerStudents.swift */,
 				9E3570D92488DFC400F8F997 /* NetworkManagerCalendar.swift */,
+				9EB03570249AAD2E00F22C57 /* NetworkManagerStatistic.swift */,
+				9EB03572249AAD3F00F22C57 /* NetworkManagerFinance.swift */,
 			);
 			path = Manager;
 			sourceTree = "<group>";
@@ -459,6 +473,7 @@
 				9E8DDB322451E384003EC688 /* AddOrEditStudentTVC.swift */,
 				9ECECBEB248042740053AC78 /* DisciplinesTVC.swift */,
 				9EE848AE2487C868008BABB3 /* PopUpVC.swift */,
+				9EB03576249B6DDC00F22C57 /* StudentsNavController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -644,6 +659,7 @@
 			files = (
 				9E1B30A6249A32BB00166117 /* Notifications.swift in Sources */,
 				9E7A73B3244D92AB00FA529B /* CalendarVC.swift in Sources */,
+				9EB03573249AAD3F00F22C57 /* NetworkManagerFinance.swift in Sources */,
 				9E80D0A62453268300FECAF7 /* CalendarModel.swift in Sources */,
 				9EF22899247A681200C1AE56 /* StartScreen.swift in Sources */,
 				9E0A5E30244F411400188CDE /* NotificationModel.swift in Sources */,
@@ -660,9 +676,11 @@
 				9EC155B6246D63C300D2C776 /* URLParameterEncoding.swift in Sources */,
 				9E86E9182493789600FD63AA /* NotificationTVCell.swift in Sources */,
 				9EC155BA246D642B00D2C776 /* AlertService.swift in Sources */,
+				9EB03577249B6DDC00F22C57 /* StudentsNavController.swift in Sources */,
 				9E8C5F0D2494DE1000332B61 /* PaymentTVC.swift in Sources */,
 				9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */,
 				9E8C5F0B2494DBCF00332B61 /* LessonDetailedTVC.swift in Sources */,
+				9EB03571249AAD2E00F22C57 /* NetworkManagerStatistic.swift in Sources */,
 				9EC155A2246D628000D2C776 /* StudentsEndPoint.swift in Sources */,
 				9E0A5E20244F26CE00188CDE /* StudentsListTVC.swift in Sources */,
 				9EC155AA246D635500D2C776 /* EndPointType.swift in Sources */,
@@ -673,15 +691,17 @@
 				9EE848AF2487C868008BABB3 /* PopUpVC.swift in Sources */,
 				9E631939244F50B4007DE5F1 /* AddOrEditLessonTVC.swift in Sources */,
 				9E374A9B24922FA30082A119 /* DisciplinesForLessonTVC.swift in Sources */,
+				9EB0356D249AAD0100F22C57 /* StatisticEndPoint.swift in Sources */,
 				9E86E9162493784A00FD63AA /* NotificationTVC.swift in Sources */,
 				9E1B30A8249A4C5800166117 /* ServerAnsverModel.swift in Sources */,
 				9E7C134A247D47A70095C57E /* StudentProfileTVC.swift in Sources */,
 				9E0A5E2E244F410900188CDE /* StudentModel.swift in Sources */,
 				9E5BD563246EE9D500EB4F53 /* CheckEmailPassword.swift in Sources */,
 				9E3570DA2488DFC400F8F997 /* NetworkManagerCalendar.swift in Sources */,
+				9EB0356F249AAD0F00F22C57 /* FinaceEndPoint.swift in Sources */,
 				9EC155A8246D633500D2C776 /* NetworkManagerStudents.swift in Sources */,
 				9EC155AE246D637900D2C776 /* HTTPMethod.swift in Sources */,
-				9E0A5E25244F271F00188CDE /* StatisticVC.swift in Sources */,
+				9E0A5E25244F271F00188CDE /* StatisticTVC.swift in Sources */,
 				9E5C05E9246D930700EADD5C /* LoginEndPoint.swift in Sources */,
 				9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */,
 				9E0538AC247C0EE500AAC0AA /* UIColor+Additions.swift in Sources */,

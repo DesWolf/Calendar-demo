@@ -8,8 +8,15 @@
 
 import UIKit
 
-class StatisticVC: UIViewController {
+class StatisticTVC: UITableViewController {
 
+    
+    @IBOutlet weak var numberOfStudentsLabel: UILabel!
+    @IBOutlet weak var numberOfPlannedLessonsLabel: UILabel!
+    @IBOutlet weak var numberOfFinishedLessonsLabel: UILabel!
+    @IBOutlet weak var numberOfCancelLessonsLabel: UILabel!
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 

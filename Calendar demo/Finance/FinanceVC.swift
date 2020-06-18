@@ -9,12 +9,13 @@
 import UIKit
 
 
-class FinanceVC: UIViewController {
+class FinanceTVC: UITableViewController {
 
+    @IBOutlet weak var numberOfPaidLessonsLabel: UILabel!
+    @IBOutlet weak var numberOfEarnedMoneyLabel: UILabel!
+    @IBOutlet weak var averageLessonCostLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
     }
-    
 }
