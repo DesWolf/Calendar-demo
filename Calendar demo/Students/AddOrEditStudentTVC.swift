@@ -20,6 +20,7 @@ class AddOrEditStudentTVC: UITableViewController {
     var chousedDisciplines: [String] = []
     var student: StudentModel?
     private let networkManagerStudents =  NetworkManagerStudents()
+    var onSaveButtonTap: (() -> (Void))?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,9 +39,16 @@ class AddOrEditStudentTVC: UITableViewController {
         dismiss(animated: true)
     }
     
-    deinit {
-        print("deinit", AddOrEditStudentTVC.self)
+//    @IBAction func saveButton(_ sender: Any) {
+//        let newNav = navigationController as? StudentsNavController
+//        newNav?.showStudentProfile(from: add(UIViewController))
+//    }
+    @IBAction private func tapSaveButton() {
+        // Так AddOrEditVC не знает, где он используется (не вызывает navigationController)
+        // а просто сообщает наружу, что что-то произошло, что требует действия извне.
+        onSaveButtonTap?()
     }
+    
 }
 
 //MARK: Setup Screen

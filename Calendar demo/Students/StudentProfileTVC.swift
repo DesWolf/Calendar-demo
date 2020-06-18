@@ -26,8 +26,8 @@ class StudentProfileTVC: UITableViewController {
         fetchDetailedStudent(studentId: student?.studentId ?? 0)
     }
     
-    deinit {
-        print("deinit", StudentProfileTVC.self)
+    
+    @IBAction func back(_ sender: Any) {
     }
 }
 //MARK: Setup Screen
@@ -49,6 +49,9 @@ extension StudentProfileTVC {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         tableView.backgroundColor = .bgStudent
+        
+//        navigationController?.navigationBar.standardAppearance.backButtonAppearance
+//        CAGradientLayer
     }
 }
 
@@ -111,22 +114,22 @@ extension StudentProfileTVC {
 }
 
 // MARK: Navigation
-extension StudentProfileTVC {
-    @IBAction func unwiSegue(_ segue: UIStoryboardSegue) {
-        guard let addOrEditStudentTVC = segue.source as? AddOrEditStudentTVC else { return }
-        addOrEditStudentTVC.saveStudent()
-        fetchDetailedStudent(studentId: student?.studentId ?? 0)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editStudent" {
-            if let destVC = segue.destination as? UINavigationController,
-                let targetController = destVC.topViewController as? AddOrEditStudentTVC {
-                targetController.student = student
-            }
-        }
-    }
-}
+//extension StudentProfileTVC {
+//    @IBAction func unwiSegue(_ segue: UIStoryboardSegue) {
+//        guard let addOrEditStudentTVC = segue.source as? AddOrEditStudentTVC else { return }
+//        addOrEditStudentTVC.saveStudent()
+//        fetchDetailedStudent(studentId: student?.studentId ?? 0)
+//    }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        if segue.identifier == "editStudent" {
+//            if let destVC = segue.destination as? UINavigationController,
+//                let targetController = destVC.topViewController as? AddOrEditStudentTVC {
+//                targetController.student = student
+//            }
+//        }
+//    }
+//}
 
 //MARK: Network
 extension StudentProfileTVC {

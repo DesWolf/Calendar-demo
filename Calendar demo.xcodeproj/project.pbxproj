@@ -9,7 +9,7 @@
 /* Begin PBXBuildFile section */
 		9E01A2A6248E75840044AD7F /* RepeatTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E01A2A5248E75840044AD7F /* RepeatTVC.swift */; };
 		9E0538AC247C0EE500AAC0AA /* UIColor+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0538AB247C0EE500AAC0AA /* UIColor+Additions.swift */; };
-		9E0538AE247C0F7100AAC0AA /* Contacts.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538AD247C0F7100AAC0AA /* Contacts.storyboard */; };
+		9E0538AE247C0F7100AAC0AA /* Students.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538AD247C0F7100AAC0AA /* Students.storyboard */; };
 		9E0538B7247C1A8800AAC0AA /* Statistic.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538B6247C1A8800AAC0AA /* Statistic.storyboard */; };
 		9E0538B9247C1A9E00AAC0AA /* Finance.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538B8247C1A9E00AAC0AA /* Finance.storyboard */; };
 		9E0538C0247C1BD100AAC0AA /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E0538BF247C1BD100AAC0AA /* Profile.storyboard */; };
@@ -91,7 +91,7 @@
 		1FAFD638F4A42CFBE6FF146F /* Pods-Calendar demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Calendar demo.debug.xcconfig"; path = "Target Support Files/Pods-Calendar demo/Pods-Calendar demo.debug.xcconfig"; sourceTree = "<group>"; };
 		9E01A2A5248E75840044AD7F /* RepeatTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepeatTVC.swift; sourceTree = "<group>"; };
 		9E0538AB247C0EE500AAC0AA /* UIColor+Additions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Additions.swift"; sourceTree = "<group>"; };
-		9E0538AD247C0F7100AAC0AA /* Contacts.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Contacts.storyboard; sourceTree = "<group>"; };
+		9E0538AD247C0F7100AAC0AA /* Students.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Students.storyboard; sourceTree = "<group>"; };
 		9E0538B6247C1A8800AAC0AA /* Statistic.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Statistic.storyboard; sourceTree = "<group>"; };
 		9E0538B8247C1A9E00AAC0AA /* Finance.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Finance.storyboard; sourceTree = "<group>"; };
 		9E0538BF247C1BD100AAC0AA /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
@@ -468,12 +468,12 @@
 		9EC155BD246D6D5900D2C776 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9EB03576249B6DDC00F22C57 /* StudentsNavController.swift */,
 				9E0A5E1F244F26CE00188CDE /* StudentsListTVC.swift */,
 				9E7C1349247D47A70095C57E /* StudentProfileTVC.swift */,
 				9E8DDB322451E384003EC688 /* AddOrEditStudentTVC.swift */,
 				9ECECBEB248042740053AC78 /* DisciplinesTVC.swift */,
 				9EE848AE2487C868008BABB3 /* PopUpVC.swift */,
-				9EB03576249B6DDC00F22C57 /* StudentsNavController.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -490,7 +490,7 @@
 		9EC155BF246D6D9C00D2C776 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				9E0538AD247C0F7100AAC0AA /* Contacts.storyboard */,
+				9E0538AD247C0F7100AAC0AA /* Students.storyboard */,
 				9EC155BB246D6B2C00D2C776 /* StudentsTVCell.swift */,
 				9E92C00024815455000B45A5 /* DisciplinesTVCell.swift */,
 				9EA67386247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift */,
@@ -600,7 +600,7 @@
 				9E0538C0247C1BD100AAC0AA /* Profile.storyboard in Resources */,
 				9E7A73BB244D92AC00FA529B /* LaunchScreen.storyboard in Resources */,
 				9E0538B7247C1A8800AAC0AA /* Statistic.storyboard in Resources */,
-				9E0538AE247C0F7100AAC0AA /* Contacts.storyboard in Resources */,
+				9E0538AE247C0F7100AAC0AA /* Students.storyboard in Resources */,
 				9EF22897247A67C100C1AE56 /* StartScreen.xib in Resources */,
 				9E0538B9247C1A9E00AAC0AA /* Finance.storyboard in Resources */,
 				9E0538C2247C224A00AAC0AA /* Calendar.storyboard in Resources */,

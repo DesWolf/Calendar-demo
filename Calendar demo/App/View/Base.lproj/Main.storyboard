@@ -70,10 +70,10 @@
             </objects>
             <point key="canvasLocation" x="1713" y="1204"/>
         </scene>
-        <!--Contacts-->
+        <!--Students-->
         <scene sceneID="aKU-tF-zhk">
             <objects>
-                <viewControllerPlaceholder storyboardName="Contacts" id="9L6-Fy-W6F" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="Students" id="9L6-Fy-W6F" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Контакты" image="Contacts" id="0qk-dq-CZP"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yYM-zr-HAn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

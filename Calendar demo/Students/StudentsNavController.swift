@@ -9,33 +9,50 @@
 import UIKit
 
 class StudentsNavController: UINavigationController {
-
-   
-
-//   init() {
-//       current = StudentsListTVC()
-//       super.init(nibName:  nil, bundle: nil)
-//   }
-//
-//   required init?(coder aDecoder: NSCoder) {
-//       fatalError("init(coder:) has not been implemented")
-//   }
-   
-   override func viewDidLoad() {
-       super.viewDidLoad()
-      
-    showListOfStudents()
-
-   }
-   
-
-    func showListOfStudents() {
-        let destVC = StudentsListTVC()
-        self.navigationController?.pushViewController(destVC, animated: true)
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        showListOfStudents()
     }
     
-    func showAddStudents() {
-        let destVC = AddOrEditLessonTVC()
-        self.navigationController?.pushViewController(destVC, animated: true)
+    func showListOfStudents() {
+        let showListOfStudents = UIStoryboard(name: "Students", bundle:nil).instantiateViewController(withIdentifier: "StudentsListTVC") as! StudentsListTVC
+        
+        showListOfStudents.onAddButtonTap = { [weak self] in
+            guard let self = self else { return }
+            self.openAddStudent()
+        }
+        showListOfStudents.onCellTap = { [weak self] in
+            guard let self = self else { return }
+            self.openDetails(from: .list)
+        }
+        pushViewController(showListOfStudents, animated: false)
+    }
+    
+    func openAddStudent() {
+        let addOrEditVC = UIStoryboard(name: "Students", bundle:nil).instantiateViewController(withIdentifier: "AddOrEditStudentTVC") as! AddOrEditStudentTVC
+        addOrEditVC.onSaveButtonTap = { [weak self, weak addOrEditVC] in // weak ЧТОБЫ ИЗБЕЖАТЬ УТЕЧЕК ПАМЯТИ!
+            guard let self = self, let addOrEditVC = addOrEditVC else { return }
+            self.openDetails(from: .add(addOrEditVC))
+        }
+        let nav = UINavigationController(rootViewController: addOrEditVC)
+        present(nav, animated: true)
+    }
+    
+    enum Source {
+        case list
+        case add(UIViewController)
+    }
+    
+    func openDetails(from source: Source) {
+        let showStudentVC = UIStoryboard(name: "Students", bundle:nil).instantiateViewController(withIdentifier: "StudentProfileTVC") as! StudentProfileTVC
+        switch source {
+        case .list:
+            pushViewController(showStudentVC, animated: true)
+        case let .add(viewController):
+            viewController.dismiss(animated: true) {
+                self.pushViewController(showStudentVC, animated: true)
+            }
+        }
     }
 }

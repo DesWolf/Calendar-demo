@@ -24,51 +24,62 @@ class StudentsListTVC: UITableViewController {
         return searchController.isActive && !searchBarisEmpty
     }
     
+    var onAddButtonTap: (() -> (Void))?
+    var onCellTap: (() -> (Void))?
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         fetchStudents()
         confugureSearchBar()
-        
     }
+    
+    @IBAction func addStudent(_ sender: Any) {
+        //        let navVC = navigationController as? StudentsNavController
+        //        navVC?.openAddStudent()
+        onAddButtonTap?()
+    }
+    
     @IBAction func refreshButton(_ sender: Any) {
         fetchStudents()
     }
+    
+    
 }
 
 // MARK: - Navigation
-extension StudentsListTVC {
-    @IBAction func unwiSegueListOfContacts (_ segue: UIStoryboardSegue) {
-        if let addOrEditStudentTVC = segue.source as? AddOrEditStudentTVC {
-            addOrEditStudentTVC.saveStudent()
-            fetchStudents()
-            simplePopup(text: "Добавлен новый ученик!")
-        } else if segue.source is StudentProfileTVC {
-            fetchStudents()
-            simplePopup(text: "Ученик изменен")
-        }
-        
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "showDetail":
-            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-            let student = isFiltering ? filtredStudents[indexPath.row] : students[indexPath.row]
-            
-            guard let studentProfileTVC = segue.destination as? StudentProfileTVC else { return }
-            studentProfileTVC.student = student
-            
-        case "newStudent":
-            guard let navVC = segue.destination as? UINavigationController else { return }
-            _ = navVC.topViewController as? AddOrEditStudentTVC
-        case .none:
-            return
-        case .some(_):
-            return
-        }
-    }
-    
-}
+//extension StudentsListTVC {
+//    @IBAction func unwiSegueListOfContacts (_ segue: UIStoryboardSegue) {
+//        if let addOrEditStudentTVC = segue.source as? AddOrEditStudentTVC {
+//            addOrEditStudentTVC.saveStudent()
+//            fetchStudents()
+//            simplePopup(text: "Добавлен новый ученик!")
+//        } else if segue.source is StudentProfileTVC {
+//            fetchStudents()
+//            simplePopup(text: "Ученик изменен")
+//        }
+//
+//    }
+//
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        switch segue.identifier {
+//        case "showDetail":
+//            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+//            let student = isFiltering ? filtredStudents[indexPath.row] : students[indexPath.row]
+//
+//            guard let studentProfileTVC = segue.destination as? StudentProfileTVC else { return }
+//            studentProfileTVC.student = student
+//
+//        case "newStudent":
+//            guard let navVC = segue.destination as? UINavigationController else { return }
+//            _ = navVC.topViewController as? AddOrEditStudentTVC
+//        case .none:
+//            return
+//        case .some(_):
+//            return
+//        }
+//    }
+//
+//}
 
 // MARK: Network
 extension StudentsListTVC {
@@ -127,6 +138,9 @@ extension StudentsListTVC {
         students.remove(at: indexPath.row)
         deleteStudent(studentId: selectedStudent.studentId ?? 0)
         tableView.reloadData()
+    }
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        onCellTap?()
     }
 }
 
