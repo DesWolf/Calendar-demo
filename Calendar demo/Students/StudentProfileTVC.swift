@@ -19,23 +19,36 @@ class StudentProfileTVC: UITableViewController {
     
     var student: StudentModel?
     private let networkManagerStudents =  NetworkManagerStudents()
+    var onEditButtonTap: ((StudentModel) -> (Void))?
+    var onBackButtonTap: (() -> (Void))?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         setNavigationController()
-        fetchDetailedStudent(studentId: student?.studentId ?? 0)
+        setupScreen(student: student)
     }
     
-    
-    @IBAction func back(_ sender: Any) {
+    @IBAction private func tapOnBackButton(_ sender: Any) {
+        self.onBackButtonTap?()
     }
+    
+    @IBAction private func tapOnEditButton(_ sender: Any) {
+        if student == nil {
+            simpleAlert(message: "Нет интернет соединения, попробуйте позже")
+        } else {
+            self.onEditButtonTap?(student!)
+        }
+    }
+    
 }
 //MARK: Setup Screen
 extension StudentProfileTVC {
     func setupScreen(student: StudentModel?) {
         
         nameLabel.text = "\(student?.name ?? "") \(student?.surname ?? "")"
-        commentLabel.text = "Макс уже нашел работу"
+        commentLabel.text = "Ученик"
         phoneTV.text = student?.phone ?? ""
         emailTV.text = student?.email ?? ""
         noteTV.text = student?.note ?? ""
@@ -45,9 +58,13 @@ extension StudentProfileTVC {
     }
     
     private func setNavigationController() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
+        let navBar = self.navigationController?.navigationBar
+        
+        navBar?.setBackgroundImage(UIImage(), for: .default)
+        navBar?.shadowImage = UIImage()
+        navBar?.isTranslucent = true
+        navBar?.backItem?.backBarButtonItem?.tintColor = .white
+        
         tableView.backgroundColor = .bgStudent
         
 //        navigationController?.navigationBar.standardAppearance.backButtonAppearance
@@ -142,12 +159,7 @@ extension StudentProfileTVC {
                 }
                 return
             }
-            DispatchQueue.main.async {
-                self?.student = student
-                self?.setupScreen(student: student)
-                self?.disciplinesCollectionView.reloadData()
-                self?.tableView.reloadData()
-            }
+            self?.student = student
         }
     }
 }

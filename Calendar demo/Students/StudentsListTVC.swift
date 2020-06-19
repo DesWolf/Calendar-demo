@@ -25,7 +25,7 @@ class StudentsListTVC: UITableViewController {
     }
     
     var onAddButtonTap: (() -> (Void))?
-    var onCellTap: (() -> (Void))?
+    var onCellTap: ((StudentModel) -> (Void))?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -34,8 +34,6 @@ class StudentsListTVC: UITableViewController {
     }
     
     @IBAction func addStudent(_ sender: Any) {
-        //        let navVC = navigationController as? StudentsNavController
-        //        navVC?.openAddStudent()
         onAddButtonTap?()
     }
     
@@ -140,7 +138,8 @@ extension StudentsListTVC {
         tableView.reloadData()
     }
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        onCellTap?()
+        let selectedStudent = students[indexPath.row]
+        onCellTap?(selectedStudent)
     }
 }
 
@@ -150,27 +149,27 @@ extension StudentsListTVC  {
         UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
     }
     
-    func simplePopup(text: String) {
-        let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Contacts", bundle:nil)
-        let popUpVC  = sampleStoryBoard.instantiateViewController(withIdentifier: "popUpVC") as! PopUpVC
-        
-        let tabBarHeight: CGFloat = self.tabBarController?.tabBar.frame.height ?? 40
-        let navHeight: CGFloat = self.navigationController?.navigationBar.frame.height ?? 20
-        let windowWidth = self.view.frame.width
-        let windowHeight = self.view.frame.height - tabBarHeight - navHeight
-        
-        popUpVC.message = text
-        self.addChild(popUpVC)
-        popUpVC.view.frame = CGRect(x: 0, y: 0, width: windowWidth, height: windowHeight)
-        self.view.addSubview(popUpVC.view)
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            popUpVC.moveOut()
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                popUpVC.view.removeFromSuperview()
-            }
-        }
-    }
+//    func simplePopup(text: String) {
+//        let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Contacts", bundle:nil)
+//        let popUpVC = sampleStoryBoard.instantiateViewController(withIdentifier: "popUpVC") as! PopUpVC
+//
+//        let tabBarHeight: CGFloat = self.tabBarController?.tabBar.frame.height ?? 40
+//        let navHeight: CGFloat = self.navigationController?.navigationBar.frame.height ?? 20
+//        let windowWidth = self.view.frame.width
+//        let windowHeight = self.view.frame.height - tabBarHeight - navHeight
+//
+//        popUpVC.message = text
+//        self.addChild(popUpVC)
+//        popUpVC.view.frame = CGRect(x: 0, y: 0, width: windowWidth, height: windowHeight)
+//        self.view.addSubview(popUpVC.view)
+//
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//            popUpVC.moveOut()
+//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+//                popUpVC.view.removeFromSuperview()
+//            }
+//        }
+//    }
 }
 
 //MARK: SearchBar

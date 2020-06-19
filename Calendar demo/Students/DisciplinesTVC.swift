@@ -11,18 +11,18 @@ import UIKit
 class DisciplinesTVC: UITableViewController {
     
     public var chousedDisciplines: [String] = []
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        print(chousedDisciplines)
+        
+        
     }
     
     @IBAction func AddButton(_ sender: Any) {
         addDiscipline()
         setupNavigationBar()
-    }
-    
-    deinit {
-        print("deinit", DisciplinesTVC.self)
     }
 }
 
