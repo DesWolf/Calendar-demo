@@ -74,7 +74,7 @@ struct NetworkManagerCalendar {
         }
     }
     
-    func addLesson(lessonName: String,
+    func addLesson(name: String,
                    place: String,
                    studentId: Int,
                    discipline: String,
@@ -82,12 +82,12 @@ struct NetworkManagerCalendar {
                    timeStart: String,
                    dateEnd: String,
                    timeEnd: String,
-                   repeatLesson: String,
-                   endRepeatLesson: String,
+                   repeatedly: String,
+                   endRepeat: String,
                    price: Int,
                    note: String,
                    completion: @escaping (_ message: [String: String]?,_ error: String?)->()){
-        router.request(.addLesson(lessonName: lessonName,
+        router.request(.addLesson(name: name,
                                   place: place,
                                   studentId: studentId,
                                   discipline: discipline,
@@ -95,8 +95,8 @@ struct NetworkManagerCalendar {
                                   timeStart: timeStart,
                                   dateEnd: dateEnd,
                                   timeEnd: timeEnd,
-                                  repeatLesson: repeatLesson,
-                                  endRepeatLesson: endRepeatLesson,
+                                  repeatedly: repeatedly,
+                                  endRepeat: endRepeat,
                                   price: price,
                                   note: note))
         { data, response, error in
@@ -128,7 +128,7 @@ struct NetworkManagerCalendar {
     }
     
     func changeLesson(lessonId: Int,
-                      lessonName: String,
+                      name: String,
                       place: String,
                       studentId: Int,
                       discipline: String,
@@ -136,15 +136,15 @@ struct NetworkManagerCalendar {
                       timeStart: String,
                       dateEnd: String,
                       timeEnd: String,
-                      repeatLesson: String,
-                      endRepeatLesson: String,
+                      repeatedly: String,
+                      endRepeat: String,
                       price: Int,
                       note: String,
                       statusPay: Int,
                       paymentDate: String,
         completion: @escaping (_ message: [String: String]?,_ error: String?)->()){
         router.request(.changeLesson(lessonId: lessonId,
-                                     lessonName: lessonName,
+                                     name: name,
                                      place: place,
                                      studentId: studentId,
                                      discipline: discipline,
@@ -152,8 +152,8 @@ struct NetworkManagerCalendar {
                                      timeStart: timeStart,
                                      dateEnd: dateEnd,
                                      timeEnd: timeEnd,
-                                     repeatLesson: repeatLesson,
-                                     endRepeatLesson: endRepeatLesson,
+                                     repeatedly: repeatedly,
+                                     endRepeat: endRepeat,
                                      price: price,
                                      note: note,
                                      statusPay: statusPay,

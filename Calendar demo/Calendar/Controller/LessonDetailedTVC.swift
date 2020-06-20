@@ -40,15 +40,14 @@ class LessonDetailedTVC: UITableViewController {
 //MARK: Setup Screen
 extension LessonDetailedTVC {
     func setupScreen(lesson: CalendarModel?) {
-        nameLabel.text = lesson?.lessonName ?? ""
+        nameLabel.text = lesson?.name ?? ""
         placeLabel.text = lesson?.place ?? ""
         disciplineLabel.text = lesson?.discipline ?? ""
         timeLabel.text = "\(lesson?.timeStart ?? "") - \(lesson?.timeEnd ?? "")"
         dateLabel.text = "\(lesson?.dateStart ?? "") - \(lesson?.dateEnd ?? "")"
         studentLabel.text = "\(lesson?.studentName ?? "") - \(lesson?.studentSurname ?? "")"
         noteTV.text = lesson?.note ?? ""
-        repeatLabel.text = lesson?.repeatLesson ?? ""
-//        notificationLabel.text = lesson?.notificationType ?? ""
+        repeatLabel.text = lesson?.repeatedly ?? ""
         priceLabel.text = "\(lesson?.price ?? 0)"
         paymentLabel.text = "\(lesson?.statusPay ?? 0)"
     }

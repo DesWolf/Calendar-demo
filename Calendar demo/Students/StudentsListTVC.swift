@@ -29,8 +29,14 @@ class StudentsListTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        fetchStudents()
+//        fetchStudents()
         confugureSearchBar()
+    }
+    
+    override func viewWillAppear(_ animated: Bool){
+        super.viewWillAppear(animated)
+        fetchStudents()
+        self.tableView.reloadData()
     }
     
     @IBAction func addStudent(_ sender: Any) {
@@ -40,44 +46,7 @@ class StudentsListTVC: UITableViewController {
     @IBAction func refreshButton(_ sender: Any) {
         fetchStudents()
     }
-    
-    
 }
-
-// MARK: - Navigation
-//extension StudentsListTVC {
-//    @IBAction func unwiSegueListOfContacts (_ segue: UIStoryboardSegue) {
-//        if let addOrEditStudentTVC = segue.source as? AddOrEditStudentTVC {
-//            addOrEditStudentTVC.saveStudent()
-//            fetchStudents()
-//            simplePopup(text: "Добавлен новый ученик!")
-//        } else if segue.source is StudentProfileTVC {
-//            fetchStudents()
-//            simplePopup(text: "Ученик изменен")
-//        }
-//
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        switch segue.identifier {
-//        case "showDetail":
-//            guard let indexPath = tableView.indexPathForSelectedRow else { return }
-//            let student = isFiltering ? filtredStudents[indexPath.row] : students[indexPath.row]
-//
-//            guard let studentProfileTVC = segue.destination as? StudentProfileTVC else { return }
-//            studentProfileTVC.student = student
-//
-//        case "newStudent":
-//            guard let navVC = segue.destination as? UINavigationController else { return }
-//            _ = navVC.topViewController as? AddOrEditStudentTVC
-//        case .none:
-//            return
-//        case .some(_):
-//            return
-//        }
-//    }
-//
-//}
 
 // MARK: Network
 extension StudentsListTVC {
@@ -148,28 +117,6 @@ extension StudentsListTVC  {
     func simpleAlert(message: String) {
         UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
     }
-    
-//    func simplePopup(text: String) {
-//        let sampleStoryBoard : UIStoryboard = UIStoryboard(name: "Contacts", bundle:nil)
-//        let popUpVC = sampleStoryBoard.instantiateViewController(withIdentifier: "popUpVC") as! PopUpVC
-//
-//        let tabBarHeight: CGFloat = self.tabBarController?.tabBar.frame.height ?? 40
-//        let navHeight: CGFloat = self.navigationController?.navigationBar.frame.height ?? 20
-//        let windowWidth = self.view.frame.width
-//        let windowHeight = self.view.frame.height - tabBarHeight - navHeight
-//
-//        popUpVC.message = text
-//        self.addChild(popUpVC)
-//        popUpVC.view.frame = CGRect(x: 0, y: 0, width: windowWidth, height: windowHeight)
-//        self.view.addSubview(popUpVC.view)
-//
-//        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//            popUpVC.moveOut()
-//            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-//                popUpVC.view.removeFromSuperview()
-//            }
-//        }
-//    }
 }
 
 //MARK: SearchBar

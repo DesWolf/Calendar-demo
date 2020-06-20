@@ -25,7 +25,6 @@ class StudentProfileTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
         setNavigationController()
         setupScreen(student: student)
     }
@@ -41,8 +40,8 @@ class StudentProfileTVC: UITableViewController {
             self.onEditButtonTap?(student!)
         }
     }
-    
 }
+
 //MARK: Setup Screen
 extension StudentProfileTVC {
     func setupScreen(student: StudentModel?) {
@@ -129,24 +128,6 @@ extension StudentProfileTVC {
         cell.backgroundColor = indexPath.row == 0 ? .bgStudent : .white
     }
 }
-
-// MARK: Navigation
-//extension StudentProfileTVC {
-//    @IBAction func unwiSegue(_ segue: UIStoryboardSegue) {
-//        guard let addOrEditStudentTVC = segue.source as? AddOrEditStudentTVC else { return }
-//        addOrEditStudentTVC.saveStudent()
-//        fetchDetailedStudent(studentId: student?.studentId ?? 0)
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "editStudent" {
-//            if let destVC = segue.destination as? UINavigationController,
-//                let targetController = destVC.topViewController as? AddOrEditStudentTVC {
-//                targetController.student = student
-//            }
-//        }
-//    }
-//}
 
 //MARK: Network
 extension StudentProfileTVC {

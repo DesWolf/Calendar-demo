@@ -20,6 +20,7 @@ class AddOrEditStudentTVC: UITableViewController {
     var chousedDisciplines: [String] = []
     var student: StudentModel?
     private let networkManagerStudents =  NetworkManagerStudents()
+    var onBackButtonTap: (() -> (Void))?
     var onSaveButtonTap: ((Int, StudentModel) -> (Void))?
     var onDisciplinesButtonTap: (([String]) -> (Void))?
     
@@ -27,7 +28,13 @@ class AddOrEditStudentTVC: UITableViewController {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         configureScreen()
-        definesPresentationContext = true
+    }
+    
+    override func viewWillAppear(_ animated: Bool){
+        super.viewWillAppear(animated)
+        configureScreen()
+        tableView.reloadData()
+        print("Disciplines:", chousedDisciplines)
     }
     
     @IBAction func emailTFAction(_ sender: Any) {
@@ -38,7 +45,7 @@ class AddOrEditStudentTVC: UITableViewController {
     }
     
     @IBAction func tapOnBackButton(_ sender: Any) {
-        dismiss(animated: true)
+        onBackButtonTap?()
     }
     
     @IBAction private func tapSaveButton() {
@@ -53,6 +60,7 @@ class AddOrEditStudentTVC: UITableViewController {
     
     @IBAction func tapOnDisciplinesButton(_ sender: Any) {
         onDisciplinesButtonTap?(student?.disciplines ?? [])
+        
         print("go to disciplines")
     }
     
@@ -95,23 +103,9 @@ extension AddOrEditStudentTVC {
     }
 }
 
-// MARK: - Navigation
+//MARK: Network
 extension AddOrEditStudentTVC {
-//    @IBAction func unwiSegue(_ segue: UIStoryboardSegue) {
-//        guard let disciplinesTVC = segue.source as? DisciplinesTVC else { return }
-//        chousedDisciplines = disciplinesTVC.chousedDisciplines
-//        disciplinesCollectionView.reloadData()
-//        tableView.reloadData()
-//    }
-//
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "discilinesTVC" {
-//
-//            guard let disciplinesTVC = segue.destination as? DisciplinesTVC else { return }
-//            disciplinesTVC.chousedDisciplines = chousedDisciplines
-//        }
-//    }
-//
+    
     func saveStudent() {
         student = StudentModel(studentId: student != nil ? student?.studentId : nil,
                                name: nameTF.text ?? "",
@@ -126,10 +120,8 @@ extension AddOrEditStudentTVC {
             addNewStudent(newStudent: student!)
         }
     }
-}
-
-//MARK: Network
-extension AddOrEditStudentTVC {
+    
+    
     private func addNewStudent(newStudent: StudentModel) {
         networkManagerStudents.addStudent(studentId: newStudent.studentId ?? 0,
                                           name: newStudent.name!,

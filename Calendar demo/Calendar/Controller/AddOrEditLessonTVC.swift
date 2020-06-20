@@ -73,14 +73,14 @@ class AddOrEditLessonTVC: UITableViewController {
 extension AddOrEditLessonTVC {
     private func configureScreen(){
         if lesson != nil {
-            nameTF.text = lesson?.lessonName
+            nameTF.text = lesson?.name
             placeTF.text = lesson?.place ?? ""
             studentLabel.text = "\(lesson?.studentName ?? "") \(lesson?.studentSurname ?? "")"
             disciplineLabel.text = lesson?.discipline ?? ""
             startLessonLabel.text = lesson?.dateStart ?? ""
             endLessonLabel.text = lesson?.dateEnd ?? ""
-            repeatLessonLabel.text = lesson?.repeatLesson ?? ""
-            endOfRepeatLessonLabel.text = lesson?.endRepeatLesson ?? ""
+            repeatLessonLabel.text = lesson?.repeatedly ?? ""
+            endOfRepeatLessonLabel.text = lesson?.endRepeat ?? ""
             priceTF.text = "\(lesson?.price ?? 0)"
             noteTV.text = lesson?.note ?? ""
         }
@@ -186,7 +186,7 @@ extension AddOrEditLessonTVC {
     
     func saveLesson() {
         lesson = CalendarModel(lessonId: lesson != nil ? lesson?.lessonId : nil,
-                               lessonName: nameTF.text,
+                               name: nameTF.text,
                                place: placeTF.text,
                                studentId: lesson != nil ? lesson?.studentId : nil,
                                studentName: student?.name,
@@ -197,8 +197,8 @@ extension AddOrEditLessonTVC {
                                duration: [""],
                                dateEnd: displayedDate(str: "\(startLessonDatePicker.date)"),
                                timeEnd: displayedHour(str: "\(startLessonDatePicker.date)"),
-                               repeatLesson: repeatLessonLabel.text,
-                               endRepeatLesson: endOfRepeatLessonLabel.text,
+                               repeatedly: repeatLessonLabel.text,
+                               endRepeat: endOfRepeatLessonLabel.text,
                                price:  Int(priceTF.text ?? "0"),
                                note: noteTV.text,
                                statusPay: 0,
@@ -214,7 +214,7 @@ extension AddOrEditLessonTVC {
 //MARK: Network
 extension AddOrEditLessonTVC {
     private func addNewLesson(lesson: CalendarModel) {
-        networkManagerCalendar.addLesson(lessonName: lesson.lessonName ?? "",
+        networkManagerCalendar.addLesson(name: lesson.name ?? "",
                                          place: lesson.place ?? "",
                                          studentId: lesson.studentId ?? 0,
                                          discipline: lesson.discipline ?? "",
@@ -222,8 +222,8 @@ extension AddOrEditLessonTVC {
                                          timeStart: lesson.timeStart ?? "",
                                          dateEnd: lesson.dateEnd ?? "",
                                          timeEnd: lesson.timeEnd ?? "",
-                                         repeatLesson: lesson.repeatLesson ?? "",
-                                         endRepeatLesson: lesson.endRepeatLesson ?? "",
+                                         repeatedly: lesson.repeatedly ?? "",
+                                         endRepeat: lesson.endRepeat ?? "",
                                          price: lesson.price ?? 0,
                                          note: lesson.note ?? "")
         { [weak self]  (responce, error)  in
@@ -240,7 +240,7 @@ extension AddOrEditLessonTVC {
     
     private func changeLesson(lesson: CalendarModel) {
         networkManagerCalendar.changeLesson(lessonId: lesson.lessonId ?? 0,
-                                            lessonName: lesson.lessonName ?? "",
+                                            name: lesson.name ?? "",
                                             place: lesson.place ?? "",
                                             studentId: lesson.studentId ?? 0,
                                             discipline: lesson.discipline ?? "",
@@ -248,8 +248,8 @@ extension AddOrEditLessonTVC {
                                             timeStart: lesson.timeStart ?? "",
                                             dateEnd: lesson.dateEnd ?? "",
                                             timeEnd: lesson.timeEnd ?? "",
-                                            repeatLesson: lesson.repeatLesson ?? "",
-                                            endRepeatLesson: lesson.endRepeatLesson ?? "",
+                                            repeatedly: lesson.repeatedly ?? "",
+                                            endRepeat: lesson.endRepeat ?? "",
                                             price: lesson.price ?? 0,
                                             note: lesson.note ?? "",
                                             statusPay: lesson.statusPay ?? 0,

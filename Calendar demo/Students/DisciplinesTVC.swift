@@ -11,37 +11,36 @@ import UIKit
 class DisciplinesTVC: UITableViewController {
     
     public var chousedDisciplines: [String] = []
-
+    var onBackButtonTap: (([String]) -> (Void))?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        print(chousedDisciplines)
-        
-        
     }
     
     @IBAction func AddButton(_ sender: Any) {
         addDiscipline()
         setupNavigationBar()
     }
+    @IBAction func backButtonTap(_ sender: Any) {
+        onBackButtonTap?(chousedDisciplines)
+    }
 }
 
 //MARK: Set Navigation Bar
 extension DisciplinesTVC {
-private func setupNavigationBar() {
-    let nav = self.navigationController?.navigationBar
-    
-    navigationItem.leftBarButtonItem?.title = "Отмена"
-    navigationItem.leftBarButtonItem?.tintColor = .white
-    navigationItem.rightBarButtonItem?.tintColor = .white
-    nav?.setBackgroundImage(UIImage(), for: .default)
-    nav?.shadowImage = UIImage()
-    nav?.isTranslucent = true
-    nav?.prefersLargeTitles = true
-    nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-
-    tableView.backgroundColor = .bgStudent
-}
+    private func setupNavigationBar() {
+        let nav = self.navigationController?.navigationBar
+        
+        navigationItem.leftBarButtonItem?.tintColor = .white
+        navigationItem.rightBarButtonItem?.tintColor = .white
+        nav?.setBackgroundImage(UIImage(), for: .default)
+        nav?.shadowImage = UIImage()
+        nav?.isTranslucent = true
+        nav?.prefersLargeTitles = true
+        nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        tableView.backgroundColor = .bgStudent
+    }
 }
 
 // MARK: Add Discipline

@@ -11,6 +11,7 @@ import UIKit
 class StudentsNavController: UINavigationController {
     
     private let stStoryboard = UIStoryboard(name: "Students", bundle:nil)
+//    let addOrEditVC = stStoryboard.instantiateViewController(withIdentifier: "AddOrEditStudentTVC") as! AddOrEditStudentTVC
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,49 +23,27 @@ class StudentsNavController: UINavigationController {
         
         openListOfStudents.onAddButtonTap = { [weak self] in
             guard let self = self else { return }
-            self.openAddStudent()
+            self.openAddOrEditStudent(student: nil)
         }
-        
         openListOfStudents.onCellTap = { [weak self] (student) in
             guard let self = self else { return }
             self.openDetails(from: .list(student: student))
         }
-        
         pushViewController(openListOfStudents, animated: false)
     }
     
-    
-    func openDisciplines(disciplines: [String]) {
-        
-        let discTVC = stStoryboard.instantiateViewController(withIdentifier: "DisciplinesTVC") as! DisciplinesTVC
-//        let addOrEditVC = stStoryboard.instantiateViewController(withIdentifier: "AddOrEditStudentTVC") as! AddOrEditStudentTVC
-        
-        
-//        let nav = UINavigationController(rootViewController: discTVC)
-        discTVC.chousedDisciplines = disciplines
-        present(discTVC, animated: true)
-//        nav.present(discTVC, animated: true)
-     
-    }
-    
-    func openAddStudent() {
+    func openAddOrEditStudent(student: StudentModel?) {
         let addOrEditVC = stStoryboard.instantiateViewController(withIdentifier: "AddOrEditStudentTVC") as! AddOrEditStudentTVC
+//        let openListOfStudents = stStoryboard.instantiateViewController(withIdentifier: "StudentsListTVC") as! StudentsListTVC
         
         addOrEditVC.onSaveButtonTap = { [weak self, weak addOrEditVC] (studentId: Int, student: StudentModel) in
             guard let self = self, let addOrEditVC = addOrEditVC else { return }
             self.openDetails(from: .addOfEdit(addOrEditVC, studentId: studentId, student: student))
         }
         
-        let nav = UINavigationController(rootViewController: addOrEditVC)
-        present(nav, animated: true)
-    }
-    
-    func openEditStudent(student: StudentModel?) {
-        let addOrEditVC = stStoryboard.instantiateViewController(withIdentifier: "AddOrEditStudentTVC") as! AddOrEditStudentTVC
-        
-        addOrEditVC.onSaveButtonTap = { [weak self, weak addOrEditVC] (studentId: Int, student: StudentModel) in
-            guard let self = self, let addOrEditVC = addOrEditVC else { return }
-            self.openDetails(from: .addOfEdit(addOrEditVC, studentId: studentId, student: student))
+        addOrEditVC.onBackButtonTap = { [weak self]  in
+            guard let self = self else { return }
+            self.popViewController(animated: true)
         }
         
         addOrEditVC.onDisciplinesButtonTap = { [weak self] (disciplines) in
@@ -72,18 +51,15 @@ class StudentsNavController: UINavigationController {
             self.openDisciplines(disciplines: disciplines)
         }
         
-        
-        let nav = UINavigationController(rootViewController: addOrEditVC)
         if let student = student {
             addOrEditVC.student = student
         }
-        present(nav, animated: true)
+        pushViewController(addOrEditVC, animated: true)
     }
     
     enum Source {
         case list(student: StudentModel)
         case addOfEdit(UIViewController, studentId: Int, student: StudentModel)
-        
     }
     
     func openDetails(from source: Source) {
@@ -97,7 +73,7 @@ class StudentsNavController: UINavigationController {
             }
             profileTVC.onEditButtonTap = { [weak self] (student) in
                 guard let self = self else { return }
-                self.openEditStudent(student: student)
+                self.openAddOrEditStudent(student: student)
             }
             
             switch source {
@@ -111,12 +87,29 @@ class StudentsNavController: UINavigationController {
                 }
                 
                 profileTVC.student = student
+                viewController.dismiss(animated: true) {
                 self.pushViewController(profileTVC, animated: false)
-                viewController.dismiss(animated: true)
+                }
+
             }
         }
     }
     
-    
+    func openDisciplines(disciplines: [String]) {
+        let discTVC = stStoryboard.instantiateViewController(withIdentifier: "DisciplinesTVC") as! DisciplinesTVC
+        let addOrEditVC = stStoryboard.instantiateViewController(withIdentifier: "AddOrEditStudentTVC") as! AddOrEditStudentTVC
+        
+        discTVC.onBackButtonTap = { [weak self, weak addOrEditVC] (disciplines) in
+            guard let self = self else { return }
+            addOrEditVC?.chousedDisciplines = disciplines
+            
+//            addOrEditVC?.tableView.reloadData()
+            self.dismiss(animated: true) 
+        }
+        
+        let nav = UINavigationController(rootViewController: discTVC)
+        discTVC.chousedDisciplines = disciplines
+        present(nav, animated: true)
+    }
 }
 
