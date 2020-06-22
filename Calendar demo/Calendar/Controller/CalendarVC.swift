@@ -51,8 +51,8 @@ extension CalendarVC {
         print(startDate, endDate)
         
         setupNavigationBar()
-        self.view.backgroundColor = .bgStudent
-        //        backgroundColor()
+//        self.view.backgroundColor = .bgStudent
+                backgroundColor()
         calendarView.delegate = self
         menuView.delegate = self
     }
@@ -79,7 +79,7 @@ extension CalendarVC {
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.isTranslucent = true
-//        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.view.backgroundColor = .clear
     }
     
 }

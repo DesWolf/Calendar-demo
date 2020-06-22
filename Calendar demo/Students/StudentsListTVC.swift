@@ -29,12 +29,13 @@ class StudentsListTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        fetchStudents()
+        
         confugureSearchBar()
     }
     
     override func viewWillAppear(_ animated: Bool){
         super.viewWillAppear(animated)
+        configureScreen()
         fetchStudents()
         self.tableView.reloadData()
     }
@@ -46,8 +47,17 @@ class StudentsListTVC: UITableViewController {
     @IBAction func refreshButton(_ sender: Any) {
         fetchStudents()
     }
+    
 }
-
+// MARK: Set Screen
+extension StudentsListTVC {
+    private func configureScreen() {
+        confugureSearchBar()
+        let nav = self.navigationController?.navigationBar
+        nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        self.title = "Контакты"
+    }
+}
 // MARK: Network
 extension StudentsListTVC {
     private func fetchStudents() {
@@ -75,7 +85,7 @@ extension StudentsListTVC {
                 }
                 return
             }
-            print("Delete from server:",message.message)
+            print("Delete from server:",message.message ?? "")
         }
     }
 }
@@ -127,7 +137,6 @@ extension StudentsListTVC: UISearchResultsUpdating {
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Поиск"
         navigationItem.searchController = searchController
-        //        definesPresentationContext = true
     }
     
     func updateSearchResults(for searchController: UISearchController) {

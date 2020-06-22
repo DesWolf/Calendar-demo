@@ -61,11 +61,8 @@ class AddOrEditLessonTVC: UITableViewController {
     @IBAction func cancelButton(_ sender: Any) {
          dismiss(animated: true)
     }
-    
-
-    
-    deinit {
-        print("deinit", AddOrEditLessonTVC.self)
+    @IBAction func saveButtonClick(_ sender: Any) {
+        saveLesson()
     }
 }
 
@@ -90,7 +87,7 @@ extension AddOrEditLessonTVC {
         setupStartLesson()
         setupEndLesson()
         setupNavigationBar()
-        priceCell.backgroundColor = .bgStudent
+        UIColor.setGradientToTableView(tableView: tableView, height: 0.1)
         endOfRepeatLessonCell.isHidden  = true
         tableView.backgroundColor = .bgStudent
     }
@@ -188,26 +185,27 @@ extension AddOrEditLessonTVC {
         lesson = CalendarModel(lessonId: lesson != nil ? lesson?.lessonId : nil,
                                name: nameTF.text,
                                place: placeTF.text,
-                               studentId: lesson != nil ? lesson?.studentId : nil,
+                               studentId: lesson != nil ? lesson?.studentId : student?.studentId,
                                studentName: student?.name,
                                studentSurname: student?.surname,
                                discipline: disciplineLabel.text,
-                               dateStart: displayedDate(str: "\(startLessonDatePicker.date)"),
-                               timeStart: displayedHour(str: "\(startLessonDatePicker.date)"),
+                               dateStart: serverDate(str: "\(startLessonDatePicker.date)"),
+                               timeStart: serverHour(str: "\(startLessonDatePicker.date)"),
                                duration: [""],
-                               dateEnd: displayedDate(str: "\(startLessonDatePicker.date)"),
-                               timeEnd: displayedHour(str: "\(startLessonDatePicker.date)"),
-                               repeatedly: repeatLessonLabel.text,
-                               endRepeat: endOfRepeatLessonLabel.text,
+                               dateEnd: serverDate(str: "\(startLessonDatePicker.date)"),
+                               timeEnd: serverHour(str: "\(startLessonDatePicker.date)"),
+                               repeatedly: repeatLessonLabel.text == "Никогда" ?  "never" : "weekly",
+                               endRepeat: endOfRepeatLessonLabel.text == "Никогда" ? nil : serverDate2(str: "\(endOfRepeatLessonLabel.text)"),
                                price:  Int(priceTF.text ?? "0"),
                                note: noteTV.text,
                                statusPay: 0,
                                paymentDate: "")
-        if student?.studentId != nil {
+        if lesson?.lessonId != nil {
             changeLesson(lesson: lesson!)
         } else {
             addNewLesson(lesson: lesson!)
         }
+
     }
 }
 
@@ -328,6 +326,18 @@ extension AddOrEditLessonTVC {
     
     private func displayedHour(str: String) -> String {
         return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "HH:mm")
+    }
+    
+    private func serverDate(str: String) -> String {
+        return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "yyyy-MM-dd")
+    }
+    
+    private func serverDate2(str: String) -> String {
+        return Date().convertStrDate(date: str, formatFrom: "dd.MM.yyyy", formatTo: "yyyy-MM-dd")
+    }
+    
+    private func serverHour(str: String) -> String {
+        return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "HH:mm:ss")
     }
     
 }

@@ -221,7 +221,7 @@ struct NetworkManagerCalendar {
         case 200...299: return .success
         case 400: return .failure(NetworkResponse.dataError.rawValue)
         case 403: return .failure(NetworkResponse.incorrectAPI.rawValue)
-        case 404...500: return .failure(NetworkResponse.authenticationError.rawValue)
+        case 404...500: return .failure(NetworkResponse.dataNotFound.rawValue)
         case 501...599: return .failure(NetworkResponse.badRequest.rawValue)
         case 600: return .failure(NetworkResponse.outdated.rawValue)
         default: return .failure(NetworkResponse.failed.rawValue)

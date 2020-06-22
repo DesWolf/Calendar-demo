@@ -11,7 +11,7 @@ import UIKit
 class StudentsNavController: UINavigationController {
     
     private let stStoryboard = UIStoryboard(name: "Students", bundle:nil)
-//    let addOrEditVC = stStoryboard.instantiateViewController(withIdentifier: "AddOrEditStudentTVC") as! AddOrEditStudentTVC
+    //    let addOrEditVC = stStoryboard.instantiateViewController(withIdentifier: "AddOrEditStudentTVC") as! AddOrEditStudentTVC
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,22 +19,23 @@ class StudentsNavController: UINavigationController {
     }
     
     func openListOfStudents() {
-        let openListOfStudents = stStoryboard.instantiateViewController(withIdentifier: "StudentsListTVC") as! StudentsListTVC
+        let listOfStudents = stStoryboard.instantiateViewController(withIdentifier: "StudentsListTVC") as! StudentsListTVC
         
-        openListOfStudents.onAddButtonTap = { [weak self] in
+        listOfStudents.onAddButtonTap = { [weak self] in
             guard let self = self else { return }
             self.openAddOrEditStudent(student: nil)
         }
-        openListOfStudents.onCellTap = { [weak self] (student) in
+        listOfStudents.onCellTap = { [weak self] (student) in
             guard let self = self else { return }
             self.openDetails(from: .list(student: student))
         }
-        pushViewController(openListOfStudents, animated: false)
+        
+        pushViewController(listOfStudents, animated: false)
     }
     
     func openAddOrEditStudent(student: StudentModel?) {
         let addOrEditVC = stStoryboard.instantiateViewController(withIdentifier: "AddOrEditStudentTVC") as! AddOrEditStudentTVC
-//        let openListOfStudents = stStoryboard.instantiateViewController(withIdentifier: "StudentsListTVC") as! StudentsListTVC
+        //        let openListOfStudents = stStoryboard.instantiateViewController(withIdentifier: "StudentsListTVC") as! StudentsListTVC
         
         addOrEditVC.onSaveButtonTap = { [weak self, weak addOrEditVC] (studentId: Int, student: StudentModel) in
             guard let self = self, let addOrEditVC = addOrEditVC else { return }
@@ -43,13 +44,15 @@ class StudentsNavController: UINavigationController {
         
         addOrEditVC.onBackButtonTap = { [weak self]  in
             guard let self = self else { return }
+            
             self.popViewController(animated: true)
         }
         
-        addOrEditVC.onDisciplinesButtonTap = { [weak self] (disciplines) in
-            guard let self = self else { return }
-            self.openDisciplines(disciplines: disciplines)
-        }
+//        addOrEditVC.onDisciplinesButtonTap = { [weak self] (student) in
+//            guard let self = self else { return }
+//            
+//            self.openDisciplines(disc: addOrEditVC.chousedDisciplines)
+//        }
         
         if let student = student {
             addOrEditVC.student = student
@@ -77,39 +80,56 @@ class StudentsNavController: UINavigationController {
             }
             
             switch source {
+                
             case let .list(student):
                 profileTVC.student = student
                 self.pushViewController(profileTVC, animated: true)
+                
             case let .addOfEdit(viewController, studentId, student):
                 
                 DispatchQueue.global(qos: .background).async {
                     profileTVC.fetchDetailedStudent(studentId: studentId)
                 }
-                
                 profileTVC.student = student
                 viewController.dismiss(animated: true) {
-                self.pushViewController(profileTVC, animated: false)
+                    self.pushViewController(profileTVC, animated: false)
                 }
-
+                
             }
         }
     }
     
-    func openDisciplines(disciplines: [String]) {
-        let discTVC = stStoryboard.instantiateViewController(withIdentifier: "DisciplinesTVC") as! DisciplinesTVC
-        let addOrEditVC = stStoryboard.instantiateViewController(withIdentifier: "AddOrEditStudentTVC") as! AddOrEditStudentTVC
-        
-        discTVC.onBackButtonTap = { [weak self, weak addOrEditVC] (disciplines) in
-            guard let self = self else { return }
-            addOrEditVC?.chousedDisciplines = disciplines
-            
-//            addOrEditVC?.tableView.reloadData()
-            self.dismiss(animated: true) 
-        }
-        
-        let nav = UINavigationController(rootViewController: discTVC)
-        discTVC.chousedDisciplines = disciplines
-        present(nav, animated: true)
-    }
+//    func openDisciplines(student: StudentModel) {
+//        func openDisciplines(disc: [String] ) {
+//        let discTVC = stStoryboard.instantiateViewController(withIdentifier: "DisciplinesTVC") as! DisciplinesTVC
+////        let addOrEditVC = stStoryboard.instantiateViewController(withIdentifier: "AddOrEditStudentTVC") as! AddOrEditStudentTVC
+//        //         let addOrEditVC = self.navigationController?.viewControllers[0] as! AddOrEditStudentTVC
+//
+//        discTVC.onBackButtonTap = { [weak self ] (student) in
+//            guard let self = self else { return }
+//
+//
+//
+//            //            addOrEditVC?.chousedDisciplines = disciplines
+//
+//            //            addOrEditVC?.tableView.reloadData()
+//                        self.dismiss(animated: true)
+//
+//
+////            self.openAddOrEditStudent(student: student)
+//            //            addOrEditVC?.chousedDisciplines = discTVC.chousedDisciplines
+//            //            self.navigationController?.popToViewController(addOrEditVC!, animated: true)
+//            //
+//            //            self.popViewController(animated: true)
+//        }
+//
+//                let nav = UINavigationController(rootViewController: discTVC)
+//                discTVC.chousedDisciplines = disc
+//                present(nav, animated: true)
+////        discTVC.student = student
+////        self.dismiss(animated: true) {
+////            self.pushViewController(discTVC, animated: true)
+////        }
+//    }
 }
 

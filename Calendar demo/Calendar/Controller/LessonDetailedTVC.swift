@@ -31,10 +31,6 @@ class LessonDetailedTVC: UITableViewController {
         setNavigationController()
         fetchDetailedLesson(lessonId: lesson?.lessonId ?? 0)
     }
-    
-    deinit {
-        print("deinit", LessonDetailedTVC.self)
-    }
 }
 
 //MARK: Setup Screen
@@ -63,7 +59,7 @@ extension LessonDetailedTVC {
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
         
-        tableView.backgroundColor = .bgStudent
+        UIColor.setGradientToTableView(tableView: tableView, height: 0.2)
         
     }
 }
@@ -108,6 +104,7 @@ extension LessonDetailedTVC {
         
         if let desTVC = segue.source as? AddOrEditLessonTVC {
             desTVC.saveLesson()
+            desTVC.dismiss(animated: true)
         }
         self.tableView.reloadData()
             

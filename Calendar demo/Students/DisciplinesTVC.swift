@@ -8,21 +8,19 @@
 
 import UIKit
 
+
+
 class DisciplinesTVC: UITableViewController {
     
-    public var chousedDisciplines: [String] = []
-    var onBackButtonTap: (([String]) -> (Void))?
-    
+   var chousedDisciplines: [String] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
     }
     
     @IBAction func AddButton(_ sender: Any) {
         addDiscipline()
-        setupNavigationBar()
-    }
-    @IBAction func backButtonTap(_ sender: Any) {
-        onBackButtonTap?(chousedDisciplines)
     }
 }
 
@@ -31,15 +29,15 @@ extension DisciplinesTVC {
     private func setupNavigationBar() {
         let nav = self.navigationController?.navigationBar
         
-        navigationItem.leftBarButtonItem?.tintColor = .white
-        navigationItem.rightBarButtonItem?.tintColor = .white
+        navigationItem.leftBarButtonItem?.tintColor = .systemBlue
+        navigationItem.rightBarButtonItem?.tintColor = .systemBlue
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.isTranslucent = true
         nav?.prefersLargeTitles = true
-        nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         
-        tableView.backgroundColor = .bgStudent
+//        tableView.backgroundColor = .bgStudent
     }
 }
 

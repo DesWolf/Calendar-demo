@@ -54,6 +54,8 @@ extension StudentProfileTVC {
         
         phoneTV.isScrollEnabled = false
         emailTV.isScrollEnabled = false
+        
+        UIColor.setGradientToTableView(tableView: tableView, height: 0.2)
     }
     
     private func setNavigationController() {
@@ -63,13 +65,9 @@ extension StudentProfileTVC {
         navBar?.shadowImage = UIImage()
         navBar?.isTranslucent = true
         navBar?.backItem?.backBarButtonItem?.tintColor = .white
-        
-        tableView.backgroundColor = .bgStudent
-        
-//        navigationController?.navigationBar.standardAppearance.backButtonAppearance
-//        CAGradientLayer
     }
 }
+
 
 //MARK: UITextViewDelegate
 extension StudentProfileTVC: UITextViewDelegate{
@@ -125,7 +123,7 @@ extension StudentProfileTVC {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = indexPath.row == 0 ? .bgStudent : .white
+        cell.backgroundColor = indexPath.row == 0 ? UIColor.clear : .white
     }
 }
 

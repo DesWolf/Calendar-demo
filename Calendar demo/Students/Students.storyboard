@@ -12,7 +12,7 @@
         <scene sceneID="bBl-2m-KTQ">
             <objects>
                 <navigationController storyboardIdentifier="StudentsNavController" title="StudentsNavController" automaticallyAdjustsScrollViewInsets="NO" id="7TF-VW-MlM" customClass="StudentsNavController" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ученики" image="Contacts" id="AfD-B4-inM"/>
+                    <tabBarItem key="tabBarItem" title="Контакты" image="Contacts" id="AfD-B4-inM"/>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="Unh-Y1-8Qd"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -253,7 +253,7 @@
                                                     <rect key="frame" x="372" y="68" width="22" height="22"/>
                                                     <state key="normal" image="Add"/>
                                                     <connections>
-                                                        <action selector="tapOnDisciplinesButton:" destination="67y-bq-6A6" eventType="touchUpInside" id="jb9-yN-u2b"/>
+                                                        <segue destination="4l1-jS-ASn" kind="show" identifier="disciplines" id="c3U-Jn-5l3"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -454,7 +454,7 @@
                     <navigationItem key="navigationItem" title="Дисциплины" id="NsY-z8-nkW">
                         <barButtonItem key="leftBarButtonItem" title="Назад" id="cqG-Cu-HpB">
                             <connections>
-                                <action selector="backButtonTap:" destination="4l1-jS-ASn" id="Mpd-zf-2ZO"/>
+                                <segue destination="MYs-PN-f5B" kind="unwind" unwindAction="unwiSegueEditStudent:" id="rbF-a8-vet"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="WeF-i0-wjt">
@@ -465,8 +465,9 @@
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ut-DZ-ApY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <exit id="MYs-PN-f5B" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5860.8695652173919" y="328.79464285714283"/>
+            <point key="canvasLocation" x="5972" y="329"/>
         </scene>
         <!--StudentProfileTVC-->
         <scene sceneID="NXb-B1-4yx">
@@ -766,24 +767,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HoP-Jj-Rno" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4464" y="-366"/>
-        </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="CE7-cE-OgN">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EKQ-Vg-1S2" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Ejk-uG-6Mw">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="4l1-jS-ASn" kind="relationship" relationship="rootViewController" id="ty8-tA-L4V"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="uX0-RQ-IKi" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="5864" y="-366"/>
         </scene>
     </scenes>
     <resources>

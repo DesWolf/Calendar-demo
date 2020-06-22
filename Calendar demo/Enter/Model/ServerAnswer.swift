@@ -8,24 +8,9 @@
 
 import Foundation
 
-//struct User: Decodable {
-//    let email: String?
-//    let password: String?
-//    let confirmPassword: String?
-//}
-
 struct ServerAuthorizationAnswer: Decodable {
     let message: String?
     let error: [String]?
-    let teacherId: Int
-    let token: String
-    
+    let teacherId: Int?
+    let token: String?
 }
-
-struct ServerAuthorizationError: Decodable {
-//    let email: String?
-//    let password: String?
-//    let confirmPassword: String?
-//    let active: Bool?
-}
-

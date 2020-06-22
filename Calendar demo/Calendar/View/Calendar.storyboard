@@ -110,7 +110,6 @@
                         <barButtonItem key="leftBarButtonItem" systemItem="refresh" id="U5P-30-9jJ">
                             <connections>
                                 <action selector="sendRequest:" destination="KaI-3w-aNX" id="7UT-Uv-Hfc"/>
-                                <segue destination="BV5-U9-fYo" kind="show" id="bHg-8J-nsq"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="mGv-rZ-jHg">
@@ -454,7 +453,7 @@
             <objects>
                 <tableViewController id="3wC-s5-1sl" customClass="PaymentTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DkN-Xl-1L7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
@@ -1049,7 +1048,7 @@
                         <rightBarButtonItems>
                             <barButtonItem title="Готово" id="6CP-1M-sVV">
                                 <connections>
-                                    <segue destination="bom-sM-eKo" kind="unwind" unwindAction="unwiSegueCurrentLesson:" id="P4q-SQ-gYb"/>
+                                    <action selector="saveButtonClick:" destination="szI-nx-dll" id="k5W-yi-wKE"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Notif" id="jl5-gE-fdd">
@@ -1079,7 +1078,6 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceo-cR-O4v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="bom-sM-eKo" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="-3432" y="-2210"/>
         </scene>
