@@ -34,6 +34,9 @@
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yGT-7Q-c4S">
                                 <rect key="frame" x="0.0" y="597" width="414" height="216"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="216" id="zwf-eM-V8f"/>
+                                </constraints>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="meetingCell" rowHeight="95" id="JOp-K4-3VU" customClass="DayTVCell" customModule="Calendar_demo" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="95"/>
@@ -49,34 +52,37 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" text="StudentName" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xt-Ls-Gqu">
-                                                    <rect key="frame" x="20" y="11" width="101" height="18"/>
+                                                    <rect key="frame" x="20" y="11" width="269" height="18"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Time" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQ3-5p-Gp2">
-                                                    <rect key="frame" x="317" y="11" width="63" height="18"/>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="14:00 - 15:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XQ3-5p-Gp2">
+                                                    <rect key="frame" x="289" y="11" width="105" height="18"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="105" id="fUd-Nj-bVo"/>
+                                                    </constraints>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <color key="textColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="7xt-Ls-Gqu" firstAttribute="top" secondItem="Kfr-WO-FAa" secondAttribute="topMargin" id="03G-Ul-dzx"/>
+                                                <constraint firstItem="7xt-Ls-Gqu" firstAttribute="leading" secondItem="Kfr-WO-FAa" secondAttribute="leadingMargin" id="5yt-TD-Num"/>
+                                                <constraint firstItem="XQ3-5p-Gp2" firstAttribute="trailing" secondItem="Kfr-WO-FAa" secondAttribute="trailingMargin" id="69J-jo-u3p"/>
                                                 <constraint firstItem="YfZ-3W-ybx" firstAttribute="bottom" secondItem="Kfr-WO-FAa" secondAttribute="bottomMargin" id="7ki-2g-q3t"/>
                                                 <constraint firstItem="XQ3-5p-Gp2" firstAttribute="top" secondItem="Kfr-WO-FAa" secondAttribute="topMargin" id="Arg-PJ-GqA"/>
-                                                <constraint firstItem="XQ3-5p-Gp2" firstAttribute="leading" secondItem="7xt-Ls-Gqu" secondAttribute="trailing" constant="196" id="ElT-cS-0fq"/>
-                                                <constraint firstItem="7xt-Ls-Gqu" firstAttribute="leading" secondItem="Kfr-WO-FAa" secondAttribute="leadingMargin" id="Nv7-Ko-ec1"/>
+                                                <constraint firstItem="XQ3-5p-Gp2" firstAttribute="leading" secondItem="7xt-Ls-Gqu" secondAttribute="trailing" id="LNs-4j-yCI"/>
+                                                <constraint firstItem="7xt-Ls-Gqu" firstAttribute="top" secondItem="Kfr-WO-FAa" secondAttribute="topMargin" id="VhK-QE-y5d"/>
                                                 <constraint firstItem="YfZ-3W-ybx" firstAttribute="leading" secondItem="Kfr-WO-FAa" secondAttribute="leadingMargin" id="ZEC-4j-ILi"/>
                                                 <constraint firstItem="YfZ-3W-ybx" firstAttribute="trailing" secondItem="Kfr-WO-FAa" secondAttribute="trailingMargin" id="aiy-6F-8sv"/>
                                                 <constraint firstItem="YfZ-3W-ybx" firstAttribute="top" secondItem="XQ3-5p-Gp2" secondAttribute="bottom" constant="6" id="jQ7-v1-lPF"/>
-                                                <constraint firstItem="YfZ-3W-ybx" firstAttribute="top" secondItem="7xt-Ls-Gqu" secondAttribute="bottom" constant="6" id="slN-2u-hqD"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="XQ3-5p-Gp2" secondAttribute="trailing" constant="14" id="tsi-tQ-O5N"/>
+                                                <constraint firstItem="YfZ-3W-ybx" firstAttribute="top" secondItem="7xt-Ls-Gqu" secondAttribute="bottom" constant="6" id="nkH-uZ-tGq"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="meetingLabel" destination="YfZ-3W-ybx" id="CPL-I1-OTN"/>
-                                            <outlet property="studentNameLabel" destination="7xt-Ls-Gqu" id="ht1-e6-cXL"/>
+                                            <outlet property="descLabel" destination="YfZ-3W-ybx" id="CPL-I1-OTN"/>
+                                            <outlet property="nameLabel" destination="7xt-Ls-Gqu" id="ht1-e6-cXL"/>
                                             <outlet property="timeLabel" destination="XQ3-5p-Gp2" id="AbY-bS-KRM"/>
                                         </connections>
                                     </tableViewCell>
@@ -112,11 +118,19 @@
                                 <action selector="sendRequest:" destination="KaI-3w-aNX" id="7UT-Uv-Hfc"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="mGv-rZ-jHg">
-                            <connections>
-                                <segue destination="2uI-hv-IYI" kind="show" id="vrN-SS-x7m"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="mGv-rZ-jHg">
+                                <connections>
+                                    <segue destination="2uI-hv-IYI" kind="show" id="vrN-SS-x7m"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem image="switchView" id="XBE-pO-q2l">
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="switchCalView:" destination="KaI-3w-aNX" id="fIP-eV-tCq"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="backgroundImage" destination="ZUm-fx-5Oa" id="ka7-Da-Zhd"/>
@@ -127,7 +141,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="crc-cs-zyC" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-5200" y="-2412"/>
+            <point key="canvasLocation" x="-5200" y="-2412.0535714285711"/>
         </scene>
         <!--Подробнее-->
         <scene sceneID="wuX-6G-gcV">
@@ -1506,5 +1520,6 @@
         <image name="Calendar" width="28" height="25"/>
         <image name="empyCheck" width="15" height="16"/>
         <image name="oval" width="22" height="22"/>
+        <image name="switchView" width="16" height="13"/>
     </resources>
 </document>

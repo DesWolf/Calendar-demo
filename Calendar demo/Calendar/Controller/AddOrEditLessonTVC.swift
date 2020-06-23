@@ -52,11 +52,11 @@ class AddOrEditLessonTVC: UITableViewController {
         
         startLessonLabel.text = displayedDateAndTime(str: "\(startLessonDatePicker.date)")
         endLessonDatePicker.setDate(startLessonDatePicker.date.addingTimeInterval(oneHour), animated: true)
-        endLessonLabel.text = displayedHour(str: "\(endLessonDatePicker.date)")
+        endLessonLabel.text = displayedDateAndTime(str: "\(endLessonDatePicker.date)")
     }
     
     @IBAction func endDateChanged(sender: UIDatePicker) {
-        endLessonLabel.text = displayedHour(str: "\(endLessonDatePicker.date)")
+        endLessonLabel.text = displayedDateAndTime(str: "\(endLessonDatePicker.date)")
     }
     @IBAction func cancelButton(_ sender: Any) {
          dismiss(animated: true)
@@ -101,9 +101,8 @@ extension AddOrEditLessonTVC {
     private func setupEndLesson() {
         let oneHour = TimeInterval(60 * 60)
         
-        endLessonDatePicker.datePickerMode = .time
         endLessonDatePicker.setDate(Date().addingTimeInterval(oneHour), animated: true)
-        endLessonLabel.text = displayedHour(str: "\(endLessonDatePicker.date)")
+        endLessonLabel.text = displayedDateAndTime(str: "\(endLessonDatePicker.date)")
         endLessonDatePicker.isHidden = true
     }
     
@@ -192,11 +191,11 @@ extension AddOrEditLessonTVC {
                                dateStart: serverDate(str: "\(startLessonDatePicker.date)"),
                                timeStart: serverHour(str: "\(startLessonDatePicker.date)"),
                                duration: [""],
-                               dateEnd: serverDate(str: "\(startLessonDatePicker.date)"),
-                               timeEnd: serverHour(str: "\(startLessonDatePicker.date)"),
+                               dateEnd: serverDate(str: "\(endLessonDatePicker.date)"),
+                               timeEnd: serverHour(str: "\(endLessonDatePicker.date)"),
                                repeatedly: repeatLessonLabel.text == "Никогда" ?  "never" : "weekly",
-                               endRepeat: endOfRepeatLessonLabel.text == "Никогда" ? nil : serverDate2(str: "\(endOfRepeatLessonLabel.text)"),
-                               price:  Int(priceTF.text ?? "0"),
+                               endRepeat:  nil, //"2020-07-24", //repeatLessonLabel.text == "Никогда" ? nil : serverDate2(str: "\(endOfRepeatLessonLabel.text)"),
+                               price: Int(priceTF.text ?? "0"),
                                note: noteTV.text,
                                statusPay: 0,
                                paymentDate: "")
