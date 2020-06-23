@@ -16,7 +16,7 @@ struct NetworkManagerCalendar {
     
     func fetchCalendar(startDate: String,
                        endDate: String,
-                       completion: @escaping (_ contacts: [CalendarModel]?,_ error: String?)->()){
+                       completion: @escaping (_ contacts: [LessonModel]?,_ error: String?)->()){
         router.request(.calendar(startDate: startDate, endDate: endDate)) { data, response, error in
             
             if error != nil {
@@ -32,7 +32,7 @@ struct NetworkManagerCalendar {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode([CalendarModel].self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode([LessonModel].self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -45,7 +45,7 @@ struct NetworkManagerCalendar {
         }
     }
     
-    func fetchLesson(lessonId: Int, completion: @escaping (_ contacts: CalendarModel?,_ error: String?)->()){
+    func fetchLesson(lessonId: Int, completion: @escaping (_ contacts: LessonModel?,_ error: String?)->()){
         router.request(.showLesson(lessonId: lessonId)) { data, response, error in
             
             if error != nil {
@@ -61,7 +61,7 @@ struct NetworkManagerCalendar {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode(CalendarModel.self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(LessonModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -86,7 +86,7 @@ struct NetworkManagerCalendar {
                    endRepeat: String,
                    price: Int,
                    note: String,
-                   completion: @escaping (_ message: [String: String]?,_ error: String?)->()){
+                   completion: @escaping (_ message: ServerAnswerModel?,_ error: String?)->()){
         router.request(.addLesson(name: name,
                                   place: place,
                                   studentId: studentId,
@@ -114,7 +114,7 @@ struct NetworkManagerCalendar {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode([String: String].self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(ServerAnswerModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -142,7 +142,7 @@ struct NetworkManagerCalendar {
                       note: String,
                       statusPay: Int,
                       paymentDate: String,
-        completion: @escaping (_ message: [String: String]?,_ error: String?)->()){
+        completion: @escaping (_ message: ServerAnswerModel?,_ error: String?)->()){
         router.request(.changeLesson(lessonId: lessonId,
                                      name: name,
                                      place: place,
@@ -173,7 +173,7 @@ struct NetworkManagerCalendar {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode([String: String].self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(ServerAnswerModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -186,7 +186,7 @@ struct NetworkManagerCalendar {
         }
     }
     
-    func deleteLesson(lessonId: Int, completion: @escaping (_ message: [String: String]?,_ error: String?)->()){
+    func deleteLesson(lessonId: Int, completion: @escaping (_ message: ServerAnswerModel?,_ error: String?)->()){
         router.request(.deleteLesson(lessonId: lessonId)) { data, response, error in
             
             if error != nil {
@@ -202,7 +202,7 @@ struct NetworkManagerCalendar {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode([String: String].self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(ServerAnswerModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)

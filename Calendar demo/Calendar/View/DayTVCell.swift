@@ -14,14 +14,14 @@ class DayTVCell: UITableViewCell {
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     
-    func configere(with meeting: CalendarModel) {
+    func configere(with meeting: LessonModel) {
         let startTime =  serverHour(str: meeting.timeStart ?? "00:00:00")
         let endTime =    serverHour(str: meeting.timeEnd ?? "01:00:00")
         var name = ""
         var description = ""
         
         if meeting.studentName == nil {
-            name = meeting.name ?? ""
+            name = meeting.lessonName ?? ""
             description = "Личное"
         } else {
             name = "Урок с \(meeting.studentName ?? "") \(meeting.studentSurname ?? "")"

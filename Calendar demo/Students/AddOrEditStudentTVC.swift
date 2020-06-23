@@ -17,13 +17,14 @@ class AddOrEditStudentTVC: UITableViewController {
     @IBOutlet weak var noteTF: UITextView!
     @IBOutlet weak var disciplinesCollectionView: UICollectionView!
     
-    var chousedDisciplines: [String] = []
-    var student: StudentModel?
+    public var chousedDisciplines: [String] = []
+    public var student: StudentModel?
     private let networkManagerStudents =  NetworkManagerStudents()
-    var onBackButtonTap: (() -> (Void))?
-    var onSaveButtonTap: ((Int, StudentModel) -> (Void))?
-    var onDisciplinesButtonTap: ((StudentModel) -> (Void))?
-    let disc = DisciplinesTVC()
+    
+    public var onBackButtonTap: (() -> (Void))?
+    public var onSaveButtonTap: ((Int, StudentModel) -> (Void))?
+//    var onDisciplinesButtonTap: ((StudentModel) -> (Void))?
+//    let disc = DisciplinesTVC()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,7 +148,7 @@ extension AddOrEditStudentTVC {
                 }
                 return
             }
-            guard let studentId = Int(responce.studentId ?? "0") else { return }
+            guard let studentId = responce.studentId else { return }
             self?.onSaveButtonTap?(studentId, newStudent)
             print("Add:",responce.studentId ?? "")
         }

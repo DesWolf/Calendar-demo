@@ -17,10 +17,11 @@ class StudentProfileTVC: UITableViewController {
     @IBOutlet weak var disciplinesCollectionView: UICollectionView!
     @IBOutlet weak var noteTV: UITextView!
     
-    var student: StudentModel?
     private let networkManagerStudents =  NetworkManagerStudents()
-    var onEditButtonTap: ((StudentModel) -> (Void))?
-    var onBackButtonTap: (() -> (Void))?
+    
+    public var student: StudentModel?
+    public var onEditButtonTap: ((StudentModel) -> (Void))?
+    public var onBackButtonTap: (() -> (Void))?
     
     override func viewDidLoad() {
         super.viewDidLoad()

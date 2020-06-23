@@ -22,21 +22,36 @@ class LessonDetailedTVC: UITableViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var paymentLabel: UILabel!
     
-    var lesson: CalendarModel?
+    var lesson: LessonModel?
     private var paymentDate: String?
     private let networkManagerCalendar =  NetworkManagerCalendar()
+    
+    public var onEditButtonTap: ((LessonModel) -> (Void))?
+    public var onBackButtonTap: (() -> (Void))?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationController()
-        fetchDetailedLesson(lessonId: lesson?.lessonId ?? 0)
     }
+    
+    @IBAction private func tapOnBackButton(_ sender: Any) {
+        self.onBackButtonTap?()
+    }
+    
+    @IBAction private func tapOnEditButton(_ sender: Any) {
+        if lesson == nil {
+            simpleAlert(message: "Нет интернет соединения, попробуйте позже")
+        } else {
+            self.onEditButtonTap?(lesson!)
+        }
+    }
+    
 }
 
 //MARK: Setup Screen
 extension LessonDetailedTVC {
-    func setupScreen(lesson: CalendarModel?) {
-        nameLabel.text = lesson?.name ?? ""
+    func setupScreen(lesson: LessonModel?) {
+        nameLabel.text = lesson?.lessonName ?? ""
         placeLabel.text = lesson?.place ?? ""
         disciplineLabel.text = lesson?.discipline ?? ""
         timeLabel.text = "\(lesson?.timeStart ?? "") - \(lesson?.timeEnd ?? "")"
@@ -92,42 +107,42 @@ extension LessonDetailedTVC {
 }
 
 // MARK: Navigation
-extension LessonDetailedTVC {
-    @IBAction func unwiSegueCurrentLesson(_ segue: UIStoryboardSegue) {
-
-        if let desTVC = segue.source as? PaymentTVC {
-        let textCollor: UIColor = desTVC.payment == "Не оплаченно" ? .systemRed : .systemGreen
-        self.paymentLabel.textColor = textCollor
-        self.paymentLabel.text = desTVC.payment
-        self.paymentDate = desTVC.dateOfPaymentLabel.text
-        }
-        
-        if let desTVC = segue.source as? AddOrEditLessonTVC {
-            desTVC.saveLesson()
-            desTVC.dismiss(animated: true)
-        }
-        self.tableView.reloadData()
-            
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "editLesson":
-            guard let destVC = segue.destination as? UINavigationController,
-                let targetController = destVC.topViewController as? AddOrEditLessonTVC else { return }
-            targetController.lesson = lesson
-            
-        case "payment":
-            guard let destVC = segue.destination as? PaymentTVC else { return }
-            destVC.payment = paymentLabel.text ?? "Не оплаченно"
-            destVC.paymentDate = paymentDate
-        case .none:
-            return
-        case .some(_):
-            return
-        }
-    }
-}
+//extension LessonDetailedTVC {
+//    @IBAction func unwiSegueCurrentLesson(_ segue: UIStoryboardSegue) {
+//
+//        if let desTVC = segue.source as? PaymentTVC {
+//        let textCollor: UIColor = desTVC.payment == "Не оплаченно" ? .systemRed : .systemGreen
+//        self.paymentLabel.textColor = textCollor
+//        self.paymentLabel.text = desTVC.payment
+//        self.paymentDate = desTVC.dateOfPaymentLabel.text
+//        }
+//        
+//        if let desTVC = segue.source as? AddOrEditLessonTVC {
+//            desTVC.saveLesson()
+//            desTVC.dismiss(animated: true)
+//        }
+//        self.tableView.reloadData()
+//            
+//    }
+//    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        switch segue.identifier {
+//        case "editLesson":
+//            guard let destVC = segue.destination as? UINavigationController,
+//                let targetController = destVC.topViewController as? AddOrEditLessonTVC else { return }
+//            targetController.lesson = lesson
+//            
+//        case "payment":
+//            guard let destVC = segue.destination as? PaymentTVC else { return }
+//            destVC.payment = paymentLabel.text ?? "Не оплаченно"
+//            destVC.paymentDate = paymentDate
+//        case .none:
+//            return
+//        case .some(_):
+//            return
+//        }
+//    }
+//}
 
 //MARK: Network
 extension LessonDetailedTVC {

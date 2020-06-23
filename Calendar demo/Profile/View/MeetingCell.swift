@@ -10,22 +10,22 @@ import UIKit
 
 class MeetingCell: UITableViewCell {
 
-    @IBOutlet var timeOfMeetingLabel: UILabel!
-    @IBOutlet var lessonLabel: UILabel!
-    @IBOutlet var taskImageView: UIImageView!
-    @IBOutlet var nameLabel: UILabel!
-    
-    @IBAction func taskAction(_ sender: Any) {
-//        endLessonAlert()
-    }
-    func configere(with meeting: CalendarModel) {
-        let startTime = "\(meeting.dateStart?[11..<16] ?? "10:00")"
-        let endTime = "\(meeting.dateEnd?[11..<16] ?? "11:00")"
-
-        self.timeOfMeetingLabel.text = "\(startTime)-\(endTime)"
-        self.nameLabel.text = "\(meeting.studentName ?? "")"
-        self.lessonLabel.text = "Французский"
-    }
+//    @IBOutlet var timeOfMeetingLabel: UILabel!
+//    @IBOutlet var lessonLabel: UILabel!
+//    @IBOutlet var taskImageView: UIImageView!
+//    @IBOutlet var nameLabel: UILabel!
+//    
+//    @IBAction func taskAction(_ sender: Any) {
+////        endLessonAlert()
+//    }
+//    func configere(with meeting: LessonModel) {
+//        let startTime = "\(meeting.dateStart?[11..<16] ?? "10:00")"
+//        let endTime = "\(meeting.dateEnd?[11..<16] ?? "11:00")"
+//
+//        self.timeOfMeetingLabel.text = "\(startTime)-\(endTime)"
+//        self.nameLabel.text = "\(meeting.studentName ?? "")"
+//        self.lessonLabel.text = "Французский"
+//    }
 }
 
 

@@ -8,9 +8,9 @@
 
 import Foundation
 
-struct CalendarModel: Decodable {
+struct LessonModel: Decodable {
     let lessonId: Int?
-    let name: String?
+    let lessonName: String?
     let place: String?
     let studentId: Int?
     let studentName: String?

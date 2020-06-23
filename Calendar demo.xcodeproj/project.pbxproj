@@ -34,6 +34,7 @@
 		9E5C05E7246D8BCE00EADD5C /* ServerAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C05E6246D8BCE00EADD5C /* ServerAnswer.swift */; };
 		9E5C05E9246D930700EADD5C /* LoginEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C05E8246D930700EADD5C /* LoginEndPoint.swift */; };
 		9E5C05EB246D971400EADD5C /* NetworkManagerLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C05EA246D971400EADD5C /* NetworkManagerLogin.swift */; };
+		9E5E8CDA24A23FE9006E4751 /* CalendarNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5E8CD924A23FE9006E4751 /* CalendarNavController.swift */; };
 		9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631936244F4781007DE5F1 /* MeetingCell.swift */; };
 		9E631939244F50B4007DE5F1 /* AddOrEditLessonTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631938244F50B4007DE5F1 /* AddOrEditLessonTVC.swift */; };
 		9E63193A244F6101007DE5F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B4244D92AB00FA529B /* Main.storyboard */; };
@@ -45,7 +46,7 @@
 		9E7A73BB244D92AC00FA529B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B9244D92AC00FA529B /* LaunchScreen.storyboard */; };
 		9E7C1348247D45EE0095C57E /* UIImage Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7C1347247D45EE0095C57E /* UIImage Extentions.swift */; };
 		9E7C134A247D47A70095C57E /* StudentProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7C1349247D47A70095C57E /* StudentProfileTVC.swift */; };
-		9E80D0A62453268300FECAF7 /* CalendarModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A52453268300FECAF7 /* CalendarModel.swift */; };
+		9E80D0A62453268300FECAF7 /* LessonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A52453268300FECAF7 /* LessonModel.swift */; };
 		9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */; };
 		9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */; };
 		9E862343248BBDBF0004B3FD /* UIVewControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E862342248BBDBF0004B3FD /* UIVewControllerExtention.swift */; };
@@ -116,6 +117,7 @@
 		9E5C05E6246D8BCE00EADD5C /* ServerAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAnswer.swift; sourceTree = "<group>"; };
 		9E5C05E8246D930700EADD5C /* LoginEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndPoint.swift; sourceTree = "<group>"; };
 		9E5C05EA246D971400EADD5C /* NetworkManagerLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerLogin.swift; sourceTree = "<group>"; };
+		9E5E8CD924A23FE9006E4751 /* CalendarNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarNavController.swift; sourceTree = "<group>"; };
 		9E631936244F4781007DE5F1 /* MeetingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MeetingCell.swift; sourceTree = "<group>"; };
 		9E631938244F50B4007DE5F1 /* AddOrEditLessonTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditLessonTVC.swift; sourceTree = "<group>"; };
 		9E6B56A7248B945C00042E2B /* StringExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtention.swift; sourceTree = "<group>"; };
@@ -130,7 +132,7 @@
 		9E7A73BC244D92AC00FA529B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E7C1347247D45EE0095C57E /* UIImage Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extentions.swift"; sourceTree = "<group>"; };
 		9E7C1349247D47A70095C57E /* StudentProfileTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfileTVC.swift; sourceTree = "<group>"; };
-		9E80D0A52453268300FECAF7 /* CalendarModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarModel.swift; sourceTree = "<group>"; };
+		9E80D0A52453268300FECAF7 /* LessonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonModel.swift; sourceTree = "<group>"; };
 		9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTVCell.swift; sourceTree = "<group>"; };
 		9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaledDayService.swift; sourceTree = "<group>"; };
 		9E862342248BBDBF0004B3FD /* UIVewControllerExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVewControllerExtention.swift; sourceTree = "<group>"; };
@@ -223,7 +225,7 @@
 		9E0538B0247C195300AAC0AA /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				9E80D0A52453268300FECAF7 /* CalendarModel.swift */,
+				9E80D0A52453268300FECAF7 /* LessonModel.swift */,
 				9E0A5E2F244F411400188CDE /* NotificationModel.swift */,
 			);
 			path = Model;
@@ -232,6 +234,7 @@
 		9E0538B2247C196300AAC0AA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9E5E8CD924A23FE9006E4751 /* CalendarNavController.swift */,
 				9E7A73B2244D92AB00FA529B /* CalendarVC.swift */,
 				9E8C5F0A2494DBCF00332B61 /* LessonDetailedTVC.swift */,
 				9E631938244F50B4007DE5F1 /* AddOrEditLessonTVC.swift */,
@@ -660,7 +663,7 @@
 				9E1B30A6249A32BB00166117 /* Notifications.swift in Sources */,
 				9E7A73B3244D92AB00FA529B /* CalendarVC.swift in Sources */,
 				9EB03573249AAD3F00F22C57 /* NetworkManagerFinance.swift in Sources */,
-				9E80D0A62453268300FECAF7 /* CalendarModel.swift in Sources */,
+				9E80D0A62453268300FECAF7 /* LessonModel.swift in Sources */,
 				9EF22899247A681200C1AE56 /* StartScreen.swift in Sources */,
 				9E0A5E30244F411400188CDE /* NotificationModel.swift in Sources */,
 				9E5C05E7246D8BCE00EADD5C /* ServerAnswer.swift in Sources */,
@@ -676,6 +679,7 @@
 				9EC155B6246D63C300D2C776 /* URLParameterEncoding.swift in Sources */,
 				9E86E9182493789600FD63AA /* NotificationTVCell.swift in Sources */,
 				9EC155BA246D642B00D2C776 /* AlertService.swift in Sources */,
+				9E5E8CDA24A23FE9006E4751 /* CalendarNavController.swift in Sources */,
 				9EB03577249B6DDC00F22C57 /* StudentsNavController.swift in Sources */,
 				9E8C5F0D2494DE1000332B61 /* PaymentTVC.swift in Sources */,
 				9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */,

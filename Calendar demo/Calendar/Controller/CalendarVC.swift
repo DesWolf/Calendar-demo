@@ -22,18 +22,19 @@ class CalendarVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private let networkManagerCalendar = NetworkManagerCalendar()
-    private var calendar: [CalendarModel]?
+    private var calendar: [LessonModel]?
     
     private var datesDictionary:[String] = []
-    private var selectedDay = [CalendarModel]()
+    private var selectedDay = [LessonModel]()
     private var modeView: ModeView = .monthView
+    
+    var onAddButtonTap: (() -> (Void))?
+    var onCellTap: ((LessonModel) -> (Void))?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureScreen()
         fetchCalendar(startDate: "2020-06-01", endDate: "2020-06-30")
-        
-       
     }
     
     override func viewDidLayoutSubviews() {
@@ -48,6 +49,7 @@ class CalendarVC: UIViewController {
     }
     
     @IBAction func switchCalView(_ sender: Any) {
+        switchMode()
         if modeView == ModeView.monthView {
             modeView = .weekView
             calendarView.changeMode(.weekView)
@@ -55,6 +57,10 @@ class CalendarVC: UIViewController {
             modeView = .monthView
             calendarView.changeMode(.monthView)
         }
+    }
+    
+    @IBAction func addStudent(_ sender: Any) {
+        onAddButtonTap?()
     }
 }
 
@@ -66,8 +72,7 @@ extension CalendarVC {
         print(startDate, endDate)
         
         setupNavigationBar()
-//        self.view.backgroundColor = .bgStudent
-                backgroundColor()
+        backgroundColor()
         calendarView.delegate = self
         menuView.delegate = self
     }
@@ -96,7 +101,19 @@ extension CalendarVC {
         nav?.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
     }
+    
+    func switchMode() {
+        if modeView == ModeView.monthView {
+            modeView = .weekView
+            calendarView.changeMode(.weekView)
+        } else {
+            modeView = .monthView
+            calendarView.changeMode(.monthView)
+        }
+    }
 }
+
+
 
 //MARK: Network
 extension CalendarVC {
@@ -109,7 +126,6 @@ extension CalendarVC {
                 }
                 return
             }
-            print(calendar)
             self?.calendar = calendar
             self?.datesDictionary.append(contentsOf: (self?.calendar.map ({ $0.map ({($0.dateStart ?? "")}) }) ?? [""]))
             for index in 0..<calendar.count {
@@ -237,9 +253,10 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
-    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        return 50
-    //    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let meeting = selectedDay[indexPath.row]
+        onCellTap?(meeting)
+    }
 }
 
 

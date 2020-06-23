@@ -27,10 +27,13 @@ class AddOrEditLessonTVC: UITableViewController {
     @IBOutlet weak var noteTV: UITextView!
     
     var notifications = Notifications()
-    var lesson: CalendarModel?
+    var lesson: LessonModel?
     var student: StudentModel?
     var notifInSeconds: Double?
     private let networkManagerCalendar =  NetworkManagerCalendar()
+    
+    public var onBackButtonTap: (() -> (Void))?
+    public var onSaveButtonTap: ((Int, LessonModel) -> (Void))?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,18 +62,24 @@ class AddOrEditLessonTVC: UITableViewController {
         endLessonLabel.text = displayedDateAndTime(str: "\(endLessonDatePicker.date)")
     }
     @IBAction func cancelButton(_ sender: Any) {
-         dismiss(animated: true)
+         onBackButtonTap?()
     }
     @IBAction func saveButtonClick(_ sender: Any) {
-        saveLesson()
-    }
+        guard nameTF.text != "", nameTF.text != " "  else {
+                DispatchQueue.main.async {
+                    self.simpleAlert(message: "Пожалуйста, заполните необходимые поля")
+                }
+                return
+            }
+            saveLesson()
+        }
 }
 
 //MARK: Set Screen
 extension AddOrEditLessonTVC {
     private func configureScreen(){
         if lesson != nil {
-            nameTF.text = lesson?.name
+            nameTF.text = lesson?.lessonName
             placeTF.text = lesson?.place ?? ""
             studentLabel.text = "\(lesson?.studentName ?? "") \(lesson?.studentSurname ?? "")"
             disciplineLabel.text = lesson?.discipline ?? ""
@@ -127,62 +136,62 @@ extension AddOrEditLessonTVC {
 
 //MARK: Navigation
 extension AddOrEditLessonTVC {
-    @IBAction func unwiSegueAddMeeting (_ segue: UIStoryboardSegue) {
-        
-        if let studentTVC = segue.source as? StudentsForLessonTVC {
-            self.student = studentTVC.selectedStudent
-            self.studentLabel.text = "\(self.student?.name ?? "") \(self.student?.surname ?? "")"
-            
-            let nav = self.navigationController?.navigationBar
-            nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-        }
-        
-        if let disciplineTVC = segue.source as? DisciplinesForLessonTVC {
-            self.disciplineLabel.text = disciplineTVC.selectedDiscipline
-        }
-        
-        if let repeatTVC = segue.source as? RepeatTVC {
-            self.repeatLessonLabel.text = repeatTVC.repeatLesson.rawValue
-            if repeatTVC.repeatLesson.rawValue != RepeatLesson.never.rawValue {
-                self.endOfRepeatLessonLabel.text = repeatTVC.endOfRepeat ?? ""
-                endOfRepeatLessonCell.isHidden = false
-            } else {
-                endOfRepeatLessonCell.isHidden = true
-            }
-            tableView.reloadData()
-        }
-        
-        if let notifTVC = segue.source as? NotificationTVC {
-            self.notificationTypeLabel.text = "\(notifTVC.selectedNotification)"
-            self.notifInSeconds = notifTVC.notifInSeconds
-            print(self.notifInSeconds)
-        }
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        switch segue.identifier {
-        case "student":
-            guard let studTVC = segue.destination as? StudentsForLessonTVC else { return }
-            studTVC.selectedStudent = student
-        case "disciplines":
-            guard let disTVC = segue.destination as? DisciplinesForLessonTVC else { return }
-            disTVC.selectedDiscipline =  disciplineLabel.text ?? ""
-        case "repeatLesson":
-            guard let repeatTVC = segue.destination as? RepeatTVC else { return }
-            repeatTVC.endOfRepeat = endOfRepeatLessonLabel.text ?? ""
-        case "notification":
-            guard let notifTVC = segue.destination as? NotificationTVC else { return }
-            notifTVC.selectedNotification =  notificationTypeLabel.text ?? "Нет"
-            notifTVC.notifInSeconds = notifInSeconds ?? 0
-        default:
-            return
-        }
-    }
+//    @IBAction func unwiSegueAddMeeting (_ segue: UIStoryboardSegue) {
+//        
+//        if let studentTVC = segue.source as? StudentsForLessonTVC {
+//            self.student = studentTVC.selectedStudent
+//            self.studentLabel.text = "\(self.student?.name ?? "") \(self.student?.surname ?? "")"
+//            
+//            let nav = self.navigationController?.navigationBar
+//            nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+//        }
+//        
+//        if let disciplineTVC = segue.source as? DisciplinesForLessonTVC {
+//            self.disciplineLabel.text = disciplineTVC.selectedDiscipline
+//        }
+//        
+//        if let repeatTVC = segue.source as? RepeatTVC {
+//            self.repeatLessonLabel.text = repeatTVC.repeatLesson.rawValue
+//            if repeatTVC.repeatLesson.rawValue != RepeatLesson.never.rawValue {
+//                self.endOfRepeatLessonLabel.text = repeatTVC.endOfRepeat ?? ""
+//                endOfRepeatLessonCell.isHidden = false
+//            } else {
+//                endOfRepeatLessonCell.isHidden = true
+//            }
+//            tableView.reloadData()
+//        }
+//        
+//        if let notifTVC = segue.source as? NotificationTVC {
+//            self.notificationTypeLabel.text = "\(notifTVC.selectedNotification)"
+//            self.notifInSeconds = notifTVC.notifInSeconds
+//            print(self.notifInSeconds)
+//        }
+//    }
+//    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        
+//        switch segue.identifier {
+//        case "student":
+//            guard let studTVC = segue.destination as? StudentsForLessonTVC else { return }
+//            studTVC.selectedStudent = student
+//        case "disciplines":
+//            guard let disTVC = segue.destination as? DisciplinesForLessonTVC else { return }
+//            disTVC.selectedDiscipline =  disciplineLabel.text ?? ""
+//        case "repeatLesson":
+//            guard let repeatTVC = segue.destination as? RepeatTVC else { return }
+//            repeatTVC.endOfRepeat = endOfRepeatLessonLabel.text ?? ""
+//        case "notification":
+//            guard let notifTVC = segue.destination as? NotificationTVC else { return }
+//            notifTVC.selectedNotification =  notificationTypeLabel.text ?? "Нет"
+//            notifTVC.notifInSeconds = notifInSeconds ?? 0
+//        default:
+//            return
+//        }
+//    }
     
     func saveLesson() {
-        lesson = CalendarModel(lessonId: lesson != nil ? lesson?.lessonId : nil,
-                               name: nameTF.text,
+        lesson = LessonModel(lessonId: lesson != nil ? lesson?.lessonId : nil,
+                               lessonName: nameTF.text,
                                place: placeTF.text,
                                studentId: lesson != nil ? lesson?.studentId : student?.studentId,
                                studentName: student?.name,
@@ -210,8 +219,8 @@ extension AddOrEditLessonTVC {
 
 //MARK: Network
 extension AddOrEditLessonTVC {
-    private func addNewLesson(lesson: CalendarModel) {
-        networkManagerCalendar.addLesson(name: lesson.name ?? "",
+    private func addNewLesson(lesson: LessonModel) {
+        networkManagerCalendar.addLesson(name: lesson.lessonName ?? "",
                                          place: lesson.place ?? "",
                                          studentId: lesson.studentId ?? 0,
                                          discipline: lesson.discipline ?? "",
@@ -231,13 +240,15 @@ extension AddOrEditLessonTVC {
                 }
                 return
             }
-            print("Add:",responce)
+            guard let lessonId = responce.lessonId else { return }
+            self?.onSaveButtonTap?(lessonId, lesson)
+            print("Add:",responce.message ?? "")
         }
     }
     
-    private func changeLesson(lesson: CalendarModel) {
+    private func changeLesson(lesson: LessonModel) {
         networkManagerCalendar.changeLesson(lessonId: lesson.lessonId ?? 0,
-                                            name: lesson.name ?? "",
+                                            name: lesson.lessonName ?? "",
                                             place: lesson.place ?? "",
                                             studentId: lesson.studentId ?? 0,
                                             discipline: lesson.discipline ?? "",
@@ -259,7 +270,8 @@ extension AddOrEditLessonTVC {
                 }
                 return
             }
-            print("change:",responce)
+            self?.onSaveButtonTap?(lesson.lessonId ?? 0, lesson)
+            print("change:",responce.message ?? "")
         }
     }
 }

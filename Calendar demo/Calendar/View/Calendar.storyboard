@@ -11,28 +11,28 @@
         <!--Календарь-->
         <scene sceneID="hTz-4x-v6a">
             <objects>
-                <viewController id="KaI-3w-aNX" customClass="CalendarVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="CalendarVC" id="KaI-3w-aNX" customClass="CalendarVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="cgt-6W-3CX">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZUm-fx-5Oa">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="813"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="862"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rJ1-T4-e9a" userLabel="Calendar Menu View" customClass="CVCalendarMenuView" customModule="CVCalendar">
-                                <rect key="frame" x="0.0" y="88" width="414" height="50"/>
+                                <rect key="frame" x="0.0" y="44" width="414" height="50"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="50" id="Gri-F9-dKP"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r3w-uj-xvL" userLabel="Calendar View" customClass="CVCalendarView" customModule="CVCalendar">
-                                <rect key="frame" x="0.0" y="148" width="414" height="449"/>
+                                <rect key="frame" x="0.0" y="104" width="414" height="449"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="449" id="DAn-La-yD5"/>
                                 </constraints>
                             </view>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yGT-7Q-c4S">
-                                <rect key="frame" x="0.0" y="597" width="414" height="216"/>
+                                <rect key="frame" x="0.0" y="553" width="414" height="309"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="216" id="zwf-eM-V8f"/>
@@ -121,7 +121,7 @@
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="mGv-rZ-jHg">
                                 <connections>
-                                    <segue destination="2uI-hv-IYI" kind="show" id="vrN-SS-x7m"/>
+                                    <action selector="addStudent:" destination="KaI-3w-aNX" id="SIJ-nf-ggF"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="switchView" id="XBE-pO-q2l">
@@ -146,7 +146,7 @@
         <!--Подробнее-->
         <scene sceneID="wuX-6G-gcV">
             <objects>
-                <tableViewController id="BV5-U9-fYo" customClass="LessonDetailedTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="LessonDetailedTVC" id="BV5-U9-fYo" customClass="LessonDetailedTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="vba-ZF-3yM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -437,10 +437,14 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Подробнее" id="thw-cs-24L">
-                        <barButtonItem key="leftBarButtonItem" title="Назад" id="hD1-K4-vRH"/>
+                        <barButtonItem key="leftBarButtonItem" title="Назад" id="hD1-K4-vRH">
+                            <connections>
+                                <action selector="tapOnBackButton:" destination="BV5-U9-fYo" id="rZI-zo-iL3"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Править" id="rb9-QF-xxM">
                             <connections>
-                                <segue destination="2uI-hv-IYI" kind="show" identifier="editLesson" id="B1o-IL-lVB"/>
+                                <action selector="tapOnEditButton:" destination="BV5-U9-fYo" id="vtU-rE-wbx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -460,14 +464,14 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wYY-UT-dBv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-4333.3333333333339" y="-2412.0535714285711"/>
+            <point key="canvasLocation" x="-4333" y="-2412"/>
         </scene>
         <!--Статус оплаты-->
         <scene sceneID="F4Q-HC-YMG">
             <objects>
                 <tableViewController id="3wC-s5-1sl" customClass="PaymentTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="DkN-Xl-1L7">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <sections>
@@ -624,7 +628,7 @@
         <!--Новая встреча-->
         <scene sceneID="hdr-HF-VQt">
             <objects>
-                <tableViewController id="szI-nx-dll" customClass="AddOrEditLessonTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="AddOrEditLessonTVC" id="szI-nx-dll" customClass="AddOrEditLessonTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="qQa-D7-GTa">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="1500"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1093,7 +1097,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ceo-cR-O4v" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-3432" y="-2210"/>
+            <point key="canvasLocation" x="-3435" y="-2210"/>
         </scene>
         <!--DisciplinesForLessonTVC-->
         <scene sceneID="Ypt-l3-oFe">
@@ -1391,7 +1395,7 @@
         <!--Календарь-->
         <scene sceneID="bQO-3r-kQq">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WGU-f9-yfq" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WGU-f9-yfq" customClass="CalendarNavController" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Календарь" image="Calendar" id="DD8-RU-fsN"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
@@ -1400,13 +1404,10 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="KaI-3w-aNX" kind="relationship" relationship="rootViewController" id="smn-Fh-8yL"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AEa-w5-Nff" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-6013" y="-2412"/>
+            <point key="canvasLocation" x="-5200" y="-3147"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="MZq-js-Cjv">
@@ -1511,9 +1512,26 @@
             </objects>
             <point key="canvasLocation" x="-2633.3333333333335" y="-3147.3214285714284"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Q4r-gV-Abz">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="hxQ-gZ-YTU" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="gNh-m7-JcL">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BV5-U9-fYo" kind="relationship" relationship="rootViewController" id="tnS-LL-YoX"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="3uF-KJ-Hbj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-4333" y="-3147"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vrN-SS-x7m"/>
         <segue reference="Fp8-DV-5fm"/>
     </inferredMetricsTieBreakers>
     <resources>
