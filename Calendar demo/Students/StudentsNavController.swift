@@ -42,7 +42,6 @@ class StudentsNavController: UINavigationController {
         
         addOrEditVC.onBackButtonTap = { [weak self]  in
             guard let self = self else { return }
-            
             self.popViewController(animated: true)
         }
                 
@@ -79,9 +78,12 @@ class StudentsNavController: UINavigationController {
                 
             case let .addOfEdit(viewController, studentId, student):
                 
+                if student == nil {
                 DispatchQueue.global(qos: .background).async {
                     profileTVC.fetchDetailedStudent(studentId: studentId)
                 }
+                }
+                
                 profileTVC.student = student
                 viewController.dismiss(animated: true) {
                     self.pushViewController(profileTVC, animated: false)

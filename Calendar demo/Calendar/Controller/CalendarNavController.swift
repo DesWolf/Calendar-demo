@@ -87,7 +87,6 @@ class CalendarNavController: UINavigationController {
                     viewController.dismiss(animated: true) {
                         self.pushViewController(profileTVC, animated: false)
                     }
-                    
                 }
             }
         }

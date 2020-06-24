@@ -50,13 +50,6 @@ class CalendarVC: UIViewController {
     
     @IBAction func switchCalView(_ sender: Any) {
         switchMode()
-        if modeView == ModeView.monthView {
-            modeView = .weekView
-            calendarView.changeMode(.weekView)
-        } else {
-            modeView = .monthView
-            calendarView.changeMode(.monthView)
-        }
     }
     
     @IBAction func addStudent(_ sender: Any) {
@@ -78,6 +71,12 @@ extension CalendarVC {
     }
     
     private func backgroundColor() {
+        
+        let gradientBackgroundColors = [UIColor.appBlueLignt.cgColor, UIColor.appBlueDark.cgColor]
+        
+        
+        
+        
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = self.view.bounds
         let firstColor = UIColor.appBlueLignt

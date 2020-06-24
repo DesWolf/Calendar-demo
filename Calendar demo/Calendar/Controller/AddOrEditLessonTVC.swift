@@ -96,9 +96,12 @@ extension AddOrEditLessonTVC {
         setupStartLesson()
         setupEndLesson()
         setupNavigationBar()
-        UIColor.setGradientToTableView(tableView: tableView, height: 0.1)
+        UIColor.setGradientToTableView(tableView: tableView, height: 0.4)
+        
+        priceTF.attributedPlaceholder = NSAttributedString(string: "0",
+        attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        
         endOfRepeatLessonCell.isHidden  = true
-        tableView.backgroundColor = .bgStudent
     }
     
     private func setupStartLesson() {
@@ -118,6 +121,10 @@ extension AddOrEditLessonTVC {
     private func setupNavigationBar() {
         let navBar = self.navigationController?.navigationBar
         
+        if lesson == nil {
+            navigationItem.title = "Новый урок"
+        }
+        
         navigationItem.leftBarButtonItem?.title = "Отмена"
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
@@ -129,65 +136,64 @@ extension AddOrEditLessonTVC {
         navBar?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
-        guard lesson == nil else { return }
-        navBar?.topItem?.title = "Новый урок"
+        
     }
 }
 
 //MARK: Navigation
 extension AddOrEditLessonTVC {
-//    @IBAction func unwiSegueAddMeeting (_ segue: UIStoryboardSegue) {
-//        
-//        if let studentTVC = segue.source as? StudentsForLessonTVC {
-//            self.student = studentTVC.selectedStudent
-//            self.studentLabel.text = "\(self.student?.name ?? "") \(self.student?.surname ?? "")"
-//            
-//            let nav = self.navigationController?.navigationBar
-//            nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-//        }
-//        
-//        if let disciplineTVC = segue.source as? DisciplinesForLessonTVC {
-//            self.disciplineLabel.text = disciplineTVC.selectedDiscipline
-//        }
-//        
-//        if let repeatTVC = segue.source as? RepeatTVC {
-//            self.repeatLessonLabel.text = repeatTVC.repeatLesson.rawValue
-//            if repeatTVC.repeatLesson.rawValue != RepeatLesson.never.rawValue {
-//                self.endOfRepeatLessonLabel.text = repeatTVC.endOfRepeat ?? ""
-//                endOfRepeatLessonCell.isHidden = false
-//            } else {
-//                endOfRepeatLessonCell.isHidden = true
-//            }
-//            tableView.reloadData()
-//        }
-//        
-//        if let notifTVC = segue.source as? NotificationTVC {
-//            self.notificationTypeLabel.text = "\(notifTVC.selectedNotification)"
-//            self.notifInSeconds = notifTVC.notifInSeconds
-//            print(self.notifInSeconds)
-//        }
-//    }
-//    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        
-//        switch segue.identifier {
-//        case "student":
-//            guard let studTVC = segue.destination as? StudentsForLessonTVC else { return }
-//            studTVC.selectedStudent = student
-//        case "disciplines":
-//            guard let disTVC = segue.destination as? DisciplinesForLessonTVC else { return }
-//            disTVC.selectedDiscipline =  disciplineLabel.text ?? ""
-//        case "repeatLesson":
-//            guard let repeatTVC = segue.destination as? RepeatTVC else { return }
-//            repeatTVC.endOfRepeat = endOfRepeatLessonLabel.text ?? ""
-//        case "notification":
-//            guard let notifTVC = segue.destination as? NotificationTVC else { return }
-//            notifTVC.selectedNotification =  notificationTypeLabel.text ?? "Нет"
-//            notifTVC.notifInSeconds = notifInSeconds ?? 0
-//        default:
-//            return
-//        }
-//    }
+    @IBAction func unwiSegueAddMeeting (_ segue: UIStoryboardSegue) {
+        
+        if let studentTVC = segue.source as? StudentsForLessonTVC {
+            self.student = studentTVC.selectedStudent
+            self.studentLabel.text = "\(self.student?.name ?? "") \(self.student?.surname ?? "")"
+            
+            let nav = self.navigationController?.navigationBar
+            nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        }
+        
+        if let disciplineTVC = segue.source as? DisciplinesForLessonTVC {
+            self.disciplineLabel.text = disciplineTVC.selectedDiscipline
+        }
+        
+        if let repeatTVC = segue.source as? RepeatTVC {
+            self.repeatLessonLabel.text = repeatTVC.repeatLesson.rawValue
+            if repeatTVC.repeatLesson.rawValue != RepeatLesson.never.rawValue {
+                self.endOfRepeatLessonLabel.text = repeatTVC.endOfRepeat ?? ""
+                endOfRepeatLessonCell.isHidden = false
+            } else {
+                endOfRepeatLessonCell.isHidden = true
+            }
+            tableView.reloadData()
+        }
+        
+        if let notifTVC = segue.source as? NotificationTVC {
+            self.notificationTypeLabel.text = "\(notifTVC.selectedNotification)"
+            self.notifInSeconds = notifTVC.notifInSeconds
+            print(self.notifInSeconds)
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        
+        switch segue.identifier {
+        case "student":
+            guard let studTVC = segue.destination as? StudentsForLessonTVC else { return }
+            studTVC.selectedStudent = student
+        case "disciplines":
+            guard let disTVC = segue.destination as? DisciplinesForLessonTVC else { return }
+            disTVC.selectedDiscipline =  disciplineLabel.text ?? ""
+        case "repeatLesson":
+            guard let repeatTVC = segue.destination as? RepeatTVC else { return }
+            repeatTVC.endOfRepeat = endOfRepeatLessonLabel.text ?? ""
+        case "notification":
+            guard let notifTVC = segue.destination as? NotificationTVC else { return }
+            notifTVC.selectedNotification =  notificationTypeLabel.text ?? "Нет"
+            notifTVC.notifInSeconds = notifInSeconds ?? 0
+        default:
+            return
+        }
+    }
     
     func saveLesson() {
         lesson = LessonModel(lessonId: lesson != nil ? lesson?.lessonId : nil,
@@ -203,7 +209,7 @@ extension AddOrEditLessonTVC {
                                dateEnd: serverDate(str: "\(endLessonDatePicker.date)"),
                                timeEnd: serverHour(str: "\(endLessonDatePicker.date)"),
                                repeatedly: repeatLessonLabel.text == "Никогда" ?  "never" : "weekly",
-                               endRepeat:  nil, //"2020-07-24", //repeatLessonLabel.text == "Никогда" ? nil : serverDate2(str: "\(endOfRepeatLessonLabel.text)"),
+                               endRepeat:  repeatLessonLabel.text == "Никогда" ? nil : serverDate2(str: "\(endOfRepeatLessonLabel.text)"),
                                price: Int(priceTF.text ?? "0"),
                                note: noteTV.text,
                                statusPay: 0,
@@ -213,6 +219,8 @@ extension AddOrEditLessonTVC {
         } else {
             addNewLesson(lesson: lesson!)
         }
+        
+        print(endOfRepeatLessonLabel.text)
 
     }
 }
@@ -310,6 +318,14 @@ extension AddOrEditLessonTVC {
             pickerAnimation(indexPath: indexPath)
         default:
             return
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath){
+        let priceCell = IndexPath(row:0, section: 3)
+        
+        if indexPath == priceCell {
+            cell.contentView.backgroundColor = .bgStudent
         }
     }
 }

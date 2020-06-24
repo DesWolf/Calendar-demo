@@ -17,19 +17,19 @@ class AddOrEditStudentTVC: UITableViewController {
     @IBOutlet weak var noteTF: UITextView!
     @IBOutlet weak var disciplinesCollectionView: UICollectionView!
     
-    public var chousedDisciplines: [String] = []
+    public var chousedDisciplines: [String]? = []
     public var student: StudentModel?
     private let networkManagerStudents =  NetworkManagerStudents()
     
     public var onBackButtonTap: (() -> (Void))?
     public var onSaveButtonTap: ((Int, StudentModel) -> (Void))?
-//    var onDisciplinesButtonTap: ((StudentModel) -> (Void))?
-//    let disc = DisciplinesTVC()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         configureScreen()
+        
+        chousedDisciplines = student?.disciplines
     }
     
     override func viewWillAppear(_ animated: Bool){
@@ -70,10 +70,11 @@ extension AddOrEditStudentTVC {
             phoneTF.text = student?.phone ?? ""
             emailTF.text = student?.email ?? ""
             noteTF.text = student?.note ?? ""
+            
         }
         
         setupNavigationBar()
-        UIColor.setGradientToTableView(tableView: tableView, height: 0.1)
+        UIColor.setGradientToTableView(tableView: tableView, height: 0.4)
         
     }
     
@@ -81,7 +82,7 @@ extension AddOrEditStudentTVC {
         let nav = self.navigationController?.navigationBar
         
         if student == nil {
-            nav?.topItem?.title = "Новый ученик"
+            navigationItem.title = "Новый ученик"
         }
         navigationItem.leftBarButtonItem?.title = "Отмена"
         navigationItem.leftBarButtonItem?.tintColor = .white
@@ -108,7 +109,7 @@ extension AddOrEditStudentTVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "disciplines" {
             guard let desTVC = segue.destination as? DisciplinesTVC else { return }
-            desTVC.chousedDisciplines = chousedDisciplines
+            desTVC.chousedDisciplines = chousedDisciplines ?? []
         }
     }
 }
@@ -228,13 +229,13 @@ extension AddOrEditStudentTVC: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return chousedDisciplines.count
+        return chousedDisciplines?.count ?? 0
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DisciplinesCell", for: indexPath) as! DisciplinesCollectionViewCell
-        let discipline = chousedDisciplines[indexPath.row]
+        let discipline = chousedDisciplines?[indexPath.row] ?? ""
         cell.configure(with: discipline)
         return cell
     }

@@ -56,7 +56,7 @@ extension StudentProfileTVC {
         phoneTV.isScrollEnabled = false
         emailTV.isScrollEnabled = false
         
-        UIColor.setGradientToTableView(tableView: tableView, height: 0.2)
+        UIColor.setGradientToTableView(tableView: tableView, height: 0.5)
     }
     
     private func setNavigationController() {

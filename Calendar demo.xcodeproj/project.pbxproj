@@ -79,7 +79,6 @@
 		9ECECBEF248103E60053AC78 /* DisciplinesList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ECECBEE248103E60053AC78 /* DisciplinesList.swift */; };
 		9ED2EAC9247D5720001E3767 /* TF Extention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ED2EAC8247D5720001E3767 /* TF Extention.swift */; };
 		9EE848AD2486924B008BABB3 /* TabBarConroller.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE848AC2486924B008BABB3 /* TabBarConroller.swift */; };
-		9EE848AF2487C868008BABB3 /* PopUpVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EE848AE2487C868008BABB3 /* PopUpVC.swift */; };
 		9EF22897247A67C100C1AE56 /* StartScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9EF22896247A67C100C1AE56 /* StartScreen.xib */; };
 		9EF22899247A681200C1AE56 /* StartScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EF22898247A681200C1AE56 /* StartScreen.swift */; };
 		9EF2289B247A72A300C1AE56 /* LoginStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9EF2289A247A72A300C1AE56 /* LoginStoryboard.storyboard */; };
@@ -165,7 +164,6 @@
 		9ECECBEE248103E60053AC78 /* DisciplinesList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesList.swift; sourceTree = "<group>"; };
 		9ED2EAC8247D5720001E3767 /* TF Extention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TF Extention.swift"; sourceTree = "<group>"; };
 		9EE848AC2486924B008BABB3 /* TabBarConroller.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConroller.swift; sourceTree = "<group>"; };
-		9EE848AE2487C868008BABB3 /* PopUpVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpVC.swift; sourceTree = "<group>"; };
 		9EF22896247A67C100C1AE56 /* StartScreen.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartScreen.xib; sourceTree = "<group>"; };
 		9EF22898247A681200C1AE56 /* StartScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartScreen.swift; sourceTree = "<group>"; };
 		9EF2289A247A72A300C1AE56 /* LoginStoryboard.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LoginStoryboard.storyboard; sourceTree = "<group>"; };
@@ -476,7 +474,6 @@
 				9E7C1349247D47A70095C57E /* StudentProfileTVC.swift */,
 				9E8DDB322451E384003EC688 /* AddOrEditStudentTVC.swift */,
 				9ECECBEB248042740053AC78 /* DisciplinesTVC.swift */,
-				9EE848AE2487C868008BABB3 /* PopUpVC.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -692,7 +689,6 @@
 				9E5C05EB246D971400EADD5C /* NetworkManagerLogin.swift in Sources */,
 				9E0A5E2B244F3FC200188CDE /* ProfileVC.swift in Sources */,
 				9E3570D82488DF6D00F8F997 /* CalendarEndPoint.swift in Sources */,
-				9EE848AF2487C868008BABB3 /* PopUpVC.swift in Sources */,
 				9E631939244F50B4007DE5F1 /* AddOrEditLessonTVC.swift in Sources */,
 				9E374A9B24922FA30082A119 /* DisciplinesForLessonTVC.swift in Sources */,
 				9EB0356D249AAD0100F22C57 /* StatisticEndPoint.swift in Sources */,

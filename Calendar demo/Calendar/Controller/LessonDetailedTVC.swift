@@ -74,7 +74,7 @@ extension LessonDetailedTVC {
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
         
-        UIColor.setGradientToTableView(tableView: tableView, height: 0.2)
+        UIColor.setGradientToTableView(tableView: tableView, height: 0.4)
         
     }
 }
