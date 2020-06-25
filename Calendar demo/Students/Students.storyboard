@@ -47,23 +47,23 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Surname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mg9-Ry-uPW">
-                                            <rect key="frame" x="15" y="13" width="384" height="21"/>
+                                            <rect key="frame" x="20" y="13" width="374" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="currentDiscipline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7hl-ic-867">
-                                            <rect key="frame" x="15" y="33" width="384" height="14.5"/>
+                                            <rect key="frame" x="20" y="33" width="394" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="7hl-ic-867" firstAttribute="leading" secondItem="kcc-Er-qqN" secondAttribute="leading" constant="15" id="NBQ-Ub-BHT"/>
-                                        <constraint firstItem="Mg9-Ry-uPW" firstAttribute="leading" secondItem="kcc-Er-qqN" secondAttribute="leading" constant="15" id="RWi-Hz-aON"/>
-                                        <constraint firstAttribute="trailing" secondItem="7hl-ic-867" secondAttribute="trailing" constant="15" id="Us1-D5-cv4"/>
-                                        <constraint firstAttribute="trailing" secondItem="Mg9-Ry-uPW" secondAttribute="trailing" constant="15" id="aeb-Np-nSj"/>
+                                        <constraint firstItem="7hl-ic-867" firstAttribute="leading" secondItem="kcc-Er-qqN" secondAttribute="leading" constant="20" id="NBQ-Ub-BHT"/>
+                                        <constraint firstItem="Mg9-Ry-uPW" firstAttribute="leading" secondItem="kcc-Er-qqN" secondAttribute="leading" constant="20" id="RWi-Hz-aON"/>
+                                        <constraint firstAttribute="trailing" secondItem="7hl-ic-867" secondAttribute="trailing" id="Us1-D5-cv4"/>
+                                        <constraint firstAttribute="trailing" secondItem="Mg9-Ry-uPW" secondAttribute="trailing" constant="20" id="aeb-Np-nSj"/>
                                         <constraint firstItem="Mg9-Ry-uPW" firstAttribute="top" secondItem="kcc-Er-qqN" secondAttribute="top" constant="13" id="cAW-kr-jvu"/>
                                         <constraint firstAttribute="bottom" secondItem="7hl-ic-867" secondAttribute="bottom" constant="12.5" id="cYZ-2O-61s"/>
                                     </constraints>

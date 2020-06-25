@@ -14,8 +14,8 @@
             filePath = "Calendar demo/App/Support/DateExtentions.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
+            startingLineNumber = "66"
+            endingLineNumber = "66"
             landmarkName = "convertStrDate(date:formatFrom:formatTo:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -23,7 +23,150 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A737350B-3308-44AD-A9A7-80DB8514754E"
+            uuid = "DD5F3642-A122-4BC7-9C5E-A8128A017FE0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Calendar demo/Calendar/Controller/AddOrEditLessonTVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
+            landmarkName = "addNewLesson(lesson:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "03DF4B02-4048-473E-979F-914FC83F2CF8"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Calendar demo/Calendar/Controller/AddOrEditLessonTVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "281"
+            endingLineNumber = "281"
+            landmarkName = "changeLesson(lesson:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2340B5F5-D9DF-4D9D-AFF5-3109CC8BA689"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Calendar demo/Calendar/Controller/CalendarNavController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "openAddOrEditLesson(lesson:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2340B5F5-D9DF-4D9D-AFF5-3109CC8BA689 - 95c82f9e49ae3685"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Calendar_demo.CalendarNavController.openAddOrEditLesson(lesson: Swift.Optional&lt;Calendar_demo.LessonModel&gt;) -&gt; ()"
+                  moduleName = "Calendar demo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mokuneev/Desktop/swift%20projects/Hackatons/SMZHack/Calendar%20demo/Calendar%20demo/Calendar/Controller/CalendarNavController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "469">
+               </Location>
+               <Location
+                  uuid = "2340B5F5-D9DF-4D9D-AFF5-3109CC8BA689 - 95c82f9e49ae3685"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Calendar_demo.CalendarNavController.openAddOrEditLesson(lesson: Swift.Optional&lt;Calendar_demo.LessonModel&gt;) -&gt; ()"
+                  moduleName = "Calendar demo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mokuneev/Desktop/swift%20projects/Hackatons/SMZHack/Calendar%20demo/Calendar%20demo/Calendar/Controller/CalendarNavController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "770">
+               </Location>
+               <Location
+                  uuid = "2340B5F5-D9DF-4D9D-AFF5-3109CC8BA689 - d31f895f1f36ffb3"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Int, Calendar_demo.LessonModel) -&gt; () in Calendar_demo.CalendarNavController.openAddOrEditLesson(lesson: Swift.Optional&lt;Calendar_demo.LessonModel&gt;) -&gt; ()"
+                  moduleName = "Calendar demo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mokuneev/Desktop/swift%20projects/Hackatons/SMZHack/Calendar%20demo/Calendar%20demo/Calendar/Controller/CalendarNavController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "39"
+                  endingLineNumber = "39"
+                  offsetFromSymbolStart = "1104">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1237FF6C-381F-4550-9A86-E5939631114B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Calendar demo/Calendar/Controller/AddOrEditLessonTVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "67"
+            endingLineNumber = "67"
+            landmarkName = "saveButtonClick(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "25309257-57BE-4A19-8C66-85BAFFADA077"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Calendar demo/Calendar/Controller/AddOrEditLessonTVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "217"
+            endingLineNumber = "217"
+            landmarkName = "saveLesson()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4D796A3D-7118-4120-AB54-31CB030CBDA0"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Calendar demo/Calendar/Controller/AddOrEditLessonTVC.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "230"
+            endingLineNumber = "230"
+            landmarkName = "addNewLesson(lesson:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EE94859E-CF38-4FE4-B423-21A0C7FBC06E"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
@@ -39,15 +182,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "242F7DE2-CD54-4821-82E9-849A87DB6FC7"
+            uuid = "599C9337-0A14-4445-B722-FC6CB841FE41"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Calendar demo/Calendar/Controller/AddOrEditLessonTVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "252"
-            endingLineNumber = "252"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
             landmarkName = "addNewLesson(lesson:)"
             landmarkType = "7">
          </BreakpointContent>

@@ -35,26 +35,6 @@ extension UIColor {
         backgroundView.layer.insertSublayer(gradientLayer, at: 0)
         tableView.backgroundView = backgroundView
     }
-    
-//    static func setGradientToImage(image: UIImage, height: Double) -> UIImage {
-//        
-//        let gradientBackgroundColors = [appBlueLignt.cgColor, appBlueDark.cgColor]
-//        let gradientLayer = CAGradientLayer()
-//        gradientLayer.colors = gradientBackgroundColors
-//        gradientLayer.locations = [0.0,1.0]
-//        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-//        gradientLayer.endPoint = CGPoint(x: 0, y: height)
-//        
-//        let height = image.size.height
-//        let width = image.size.width
-//        gradientLayer.frame = CGRect(x: 0, y: 0, width: width, height: height)
-//        
-////        let backgroundView = UIView(frame: image.size)
-//        backgroundView.layer.insertSublayer(gradientLayer, at: 0)
-//        image.backgroundView = backgroundView
-//    }
-    
-    
 }
 
 extension CGColor {

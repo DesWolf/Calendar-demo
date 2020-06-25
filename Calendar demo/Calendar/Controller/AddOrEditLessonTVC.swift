@@ -26,14 +26,14 @@ class AddOrEditLessonTVC: UITableViewController {
     @IBOutlet weak var notificationTypeLabel: UILabel!
     @IBOutlet weak var noteTV: UITextView!
     
-    var notifications = Notifications()
-    var lesson: LessonModel?
-    var student: StudentModel?
-    var notifInSeconds: Double?
-    private let networkManagerCalendar =  NetworkManagerCalendar()
-    
     public var onBackButtonTap: (() -> (Void))?
     public var onSaveButtonTap: ((Int, LessonModel) -> (Void))?
+    public var lesson: LessonModel?
+    public var student: StudentModel?
+    public var notifInSeconds: Double?
+    
+    private let networkManagerCalendar =  NetworkManagerCalendar()
+    private var notifications = Notifications()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -121,10 +121,8 @@ extension AddOrEditLessonTVC {
     private func setupNavigationBar() {
         let navBar = self.navigationController?.navigationBar
         
-        if lesson == nil {
-            navigationItem.title = "Новый урок"
-        }
-        
+        navigationItem.title = lesson == nil ? "Новый урок" : "Правка"
+            
         navigationItem.leftBarButtonItem?.title = "Отмена"
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
@@ -159,7 +157,7 @@ extension AddOrEditLessonTVC {
         if let repeatTVC = segue.source as? RepeatTVC {
             self.repeatLessonLabel.text = repeatTVC.repeatLesson.rawValue
             if repeatTVC.repeatLesson.rawValue != RepeatLesson.never.rawValue {
-                self.endOfRepeatLessonLabel.text = repeatTVC.endOfRepeat ?? ""
+                self.endOfRepeatLessonLabel.text = "\(repeatTVC.endOfRepeat ?? "")"
                 endOfRepeatLessonCell.isHidden = false
             } else {
                 endOfRepeatLessonCell.isHidden = true
@@ -185,7 +183,9 @@ extension AddOrEditLessonTVC {
             disTVC.selectedDiscipline =  disciplineLabel.text ?? ""
         case "repeatLesson":
             guard let repeatTVC = segue.destination as? RepeatTVC else { return }
+            repeatTVC.repeatLesson = repeatLessonLabel.text == RepeatLesson.never.rawValue ? .never : .weekly
             repeatTVC.endOfRepeat = endOfRepeatLessonLabel.text ?? ""
+            
         case "notification":
             guard let notifTVC = segue.destination as? NotificationTVC else { return }
             notifTVC.selectedNotification =  notificationTypeLabel.text ?? "Нет"
@@ -202,14 +202,14 @@ extension AddOrEditLessonTVC {
                                studentId: lesson != nil ? lesson?.studentId : student?.studentId,
                                studentName: student?.name,
                                studentSurname: student?.surname,
-                               discipline: disciplineLabel.text,
+                               discipline: disciplineLabel.text ?? "",
                                dateStart: serverDate(str: "\(startLessonDatePicker.date)"),
                                timeStart: serverHour(str: "\(startLessonDatePicker.date)"),
                                duration: [""],
                                dateEnd: serverDate(str: "\(endLessonDatePicker.date)"),
                                timeEnd: serverHour(str: "\(endLessonDatePicker.date)"),
                                repeatedly: repeatLessonLabel.text == "Никогда" ?  "never" : "weekly",
-                               endRepeat:  repeatLessonLabel.text == "Никогда" ? nil : serverDate2(str: "\(endOfRepeatLessonLabel.text)"),
+                               endRepeat:  repeatLessonLabel.text == "Никогда" ? "" : serverDate2(str: "\(endOfRepeatLessonLabel.text ?? "01.01.2000")"),
                                price: Int(priceTF.text ?? "0"),
                                note: noteTV.text,
                                statusPay: 0,
@@ -219,8 +219,8 @@ extension AddOrEditLessonTVC {
         } else {
             addNewLesson(lesson: lesson!)
         }
+        print(lesson)
         
-        print(endOfRepeatLessonLabel.text)
 
     }
 }

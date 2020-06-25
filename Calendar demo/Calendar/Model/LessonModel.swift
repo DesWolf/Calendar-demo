@@ -26,8 +26,8 @@ struct LessonModel: Decodable {
     let price: Int?
 //    let notificationType: String?
     let note: String?
-    let statusPay: Int?
-    let paymentDate: String?
+    var statusPay: Int?
+    var paymentDate: String?
 }
 
 

@@ -39,15 +39,16 @@ class RepeatTVC: UITableViewController {
 extension RepeatTVC {
     private func configureScreen() {
         setupNavigationBar()
-        setupPicker(str: endOfRepeat ?? "")
         
-        if endOfRepeat == RepeatLesson.never.rawValue {
+        if repeatLesson.rawValue == RepeatLesson.never.rawValue {
             neverCheckImage.image =  #imageLiteral(resourceName: "check")
             repeatLesson = .never
         }  else {
             everyWeekCheckImage.image = #imageLiteral(resourceName: "check")
             repeatLesson = .weekly
         }
+        
+        setupPicker(str: endOfRepeat ?? "")
     }
     
     private func setupNavigationBar(){
@@ -58,7 +59,8 @@ extension RepeatTVC {
     private func setupPicker(str: String) {
         let oneMonth = TimeInterval(60 * 60 * 24 * 30)
         
-        if str == RepeatLesson.never.rawValue {
+        if repeatLesson.rawValue == RepeatLesson.never.rawValue {
+            repeatLesson = .never
             endRepeatLabel.text = displayedDate(str: "\(endRepeatPicker.date.addingTimeInterval(oneMonth))")
             endRepeatLabel.isHidden = true
             
@@ -66,6 +68,7 @@ extension RepeatTVC {
             endRepeatPicker.setDate(Date().addingTimeInterval(oneMonth), animated: true)
             endRepeatPicker.isHidden = true
         } else {
+            repeatLesson = .weekly
             endRepeatLabel.text = endOfRepeat
             endRepeatLabel.isHidden = false
             
@@ -77,7 +80,6 @@ extension RepeatTVC {
     
     private func displayedDate(str: String) -> String {
         return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "dd.MM.yyyy")
-        
     }
 }
 
@@ -114,6 +116,7 @@ extension RepeatTVC {
                 endRepeatLabel.isHidden = false
                 endRepeatPicker.isHidden = false
                 pickerAnimation(indexPath: indexPath)
+                endOfRepeat = displayedDate(str: "\(endRepeatPicker.date)")
             }
         default:
             return

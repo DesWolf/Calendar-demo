@@ -451,11 +451,11 @@
                     <connections>
                         <outlet property="dateLabel" destination="YPb-cI-Ei7" id="3Tc-2v-8Ju"/>
                         <outlet property="disciplineLabel" destination="gDy-Kw-dzf" id="NYl-7o-199"/>
-                        <outlet property="nameLabel" destination="avc-4R-MLO" id="VOz-6u-fRa"/>
+                        <outlet property="nameLabel" destination="avc-4R-MLO" id="QfK-YJ-XF8"/>
                         <outlet property="noteTV" destination="psY-0e-Hy7" id="eL9-Vv-D4G"/>
                         <outlet property="notificationLabel" destination="hDJ-Kg-1tc" id="An5-tc-4ex"/>
                         <outlet property="paymentLabel" destination="8em-HA-Pcj" id="cTb-8X-HPQ"/>
-                        <outlet property="placeLabel" destination="e6h-2i-zEr" id="9SM-8v-n4B"/>
+                        <outlet property="placeLabel" destination="e6h-2i-zEr" id="I4l-uw-FC8"/>
                         <outlet property="priceLabel" destination="wUD-EA-1nt" id="P1S-sS-0SB"/>
                         <outlet property="repeatLabel" destination="T3e-zJ-xCz" id="sXT-HB-4pd"/>
                         <outlet property="studentLabel" destination="yeB-ZF-9IO" id="0wp-AK-g8Y"/>
@@ -1063,18 +1063,11 @@
                                 <action selector="cancelButton:" destination="szI-nx-dll" id="wZW-kd-F0y"/>
                             </connections>
                         </barButtonItem>
-                        <rightBarButtonItems>
-                            <barButtonItem title="Готово" id="6CP-1M-sVV">
-                                <connections>
-                                    <action selector="saveButtonClick:" destination="szI-nx-dll" id="k5W-yi-wKE"/>
-                                </connections>
-                            </barButtonItem>
-                            <barButtonItem title="Notif" id="jl5-gE-fdd">
-                                <connections>
-                                    <action selector="notifCheck:" destination="szI-nx-dll" id="NbB-b6-WVm"/>
-                                </connections>
-                            </barButtonItem>
-                        </rightBarButtonItems>
+                        <barButtonItem key="rightBarButtonItem" title="Готово" id="6CP-1M-sVV">
+                            <connections>
+                                <action selector="saveButtonClick:" destination="szI-nx-dll" id="PKi-nb-vkT"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>

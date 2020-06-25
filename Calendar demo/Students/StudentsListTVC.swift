@@ -116,6 +116,7 @@ extension StudentsListTVC {
         deleteStudent(studentId: selectedStudent.studentId ?? 0)
         tableView.reloadData()
     }
+    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedStudent = students[indexPath.row]
         onCellTap?(selectedStudent)

@@ -32,6 +32,7 @@ class LessonDetailedTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationController()
+        setupScreen(lesson: lesson)
     }
     
     @IBAction private func tapOnBackButton(_ sender: Any) {
@@ -60,7 +61,7 @@ extension LessonDetailedTVC {
         noteTV.text = lesson?.note ?? ""
         repeatLabel.text = lesson?.repeatedly ?? ""
         priceLabel.text = "\(lesson?.price ?? 0)"
-        paymentLabel.text = "\(lesson?.statusPay ?? 0)"
+        paymentLabel.text = lesson?.statusPay == 0 ? "Не оплаченно" : "Оплаченно"
     }
     
     private func setNavigationController() {
@@ -75,7 +76,6 @@ extension LessonDetailedTVC {
         navigationItem.rightBarButtonItem?.tintColor = .white
         
         UIColor.setGradientToTableView(tableView: tableView, height: 0.4)
-        
     }
 }
 
@@ -107,42 +107,36 @@ extension LessonDetailedTVC {
 }
 
 // MARK: Navigation
-//extension LessonDetailedTVC {
-//    @IBAction func unwiSegueCurrentLesson(_ segue: UIStoryboardSegue) {
-//
-//        if let desTVC = segue.source as? PaymentTVC {
-//        let textCollor: UIColor = desTVC.payment == "Не оплаченно" ? .systemRed : .systemGreen
-//        self.paymentLabel.textColor = textCollor
-//        self.paymentLabel.text = desTVC.payment
-//        self.paymentDate = desTVC.dateOfPaymentLabel.text
-//        }
-//        
-//        if let desTVC = segue.source as? AddOrEditLessonTVC {
-//            desTVC.saveLesson()
-//            desTVC.dismiss(animated: true)
-//        }
-//        self.tableView.reloadData()
-//            
-//    }
-//    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        switch segue.identifier {
-//        case "editLesson":
-//            guard let destVC = segue.destination as? UINavigationController,
-//                let targetController = destVC.topViewController as? AddOrEditLessonTVC else { return }
-//            targetController.lesson = lesson
-//            
-//        case "payment":
-//            guard let destVC = segue.destination as? PaymentTVC else { return }
-//            destVC.payment = paymentLabel.text ?? "Не оплаченно"
-//            destVC.paymentDate = paymentDate
-//        case .none:
-//            return
-//        case .some(_):
-//            return
-//        }
-//    }
-//}
+extension LessonDetailedTVC {
+    @IBAction func unwiSegueCurrentLesson(_ segue: UIStoryboardSegue) {
+
+        guard let desTVC = segue.source as? PaymentTVC else { return }
+        let textCollor: UIColor = desTVC.payment == "Не оплаченно" ? .systemRed : .systemGreen
+        self.paymentLabel.textColor = textCollor
+        self.paymentLabel.text = desTVC.payment
+        self.paymentDate = desTVC.dateOfPaymentLabel.text
+        
+        lesson?.statusPay = desTVC.payment == "Не оплачено" ?  0 : 1
+        lesson?.paymentDate = paymentDate
+        changeLesson(lesson: lesson!)
+        print(lesson)
+        self.tableView.reloadData()
+            
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+        case "payment":
+            guard let destVC = segue.destination as? PaymentTVC else { return }
+            destVC.payment = paymentLabel.text ?? "Не оплаченно"
+            destVC.paymentDate = paymentDate
+        case .none:
+            return
+        case .some(_):
+            return
+        }
+    }
+}
 
 //MARK: Network
 extension LessonDetailedTVC {
@@ -162,6 +156,38 @@ extension LessonDetailedTVC {
             }
         }
     }
+    
+    
+    private func changeLesson(lesson: LessonModel) {
+        networkManagerCalendar.changeLesson(lessonId: lesson.lessonId ?? 0,
+                                            name: lesson.lessonName ?? "",
+                                            place: lesson.place ?? "",
+                                            studentId: lesson.studentId ?? 0,
+                                            discipline: lesson.discipline ?? "",
+                                            dateStart: lesson.dateStart ?? "",
+                                            timeStart: lesson.timeStart ?? "",
+                                            dateEnd: lesson.dateEnd ?? "",
+                                            timeEnd: lesson.timeEnd ?? "",
+                                            repeatedly: lesson.repeatedly ?? "",
+                                            endRepeat: lesson.endRepeat ?? "",
+                                            price: lesson.price ?? 0,
+                                            note: lesson.note ?? "",
+                                            statusPay: lesson.statusPay ?? 0,
+                                            paymentDate: lesson.paymentDate ?? "")
+        { [weak self]  (responce, error)  in
+            guard let responce = responce else {
+                print(error ?? "")
+                DispatchQueue.main.async {
+                    self?.simpleAlert(message: error ?? "")
+                }
+                return
+            }
+            print("change:",responce.message ?? "")
+        }
+    }
+    
+    
+    
 }
 
 //MARK: Alert

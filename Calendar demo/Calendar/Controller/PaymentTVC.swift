@@ -21,7 +21,7 @@ class PaymentTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureScreen()
-        print(payment)
+        print(paymentDate)
     }
     
     @IBAction func paimentChanged(sender: UIDatePicker) {
