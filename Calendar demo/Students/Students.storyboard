@@ -253,7 +253,7 @@
                                                     <rect key="frame" x="372" y="68" width="22" height="22"/>
                                                     <state key="normal" image="Add"/>
                                                     <connections>
-                                                        <segue destination="4l1-jS-ASn" kind="show" identifier="disciplines" id="c3U-Jn-5l3"/>
+                                                        <segue destination="oAF-0A-hi5" kind="show" identifier="disciplines" id="c3U-Jn-5l3"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -467,7 +467,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ut-DZ-ApY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="MYs-PN-f5B" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5972" y="329"/>
+            <point key="canvasLocation" x="5922" y="329"/>
         </scene>
         <!--StudentProfileTVC-->
         <scene sceneID="NXb-B1-4yx">
@@ -767,6 +767,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="HoP-Jj-Rno" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="4464" y="-366"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vRW-d9-BLq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oAF-0A-hi5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Dr6-64-des"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KWe-UJ-DSn">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4l1-jS-ASn" kind="relationship" relationship="rootViewController" id="1a5-fk-lkp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N1r-R7-uEj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5922" y="-366"/>
         </scene>
     </scenes>
     <resources>

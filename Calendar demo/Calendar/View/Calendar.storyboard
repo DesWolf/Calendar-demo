@@ -713,7 +713,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="Ckj-6e-gdg" kind="show" identifier="student" id="xOw-E2-a3N"/>
+                                            <segue destination="vbJ-Nm-3Eg" kind="show" id="XHh-pO-fUR"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="disciplineCell" id="kxn-tF-UgW">
@@ -748,7 +748,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="ArC-SG-Hcy" kind="show" identifier="disciplines" id="TUB-Uq-YOo"/>
+                                            <segue destination="A5C-g0-rWT" kind="show" identifier="disciplines" id="TUB-Uq-YOo"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -895,7 +895,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="7HY-7j-5JT" kind="show" identifier="repeatLesson" id="kN0-Xw-Has"/>
+                                            <segue destination="N7J-bN-M2D" kind="show" identifier="repeatLesson" id="kN0-Xw-Has"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="endOfRepeatLessonCell" id="cDT-Jj-2dR">
@@ -930,7 +930,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="7HY-7j-5JT" kind="show" identifier="repeatLesson" id="Fp8-DV-5fm"/>
+                                            <segue destination="N7J-bN-M2D" kind="show" identifier="repeatLesson" id="Fp8-DV-5fm"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -1019,7 +1019,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="g9f-gO-RwQ" kind="show" identifier="notification" id="Nsr-Gb-Qwr"/>
+                                            <segue destination="Axg-oO-zIg" kind="show" identifier="notification" id="Nsr-Gb-Qwr"/>
                                         </connections>
                                     </tableViewCell>
                                 </cells>
@@ -1160,7 +1160,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q7s-cy-Kmv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="JnB-kr-TOQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2633" y="-2412"/>
+            <point key="canvasLocation" x="-1723.1884057971015" y="-2412.0535714285711"/>
         </scene>
         <!--RepeatTVC-->
         <scene sceneID="TOh-VF-0MF">
@@ -1319,7 +1319,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="sXK-s1-c9Q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="Vg4-9s-Rbc" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2633" y="-1754"/>
+            <point key="canvasLocation" x="-1723.1884057971015" y="-1754.4642857142856"/>
         </scene>
         <!--Напоминание-->
         <scene sceneID="bdN-FE-cSo">
@@ -1383,7 +1383,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1XU-yT-Yf4" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="MbD-dB-OXO" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2638" y="-1082"/>
+            <point key="canvasLocation" x="-1728.985507246377" y="-1082.1428571428571"/>
         </scene>
         <!--Календарь-->
         <scene sceneID="bQO-3r-kQq">
@@ -1503,7 +1503,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9oC-4x-m0S" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="C5Z-tQ-MFd" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="-2633.3333333333335" y="-3147.3214285714284"/>
+            <point key="canvasLocation" x="-1723.1884057971015" y="-3147.3214285714284"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Q4r-gV-Abz">
@@ -1523,9 +1523,85 @@
             </objects>
             <point key="canvasLocation" x="-4333" y="-3147"/>
         </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="Rnb-2Q-x3o">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="vbJ-Nm-3Eg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="44I-af-h6A"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="k0y-zs-nPE">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="Ckj-6e-gdg" kind="relationship" relationship="rootViewController" id="fC1-gO-EXN"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xzM-h0-xZq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2633.3333333333335" y="-3147.3214285714284"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="UmM-aP-moR">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="A5C-g0-rWT" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="hgu-Of-bzm"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8Wv-u2-Qej">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="ArC-SG-Hcy" kind="relationship" relationship="rootViewController" id="R06-l5-WGD"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="foR-gv-3bU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2633.3333333333335" y="-2412.0535714285711"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tS2-Tn-lTT">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="N7J-bN-M2D" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="xOO-G0-Xw9"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4gh-7H-NWw">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="7HY-7j-5JT" kind="relationship" relationship="rootViewController" id="W0z-wK-pgy"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Zk9-oS-dok" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2633.3333333333335" y="-1754.4642857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tua-iR-bbp">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="Axg-oO-zIg" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="7eZ-H5-epr"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="hcH-Z7-6lP">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="g9f-gO-RwQ" kind="relationship" relationship="rootViewController" id="L2O-fa-zu1"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="wf7-gD-5VS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-2639.130434782609" y="-1082.1428571428571"/>
+        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="Fp8-DV-5fm"/>
+        <segue reference="kN0-Xw-Has"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="Calendar" width="28" height="25"/>

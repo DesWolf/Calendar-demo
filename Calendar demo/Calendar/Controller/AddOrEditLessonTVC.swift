@@ -176,18 +176,18 @@ extension AddOrEditLessonTVC {
         
         switch segue.identifier {
         case "student":
-            guard let studTVC = segue.destination as? StudentsForLessonTVC else { return }
+            guard let nav = segue.destination as? UINavigationController, let studTVC = nav.topViewController as? StudentsForLessonTVC else { return }
             studTVC.selectedStudent = student
         case "disciplines":
-            guard let disTVC = segue.destination as? DisciplinesForLessonTVC else { return }
+            guard let nav = segue.destination as? UINavigationController, let disTVC = nav.topViewController as? DisciplinesForLessonTVC else { return }
             disTVC.selectedDiscipline =  disciplineLabel.text ?? ""
         case "repeatLesson":
-            guard let repeatTVC = segue.destination as? RepeatTVC else { return }
+            guard let nav = segue.destination as? UINavigationController, let repeatTVC = nav.topViewController as? RepeatTVC else { return }
             repeatTVC.repeatLesson = repeatLessonLabel.text == RepeatLesson.never.rawValue ? .never : .weekly
             repeatTVC.endOfRepeat = endOfRepeatLessonLabel.text ?? ""
             
         case "notification":
-            guard let notifTVC = segue.destination as? NotificationTVC else { return }
+            guard let nav = segue.destination as? UINavigationController, let notifTVC = nav.topViewController as? NotificationTVC else { return }
             notifTVC.selectedNotification =  notificationTypeLabel.text ?? "Нет"
             notifTVC.notifInSeconds = notifInSeconds ?? 0
         default:

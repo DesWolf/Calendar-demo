@@ -70,7 +70,6 @@ extension AddOrEditStudentTVC {
             phoneTF.text = student?.phone ?? ""
             emailTF.text = student?.email ?? ""
             noteTF.text = student?.note ?? ""
-            
         }
         
         setupNavigationBar()
@@ -108,7 +107,7 @@ extension AddOrEditStudentTVC {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "disciplines" {
-            guard let desTVC = segue.destination as? DisciplinesTVC else { return }
+            guard let nav = segue.destination as? UINavigationController, let desTVC = nav.topViewController as? DisciplinesTVC else { return }
             desTVC.chousedDisciplines = chousedDisciplines ?? []
         }
     }

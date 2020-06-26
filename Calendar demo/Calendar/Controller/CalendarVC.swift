@@ -35,7 +35,6 @@ class CalendarVC: UIViewController {
         super.viewDidLoad()
         configureScreen()
         fetchCalendar(date: "")
-        print(selectedDay)
     }
     
     override func viewDidLayoutSubviews() {
@@ -61,14 +60,17 @@ class CalendarVC: UIViewController {
 //MARK: Set Screen
 extension CalendarVC {
     private func configureScreen() {
-        let startDate = Date().monthMinusOne
-        let endDate = Date().monthPlusOne
-        print(startDate, endDate)
+//        let startDate = Date().monthMinusOne
+//        let endDate = Date().monthPlusOne
+//        print(startDate, endDate)
         
         setupNavigationBar()
         backgroundColor()
         calendarView.delegate = self
         menuView.delegate = self
+        
+        calendarView.changeDaysOutShowingState(shouldShow: true)
+        
     }
     
     private func backgroundColor() {
@@ -118,11 +120,14 @@ extension CalendarVC {
 extension CalendarVC {
     private func fetchCalendar(date: String) {
         
-        let currentDate = Date().convertStrToDate(str: date)
-        let startDate = Date().monthMinusOne(date: currentDate)
-        let endDate = Date().monthPlusOne(date: currentDate)
+        let startDate = Date().convertStrToDate(str: date)
+        let endDate = Date().monthPlusOne(date: startDate)
         
-        networkManagerCalendar.fetchCalendar(startDate:  serverDate(str: "\(startDate)"),
+        print("startDate: \(startDate), endDate: \(endDate)")
+        
+        self.title = Date().month(date: startDate)
+        
+        networkManagerCalendar.fetchCalendar(startDate: serverDate(str: "\(startDate)"),
                                              endDate: serverDate(str: "\(endDate)"))
         { [weak self]  (calendar, error)  in
             guard let calendar = calendar else {
@@ -138,7 +143,7 @@ extension CalendarVC {
                 self?.datesDictionary.append(calendar[index].dateStart ?? "")
             }
             let today = Date().convertStrDate(date: "\(Date())",
-                                            formatFrom: "yyyy-MM-dd HH:mm:mmZ",
+                                            formatFrom: "yyyy-MM-dd HH:mm:ssZ",
                                             formatTo: "yyyy-MM-dd")
            
             self?.selectedDay = self?.lessons?.filter{ $0.dateStart == today } ?? []
@@ -177,21 +182,34 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate {
         return Weekday.monday
     }
     
-//    func didShowNextMonthView(_ date: Date) {
-//        print(date)
-//    }
-//
-//    func didShowPreviousMonthView(_ date: Date) {
-//        fetchCalendar(date: <#T##String#>)
-//    }
-//
-//    func didShowNextWeekView(from startDayView: DayView, to endDayView: DayView) {
-//        <#code#>
-//    }
-//
-//    func didShowPreviousWeekView(from startDayView: DayView, to endDayView: DayView) {
-//        <#code#>
-//    }
+    func didShowNextMonthView(_ date: Date) {
+        print(date)
+        fetchCalendar(date: "\(date)")
+    }
+
+    func didShowPreviousMonthView(_ date: Date) {
+        print(date)
+        fetchCalendar(date: "\(date)")
+    }
+
+    func didShowNextWeekView(from startDayView: DayView, to endDayView: DayView) {
+        print(endDayView.date.commonDescription)
+    }
+
+    func didShowPreviousWeekView(from startDayView: DayView, to endDayView: DayView) {
+        print(endDayView.date.commonDescription)
+    }
+    
+    func shouldAutoSelectDayOnWeekChange() -> Bool {
+        return true
+    }
+    
+    func shouldAutoSelectDayOnMonthChange() -> Bool {
+        return true
+    }
+    
+    
+    
     
     
     
@@ -256,7 +274,6 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate {
         
         self.tableView.reloadData()
         self.tableView.tableFooterView = UIView()
-        print(day, selectedDay)
     }
 }
     
@@ -288,7 +305,6 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "meetingCell", for: indexPath) as! DayTVCell
         let meeting = selectedDay[indexPath.row]
-        print(selectedDay)
         cell.configere(with: meeting)
         return cell
     }
