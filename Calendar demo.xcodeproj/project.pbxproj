@@ -233,7 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				9E5E8CD924A23FE9006E4751 /* CalendarNavController.swift */,
-				9E7A73B2244D92AB00FA529B /* CalendarVC.swift */,
+				9E0ADAA124AB8A1B0077E26D /* CalendarVC */,
 				9E8C5F0A2494DBCF00332B61 /* LessonDetailedTVC.swift */,
 				9E631938244F50B4007DE5F1 /* AddOrEditLessonTVC.swift */,
 				9E374A9E2492896B0082A119 /* StudentsForLessonTVC.swift */,
@@ -354,6 +354,14 @@
 				9E0538BC247C1B8300AAC0AA /* Service */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		9E0ADAA124AB8A1B0077E26D /* CalendarVC */ = {
+			isa = PBXGroup;
+			children = (
+				9E7A73B2244D92AB00FA529B /* CalendarVC.swift */,
+			);
+			name = CalendarVC;
 			sourceTree = "<group>";
 		};
 		9E5C05EC246D9C3D00EADD5C /* Controller */ = {

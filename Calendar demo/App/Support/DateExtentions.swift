@@ -34,13 +34,18 @@ extension Date {
     
     func convertStrToDate(str: String) -> Date {
         let dateFormatter = DateFormatter()
-        
-        if str.count == 10 {
+        switch str.count {
+        case 10:
             dateFormatter.dateFormat = "dd.MM.yyyy"
-        } else {
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
+        case 25:
+           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
+        default:
+             dateFormatter.dateFormat = "dd MMMM, yyyy"
         }
-        guard let date = dateFormatter.date(from: str) else { return Date() }
+        
+        guard let date = dateFormatter.date(from: str) else {
+            return Date()
+        }
         return date
     }
     
@@ -65,5 +70,7 @@ extension Date {
         
         return result
     }
+    
+    
 }
 
