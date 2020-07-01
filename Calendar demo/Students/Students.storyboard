@@ -14,7 +14,7 @@
                 <navigationController storyboardIdentifier="StudentsNavController" title="StudentsNavController" automaticallyAdjustsScrollViewInsets="NO" id="7TF-VW-MlM" customClass="StudentsNavController" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Контакты" image="Contacts" id="AfD-B4-inM"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Unh-Y1-8Qd"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Unh-Y1-8Qd"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Vy5-tA-vW9">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -376,7 +376,7 @@
                             <outlet property="delegate" destination="67y-bq-6A6" id="em7-Zw-gO4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Правка" largeTitleDisplayMode="always" id="Ygz-HA-Rsi">
+                    <navigationItem key="navigationItem" title="Правка" largeTitleDisplayMode="never" id="Ygz-HA-Rsi">
                         <barButtonItem key="leftBarButtonItem" title="Отмена" id="Bum-89-1QS">
                             <connections>
                                 <action selector="tapOnBackButton:" destination="67y-bq-6A6" id="B5h-pJ-BcN"/>
@@ -451,7 +451,7 @@
                             <outlet property="delegate" destination="4l1-jS-ASn" id="iD8-kP-XgN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Дисциплины" id="NsY-z8-nkW">
+                    <navigationItem key="navigationItem" title="Дисциплины" largeTitleDisplayMode="never" id="NsY-z8-nkW">
                         <barButtonItem key="leftBarButtonItem" title="Назад" id="cqG-Cu-HpB">
                             <connections>
                                 <segue destination="MYs-PN-f5B" kind="unwind" unwindAction="unwiSegueEditStudent:" id="rbF-a8-vet"/>
@@ -705,7 +705,7 @@
                             <outlet property="delegate" destination="Ok9-Xy-cmW" id="6yx-ll-ZfS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="qAz-g1-Cll">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="qAz-g1-Cll">
                         <barButtonItem key="leftBarButtonItem" title="Назад" id="Qeu-KD-n9P">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
@@ -737,8 +737,8 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AXf-zy-weY" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="cKO-6o-0yQ">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cKO-6o-0yQ">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>

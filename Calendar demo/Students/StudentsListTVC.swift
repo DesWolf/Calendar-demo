@@ -53,8 +53,10 @@ class StudentsListTVC: UITableViewController {
 extension StudentsListTVC {
     private func configureScreen() {
         confugureSearchBar()
-        let nav = self.navigationController?.navigationBar
-        nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        let navBar = self.navigationController?.navigationBar
+        
+        navBar?.prefersLargeTitles = false
+//        nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         self.title = "Контакты"
     }
 }

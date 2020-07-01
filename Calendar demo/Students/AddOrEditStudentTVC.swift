@@ -73,12 +73,13 @@ extension AddOrEditStudentTVC {
         }
         
         setupNavigationBar()
-        UIColor.setGradientToTableView(tableView: tableView, height: 0.4)
+        
         
     }
     
     private func setupNavigationBar() {
-        let nav = self.navigationController?.navigationBar
+        let navBar = self.navigationController?.navigationBar
+        let gradientHeight = UIApplication.shared.statusBarFrame.height + navBar!.frame.height
         
         if student == nil {
             navigationItem.title = "Новый ученик"
@@ -87,12 +88,13 @@ extension AddOrEditStudentTVC {
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
         
-        nav?.setBackgroundImage(UIImage(), for: .default)
-        nav?.shadowImage = UIImage()
-        nav?.isTranslucent = true
-        nav?.prefersLargeTitles = true
-        nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navBar?.setBackgroundImage(UIImage(), for: .default)
+        navBar?.shadowImage = UIImage()
+        navBar?.isTranslucent = true
+        navBar?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        UIColor.setGradientToTableView(tableView: tableView, height: Double(gradientHeight))
     }
 }
 
@@ -204,6 +206,18 @@ extension AddOrEditStudentTVC {
         }
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
+      let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+        headerView.backgroundColor = .clear
+    
+      return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+           footerView.backgroundColor = .clear
+         return footerView
+    }
 }
 
 extension AddOrEditStudentTVC: UITextViewDelegate {

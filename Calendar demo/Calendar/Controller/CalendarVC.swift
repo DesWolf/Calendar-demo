@@ -139,10 +139,12 @@ extension CalendarVC {
             }
             print(calendar)
             self?.lessons = calendar
+            self?.datesDictionary = []
             self?.datesDictionary.append(contentsOf: (self?.lessons.map ({ $0.map ({($0.dateStart ?? "")}) }) ?? [""]))
             for index in 0..<calendar.count {
                 self?.datesDictionary.append(calendar[index].dateStart ?? "")
             }
+            
             let today = Date().convertStrDate(date: "\(Date())",
                 formatFrom: "yyyy-MM-dd HH:mm:ssZ",
                 formatTo: "yyyy-MM-dd")
@@ -238,7 +240,8 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate {
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
         
         if let day = dayView.date {
-            let convDay = "\(day.convertedDate() ?? Date())".prefix(10)
+            let day2 = day.convertedDate()?.addingTimeInterval(60 * 60 * 24 )
+            let convDay = "\(day2 ?? Date())".prefix(10)
             
             for elem in 0..<datesDictionary.count {
                 if convDay == datesDictionary[elem] {
@@ -302,7 +305,9 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
         guard editingStyle == .delete else { return }
         let selectedLesson = selectedDay[indexPath.row]
         lessons?.remove(at: indexPath.row)
+        datesDictionary.remove(at: indexPath.row)
         deleteLesson(lessonId: selectedLesson.lessonId ?? 0)
+        calendarView.contentController.refreshPresentedMonth()
         tableView.reloadData()
     }
 }

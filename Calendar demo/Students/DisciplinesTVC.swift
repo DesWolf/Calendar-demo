@@ -27,15 +27,17 @@ class DisciplinesTVC: UITableViewController {
 //MARK: Set Navigation Bar
 extension DisciplinesTVC {
     private func setupNavigationBar() {
-        let nav = self.navigationController?.navigationBar
+        let navBar = self.navigationController?.navigationBar
         
         navigationItem.leftBarButtonItem?.tintColor = .systemBlue
         navigationItem.rightBarButtonItem?.tintColor = .systemBlue
-        nav?.setBackgroundImage(UIImage(), for: .default)
-        nav?.shadowImage = UIImage()
-        nav?.isTranslucent = true
-        nav?.prefersLargeTitles = true
-        nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+        navBar?.prefersLargeTitles = false
+        navBar?.setBackgroundImage(UIImage(), for: .default)
+        navBar?.shadowImage = UIImage()
+        navBar?.isTranslucent = true
+        navBar?.prefersLargeTitles = true
+        navBar?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         
 //        tableView.backgroundColor = .bgStudent
     }

@@ -29,10 +29,17 @@ class LessonDetailedTVC: UITableViewController {
     public var onEditButtonTap: ((LessonModel) -> (Void))?
     public var onBackButtonTap: (() -> (Void))?
     
+    
+    
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationController()
         setupScreen(lesson: lesson)
+        
+        print(lesson)
+        
+        
     }
     
     @IBAction private func tapOnBackButton(_ sender: Any) {
@@ -52,20 +59,26 @@ class LessonDetailedTVC: UITableViewController {
 //MARK: Setup Screen
 extension LessonDetailedTVC {
     func setupScreen(lesson: LessonModel?) {
+        
+        let lessonStart = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
+        let lessonEnd = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
+        let endRepeat = Date().convertStrToDate(str: "\(lesson?.endRepeat ?? "2020-01-01 00:00:00 +0000")")
+        
         nameLabel.text = lesson?.lessonName ?? ""
         placeLabel.text = lesson?.place ?? ""
         disciplineLabel.text = lesson?.discipline ?? ""
-        timeLabel.text = "\(lesson?.timeStart ?? "") - \(lesson?.timeEnd ?? "")"
-        dateLabel.text = "\(lesson?.dateStart ?? "") - \(lesson?.dateEnd ?? "")"
+        timeLabel.text =  "с \(Date().time(str: "\(lessonStart)")) до \(Date().time(str: "\(lessonEnd)"))"
+        dateLabel.text = Date().fullScreenDate(str: "\(lessonStart)")
         studentLabel.text = "\(lesson?.studentName ?? "") - \(lesson?.studentSurname ?? "")"
         noteTV.text = lesson?.note ?? ""
-        repeatLabel.text = lesson?.repeatedly ?? ""
-        priceLabel.text = "\(lesson?.price ?? 0)"
+        repeatLabel.text = lesson?.endRepeat != nil ? "до \(Date().date(str: "\(endRepeat)"))" : "Нет"
+        priceLabel.text = "\(lesson?.price ?? 0) руб."
         paymentLabel.text = lesson?.statusPay == 0 ? "Не оплаченно" : "Оплаченно"
     }
     
     private func setNavigationController() {
         let navBar = self.navigationController?.navigationBar
+        let navHeight = UIApplication.shared.statusBarFrame.height + navBar!.frame.height
         
         navBar?.setBackgroundImage(UIImage(), for: .default)
         navBar?.shadowImage = UIImage()
@@ -75,7 +88,10 @@ extension LessonDetailedTVC {
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
         
-        UIColor.setGradientToTableView(tableView: tableView, height: 0.4)
+        
+        
+        UIColor.setGradientToTableView(tableView: tableView, height: Double(navHeight))
+        tableView.backgroundColor = .clear
     }
 }
 
@@ -88,28 +104,50 @@ extension LessonDetailedTVC: UITextViewDelegate{
     }
 }
 
-
-
 //MARK: TableViewDelegate
 extension LessonDetailedTVC {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        switch indexPath.row {
-        case 3:
-            return UITableView.automaticDimension
+        let student = IndexPath(row: 1, section: 0)
+        let note = IndexPath(row: 0, section: 3)
+        
+        switch indexPath {
+        case student:
+            return lesson?.studentId == nil ? 0 : super.tableView(tableView, heightForRowAt: indexPath)
+        case note:
+            return lesson?.note == nil ? 0 : UITableView.automaticDimension
         default:
             return super.tableView(tableView, heightForRowAt: indexPath)
         }
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = indexPath == [2,0] ? .bgStudent : .white
+        let payment = IndexPath(row: 0, section: 2)
+        switch indexPath {
+        case payment:
+            cell.backgroundColor = .bgStudent
+        default:
+            break
+        }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
+      let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+        headerView.backgroundColor = .clear
+    
+      return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+           footerView.backgroundColor = .clear
+         return footerView
     }
 }
 
 // MARK: Navigation
 extension LessonDetailedTVC {
     @IBAction func unwiSegueCurrentLesson(_ segue: UIStoryboardSegue) {
-
+        
         guard let desTVC = segue.source as? PaymentTVC else { return }
         let textCollor: UIColor = desTVC.payment == "Не оплаченно" ? .systemRed : .systemGreen
         self.paymentLabel.textColor = textCollor
@@ -119,9 +157,8 @@ extension LessonDetailedTVC {
         lesson?.statusPay = desTVC.payment == "Не оплачено" ?  0 : 1
         lesson?.paymentDate = paymentDate
         changeLesson(lesson: lesson!)
-        print(lesson)
         self.tableView.reloadData()
-            
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -157,7 +194,6 @@ extension LessonDetailedTVC {
         }
     }
     
-    
     private func changeLesson(lesson: LessonModel) {
         networkManagerCalendar.changeLesson(lessonId: lesson.lessonId ?? 0,
                                             name: lesson.lessonName ?? "",
@@ -185,9 +221,6 @@ extension LessonDetailedTVC {
             print("change:",responce.message ?? "")
         }
     }
-    
-    
-    
 }
 
 //MARK: Alert

@@ -71,6 +71,21 @@ extension Date {
         return result
     }
     
+    func time(str: String) -> String {
+        return convertStrDate(date: str,
+                              formatFrom: "yyyy-MM-dd HH:mm:ssZ",
+                              formatTo: "HH:mm")
+    }
     
+    func date(str: String) -> String {
+        return convertStrDate(date: str,
+                              formatFrom: "yyyy-MM-dd HH:mm:ssZ",
+                              formatTo: "dd.MM.YY")
+    }
+    
+    func fullScreenDate(str: String) -> String {
+        return convertStrDate(date: str,
+                              formatFrom: "yyyy-MM-dd HH:mm:ssZ",
+                              formatTo: "EEEE, MMM d, yyyy")
 }
-
+}

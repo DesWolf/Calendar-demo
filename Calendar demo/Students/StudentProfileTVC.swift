@@ -56,16 +56,26 @@ extension StudentProfileTVC {
         phoneTV.isScrollEnabled = false
         emailTV.isScrollEnabled = false
         
-        UIColor.setGradientToTableView(tableView: tableView, height: 0.5)
+       
     }
     
     private func setNavigationController() {
         let navBar = self.navigationController?.navigationBar
         
+        
+
+       let gradientHeight = UIApplication.shared.statusBarFrame.height + navBar!.frame.height
+        
+        print(UIApplication.shared.statusBarFrame.height)
+        print(navBar!.frame.height)
+        
+        navBar?.prefersLargeTitles = false
         navBar?.setBackgroundImage(UIImage(), for: .default)
         navBar?.shadowImage = UIImage()
         navBar?.isTranslucent = true
         navBar?.backItem?.backBarButtonItem?.tintColor = .white
+        
+        UIColor.setGradientToTableView(tableView: tableView, height: Double(gradientHeight))
     }
 }
 
@@ -125,6 +135,19 @@ extension StudentProfileTVC {
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         cell.backgroundColor = indexPath.row == 0 ? UIColor.clear : .white
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
+      let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+        headerView.backgroundColor = .clear
+    
+      return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+           footerView.backgroundColor = .clear
+         return footerView
     }
 }
 

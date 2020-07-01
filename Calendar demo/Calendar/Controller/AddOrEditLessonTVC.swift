@@ -77,16 +77,31 @@ class AddOrEditLessonTVC: UITableViewController {
 
 //MARK: Set Screen
 extension AddOrEditLessonTVC {
+
     private func configureScreen(){
+        
+        print(lesson)
+        
+        
+        
         if lesson != nil {
+            
+            let lessonStart = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
+            let lessonEnd = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
+            let endRepeat = Date().convertStrToDate(str: "\(lesson?.endRepeat ?? "2020-01-01 00:00:00 +0000")")
+            
+            let start = "\(Date().date(str: "\(lessonStart)")) \(Date().time(str: "\(lessonStart)"))"
+            let end = "\(Date().date(str: "\(lessonEnd)")) \(Date().time(str: "\(lessonEnd)"))"
+            let endRep = Date().date(str: "\(endRepeat)")
+            
             nameTF.text = lesson?.lessonName
             placeTF.text = lesson?.place ?? ""
             studentLabel.text = "\(lesson?.studentName ?? "") \(lesson?.studentSurname ?? "")"
             disciplineLabel.text = lesson?.discipline ?? ""
-            startLessonLabel.text = lesson?.dateStart ?? ""
-            endLessonLabel.text = lesson?.dateEnd ?? ""
+            startLessonLabel.text = start
+            endLessonLabel.text = end
             repeatLessonLabel.text = lesson?.repeatedly ?? ""
-            endOfRepeatLessonLabel.text = lesson?.endRepeat ?? ""
+            endOfRepeatLessonLabel.text = endRep
             priceTF.text = "\(lesson?.price ?? 0)"
             noteTV.text = lesson?.note ?? ""
         }
@@ -96,7 +111,6 @@ extension AddOrEditLessonTVC {
         setupStartLesson()
         setupEndLesson()
         setupNavigationBar()
-        UIColor.setGradientToTableView(tableView: tableView, height: 0.4)
         
         priceTF.attributedPlaceholder = NSAttributedString(string: "0",
         attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
@@ -105,21 +119,33 @@ extension AddOrEditLessonTVC {
     }
     
     private func setupStartLesson() {
-        startLessonLabel.text = displayedDateAndTime(str: "\(startLessonDatePicker.date)")
-        startLessonDatePicker.datePickerMode = .dateAndTime
+        
+        let lessonStart = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
+        
+        
+        
+        startLessonLabel.text = "\(Date().date(str: "\(lessonStart)")) \(Date().time(str: "\(lessonStart)"))"
+        endLessonDatePicker.setDate(lessonStart, animated: true)
+//        startLessonDatePicker.datePickerMode = .dateAndTime
         startLessonDatePicker.isHidden = true
     }
     
     private func setupEndLesson() {
         let oneHour = TimeInterval(60 * 60)
         
-        endLessonDatePicker.setDate(Date().addingTimeInterval(oneHour), animated: true)
-        endLessonLabel.text = displayedDateAndTime(str: "\(endLessonDatePicker.date)")
+        
+        let lessonEnd = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
+        
+        
+        endLessonDatePicker.setDate(lessonEnd.addingTimeInterval(oneHour), animated: true)
+        endLessonLabel.text = "\(Date().date(str: "\(lessonEnd)")) \(Date().time(str: "\(lessonEnd)"))"
         endLessonDatePicker.isHidden = true
     }
     
     private func setupNavigationBar() {
         let navBar = self.navigationController?.navigationBar
+        let navHeight = UIApplication.shared.statusBarFrame.height + navBar!.frame.height
+
         
         navigationItem.title = lesson == nil ? "Новый урок" : "Правка"
             
@@ -131,10 +157,10 @@ extension AddOrEditLessonTVC {
         navBar?.shadowImage = UIImage()
         navBar?.isTranslucent = true
         navBar?.prefersLargeTitles = true
-        navBar?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+//        navBar?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         navBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
         
-        
+        UIColor.setGradientToTableView(tableView: tableView, height: Double(navHeight))
     }
 }
 
@@ -327,6 +353,19 @@ extension AddOrEditLessonTVC {
         if indexPath == priceCell {
             cell.contentView.backgroundColor = .bgStudent
         }
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
+      let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+        headerView.backgroundColor = .clear
+    
+      return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+           footerView.backgroundColor = .clear
+         return footerView
     }
 }
 

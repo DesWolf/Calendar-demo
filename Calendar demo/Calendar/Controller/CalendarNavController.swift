@@ -9,12 +9,12 @@
 import UIKit
 
 class CalendarNavController: UINavigationController {
-
+    
     private let stStoryboard = UIStoryboard(name: "Calendar", bundle:nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         openCalendar()
     }
     
@@ -34,61 +34,61 @@ class CalendarNavController: UINavigationController {
     }
     
     func openAddOrEditLesson(lesson: LessonModel?) {
-            let addOrEditVC = stStoryboard.instantiateViewController(withIdentifier: "AddOrEditLessonTVC") as! AddOrEditLessonTVC
+        let addOrEditVC = stStoryboard.instantiateViewController(withIdentifier: "AddOrEditLessonTVC") as! AddOrEditLessonTVC
+        
+        addOrEditVC.onSaveButtonTap = { [weak self, weak addOrEditVC] (lessonId: Int, lesson: LessonModel) in
+            guard let self = self, let addOrEditVC = addOrEditVC else { return }
+            self.openDetails(from: .addOfEdit(addOrEditVC, lessonId: lessonId, lesson: lesson))
+        }
+        
+        addOrEditVC.onBackButtonTap = { [weak self]  in
+            guard let self = self else { return }
             
-            addOrEditVC.onSaveButtonTap = { [weak self, weak addOrEditVC] (lessonId: Int, lesson: LessonModel) in
-                guard let self = self, let addOrEditVC = addOrEditVC else { return }
-                self.openDetails(from: .addOfEdit(addOrEditVC, lessonId: lessonId, lesson: lesson))
-            }
+            self.popViewController(animated: true)
+        }
+        
+        if let lesson = lesson {
+            addOrEditVC.lesson = lesson
+        }
+        pushViewController(addOrEditVC, animated: true)
+    }
+    
+    enum Source {
+        case list(lesson: LessonModel)
+        case addOfEdit(UIViewController, lessonId: Int, lesson: LessonModel)
+    }
+    
+    func openDetails(from source: Source) {
+        
+        DispatchQueue.main.async {
+            let profileTVC = self.stStoryboard.instantiateViewController(withIdentifier: "LessonDetailedTVC") as! LessonDetailedTVC
             
-            addOrEditVC.onBackButtonTap = { [weak self]  in
+            profileTVC.onBackButtonTap = { [weak self]  in
                 guard let self = self else { return }
-                
-                self.popViewController(animated: true)
+                self.popToRootViewController(animated: true)
             }
-                    
-            if let lesson = lesson {
-                addOrEditVC.lesson = lesson
+            profileTVC.onEditButtonTap = { [weak self] (lesson) in
+                guard let self = self else { return }
+                self.openAddOrEditLesson(lesson: lesson)
             }
-            pushViewController(addOrEditVC, animated: true)
-        }
-        
-        enum Source {
-            case list(lesson: LessonModel)
-            case addOfEdit(UIViewController, lessonId: Int, lesson: LessonModel)
-        }
-        
-        func openDetails(from source: Source) {
             
-            DispatchQueue.main.async {
-                let profileTVC = self.stStoryboard.instantiateViewController(withIdentifier: "LessonDetailedTVC") as! LessonDetailedTVC
+            switch source {
                 
-                profileTVC.onBackButtonTap = { [weak self]  in
-                    guard let self = self else { return }
-                    self.popToRootViewController(animated: true)
-                }
-                profileTVC.onEditButtonTap = { [weak self] (lesson) in
-                    guard let self = self else { return }
-                    self.openAddOrEditLesson(lesson: lesson)
-                }
+            case let .list(lesson):
+                profileTVC.lesson = lesson
+                self.pushViewController(profileTVC, animated: true)
                 
-                switch source {
-                    
-                case let .list(lesson):
-                    profileTVC.lesson = lesson
-                    self.pushViewController(profileTVC, animated: true)
-                    
-                case let .addOfEdit(viewController, lessonId, lesson):
-                    
-                    DispatchQueue.global(qos: .background).async {
-                        profileTVC.fetchDetailedLesson(lessonId: lessonId)
-                    }
-                    profileTVC.lesson = lesson
-                    viewController.dismiss(animated: true) {
-                        self.pushViewController(profileTVC, animated: false)
-                    }
+            case let .addOfEdit(viewController, lessonId, lesson):
+                
+                DispatchQueue.global(qos: .background).async {
+                    profileTVC.fetchDetailedLesson(lessonId: lessonId)
+                }
+                profileTVC.lesson = lesson
+                viewController.dismiss(animated: true) {
+                    self.pushViewController(profileTVC, animated: false)
                 }
             }
         }
     }
+}
 

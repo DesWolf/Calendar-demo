@@ -52,8 +52,13 @@ extension RepeatTVC {
     }
     
     private func setupNavigationBar(){
-        let nav = self.navigationController?.navigationBar
-        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
+        let navBar = self.navigationController?.navigationBar
+        
+        navBar?.setBackgroundImage(UIImage(), for: .default)
+        navBar?.shadowImage = UIImage()
+        navBar?.isTranslucent = true
+        navBar?.prefersLargeTitles = false
+        navBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
     }
     
     private func setupPicker(str: String) {

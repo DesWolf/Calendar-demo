@@ -10,15 +10,16 @@ import UIKit
 
 class DayTVCell: UITableViewCell {
     
-    @IBOutlet var nameLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
     
     func configere(with meeting: LessonModel) {
         let startTime =  serverHour(str: meeting.timeStart ?? "00:00:00")
         let endTime =    serverHour(str: meeting.timeEnd ?? "01:00:00")
-        var name = ""
-        var description = ""
+        print(startTime, endTime)
+        var name: String?
+        var description: String?
         
         if meeting.studentName == nil {
             name = meeting.lessonName ?? ""
