@@ -8,40 +8,39 @@
 
 import UIKit
 
+
+
 class DisciplinesTVC: UITableViewController {
     
-    public var chousedDisciplines: [String] = []
-    
+   var chousedDisciplines: [String] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigationBar()
     }
     
     @IBAction func AddButton(_ sender: Any) {
         addDiscipline()
-        setupNavigationBar()
-    }
-    
-    deinit {
-        print("deinit", DisciplinesTVC.self)
     }
 }
 
 //MARK: Set Navigation Bar
 extension DisciplinesTVC {
-private func setupNavigationBar() {
-    let nav = self.navigationController?.navigationBar
-    
-    navigationItem.leftBarButtonItem?.title = "Отмена"
-    navigationItem.leftBarButtonItem?.tintColor = .white
-    navigationItem.rightBarButtonItem?.tintColor = .white
-    nav?.setBackgroundImage(UIImage(), for: .default)
-    nav?.shadowImage = UIImage()
-    nav?.isTranslucent = true
-    nav?.prefersLargeTitles = true
-    nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-
-    tableView.backgroundColor = .bgStudent
-}
+    private func setupNavigationBar() {
+        let navBar = self.navigationController?.navigationBar
+        
+        navigationItem.leftBarButtonItem?.tintColor = .systemBlue
+        navigationItem.rightBarButtonItem?.tintColor = .systemBlue
+        
+        navBar?.prefersLargeTitles = false
+        navBar?.setBackgroundImage(UIImage(), for: .default)
+        navBar?.shadowImage = UIImage()
+        navBar?.isTranslucent = true
+        navBar?.prefersLargeTitles = true
+        navBar?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        
+//        tableView.backgroundColor = .bgStudent
+    }
 }
 
 // MARK: Add Discipline

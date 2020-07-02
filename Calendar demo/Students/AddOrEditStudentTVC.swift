@@ -17,14 +17,25 @@ class AddOrEditStudentTVC: UITableViewController {
     @IBOutlet weak var noteTF: UITextView!
     @IBOutlet weak var disciplinesCollectionView: UICollectionView!
     
-    var chousedDisciplines: [String] = []
-    var student: StudentModel?
+    public var chousedDisciplines: [String]? = []
+    public var student: StudentModel?
     private let networkManagerStudents =  NetworkManagerStudents()
+    
+    public var onBackButtonTap: (() -> (Void))?
+    public var onSaveButtonTap: ((Int, StudentModel) -> (Void))?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
         configureScreen()
+        
+        chousedDisciplines = student?.disciplines
+    }
+    
+    override func viewWillAppear(_ animated: Bool){
+        super.viewWillAppear(animated)
+        configureScreen()
+        tableView.reloadData()
     }
     
     @IBAction func emailTFAction(_ sender: Any) {
@@ -34,12 +45,18 @@ class AddOrEditStudentTVC: UITableViewController {
         print("email - ok")
     }
     
-    @IBAction func cancelButton(_ sender: Any) {
-        dismiss(animated: true)
+    @IBAction func tapOnBackButton(_ sender: Any) {
+        onBackButtonTap?()
     }
     
-    deinit {
-        print("deinit", AddOrEditStudentTVC.self)
+    @IBAction private func tapSaveButton() {
+        guard nameTF.text != "", nameTF.text != " "  else {
+            DispatchQueue.main.async {
+                self.simpleAlert(message: "Пожалуйста, заполните необходимые поля")
+            }
+            return
+        }
+        saveStudent()
     }
 }
 
@@ -53,49 +70,53 @@ extension AddOrEditStudentTVC {
             phoneTF.text = student?.phone ?? ""
             emailTF.text = student?.email ?? ""
             noteTF.text = student?.note ?? ""
-            student?.disciplines?.forEach { chousedDisciplines.append($0) }
         }
         
         setupNavigationBar()
-        tableView.backgroundColor = .bgStudent
+        
         
     }
     
     private func setupNavigationBar() {
-        let nav = self.navigationController?.navigationBar
+        let navBar = self.navigationController?.navigationBar
+        let gradientHeight = UIApplication.shared.statusBarFrame.height + navBar!.frame.height
         
         if student == nil {
-            nav?.topItem?.title = "Новый ученик"
+            navigationItem.title = "Новый ученик"
         }
         navigationItem.leftBarButtonItem?.title = "Отмена"
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
         
-        nav?.setBackgroundImage(UIImage(), for: .default)
-        nav?.shadowImage = UIImage()
-        nav?.isTranslucent = true
-        nav?.prefersLargeTitles = true
-        nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navBar?.setBackgroundImage(UIImage(), for: .default)
+        navBar?.shadowImage = UIImage()
+        navBar?.isTranslucent = true
+        navBar?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        navBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+        
+        UIColor.setGradientToTableView(tableView: tableView, height: Double(gradientHeight))
     }
 }
 
-// MARK: - Navigation
+//MARK: Navigation
 extension AddOrEditStudentTVC {
-    @IBAction func unwiSegue(_ segue: UIStoryboardSegue) {
-        guard let disciplinesTVC = segue.source as? DisciplinesTVC else { return }
-        chousedDisciplines = disciplinesTVC.chousedDisciplines
-        disciplinesCollectionView.reloadData()
-        tableView.reloadData()
+    @IBAction func unwiSegueEditStudent(_ segue: UIStoryboardSegue) {
+        if let desTVC = segue.source as? DisciplinesTVC {
+            chousedDisciplines = desTVC.chousedDisciplines
+            disciplinesCollectionView.reloadData()
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "discilinesTVC" {
-            
-            guard let disciplinesTVC = segue.destination as? DisciplinesTVC else { return }
-            disciplinesTVC.chousedDisciplines = chousedDisciplines
+        if segue.identifier == "disciplines" {
+            guard let nav = segue.destination as? UINavigationController, let desTVC = nav.topViewController as? DisciplinesTVC else { return }
+            desTVC.chousedDisciplines = chousedDisciplines ?? []
         }
     }
+}
+
+//MARK: Network
+extension AddOrEditStudentTVC {
     
     func saveStudent() {
         student = StudentModel(studentId: student != nil ? student?.studentId : nil,
@@ -111,15 +132,13 @@ extension AddOrEditStudentTVC {
             addNewStudent(newStudent: student!)
         }
     }
-}
-
-//MARK: Network
-extension AddOrEditStudentTVC {
+    
+    
     private func addNewStudent(newStudent: StudentModel) {
         networkManagerStudents.addStudent(studentId: newStudent.studentId ?? 0,
                                           name: newStudent.name!,
                                           surname: newStudent.surname ?? "",
-                                          disciplines: newStudent.disciplines ?? [],
+                                          disciplines: newStudent.disciplines ?? [""],
                                           phone: newStudent.phone ?? "",
                                           email: newStudent.email ?? "",
                                           note: newStudent.note ?? "")
@@ -131,7 +150,9 @@ extension AddOrEditStudentTVC {
                 }
                 return
             }
-            print("Add:",responce.studentId)
+            guard let studentId = responce.studentId else { return }
+            self?.onSaveButtonTap?(studentId, newStudent)
+            print("Add:",responce.studentId ?? "")
         }
     }
     
@@ -139,7 +160,7 @@ extension AddOrEditStudentTVC {
         networkManagerStudents.changeStudent(studentId: student.studentId ?? 0,
                                              name: student.name!,
                                              surname: student.surname ?? "",
-                                             disciplines: student.disciplines ?? [],
+                                             disciplines: student.disciplines ?? [""],
                                              phone: student.phone ?? "",
                                              email: student.email ?? "",
                                              note: student.note ?? "")
@@ -151,7 +172,8 @@ extension AddOrEditStudentTVC {
                 }
                 return
             }
-            print("change:",responce.message)
+            self?.onSaveButtonTap?(student.studentId ?? 0, student)
+            print("change:",responce.message ?? "")
         }
     }
 }
@@ -184,6 +206,18 @@ extension AddOrEditStudentTVC {
         }
     }
     
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
+      let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+        headerView.backgroundColor = .clear
+    
+      return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+           footerView.backgroundColor = .clear
+         return footerView
+    }
 }
 
 extension AddOrEditStudentTVC: UITextViewDelegate {
@@ -208,14 +242,13 @@ extension AddOrEditStudentTVC: UICollectionViewDataSource, UICollectionViewDeleg
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return chousedDisciplines.count
+        return chousedDisciplines?.count ?? 0
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "DisciplinesCell", for: indexPath) as! DisciplinesCollectionViewCell
-        let discipline = chousedDisciplines[indexPath.row]
+        let discipline = chousedDisciplines?[indexPath.row] ?? ""
         cell.configure(with: discipline)
         return cell
     }

@@ -10,12 +10,12 @@ import UIKit
 
 enum NetworkResponse:String {
     case success
-    case incorrectAPI = "incorrect API"
-    case dataError = "Data Error"
-    case incorrectToken = "Token incorrect"
-    case authenticationError = "You need to be authenticated first."
-    case badRequest = "Bad request"
-    case outdated = "The url you requested is outdated."
+    case incorrectAPI = "403 incorrect API"
+    case dataError = "400 Send data Error"
+    case incorrectToken = "401 Token incorrect"
+    case dataNotFound = "404-500 Data not found"
+    case badRequest = "501-509 Bad request"
+    case outdated = "600 The url you requested is outdated."
     case failed = "Network request failed."
     case noData = "Response returned with no data to decode."
     case unableToDecode = "We could not decode the response."
@@ -92,7 +92,7 @@ struct NetworkManagerLogin {
         case 400: return .failure(NetworkResponse.dataError.rawValue)
         case 401: return .failure(NetworkResponse.incorrectToken.rawValue)
         case 403: return .failure(NetworkResponse.incorrectAPI.rawValue)
-        case 404...500: return .failure(NetworkResponse.authenticationError.rawValue)
+        case 404...500: return .failure(NetworkResponse.dataNotFound.rawValue)
         case 501...599: return .failure(NetworkResponse.badRequest.rawValue)
         case 600: return .failure(NetworkResponse.outdated.rawValue)
         default: return .failure(NetworkResponse.failed.rawValue)

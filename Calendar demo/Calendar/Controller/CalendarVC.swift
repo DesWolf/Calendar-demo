@@ -9,6 +9,11 @@
 import UIKit
 import CVCalendar
 
+enum ModeView {
+    case monthView
+    case weekView
+}
+
 class CalendarVC: UIViewController {
     
     @IBOutlet weak var backgroundImage: UIImageView!
@@ -17,17 +22,24 @@ class CalendarVC: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     
     private let networkManagerCalendar = NetworkManagerCalendar()
-    private var calendar: [CalendarModel]?
+    private var lessons: [LessonModel]?
     
     private var datesDictionary:[String] = []
-    private var selectedDay = [CalendarModel]()
+    private var currentCalendar: Calendar?
+    private var selectedDay = [LessonModel]()
+    private var modeView: ModeView = .monthView
+    
+    var onAddButtonTap: (() -> (Void))?
+    var onCellTap: ((LessonModel) -> (Void))?
+    
+    
+    
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         configureScreen()
-        fetchCalendar(startDate: "2020-06-01", endDate: "2020-06-30")
-        
-        
+        fetchCalendar(date: "")
     }
     
     override func viewDidLayoutSubviews() {
@@ -37,32 +49,43 @@ class CalendarVC: UIViewController {
     }
     
     @IBAction func sendRequest(_ sender: Any) {
-        fetchCalendar(startDate: "2020-06-01", endDate: "2020-06-30")
+        fetchCalendar(date: "")
         self.calendarView.commitCalendarViewUpdate()
     }
     
+    @IBAction func switchCalView(_ sender: Any) {
+        switchMode()
+    }
+    
+    @IBAction func addStudent(_ sender: Any) {
+        onAddButtonTap?()
+    }
 }
 
 //MARK: Set Screen
 extension CalendarVC {
     private func configureScreen() {
-        let startDate = Date().monthMinusOne
-        let endDate = Date().monthPlusOne
-        print(startDate, endDate)
         
         setupNavigationBar()
-        self.view.backgroundColor = .bgStudent
-        //        backgroundColor()
+        backgroundColor()
         calendarView.delegate = self
         menuView.delegate = self
+        
+        calendarView.changeDaysOutShowingState(shouldShow: true)
+        
     }
     
     private func backgroundColor() {
+        
+        let gradientBackgroundColors = [UIColor.appBlueLignt.cgColor, UIColor.appBlueDark.cgColor]
         let gradientLayer = CAGradientLayer()
+        
+        gradientLayer.colors = gradientBackgroundColors
+        gradientLayer.locations = [0.0,1.0]
+        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
+        gradientLayer.endPoint = CGPoint(x: 0, y: 0.5)
         gradientLayer.frame = self.view.bounds
-        let firstColor = UIColor(red: 83/255, green: 185/255, blue: 209/255, alpha: 1)
-        let secondColor = UIColor(red: 88/255, green: 110/255, blue: 180/255, alpha: 1)
-        gradientLayer.colors = [firstColor.cgColor, secondColor.cgColor]
+        
         self.backgroundImage.layer.insertSublayer(gradientLayer, at: 0)
     }
     
@@ -74,20 +97,39 @@ extension CalendarVC {
         navigationItem.rightBarButtonItem?.tintColor = .white
         
         nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-        nav?.topItem?.title = "Июнь"
+        if let currentCalendar = currentCalendar {
+            title = CVDate(date: Date(), calendar: currentCalendar).globalDescription
+        }
         
         nav?.setBackgroundImage(UIImage(), for: .default)
         nav?.shadowImage = UIImage()
         nav?.isTranslucent = true
-//        self.navigationController?.view.backgroundColor = .clear
+        self.navigationController?.view.backgroundColor = .clear
     }
     
+    func switchMode() {
+        if modeView == ModeView.monthView {
+            modeView = .weekView
+            calendarView.changeMode(.weekView)
+        } else {
+            modeView = .monthView
+            calendarView.changeMode(.monthView)
+        }
+    }
 }
+
+
 
 //MARK: Network
 extension CalendarVC {
-    private func fetchCalendar(startDate: String, endDate: String) {
-        networkManagerCalendar.fetchCalendar(startDate: startDate, endDate: endDate) { [weak self]  (calendar, error)  in
+    private func fetchCalendar(date: String) {
+        
+        let startDate = Date().convertStrToDate(str: date)
+        let endDate = Date().monthPlusOne(date: startDate)
+        
+        networkManagerCalendar.fetchCalendar(startDate: serverDate(str: "\(startDate)"),
+                                             endDate: serverDate(str: "\(endDate)"))
+        { [weak self]  (calendar, error)  in
             guard let calendar = calendar else {
                 print(error ?? "")
                 DispatchQueue.main.async {
@@ -96,16 +138,37 @@ extension CalendarVC {
                 return
             }
             print(calendar)
-            self?.calendar = calendar
-            self?.datesDictionary.append(contentsOf: (self?.calendar.map ({ $0.map ({($0.dateStart ?? "")}) }) ?? [""]))
+            self?.lessons = calendar
+            self?.datesDictionary = []
+            self?.datesDictionary.append(contentsOf: (self?.lessons.map ({ $0.map ({($0.dateStart ?? "")}) }) ?? [""]))
             for index in 0..<calendar.count {
                 self?.datesDictionary.append(calendar[index].dateStart ?? "")
             }
             
+            let today = Date().convertStrDate(date: "\(Date())",
+                formatFrom: "yyyy-MM-dd HH:mm:ssZ",
+                formatTo: "yyyy-MM-dd")
+            
+            self?.selectedDay = self?.lessons?.filter{ $0.dateStart == today } ?? []
+            
             DispatchQueue.main.async {
                 self?.calendarView.contentController.refreshPresentedMonth()
+                self?.calendarView.reloadInputViews()
                 self?.tableView.reloadData()
             }
+        }
+    }
+    
+    private func deleteLesson(lessonId: Int) {
+        networkManagerCalendar.deleteLesson(lessonId: lessonId) { [weak self]  (message, error)  in
+            guard let message = message else {
+                print(error ?? "")
+                DispatchQueue.main.async {
+                    self?.simpleAlert(message: error ?? "")
+                }
+                return
+            }
+            print("Delete from server:",message.message ?? "")
         }
     }
 }
@@ -113,24 +176,40 @@ extension CalendarVC {
 
 
 //MARK: CVCalendar MenuViewDelegate, CVCalendarViewDelegate
-extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
-    func presentationMode() -> CalendarMode {
-        return CalendarMode.monthView
+extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate {
+    
+    func presentationMode() -> CalendarMode { return CalendarMode.monthView }
+    func firstWeekday() -> Weekday { return Weekday.monday }
+    
+    func didShowNextMonthView(_ date: Date) { fetchCalendar(date: "\(date)") }
+    func didShowPreviousMonthView(_ date: Date) { fetchCalendar(date: "\(date)") }
+    
+    func shouldAutoSelectDayOnWeekChange() -> Bool { return true }
+    func shouldAutoSelectDayOnMonthChange() -> Bool { return true }
+    func shouldShowWeekdaysOut() -> Bool { return true }
+    
+    func presentedDateUpdated(_ date: CVDate) {
+        title = title != date.globalDescription ? date.globalDescription : ""
     }
     
-    func firstWeekday() -> Weekday {
-        return Weekday.monday
+    func didShowNextWeekView(from startDayView: DayView, to endDayView: DayView) {
+        guard endDayView.date.day <= 7 else { return }
+        fetchCalendar(date: "\(startDayView.date.commonDescription)")
     }
+    
+    func didShowPreviousWeekView(from startDayView: DayView, to endDayView: DayView) {
+        guard startDayView.date.day >= 24  else { return }
+        fetchCalendar(date: "\(startDayView.date.commonDescription)")
+    }
+    
+    
     
     func dayLabelBackgroundColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
         return UIColor(red: 88/255, green: 86/255, blue: 214/255, alpha: 1)
     }
     
     func dotMarker(shouldShowOnDayView dayView: DayView) -> Bool{
-        if dayView.date.day == 1 {
-            return false
-        }
-        return true
+        return dayView.date.day == 1 ? false : true
     }
     
     func dotMarker(colorOnDayView dayView: DayView) -> [UIColor]{
@@ -157,14 +236,17 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
         circleView.fillColor = ColorsConfig.meetingFillCircle
         return circleView
     }
+    
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
-        let cvCalendarDate = Date().convertStrDate( date: "\(dayView.date.commonDescription)",
-                                                    formatFrom: "dd MMMM, yyyy",
-                                                    formatTo: "yyyy-MM-dd")
         
-        for elem in 0..<datesDictionary.count {
-            if cvCalendarDate == datesDictionary[elem] {
-                return true
+        if let day = dayView.date {
+            let day2 = day.convertedDate()?.addingTimeInterval(60 * 60 * 24 )
+            let convDay = "\(day2 ?? Date())".prefix(10)
+            
+            for elem in 0..<datesDictionary.count {
+                if convDay == datesDictionary[elem] {
+                    return true
+                }
             }
         }
         return false
@@ -172,16 +254,16 @@ extension CalendarVC: CVCalendarMenuViewDelegate, CVCalendarViewDelegate{
     
     func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
         let day = Date().convertStrDate(date: "\(dayView.date.commonDescription)",
-                                        formatFrom: "dd MMMM, yyyy",
-                                        formatTo: "yyyy-MM-dd")
+            formatFrom: "dd MMMM, yyyy",
+            formatTo: "yyyy-MM-dd")
         
-        selectedDay = self.calendar?.filter{ $0.dateStart == day } ?? []
+        selectedDay = self.lessons?.filter{ $0.dateStart == day } ?? []
         
         self.tableView.reloadData()
         self.tableView.tableFooterView = UIView()
-        print(day, selectedDay)
     }
 }
+
 //MARK: CVCalendarViewAppearanceDelegate
 extension CalendarVC: CVCalendarViewAppearanceDelegate {
     func dayOfWeekTextColor() -> UIColor {
@@ -210,23 +292,36 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "meetingCell", for: indexPath) as! DayTVCell
         let meeting = selectedDay[indexPath.row]
-        
         cell.configere(with: meeting)
         return cell
     }
     
-    //    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-    //        return 50
-    //    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let meeting = selectedDay[indexPath.row]
+        onCellTap?(meeting)
+    }
+    
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        guard editingStyle == .delete else { return }
+        let selectedLesson = selectedDay[indexPath.row]
+        lessons?.remove(at: indexPath.row)
+        datesDictionary.remove(at: indexPath.row)
+        deleteLesson(lessonId: selectedLesson.lessonId ?? 0)
+        calendarView.contentController.refreshPresentedMonth()
+        tableView.reloadData()
+    }
 }
-
-
-
-
 
 //MARK: Alert
 extension CalendarVC {
     func simpleAlert(message: String) {
         UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
+    }
+}
+
+//MARK: Date Support Func
+extension CalendarVC {
+    private func serverDate(str: String) -> String {
+        return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "yyyy-MM-dd")
     }
 }

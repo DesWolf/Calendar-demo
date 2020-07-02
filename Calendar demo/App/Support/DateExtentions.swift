@@ -10,30 +10,43 @@ import Foundation
 
 extension Date {
 
-    var currentMonth: Date {
-        let calendar = Calendar(identifier: .gregorian)
-        let components = calendar.dateComponents([.year, .month], from: self)
-        return  calendar.date(from: components)!
-    }
+    func month(date: Date) -> String {
+       let dateFormatter = DateFormatter()
+       dateFormatter.dateFormat = "MMMM"
+       return dateFormatter.string(from: date)
+   }
     
-    var monthMinusOne: Date {
+    func monthMinusOne(date: Date) -> Date {
         var components = DateComponents()
         components.month = -1
         components.day = -1
-        return Calendar(identifier: .gregorian).date(byAdding: components, to: currentMonth)!
+        return Calendar(identifier: .gregorian).date(byAdding: components, to: date)!
     }
-
-    var monthPlusOne: Date {
+    
+    func monthPlusOne(date: Date) -> Date {
         var components = DateComponents()
-        components.month = 2
+        components.month = 1
         components.day = 1
-        return Calendar(identifier: .gregorian).date(byAdding: components, to: currentMonth)!
+        return Calendar(identifier: .gregorian).date(byAdding: components, to: date)!
     }
+    
+   
     
     func convertStrToDate(str: String) -> Date {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "dd.MM.yyyy"
-        return dateFormatter.date(from: str)!
+        switch str.count {
+        case 10:
+            dateFormatter.dateFormat = "dd.MM.yyyy"
+        case 25:
+           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
+        default:
+             dateFormatter.dateFormat = "dd MMMM, yyyy"
+        }
+        
+        guard let date = dateFormatter.date(from: str) else {
+            return Date()
+        }
+        return date
     }
     
     func convertCVCalendarDate(date: String) -> String{
@@ -46,7 +59,7 @@ extension Date {
         }
         return result
     }
-    
+        
     func convertStrDate(date: String, formatFrom: String, formatTo: String) -> String {
         var result = ""
         let formatter = DateFormatter()
@@ -57,5 +70,22 @@ extension Date {
         
         return result
     }
+    
+    func time(str: String) -> String {
+        return convertStrDate(date: str,
+                              formatFrom: "yyyy-MM-dd HH:mm:ssZ",
+                              formatTo: "HH:mm")
+    }
+    
+    func date(str: String) -> String {
+        return convertStrDate(date: str,
+                              formatFrom: "yyyy-MM-dd HH:mm:ssZ",
+                              formatTo: "dd.MM.YY")
+    }
+    
+    func fullScreenDate(str: String) -> String {
+        return convertStrDate(date: str,
+                              formatFrom: "yyyy-MM-dd HH:mm:ssZ",
+                              formatTo: "EEEE, MMM d, yyyy")
 }
-
+}

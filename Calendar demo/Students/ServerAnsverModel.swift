@@ -10,6 +10,6 @@ import Foundation
 
 struct ServerAnswerModel: Decodable {
     let message: String?
-    let studentId: String?
-    let lessonId: String?
+    let studentId: Int?
+    let lessonId: Int?
 }

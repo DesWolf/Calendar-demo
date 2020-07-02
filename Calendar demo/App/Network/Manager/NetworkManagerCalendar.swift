@@ -16,7 +16,7 @@ struct NetworkManagerCalendar {
     
     func fetchCalendar(startDate: String,
                        endDate: String,
-                       completion: @escaping (_ contacts: [CalendarModel]?,_ error: String?)->()){
+                       completion: @escaping (_ contacts: [LessonModel]?,_ error: String?)->()){
         router.request(.calendar(startDate: startDate, endDate: endDate)) { data, response, error in
             
             if error != nil {
@@ -32,7 +32,7 @@ struct NetworkManagerCalendar {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode([CalendarModel].self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode([LessonModel].self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -45,7 +45,7 @@ struct NetworkManagerCalendar {
         }
     }
     
-    func fetchLesson(lessonId: Int, completion: @escaping (_ contacts: CalendarModel?,_ error: String?)->()){
+    func fetchLesson(lessonId: Int, completion: @escaping (_ contacts: LessonModel?,_ error: String?)->()){
         router.request(.showLesson(lessonId: lessonId)) { data, response, error in
             
             if error != nil {
@@ -61,7 +61,7 @@ struct NetworkManagerCalendar {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode(CalendarModel.self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(LessonModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -74,7 +74,7 @@ struct NetworkManagerCalendar {
         }
     }
     
-    func addLesson(lessonName: String,
+    func addLesson(name: String,
                    place: String,
                    studentId: Int,
                    discipline: String,
@@ -82,12 +82,12 @@ struct NetworkManagerCalendar {
                    timeStart: String,
                    dateEnd: String,
                    timeEnd: String,
-                   repeatLesson: String,
-                   endRepeatLesson: String,
+                   repeatedly: String,
+                   endRepeat: String,
                    price: Int,
                    note: String,
-                   completion: @escaping (_ message: [String: String]?,_ error: String?)->()){
-        router.request(.addLesson(lessonName: lessonName,
+                   completion: @escaping (_ message: ServerAnswerModel?,_ error: String?)->()){
+        router.request(.addLesson(name: name,
                                   place: place,
                                   studentId: studentId,
                                   discipline: discipline,
@@ -95,8 +95,8 @@ struct NetworkManagerCalendar {
                                   timeStart: timeStart,
                                   dateEnd: dateEnd,
                                   timeEnd: timeEnd,
-                                  repeatLesson: repeatLesson,
-                                  endRepeatLesson: endRepeatLesson,
+                                  repeatedly: repeatedly,
+                                  endRepeat: endRepeat,
                                   price: price,
                                   note: note))
         { data, response, error in
@@ -114,7 +114,7 @@ struct NetworkManagerCalendar {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode([String: String].self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(ServerAnswerModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -128,7 +128,7 @@ struct NetworkManagerCalendar {
     }
     
     func changeLesson(lessonId: Int,
-                      lessonName: String,
+                      name: String,
                       place: String,
                       studentId: Int,
                       discipline: String,
@@ -136,15 +136,15 @@ struct NetworkManagerCalendar {
                       timeStart: String,
                       dateEnd: String,
                       timeEnd: String,
-                      repeatLesson: String,
-                      endRepeatLesson: String,
+                      repeatedly: String,
+                      endRepeat: String,
                       price: Int,
                       note: String,
                       statusPay: Int,
                       paymentDate: String,
-        completion: @escaping (_ message: [String: String]?,_ error: String?)->()){
+        completion: @escaping (_ message: ServerAnswerModel?,_ error: String?)->()){
         router.request(.changeLesson(lessonId: lessonId,
-                                     lessonName: lessonName,
+                                     name: name,
                                      place: place,
                                      studentId: studentId,
                                      discipline: discipline,
@@ -152,8 +152,8 @@ struct NetworkManagerCalendar {
                                      timeStart: timeStart,
                                      dateEnd: dateEnd,
                                      timeEnd: timeEnd,
-                                     repeatLesson: repeatLesson,
-                                     endRepeatLesson: endRepeatLesson,
+                                     repeatedly: repeatedly,
+                                     endRepeat: endRepeat,
                                      price: price,
                                      note: note,
                                      statusPay: statusPay,
@@ -173,7 +173,7 @@ struct NetworkManagerCalendar {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode([String: String].self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(ServerAnswerModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -186,7 +186,7 @@ struct NetworkManagerCalendar {
         }
     }
     
-    func deleteLesson(lessonId: Int, completion: @escaping (_ message: [String: String]?,_ error: String?)->()){
+    func deleteLesson(lessonId: Int, completion: @escaping (_ message: ServerAnswerModel?,_ error: String?)->()){
         router.request(.deleteLesson(lessonId: lessonId)) { data, response, error in
             
             if error != nil {
@@ -202,7 +202,7 @@ struct NetworkManagerCalendar {
                         return
                     }
                     do {
-                        let apiResponse = try JSONDecoder().decode([String: String].self, from: responseData)
+                        let apiResponse = try JSONDecoder().decode(ServerAnswerModel.self, from: responseData)
                         completion(apiResponse,nil)
                     }catch {
                         print(error)
@@ -221,7 +221,7 @@ struct NetworkManagerCalendar {
         case 200...299: return .success
         case 400: return .failure(NetworkResponse.dataError.rawValue)
         case 403: return .failure(NetworkResponse.incorrectAPI.rawValue)
-        case 404...500: return .failure(NetworkResponse.authenticationError.rawValue)
+        case 404...500: return .failure(NetworkResponse.dataNotFound.rawValue)
         case 501...599: return .failure(NetworkResponse.badRequest.rawValue)
         case 600: return .failure(NetworkResponse.outdated.rawValue)
         default: return .failure(NetworkResponse.failed.rawValue)

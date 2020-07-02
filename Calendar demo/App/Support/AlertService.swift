@@ -37,16 +37,3 @@ extension UIAlertController {
         target.present(alert, animated: true, completion: nil)
     }
 }
-
-
-//        alert.addAction(UIAlertAction(title: "Добавить", style: .default, handler: { action in
-//            if !alert.textFields?.isEmpty {
-//                let result = alert.textFields?.first?.text!
-//                return result
-//
-//            }
-//        }))
-
-
-//        return nil
-

@@ -17,40 +17,68 @@ class StudentProfileTVC: UITableViewController {
     @IBOutlet weak var disciplinesCollectionView: UICollectionView!
     @IBOutlet weak var noteTV: UITextView!
     
-    var student: StudentModel?
     private let networkManagerStudents =  NetworkManagerStudents()
+    
+    public var student: StudentModel?
+    public var onEditButtonTap: ((StudentModel) -> (Void))?
+    public var onBackButtonTap: (() -> (Void))?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setNavigationController()
-        fetchDetailedStudent(studentId: student?.studentId ?? 0)
+        setupScreen(student: student)
     }
     
-    deinit {
-        print("deinit", StudentProfileTVC.self)
+    @IBAction private func tapOnBackButton(_ sender: Any) {
+        self.onBackButtonTap?()
+    }
+    
+    @IBAction private func tapOnEditButton(_ sender: Any) {
+        if student == nil {
+            simpleAlert(message: "Нет интернет соединения, попробуйте позже")
+        } else {
+            self.onEditButtonTap?(student!)
+        }
     }
 }
+
 //MARK: Setup Screen
 extension StudentProfileTVC {
     func setupScreen(student: StudentModel?) {
         
         nameLabel.text = "\(student?.name ?? "") \(student?.surname ?? "")"
-        commentLabel.text = "Макс уже нашел работу"
+        commentLabel.text = "Ученик"
         phoneTV.text = student?.phone ?? ""
         emailTV.text = student?.email ?? ""
         noteTV.text = student?.note ?? ""
         
         phoneTV.isScrollEnabled = false
         emailTV.isScrollEnabled = false
+        
+       
     }
     
     private func setNavigationController() {
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        tableView.backgroundColor = .bgStudent
+        let navBar = self.navigationController?.navigationBar
+        
+        
+
+       let gradientHeight = UIApplication.shared.statusBarFrame.height + navBar!.frame.height
+        
+        print(UIApplication.shared.statusBarFrame.height)
+        print(navBar!.frame.height)
+        
+        navBar?.prefersLargeTitles = false
+        navBar?.setBackgroundImage(UIImage(), for: .default)
+        navBar?.shadowImage = UIImage()
+        navBar?.isTranslucent = true
+        navBar?.backItem?.backBarButtonItem?.tintColor = .white
+        
+        UIColor.setGradientToTableView(tableView: tableView, height: Double(gradientHeight))
     }
 }
+
 
 //MARK: UITextViewDelegate
 extension StudentProfileTVC: UITextViewDelegate{
@@ -106,25 +134,20 @@ extension StudentProfileTVC {
     }
     
     override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.backgroundColor = indexPath.row == 0 ? .bgStudent : .white
-    }
-}
-
-// MARK: Navigation
-extension StudentProfileTVC {
-    @IBAction func unwiSegue(_ segue: UIStoryboardSegue) {
-        guard let addOrEditStudentTVC = segue.source as? AddOrEditStudentTVC else { return }
-        addOrEditStudentTVC.saveStudent()
-        fetchDetailedStudent(studentId: student?.studentId ?? 0)
+        cell.backgroundColor = indexPath.row == 0 ? UIColor.clear : .white
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "editStudent" {
-            if let destVC = segue.destination as? UINavigationController,
-                let targetController = destVC.topViewController as? AddOrEditStudentTVC {
-                targetController.student = student
-            }
-        }
+    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
+      let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+        headerView.backgroundColor = .clear
+    
+      return headerView
+    }
+    
+    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+           footerView.backgroundColor = .clear
+         return footerView
     }
 }
 
@@ -139,12 +162,7 @@ extension StudentProfileTVC {
                 }
                 return
             }
-            DispatchQueue.main.async {
-                self?.student = student
-                self?.setupScreen(student: student)
-                self?.disciplinesCollectionView.reloadData()
-                self?.tableView.reloadData()
-            }
+            self?.student = student
         }
     }
 }

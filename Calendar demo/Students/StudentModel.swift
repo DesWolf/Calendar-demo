@@ -12,7 +12,7 @@ struct StudentModel: Decodable {
     let studentId: Int?
     let name: String?
     let surname: String?
-    let disciplines: [String]?
+    var disciplines: [String]?
     let phone: String?
     let email: String?
     let note: String?

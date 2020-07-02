@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct CalendarModel: Decodable {
+struct LessonModel: Decodable {
     let lessonId: Int?
     let lessonName: String?
     let place: String?
@@ -21,13 +21,13 @@ struct CalendarModel: Decodable {
     let duration: [String]?
     let dateEnd: String?
     let timeEnd:  String?
-    let repeatLesson: String?
-    let endRepeatLesson: String?
+    let repeatedly: String?
+    let endRepeat: String?
     let price: Int?
 //    let notificationType: String?
     let note: String?
-    let statusPay: Int?
-    let paymentDate: String?
+    var statusPay: Int?
+    var paymentDate: String?
 }
 
 

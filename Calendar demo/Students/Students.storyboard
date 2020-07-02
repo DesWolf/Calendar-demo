@@ -4,18 +4,17 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
-        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--ContactsNC-->
+        <!--StudentsNavController-->
         <scene sceneID="bBl-2m-KTQ">
             <objects>
-                <navigationController title="ContactsNC" automaticallyAdjustsScrollViewInsets="NO" id="7TF-VW-MlM" customClass="StudentsNavController" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Ученики" image="Contacts" id="AfD-B4-inM"/>
+                <navigationController storyboardIdentifier="StudentsNavController" title="StudentsNavController" automaticallyAdjustsScrollViewInsets="NO" id="7TF-VW-MlM" customClass="StudentsNavController" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Контакты" image="Contacts" id="AfD-B4-inM"/>
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="Unh-Y1-8Qd"/>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="Unh-Y1-8Qd"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="Vy5-tA-vW9">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
@@ -26,18 +25,15 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" red="0.31764705879999999" green="0.42352941179999998" blue="0.90196078430000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </toolbar>
-                    <connections>
-                        <segue destination="WXJ-hB-faI" kind="relationship" relationship="rootViewController" id="kIS-yU-C2p"/>
-                    </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M85-1H-tVv" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2996" y="329"/>
+            <point key="canvasLocation" x="3754" y="-366"/>
         </scene>
         <!--Ученики-->
         <scene sceneID="imh-zH-cDM">
             <objects>
-                <tableViewController id="WXJ-hB-faI" customClass="StudentsListTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="StudentsListTVC" id="WXJ-hB-faI" customClass="StudentsListTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="HjS-sG-xvu">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -51,23 +47,23 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name Surname" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Mg9-Ry-uPW">
-                                            <rect key="frame" x="15" y="13" width="384" height="21"/>
+                                            <rect key="frame" x="20" y="13" width="374" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="currentDiscipline" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="7hl-ic-867">
-                                            <rect key="frame" x="15" y="33" width="384" height="14.5"/>
+                                            <rect key="frame" x="20" y="33" width="394" height="14.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                             <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="7hl-ic-867" firstAttribute="leading" secondItem="kcc-Er-qqN" secondAttribute="leading" constant="15" id="NBQ-Ub-BHT"/>
-                                        <constraint firstItem="Mg9-Ry-uPW" firstAttribute="leading" secondItem="kcc-Er-qqN" secondAttribute="leading" constant="15" id="RWi-Hz-aON"/>
-                                        <constraint firstAttribute="trailing" secondItem="7hl-ic-867" secondAttribute="trailing" constant="15" id="Us1-D5-cv4"/>
-                                        <constraint firstAttribute="trailing" secondItem="Mg9-Ry-uPW" secondAttribute="trailing" constant="15" id="aeb-Np-nSj"/>
+                                        <constraint firstItem="7hl-ic-867" firstAttribute="leading" secondItem="kcc-Er-qqN" secondAttribute="leading" constant="20" id="NBQ-Ub-BHT"/>
+                                        <constraint firstItem="Mg9-Ry-uPW" firstAttribute="leading" secondItem="kcc-Er-qqN" secondAttribute="leading" constant="20" id="RWi-Hz-aON"/>
+                                        <constraint firstAttribute="trailing" secondItem="7hl-ic-867" secondAttribute="trailing" id="Us1-D5-cv4"/>
+                                        <constraint firstAttribute="trailing" secondItem="Mg9-Ry-uPW" secondAttribute="trailing" constant="20" id="aeb-Np-nSj"/>
                                         <constraint firstItem="Mg9-Ry-uPW" firstAttribute="top" secondItem="kcc-Er-qqN" secondAttribute="top" constant="13" id="cAW-kr-jvu"/>
                                         <constraint firstAttribute="bottom" secondItem="7hl-ic-867" secondAttribute="bottom" constant="12.5" id="cYZ-2O-61s"/>
                                     </constraints>
@@ -75,7 +71,6 @@
                                 <connections>
                                     <outlet property="currentDisciplineLabel" destination="7hl-ic-867" id="JRS-WQ-0Il"/>
                                     <outlet property="nameLabel" destination="Mg9-Ry-uPW" id="7N3-a9-YoP"/>
-                                    <segue destination="Ok9-Xy-cmW" kind="show" identifier="showDetail" id="q1R-nh-uuZ"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -92,7 +87,7 @@
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="0CE-Os-x55">
                             <connections>
-                                <segue destination="7gx-wT-xaD" kind="show" identifier="newStudent" id="PeG-PI-Sdt"/>
+                                <action selector="addStudent:" destination="WXJ-hB-faI" id="P7j-6W-30O"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -258,7 +253,7 @@
                                                     <rect key="frame" x="372" y="68" width="22" height="22"/>
                                                     <state key="normal" image="Add"/>
                                                     <connections>
-                                                        <segue destination="4l1-jS-ASn" kind="show" identifier="discilinesTVC" id="dDc-BE-0Hi"/>
+                                                        <segue destination="oAF-0A-hi5" kind="show" identifier="disciplines" id="c3U-Jn-5l3"/>
                                                     </connections>
                                                 </button>
                                             </subviews>
@@ -381,15 +376,15 @@
                             <outlet property="delegate" destination="67y-bq-6A6" id="em7-Zw-gO4"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Правка" largeTitleDisplayMode="always" id="Ygz-HA-Rsi">
+                    <navigationItem key="navigationItem" title="Правка" largeTitleDisplayMode="never" id="Ygz-HA-Rsi">
                         <barButtonItem key="leftBarButtonItem" title="Отмена" id="Bum-89-1QS">
                             <connections>
-                                <action selector="cancelButton:" destination="67y-bq-6A6" id="B5h-pJ-BcN"/>
+                                <action selector="tapOnBackButton:" destination="67y-bq-6A6" id="B5h-pJ-BcN"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Готово" id="hGG-bO-hJ3">
                             <connections>
-                                <segue destination="aTW-LM-jXz" kind="unwind" unwindAction="unwiSegueListOfContacts:" id="6wT-xy-yDR"/>
+                                <action selector="tapSaveButton" destination="67y-bq-6A6" id="ZJD-vK-BBZ"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -403,14 +398,13 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Exe-hs-tad" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="aTW-LM-jXz" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="5273.913043478261" y="326.78571428571428"/>
+            <point key="canvasLocation" x="5183" y="329"/>
         </scene>
         <!--Дисциплины-->
         <scene sceneID="1Ds-bp-zGp">
             <objects>
-                <tableViewController id="4l1-jS-ASn" customClass="DisciplinesTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="DisciplinesTVC" id="4l1-jS-ASn" customClass="DisciplinesTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsMultipleSelection="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="l3y-wp-J9Y">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -423,30 +417,27 @@
                                     <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cha-MI-yn1">
-                                            <rect key="frame" x="20" y="5" width="374" height="33.5"/>
-                                            <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Du9-mc-ZTf">
-                                                    <rect key="frame" x="0.0" y="0.0" width="349" height="33.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                                    <nil key="textColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empyCheck" translatesAutoresizingMaskIntoConstraints="NO" id="5g4-if-b2K">
-                                                    <rect key="frame" x="349" y="0.0" width="25" height="33.5"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="25" id="9Gf-8h-K26"/>
-                                                        <constraint firstAttribute="width" constant="25" id="e4E-pu-nBs"/>
-                                                    </constraints>
-                                                </imageView>
-                                            </subviews>
-                                        </stackView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Du9-mc-ZTf">
+                                            <rect key="frame" x="20" y="5" width="341" height="34"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="empyCheck" translatesAutoresizingMaskIntoConstraints="NO" id="5g4-if-b2K">
+                                            <rect key="frame" x="369" y="5" width="25" height="34"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" constant="25" id="pUS-57-Z6y"/>
+                                            </constraints>
+                                        </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="cha-MI-yn1" firstAttribute="top" secondItem="cZV-f1-Y4a" secondAttribute="top" constant="5" id="1Af-CK-A4R"/>
-                                        <constraint firstAttribute="trailing" secondItem="cha-MI-yn1" secondAttribute="trailing" constant="20" id="DyH-QA-dgL"/>
-                                        <constraint firstAttribute="bottom" secondItem="cha-MI-yn1" secondAttribute="bottom" constant="5" id="XFM-yc-zaO"/>
-                                        <constraint firstItem="cha-MI-yn1" firstAttribute="leading" secondItem="cZV-f1-Y4a" secondAttribute="leading" constant="20" id="Xrw-cA-vvk"/>
+                                        <constraint firstItem="5g4-if-b2K" firstAttribute="leading" secondItem="Du9-mc-ZTf" secondAttribute="trailing" constant="8" id="9eh-dV-5vm"/>
+                                        <constraint firstItem="Du9-mc-ZTf" firstAttribute="top" secondItem="cZV-f1-Y4a" secondAttribute="top" constant="5" id="CkE-LO-Sta"/>
+                                        <constraint firstAttribute="bottom" secondItem="5g4-if-b2K" secondAttribute="bottom" constant="4.5" id="Qfa-Cp-0Ki"/>
+                                        <constraint firstAttribute="trailing" secondItem="5g4-if-b2K" secondAttribute="trailing" constant="20" id="QxL-qV-dBl"/>
+                                        <constraint firstAttribute="bottom" secondItem="Du9-mc-ZTf" secondAttribute="bottom" constant="4.5" id="awT-pz-Fwy"/>
+                                        <constraint firstItem="Du9-mc-ZTf" firstAttribute="leading" secondItem="cZV-f1-Y4a" secondAttribute="leading" constant="20" id="n0i-MV-OoI"/>
+                                        <constraint firstItem="5g4-if-b2K" firstAttribute="top" secondItem="cZV-f1-Y4a" secondAttribute="top" constant="5" id="s40-wW-yGj"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
@@ -460,23 +451,23 @@
                             <outlet property="delegate" destination="4l1-jS-ASn" id="iD8-kP-XgN"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Дисциплины" id="NsY-z8-nkW">
-                        <barButtonItem key="leftBarButtonItem" systemItem="add" id="WeF-i0-wjt">
+                    <navigationItem key="navigationItem" title="Дисциплины" largeTitleDisplayMode="never" id="NsY-z8-nkW">
+                        <barButtonItem key="leftBarButtonItem" title="Назад" id="cqG-Cu-HpB">
                             <connections>
-                                <action selector="AddButton:" destination="4l1-jS-ASn" id="UZB-u7-wFS"/>
+                                <segue destination="MYs-PN-f5B" kind="unwind" unwindAction="unwiSegueEditStudent:" id="rbF-a8-vet"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="dvN-ny-6s2">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="WeF-i0-wjt">
                             <connections>
-                                <segue destination="8bU-F1-01O" kind="unwind" unwindAction="unwiSegue:" id="uvJ-xF-jFR"/>
+                                <action selector="AddButton:" destination="4l1-jS-ASn" id="UZB-u7-wFS"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7ut-DZ-ApY" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="8bU-F1-01O" userLabel="Exit" sceneMemberID="exit"/>
+                <exit id="MYs-PN-f5B" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="6068" y="329"/>
+            <point key="canvasLocation" x="5922" y="329"/>
         </scene>
         <!--StudentProfileTVC-->
         <scene sceneID="NXb-B1-4yx">
@@ -714,17 +705,17 @@
                             <outlet property="delegate" destination="Ok9-Xy-cmW" id="6yx-ll-ZfS"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" largeTitleDisplayMode="never" id="qAz-g1-Cll">
-                        <barButtonItem key="leftBarButtonItem" title="Назад" id="oyh-vg-00V">
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="qAz-g1-Cll">
+                        <barButtonItem key="leftBarButtonItem" title="Назад" id="Qeu-KD-n9P">
                             <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
-                                <segue destination="eJ6-bD-f4b" kind="unwind" unwindAction="unwiSegueListOfContacts:" id="nLZ-H6-JWy"/>
+                                <action selector="tapOnBackButton:" destination="Ok9-Xy-cmW" id="Yph-ba-UKI"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Правка" id="65C-0S-Og0">
-                            <color key="tintColor" red="0.99993699790000001" green="1" blue="0.99987250569999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <color key="tintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             <connections>
-                                <segue destination="7gx-wT-xaD" kind="show" identifier="editStudent" id="Wha-ju-4SR"/>
+                                <action selector="tapOnEditButton:" destination="Ok9-Xy-cmW" id="C3G-dV-rod"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -738,67 +729,65 @@
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="t8O-M0-FXJ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="eJ6-bD-f4b" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="4496" y="327"/>
+            <point key="canvasLocation" x="4464" y="329"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="Lqv-xn-swy">
+        <scene sceneID="PJd-0s-SnE">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="7gx-wT-xaD" sceneMemberID="viewController">
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="AXf-zy-weY" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationItem key="navigationItem" id="K32-Gu-FYX"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="Zqo-62-scK">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="cKO-6o-0yQ">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="67y-bq-6A6" kind="relationship" relationship="rootViewController" id="D9m-MP-3HA"/>
+                        <segue destination="67y-bq-6A6" kind="relationship" relationship="rootViewController" id="Aiq-bd-q3w"/>
                     </connections>
                 </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rpc-P6-BHl" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Uro-v9-eaK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5274" y="-366"/>
+            <point key="canvasLocation" x="5183" y="-366"/>
         </scene>
-        <!--Pop UpVC-->
-        <scene sceneID="2H2-GG-hG2">
+        <!--Navigation Controller-->
+        <scene sceneID="G6T-CX-0aP">
             <objects>
-                <viewController storyboardIdentifier="popUpVC" id="7qe-Pz-sFJ" customClass="PopUpVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="hPE-0e-v2u">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ученик добавлен" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZu-r8-KEX">
-                                <rect key="frame" x="20" y="854" width="374" height="30"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="30" id="7Hh-m7-zUT"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                        </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="CZu-r8-KEX" firstAttribute="leading" secondItem="me8-9U-vFn" secondAttribute="leading" constant="20" id="DaA-bI-AO5"/>
-                            <constraint firstItem="CZu-r8-KEX" firstAttribute="trailing" secondItem="me8-9U-vFn" secondAttribute="trailing" constant="-20" id="QMD-Fx-0eA"/>
-                            <constraint firstItem="CZu-r8-KEX" firstAttribute="bottom" secondItem="me8-9U-vFn" secondAttribute="bottom" constant="22" id="o83-Ko-74j"/>
-                        </constraints>
-                        <viewLayoutGuide key="safeArea" id="me8-9U-vFn"/>
-                    </view>
+                <navigationController storyboardIdentifier="studentProfileNav" automaticallyAdjustsScrollViewInsets="NO" id="p5E-Lg-s6q" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="7rj-mP-VMF">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
                     <connections>
-                        <outlet property="messageLablel" destination="CZu-r8-KEX" id="6aa-M0-jE2"/>
+                        <segue destination="Ok9-Xy-cmW" kind="relationship" relationship="rootViewController" id="CKw-mW-2ma"/>
                     </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="aYO-IY-wnW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="HoP-Jj-Rno" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="7438" y="360"/>
+            <point key="canvasLocation" x="4464" y="-366"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="vRW-d9-BLq">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="oAF-0A-hi5" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="Dr6-64-des"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="KWe-UJ-DSn">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="4l1-jS-ASn" kind="relationship" relationship="rootViewController" id="1a5-fk-lkp"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="N1r-R7-uEj" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5922" y="-366"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="PeG-PI-Sdt"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="Add" width="22" height="22"/>
         <image name="Contacts" width="25" height="25"/>
