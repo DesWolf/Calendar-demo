@@ -82,8 +82,6 @@ extension AddOrEditLessonTVC {
         
         print(lesson)
         
-        
-        
         if lesson != nil {
             
             let lessonStart = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
