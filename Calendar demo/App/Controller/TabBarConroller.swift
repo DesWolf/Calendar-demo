@@ -18,6 +18,5 @@ class TabBarConroller: UITabBarController {
         
         tabBar.tintColor = .white
         tabBar.unselectedItemTintColor = .iconsGray
-        
     }
 }

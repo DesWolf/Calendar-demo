@@ -9,20 +9,26 @@
 import Foundation
 
 extension Date {
-
-    func month(date: Date) -> String {
-       let dateFormatter = DateFormatter()
-       dateFormatter.dateFormat = "MMMM"
-       return dateFormatter.string(from: date)
-   }
     
-    func monthMinusOne(date: Date) -> Date {
-        var components = DateComponents()
-        components.month = -1
-        components.day = -1
-        return Calendar(identifier: .gregorian).date(byAdding: components, to: date)!
+    var month: String {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "MMMM YYYY"
+        return dateFormatter.string(from: self)
     }
+
+//    func month(date: Date) -> String {
+//       let dateFormatter = DateFormatter()
+//       dateFormatter.dateFormat = "MMMM"
+//       return dateFormatter.string(from: date)
+//   }
     
+//    func monthMinusOne(date: Date) -> Date {
+//        var components = DateComponents()
+//        components.month = -1
+//        components.day = -1
+//        return Calendar(identifier: .gregorian).date(byAdding: components, to: date)!
+//    }
+//
     func monthPlusOne(date: Date) -> Date {
         var components = DateComponents()
         components.month = 1

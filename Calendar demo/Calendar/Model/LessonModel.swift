@@ -24,7 +24,6 @@ struct LessonModel: Decodable {
     let repeatedly: String?
     let endRepeat: String?
     let price: Int?
-//    let notificationType: String?
     let note: String?
     var statusPay: Int?
     var paymentDate: String?

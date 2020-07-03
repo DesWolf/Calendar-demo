@@ -37,7 +37,7 @@ class LessonDetailedTVC: UITableViewController {
         setNavigationController()
         setupScreen(lesson: lesson)
         
-        print(lesson)
+        print(String(describing: lesson))
         
         
     }

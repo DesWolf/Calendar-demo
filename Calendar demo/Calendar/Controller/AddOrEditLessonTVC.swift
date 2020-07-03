@@ -47,7 +47,7 @@ class AddOrEditLessonTVC: UITableViewController {
                         notifInSeconds: notifInSeconds ?? 0,
                         notifDescription: notificationTypeLabel.text ?? "нет",
                         meetingName: nameTF.text ?? "Занятие",
-                        student: "\(student?.name) \(student?.surname)")
+                        student: "\(student?.name ?? "") \(student?.surname ?? "")")
     }
     
     @IBAction func startDateChanged(sender: UIDatePicker) {
@@ -80,7 +80,7 @@ extension AddOrEditLessonTVC {
 
     private func configureScreen(){
         
-        print(lesson)
+        print(String(describing:lesson))
         
         if lesson != nil {
             
@@ -192,7 +192,7 @@ extension AddOrEditLessonTVC {
         if let notifTVC = segue.source as? NotificationTVC {
             self.notificationTypeLabel.text = "\(notifTVC.selectedNotification)"
             self.notifInSeconds = notifTVC.notifInSeconds
-            print(self.notifInSeconds)
+            print(String(describing:self.notifInSeconds))
         }
     }
     
@@ -243,7 +243,7 @@ extension AddOrEditLessonTVC {
         } else {
             addNewLesson(lesson: lesson!)
         }
-        print(lesson)
+        print(String(describing:lesson))
         
 
     }
