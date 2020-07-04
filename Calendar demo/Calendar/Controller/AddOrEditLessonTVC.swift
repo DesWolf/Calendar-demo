@@ -31,6 +31,7 @@ class AddOrEditLessonTVC: UITableViewController {
     public var lesson: LessonModel?
     public var student: StudentModel?
     public var notifInSeconds: Double?
+    public var selectedDate: Date?
     
     private let networkManagerCalendar =  NetworkManagerCalendar()
     private var notifications = Notifications()
@@ -41,6 +42,7 @@ class AddOrEditLessonTVC: UITableViewController {
         configureScreen()
         
     }
+    
     @IBAction func notifCheck(_ sender: Any) {
         setNotification(meetingId: 1,
                         date: startLessonDatePicker.date,
@@ -84,20 +86,20 @@ extension AddOrEditLessonTVC {
         
         if lesson != nil {
             
-            let lessonStart = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
-            let lessonEnd = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
+//            let lessonStart = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
+//            let lessonEnd = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
             let endRepeat = Date().convertStrToDate(str: "\(lesson?.endRepeat ?? "2020-01-01 00:00:00 +0000")")
             
-            let start = "\(Date().date(str: "\(lessonStart)")) \(Date().time(str: "\(lessonStart)"))"
-            let end = "\(Date().date(str: "\(lessonEnd)")) \(Date().time(str: "\(lessonEnd)"))"
+//            let start = "\(Date().date(str: "\(lessonStart)")) \(Date().time(str: "\(lessonStart)"))"
+//            let end = "\(Date().date(str: "\(lessonEnd)")) \(Date().time(str: "\(lessonEnd)"))"
             let endRep = Date().date(str: "\(endRepeat)")
             
             nameTF.text = lesson?.lessonName
             placeTF.text = lesson?.place ?? ""
             studentLabel.text = "\(lesson?.studentName ?? "") \(lesson?.studentSurname ?? "")"
             disciplineLabel.text = lesson?.discipline ?? ""
-            startLessonLabel.text = start
-            endLessonLabel.text = end
+//            startLessonLabel.text = start
+//            endLessonLabel.text = end
             repeatLessonLabel.text = lesson?.repeatedly ?? ""
             endOfRepeatLessonLabel.text = endRep
             priceTF.text = "\(lesson?.price ?? 0)"

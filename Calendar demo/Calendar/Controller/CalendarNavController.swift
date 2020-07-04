@@ -23,7 +23,9 @@ class CalendarNavController: UINavigationController {
         
         calendar.onAddButtonTap = { [weak self] in
             guard let self = self else { return }
-            self.openAddOrEditLesson(lesson: nil)
+            let date = Date().convertStrToDate(str: "\(calendar.calendarView.presentedDate.commonDescription)")
+            self.openAddOrEditLesson(lesson: nil, selectedDate: date)
+            
         }
         calendar.onCellTap = { [weak self] (lesson) in
             guard let self = self else { return }
@@ -33,7 +35,7 @@ class CalendarNavController: UINavigationController {
         pushViewController(calendar, animated: false)
     }
     
-    func openAddOrEditLesson(lesson: LessonModel?) {
+    func openAddOrEditLesson(lesson: LessonModel?, selectedDate: Date?) {
         let addOrEditVC = stStoryboard.instantiateViewController(withIdentifier: "AddOrEditLessonTVC") as! AddOrEditLessonTVC
         
         addOrEditVC.onSaveButtonTap = { [weak self, weak addOrEditVC] (lessonId: Int, lesson: LessonModel) in
@@ -49,7 +51,10 @@ class CalendarNavController: UINavigationController {
         
         if let lesson = lesson {
             addOrEditVC.lesson = lesson
+        } else {
+            addOrEditVC.selectedDate = selectedDate
         }
+        
         pushViewController(addOrEditVC, animated: true)
     }
     
@@ -69,7 +74,7 @@ class CalendarNavController: UINavigationController {
             }
             profileTVC.onEditButtonTap = { [weak self] (lesson) in
                 guard let self = self else { return }
-                self.openAddOrEditLesson(lesson: lesson)
+                self.openAddOrEditLesson(lesson: lesson, selectedDate: nil)
             }
             
             switch source {

@@ -15,58 +15,87 @@ extension Date {
         dateFormatter.dateFormat = "MMMM YYYY"
         return dateFormatter.string(from: self)
     }
-
-//    func month(date: Date) -> String {
-//       let dateFormatter = DateFormatter()
-//       dateFormatter.dateFormat = "MMMM"
-//       return dateFormatter.string(from: date)
-//   }
     
-//    func monthMinusOne(date: Date) -> Date {
-//        var components = DateComponents()
-//        components.month = -1
-//        components.day = -1
-//        return Calendar(identifier: .gregorian).date(byAdding: components, to: date)!
-//    }
-//
-    func monthPlusOne(date: Date) -> Date {
+    //    func month(date: Date) -> String {
+    //       let dateFormatter = DateFormatter()
+    //       dateFormatter.dateFormat = "MMMM"
+    //       return dateFormatter.string(from: date)
+    //   }
+    
+    var secondsFromGMT: Int { return TimeZone.current.secondsFromGMT() }
+    
+    
+    public func monthMinusOne(str: String) -> Date {
+        let date = convertStrToDate(str: str)
+        
         var components = DateComponents()
-        components.month = 1
-        components.day = 1
+        components.month = -1
+        components.day = -7
         return Calendar(identifier: .gregorian).date(byAdding: components, to: date)!
     }
     
-   
+    public func monthPlusOne(str: String) -> Date {
+        let date = convertStrToDate(str: str)
+        
+        var components = DateComponents()
+        components.month = 1
+        components.day = 7
+        return Calendar(identifier: .gregorian).date(byAdding: components, to: date)!
+    }
     
-    func convertStrToDate(str: String) -> Date {
+    
+    
+    public func convertStrToDate(str: String) -> Date {
+        var newStr = str
         let dateFormatter = DateFormatter()
-        switch str.count {
+        
+        switch newStr.count {
         case 10:
             dateFormatter.dateFormat = "dd.MM.yyyy"
+        case 19:
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
         case 25:
-           dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
         default:
-             dateFormatter.dateFormat = "dd MMMM, yyyy"
+            newStr = newStr + getCurrentTime()
+            dateFormatter.dateFormat = "dd MMMM, yyyy HH:mm:ssZ"
+            
         }
         
-        guard let date = dateFormatter.date(from: str) else {
+        guard let date = dateFormatter.date(from: newStr) else {
             return Date()
         }
         return date
     }
     
-    func convertCVCalendarDate(date: String) -> String{
-        var result = ""
-        let formatter = DateFormatter()
-        formatter.dateFormat = "dd MMMM, yyyy"
-        if let date = formatter.date(from: date) {
-            formatter.dateFormat = "yyyy-MM-dd"
-            result = formatter.string(from: date)
-        }
-        return result
-    }
+    private func getCurrentTime() -> String {
+        let date = "\(Date())"
+        var  result = ""
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
         
-    func convertStrDate(date: String, formatFrom: String, formatTo: String) -> String {
+        if let date = dateFormatter.date(from: date) {
+            dateFormatter.timeZone = TimeZone.current
+            dateFormatter.dateFormat = "HH:mm:ssZ"
+
+            result = dateFormatter.string(from: date)
+            print(result)
+        }
+        return " " + result
+    }
+    
+    //    func convertCVCalendarDate(date: String) -> String{
+    //        var result = ""
+    //        let formatter = DateFormatter()
+    //        formatter.dateFormat = "dd MMMM, yyyy"
+    //        if let date = formatter.date(from: date) {
+    //            formatter.dateFormat = "yyyy-MM-dd"
+    //            result = formatter.string(from: date)
+    //        }
+    //        return result
+    //    }
+    
+    public func convertStrDate(date: String, formatFrom: String, formatTo: String) -> String {
         var result = ""
         let formatter = DateFormatter()
         formatter.dateFormat = formatFrom //"dd MMMM, yyyy"
@@ -77,21 +106,21 @@ extension Date {
         return result
     }
     
-    func time(str: String) -> String {
+    public func time(str: String) -> String {
         return convertStrDate(date: str,
                               formatFrom: "yyyy-MM-dd HH:mm:ssZ",
                               formatTo: "HH:mm")
     }
     
-    func date(str: String) -> String {
+    public func date(str: String) -> String {
         return convertStrDate(date: str,
                               formatFrom: "yyyy-MM-dd HH:mm:ssZ",
                               formatTo: "dd.MM.YY")
     }
     
-    func fullScreenDate(str: String) -> String {
+    public func fullScreenDate(str: String) -> String {
         return convertStrDate(date: str,
                               formatFrom: "yyyy-MM-dd HH:mm:ssZ",
                               formatTo: "EEEE, MMM d, yyyy")
-}
+    }
 }

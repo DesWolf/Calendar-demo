@@ -59,10 +59,12 @@ class LessonDetailedTVC: UITableViewController {
 //MARK: Setup Screen
 extension LessonDetailedTVC {
     func setupScreen(lesson: LessonModel?) {
-        
         let lessonStart = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
         let lessonEnd = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
         let endRepeat = Date().convertStrToDate(str: "\(lesson?.endRepeat ?? "2020-01-01 00:00:00 +0000")")
+        
+        
+        
         
         nameLabel.text = lesson?.lessonName ?? ""
         placeLabel.text = lesson?.place ?? ""

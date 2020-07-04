@@ -17,7 +17,6 @@ class DayTVCell: UITableViewCell {
     func configere(with meeting: LessonModel) {
         let startTime =  serverHour(str: meeting.timeStart ?? "00:00:00")
         let endTime =    serverHour(str: meeting.timeEnd ?? "01:00:00")
-        print(startTime, endTime)
         var name: String?
         var description: String?
         

@@ -32,24 +32,17 @@ class CalendarVC: UIViewController {
     var onAddButtonTap: (() -> (Void))?
     var onCellTap: ((LessonModel) -> (Void))?
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        
-        // Appearance delegate [Unnecessary]
+
         self.calendarView.calendarAppearanceDelegate = self
         
-        // Animator delegate [Unnecessary]
-        self.calendarView.animatorDelegate = self
+//        // Animator delegate [Unnecessary]
+//        self.calendarView.animatorDelegate = self
         
-        // Menu delegate [Required]
         self.menuView.menuViewDelegate = self
-        
-        // Calendar delegate [Required]
         self.calendarView.calendarDelegate = self
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -64,7 +57,7 @@ class CalendarVC: UIViewController {
     }
     
     @IBAction func sendRequest(_ sender: Any) {
-        fetchCalendar(date: "")
+        fetchCalendar(date: "\(Date())")
         self.calendarView.commitCalendarViewUpdate()
     }
     
@@ -80,7 +73,7 @@ class CalendarVC: UIViewController {
 //MARK: Set Screen
 extension CalendarVC {
     private func configureScreen() {
-        fetchCalendar(date: "")
+        fetchCalendar(date: "\(Date())")
         setupNavigationBar()
         backgroundColor()
         
@@ -135,8 +128,10 @@ extension CalendarVC {
 extension CalendarVC {
     private func fetchCalendar(date: String) {
         
-        let startDate = Date().convertStrToDate(str: date)
-        let endDate = Date().monthPlusOne(date: startDate)
+        
+        
+        let startDate = Date().monthMinusOne(str: date)
+        let endDate = Date().monthPlusOne(str: date)
         
         networkManagerCalendar.fetchCalendar(startDate: serverDate(str: "\(startDate)"),
                                              endDate: serverDate(str: "\(endDate)"))
@@ -148,7 +143,6 @@ extension CalendarVC {
                 }
                 return
             }
-            print(calendar)
             self?.lessons = calendar
             self?.updateSelectedDay()
             
@@ -197,16 +191,15 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
         let selectedLesson = selectedDay[indexPath.row]
         lessons?.remove(at: indexPath.row)
         
-        
         deleteLesson(lessonId: selectedLesson.lessonId ?? 0)
-        //        calendarView.contentController.refreshPresentedMonth()
+        calendarView.contentController.refreshPresentedMonth()
         calendarView.commitCalendarViewUpdate()
         menuView.commitMenuViewUpdate()
         updateSelectedDay()
         
         tableView.reloadData()
         
-        print(String(describing:lessons))
+        
         
     }
 }
@@ -238,11 +231,13 @@ extension CalendarVC: CVCalendarViewAppearanceDelegate {
     //цвет цифр
     func dayLabelColor(by weekDay: Weekday, status: CVStatus, present: CVPresent) -> UIColor? {
         switch (weekDay, status, present) {
+        case (_,.in,.present): return .red
+        case (_, .selected, .present): return .white
         case (_, .out, _): return .gray
         case (.sunday, _, _), (.saturday, _, _): return UIColor(red: 1, green: 1, blue: 1, alpha: 0.5)
         case (_, _, .not): return .white
-        case (_, .selected, .present): return .white
-        default: return  .red
+            
+        default: return  .purple
         }
     }
     
@@ -262,10 +257,10 @@ extension CalendarVC: CVCalendarMenuViewDelegate {
 
 //MARK: CVCalendar CVCalendarViewDelegate
 extension CalendarVC: CVCalendarViewDelegate {
-
+    
     func presentationMode() -> CalendarMode { return CalendarMode.monthView }
     func shouldShowWeekdaysOut() -> Bool { return true }
-   
+    
     func shouldAutoSelectDayOnWeekChange() -> Bool { return true }
     func shouldAutoSelectDayOnMonthChange() -> Bool { return true }
     
@@ -283,7 +278,7 @@ extension CalendarVC: CVCalendarViewDelegate {
     func didShowPreviousWeekView(from startDayView: DayView, to endDayView: DayView) {
         guard startDayView.date.day >= 24  else { return }
         fetchCalendar(date: "\(startDayView.date.commonDescription)")
-        }
+    }
     
     //Кружки которые нравяться Егору
     //    func preliminaryView(viewOnDayView dayView: DayView) -> UIView {
@@ -364,10 +359,3 @@ extension CalendarVC: CVCalendarViewDelegate {
         self.tableView.tableFooterView = UIView()
     }
 }
-
-
-
-
-
-
-
