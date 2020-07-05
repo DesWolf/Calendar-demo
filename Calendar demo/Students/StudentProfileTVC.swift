@@ -56,25 +56,18 @@ extension StudentProfileTVC {
         phoneTV.isScrollEnabled = false
         emailTV.isScrollEnabled = false
         
-       
+        
     }
     
     private func setNavigationController() {
         let navBar = self.navigationController?.navigationBar
-        
-        
+        let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        let firstCellHeight = tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.frame.height
+        let gradientHeight = statusBarHeight + navBar!.frame.height + (firstCellHeight ?? 145)
 
-       let gradientHeight = UIApplication.shared.statusBarFrame.height + navBar!.frame.height
-        
-        print(UIApplication.shared.statusBarFrame.height)
-        print(navBar!.frame.height)
-        
+        UINavigationBar().setClearNavBar(controller: self)
         navBar?.prefersLargeTitles = false
-        navBar?.setBackgroundImage(UIImage(), for: .default)
-        navBar?.shadowImage = UIImage()
-        navBar?.isTranslucent = true
-        navBar?.backItem?.backBarButtonItem?.tintColor = .white
-        
+        navigationItem.leftBarButtonItem?.tintColor = .white
         UIColor.setGradientToTableView(tableView: tableView, height: Double(gradientHeight))
     }
 }
@@ -138,16 +131,16 @@ extension StudentProfileTVC {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
-      let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
         headerView.backgroundColor = .clear
-    
-      return headerView
+        
+        return headerView
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
-           footerView.backgroundColor = .clear
-         return footerView
+        footerView.backgroundColor = .clear
+        return footerView
     }
 }
 

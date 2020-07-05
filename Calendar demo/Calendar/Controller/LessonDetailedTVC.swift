@@ -76,24 +76,23 @@ extension LessonDetailedTVC {
         repeatLabel.text = lesson?.endRepeat != nil ? "до \(Date().date(str: "\(endRepeat)"))" : "Нет"
         priceLabel.text = "\(lesson?.price ?? 0) руб."
         paymentLabel.text = lesson?.statusPay == 0 ? "Не оплаченно" : "Оплаченно"
+        
+        tableView.backgroundColor = .clear
     }
     
     private func setNavigationController() {
         let navBar = self.navigationController?.navigationBar
-        let navHeight = UIApplication.shared.statusBarFrame.height + navBar!.frame.height
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let gradientHeight = statusBarHeight + navBar!.frame.height
         
-        navBar?.setBackgroundImage(UIImage(), for: .default)
-        navBar?.shadowImage = UIImage()
-        navBar?.isTranslucent = true
-        
+
+        UINavigationBar().setClearNavBar(controller: self)
+    
         navigationItem.leftBarButtonItem?.title = "Назад"
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
         
-        
-        
-        UIColor.setGradientToTableView(tableView: tableView, height: Double(navHeight))
-        tableView.backgroundColor = .clear
+        UIColor.setGradientToTableView(tableView: tableView, height: Double(gradientHeight))
     }
 }
 

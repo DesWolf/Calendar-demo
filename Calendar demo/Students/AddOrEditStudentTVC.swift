@@ -78,22 +78,19 @@ extension AddOrEditStudentTVC {
     }
     
     private func setupNavigationBar() {
+
         let navBar = self.navigationController?.navigationBar
-        let gradientHeight = UIApplication.shared.statusBarFrame.height + navBar!.frame.height
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
+        let gradientHeight = statusBarHeight + navBar!.frame.height
+  
+        print(statusBarHeight, navBar?.frame.height)
         
-        if student == nil {
-            navigationItem.title = "Новый ученик"
-        }
+        navigationItem.title = student == nil ? "Новый ученик" : "Редактирование"
         navigationItem.leftBarButtonItem?.title = "Отмена"
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
-        
-        navBar?.setBackgroundImage(UIImage(), for: .default)
-        navBar?.shadowImage = UIImage()
-        navBar?.isTranslucent = true
-        navBar?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        navBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
-        
+       
+        UINavigationBar().setClearNavBar(controller: self)
         UIColor.setGradientToTableView(tableView: tableView, height: Double(gradientHeight))
     }
 }

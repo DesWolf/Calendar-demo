@@ -56,7 +56,6 @@ extension StudentsListTVC {
         let navBar = self.navigationController?.navigationBar
         
         navBar?.prefersLargeTitles = false
-//        nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         self.title = "Контакты"
     }
 }

@@ -46,6 +46,7 @@
 		9E7A73BB244D92AC00FA529B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B9244D92AC00FA529B /* LaunchScreen.storyboard */; };
 		9E7C1348247D45EE0095C57E /* UIImage Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7C1347247D45EE0095C57E /* UIImage Extentions.swift */; };
 		9E7C134A247D47A70095C57E /* StudentProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7C1349247D47A70095C57E /* StudentProfileTVC.swift */; };
+		9E800FE124B1C00D00BCAE63 /* NavBarExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E800FE024B1C00D00BCAE63 /* NavBarExtention.swift */; };
 		9E80D0A62453268300FECAF7 /* LessonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A52453268300FECAF7 /* LessonModel.swift */; };
 		9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */; };
 		9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */; };
@@ -131,6 +132,7 @@
 		9E7A73BC244D92AC00FA529B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9E7C1347247D45EE0095C57E /* UIImage Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage Extentions.swift"; sourceTree = "<group>"; };
 		9E7C1349247D47A70095C57E /* StudentProfileTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfileTVC.swift; sourceTree = "<group>"; };
+		9E800FE024B1C00D00BCAE63 /* NavBarExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBarExtention.swift; sourceTree = "<group>"; };
 		9E80D0A52453268300FECAF7 /* LessonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonModel.swift; sourceTree = "<group>"; };
 		9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTVCell.swift; sourceTree = "<group>"; };
 		9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaledDayService.swift; sourceTree = "<group>"; };
@@ -204,6 +206,7 @@
 				9ECECBEE248103E60053AC78 /* DisciplinesList.swift */,
 				9E6B56A9248B987E00042E2B /* DateExtentions.swift */,
 				9E862342248BBDBF0004B3FD /* UIVewControllerExtention.swift */,
+				9E800FE024B1C00D00BCAE63 /* NavBarExtention.swift */,
 			);
 			path = Support;
 			sourceTree = "<group>";
@@ -720,6 +723,7 @@
 				9E8DDB332451E384003EC688 /* AddOrEditStudentTVC.swift in Sources */,
 				9EC155B4246D63AA00D2C776 /* ParameterEncoding.swift in Sources */,
 				9ED2EAC9247D5720001E3767 /* TF Extention.swift in Sources */,
+				9E800FE124B1C00D00BCAE63 /* NavBarExtention.swift in Sources */,
 				9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */,
 				9E01A2A6248E75840044AD7F /* RepeatTVC.swift in Sources */,
 				9EC155AC246D636700D2C776 /* Router.swift in Sources */,
@@ -879,7 +883,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WJR74JV9LN;
 				INFOPLIST_FILE = "$(SRCROOT)/Calendar demo/Support/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -900,7 +904,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = WJR74JV9LN;
 				INFOPLIST_FILE = "$(SRCROOT)/Calendar demo/Support/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

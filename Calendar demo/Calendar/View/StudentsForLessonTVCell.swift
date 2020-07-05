@@ -14,7 +14,6 @@ class StudentsForLessonTVCell: UITableViewCell {
     @IBOutlet weak var currentDisciplineLabel: UILabel!
     @IBOutlet weak var checkBox: UIImageView!
     
-    
     func configere( with user: StudentModel, image: UIImage) {
         self.nameLabel.text = "\(user.name ?? "") \(user.surname ?? "")"
         self.currentDisciplineLabel.text = user.disciplines?.joined(separator: ", ") ?? ""

@@ -33,7 +33,6 @@ class DayTVCell: UITableViewCell {
         self.descLabel.text = description
     }
     
-    
     private func serverHour(str: String) -> String {
         return Date().convertStrDate(date: str, formatFrom: "HH:mm:ss", formatTo: "HH:mm")
     }
