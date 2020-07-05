@@ -45,8 +45,8 @@ extension Date {
     
     
     
-    public func convertStrToDate(str: String) -> Date {
-        var newStr = str
+    public func convertStrToDate(str: String?) -> Date {
+        var newStr = str ?? "\(Date())"
         let dateFormatter = DateFormatter()
         
         switch newStr.count {
@@ -106,20 +106,25 @@ extension Date {
         return result
     }
     
-    public func time(str: String) -> String {
-        return convertStrDate(date: str,
+    public func time(str: String?) -> String {
+        let newStr = str ?? "\(Date())"
+        return convertStrDate(date: newStr,
                               formatFrom: "yyyy-MM-dd HH:mm:ssZ",
                               formatTo: "HH:mm")
     }
     
-    public func date(str: String) -> String {
-        return convertStrDate(date: str,
+    public func date(str: String?) -> String {
+        let newStr = str ?? "\(Date())"
+        
+        return convertStrDate(date: newStr,
                               formatFrom: "yyyy-MM-dd HH:mm:ssZ",
                               formatTo: "dd.MM.YY")
     }
     
-    public func fullScreenDate(str: String) -> String {
-        return convertStrDate(date: str,
+    public func fullScreenDate(str: String?) -> String {
+        let newStr = str ?? "\(Date())"
+        
+        return convertStrDate(date: newStr,
                               formatFrom: "yyyy-MM-dd HH:mm:ssZ",
                               formatTo: "EEEE, MMM d, yyyy")
     }

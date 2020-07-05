@@ -15,8 +15,8 @@ class DayTVCell: UITableViewCell {
     @IBOutlet weak var descLabel: UILabel!
     
     func configere(with meeting: LessonModel) {
-        let startTime =  serverHour(str: meeting.timeStart ?? "00:00:00")
-        let endTime =    serverHour(str: meeting.timeEnd ?? "01:00:00")
+        let startTime =  Date().time(str: meeting.startDate ?? "\(Date())")
+        let endTime =    Date().time(str: meeting.endDate ?? "\(Date())")
         var name: String?
         var description: String?
         
@@ -31,9 +31,5 @@ class DayTVCell: UITableViewCell {
         self.timeLabel.text = "\(startTime) - \(endTime)"
         self.nameLabel.text = name
         self.descLabel.text = description
-    }
-    
-    private func serverHour(str: String) -> String {
-        return Date().convertStrDate(date: str, formatFrom: "HH:mm:ss", formatTo: "HH:mm")
     }
 }

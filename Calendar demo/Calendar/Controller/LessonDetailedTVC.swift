@@ -59,23 +59,25 @@ class LessonDetailedTVC: UITableViewController {
 //MARK: Setup Screen
 extension LessonDetailedTVC {
     func setupScreen(lesson: LessonModel?) {
-        let lessonStart = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
-        let lessonEnd = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
-        let endRepeat = Date().convertStrToDate(str: "\(lesson?.endRepeat ?? "2020-01-01 00:00:00 +0000")")
+//        let lessonStart = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
+//        let lessonEnd = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
+//        let endRepeat = Date().convertStrToDate(str: "\(lesson?.endRepeat ?? "2020-01-01 00:00:00 +0000")")
         
+        let startTime           = Date().time(str: "\(String(describing: lesson?.startDate))")
+        let endTime             = Date().time(str: "\(String(describing: lesson?.endDate))")
+        let date                = Date().fullScreenDate(str: "\(String(describing: lesson?.startDate))")
+        let endDate             = Date().date(str: "\(String(describing: lesson?.endDate))")
         
-        
-        
-        nameLabel.text = lesson?.lessonName ?? ""
-        placeLabel.text = lesson?.place ?? ""
-        disciplineLabel.text = lesson?.discipline ?? ""
-        timeLabel.text =  "с \(Date().time(str: "\(lessonStart)")) до \(Date().time(str: "\(lessonEnd)"))"
-        dateLabel.text = Date().fullScreenDate(str: "\(lessonStart)")
-        studentLabel.text = "\(lesson?.studentName ?? "") - \(lesson?.studentSurname ?? "")"
-        noteTV.text = lesson?.note ?? ""
-        repeatLabel.text = lesson?.endRepeat != nil ? "до \(Date().date(str: "\(endRepeat)"))" : "Нет"
-        priceLabel.text = "\(lesson?.price ?? 0) руб."
-        paymentLabel.text = lesson?.statusPay == 0 ? "Не оплаченно" : "Оплаченно"
+        nameLabel.text          = lesson?.lessonName ?? ""
+        placeLabel.text         = lesson?.place ?? ""
+        disciplineLabel.text    = lesson?.discipline ?? ""
+        timeLabel.text          = "с \(startTime) до \(endTime)"
+        dateLabel.text          = date
+        studentLabel.text       = "\(lesson?.studentName ?? "") - \(lesson?.studentSurname ?? "")"
+        noteTV.text             = lesson?.note ?? ""
+        repeatLabel.text        = lesson?.endRepeat != nil ? "до \(endDate)" : "Нет"
+        priceLabel.text         = "\(lesson?.price ?? 0) руб."
+        paymentLabel.text       = lesson?.payStatus == 0 ? "Не оплаченно" : "Оплаченно"
         
         tableView.backgroundColor = .clear
     }
@@ -155,7 +157,7 @@ extension LessonDetailedTVC {
         self.paymentLabel.text = desTVC.payment
         self.paymentDate = desTVC.dateOfPaymentLabel.text
         
-        lesson?.statusPay = desTVC.payment == "Не оплачено" ?  0 : 1
+        lesson?.payStatus = desTVC.payment == "Не оплачено" ?  0 : 1
         lesson?.paymentDate = paymentDate
         changeLesson(lesson: lesson!)
         self.tableView.reloadData()
@@ -196,20 +198,18 @@ extension LessonDetailedTVC {
     }
     
     private func changeLesson(lesson: LessonModel) {
-        networkManagerCalendar.changeLesson(lessonId: lesson.lessonId ?? 0,
-                                            name: lesson.lessonName ?? "",
-                                            place: lesson.place ?? "",
-                                            studentId: lesson.studentId ?? 0,
-                                            discipline: lesson.discipline ?? "",
-                                            dateStart: lesson.dateStart ?? "",
-                                            timeStart: lesson.timeStart ?? "",
-                                            dateEnd: lesson.dateEnd ?? "",
-                                            timeEnd: lesson.timeEnd ?? "",
-                                            repeatedly: lesson.repeatedly ?? "",
-                                            endRepeat: lesson.endRepeat ?? "",
-                                            price: lesson.price ?? 0,
-                                            note: lesson.note ?? "",
-                                            statusPay: lesson.statusPay ?? 0,
+        networkManagerCalendar.changeLesson(lessonId:    lesson.lessonId ?? 0,
+                                            name:        lesson.lessonName ?? "",
+                                            place:       lesson.place ?? "",
+                                            studentId:   lesson.studentId ?? 0,
+                                            discipline:  lesson.discipline ?? "",
+                                            startDate:   lesson.startDate ?? "",
+                                            endDate:     lesson.endDate ?? "",
+                                            repeatedly:  lesson.repeatedly ?? "",
+                                            endRepeat:   lesson.endRepeat ?? "",
+                                            price:       lesson.price ?? 0,
+                                            note:        lesson.note ?? "",
+                                            payStatus:   lesson.payStatus ?? 0,
                                             paymentDate: lesson.paymentDate ?? "")
         { [weak self]  (responce, error)  in
             guard let responce = responce else {

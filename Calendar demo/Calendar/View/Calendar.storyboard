@@ -1067,19 +1067,19 @@
                     <size key="freeformSize" width="414" height="1500"/>
                     <connections>
                         <outlet property="disciplineLabel" destination="1vO-6P-6yT" id="aCk-xz-xDg"/>
-                        <outlet property="endLessonDatePicker" destination="Djj-BU-HQ7" id="1c2-qh-Wdj"/>
-                        <outlet property="endLessonLabel" destination="UWr-Hg-CRX" id="Bro-uz-Bc9"/>
-                        <outlet property="endOfRepeatLessonCell" destination="cDT-Jj-2dR" id="G1h-US-Mfo"/>
-                        <outlet property="endOfRepeatLessonLabel" destination="pxk-Pg-nNI" id="P6N-R5-KcR"/>
+                        <outlet property="endDatePicker" destination="Djj-BU-HQ7" id="1c2-qh-Wdj"/>
+                        <outlet property="endLabel" destination="UWr-Hg-CRX" id="Bro-uz-Bc9"/>
+                        <outlet property="endRepeatCell" destination="cDT-Jj-2dR" id="G1h-US-Mfo"/>
+                        <outlet property="endRepeatLabel" destination="pxk-Pg-nNI" id="P6N-R5-KcR"/>
                         <outlet property="nameTF" destination="wp9-DU-CTe" id="Qdv-U1-Rwk"/>
                         <outlet property="noteTV" destination="9sa-CZ-hYz" id="uJ8-H6-Y8x"/>
-                        <outlet property="notificationTypeLabel" destination="rpM-fz-biX" id="ljm-3c-tQI"/>
+                        <outlet property="notificationLabel" destination="rpM-fz-biX" id="ljm-3c-tQI"/>
                         <outlet property="placeTF" destination="uUB-uk-iie" id="UBc-V2-rdw"/>
                         <outlet property="priceCell" destination="5KL-sA-oQa" id="bOl-xf-4co"/>
                         <outlet property="priceTF" destination="Mt5-3e-fXe" id="Mfw-tY-XIu"/>
-                        <outlet property="repeatLessonLabel" destination="tZz-Is-JVg" id="k3M-GR-qfb"/>
+                        <outlet property="repeatLabel" destination="tZz-Is-JVg" id="k3M-GR-qfb"/>
+                        <outlet property="startLabel" destination="gEd-VK-nkg" id="s6G-tX-C2e"/>
                         <outlet property="startLessonDatePicker" destination="0pa-lY-bPi" id="DYW-Cv-vac"/>
-                        <outlet property="startLessonLabel" destination="gEd-VK-nkg" id="s6G-tX-C2e"/>
                         <outlet property="studentLabel" destination="v8c-Z0-QJ0" id="7YQ-TH-tss"/>
                     </connections>
                 </tableViewController>
@@ -1593,21 +1593,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wf7-gD-5VS" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-2639.130434782609" y="-1082.1428571428571"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="hgq-7I-fb2">
-            <objects>
-                <viewController id="JBR-zx-06X" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="R4R-L8-Ysx">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <viewLayoutGuide key="safeArea" id="yLJ-s1-Yun"/>
-                    </view>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Cme-nG-lBd" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-3328" y="-1621"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

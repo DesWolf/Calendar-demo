@@ -170,8 +170,13 @@ extension CalendarVC {
 
 //MARK: TableViewDelegate & TableViewDataSource
 extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
         return selectedDay.count
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -196,12 +201,10 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
         calendarView.commitCalendarViewUpdate()
         menuView.commitMenuViewUpdate()
         updateSelectedDay()
-        
         tableView.reloadData()
-        
-        
-        
     }
+    
+
 }
 
 //MARK: Alert
@@ -322,7 +325,7 @@ extension CalendarVC: CVCalendarViewDelegate {
     
     func filterDates(lessons: [LessonModel]?) ->([String]) {
         var datesDictionary: [String]  = []
-        datesDictionary.append(contentsOf: (lessons.map ({ $0.map ({($0.dateStart ?? "")}) }) ?? [""]))
+        datesDictionary.append(contentsOf: (lessons.map ({ $0.map ({($0.startDate ?? "")}) }) ?? [""]))
         
         return datesDictionary
     }
@@ -344,7 +347,7 @@ extension CalendarVC: CVCalendarViewDelegate {
             formatFrom: "yyyy-MM-dd HH:mm:ssZ",
             formatTo: "yyyy-MM-dd")
         
-        self.selectedDay = self.lessons?.filter{ $0.dateStart == today } ?? []
+        self.selectedDay = self.lessons?.filter{ $0.startDate == today } ?? []
     }
     
     
@@ -353,7 +356,7 @@ extension CalendarVC: CVCalendarViewDelegate {
             formatFrom: "dd MMMM, yyyy",
             formatTo: "yyyy-MM-dd")
         
-        selectedDay = self.lessons?.filter{ $0.dateStart == day } ?? []
+        selectedDay = self.lessons?.filter{ $0.startDate == day } ?? []
         
         self.tableView.reloadData()
         self.tableView.tableFooterView = UIView()

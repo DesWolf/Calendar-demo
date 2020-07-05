@@ -52,7 +52,7 @@ extension LoginApi: EndPointType {
         case .registerUser(let email, let password, let confirmPassword):
             return .requestParametersAndHeaders(bodyParameters: [ "email": "\(email)",
                                                         "password": "\(password)",
-                                                        "confirmPassword": "\(confirmPassword)"],
+                                                        "confirm_password": "\(confirmPassword)"],
                                       bodyEncoding: .jsonEncoding,
                                       urlParameters: nil,
                 additionHeaders: ["Content-Type":"application/json; charset=utf-8",

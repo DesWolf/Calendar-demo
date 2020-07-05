@@ -16,16 +16,14 @@ struct LessonModel: Decodable {
     let studentName: String?
     let studentSurname: String?
     let discipline: String?
-    let dateStart: String?
-    let timeStart: String?
+    let startDate: String?
     let duration: [String]?
-    let dateEnd: String?
-    let timeEnd:  String?
+    let endDate: String?
     let repeatedly: String?
     let endRepeat: String?
     let price: Int?
     let note: String?
-    var statusPay: Int?
+    var payStatus: Int?
     var paymentDate: String?
 }
 

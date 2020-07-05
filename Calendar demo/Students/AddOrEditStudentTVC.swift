@@ -17,7 +17,7 @@ class AddOrEditStudentTVC: UITableViewController {
     @IBOutlet weak var noteTF: UITextView!
     @IBOutlet weak var disciplinesCollectionView: UICollectionView!
     
-    public var chousedDisciplines: [String]? = []
+    public var chousedDisciplines: [String]?
     public var student: StudentModel?
     private let networkManagerStudents =  NetworkManagerStudents()
     
@@ -83,8 +83,6 @@ extension AddOrEditStudentTVC {
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let gradientHeight = statusBarHeight + navBar!.frame.height
   
-        print(statusBarHeight, navBar?.frame.height)
-        
         navigationItem.title = student == nil ? "Новый ученик" : "Редактирование"
         navigationItem.leftBarButtonItem?.title = "Отмена"
         navigationItem.leftBarButtonItem?.tintColor = .white

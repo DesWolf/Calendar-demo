@@ -84,12 +84,12 @@ extension StudentsApi: EndPointType {
         case .students:
             return .requestParametersAndHeaders(bodyParameters: nil,
                                                 bodyEncoding: .urlEncoding,
-                                                urlParameters: ["teacherId": teacheId],
+                                                urlParameters: ["teacher_id": teacheId],
                                                 additionHeaders: headers)
         case .showStudent(let studentId):
             return .requestParametersAndHeaders(bodyParameters: nil,
                                                 bodyEncoding: .urlEncoding,
-                                                urlParameters: ["studentId": studentId],
+                                                urlParameters: ["student_id": studentId],
                                                 additionHeaders: headers)
             
         case .addStudent(let studentId,
@@ -99,8 +99,8 @@ extension StudentsApi: EndPointType {
                          let phone,
                          let email,
                          let note):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacheId,
-                                                                "studentId": studentId,
+            return .requestParametersAndHeaders(bodyParameters: ["teacher_id": teacheId,
+                                                                "student_id": studentId,
                                                                 "name": name,
                                                                 "surname": surname,
                                                                 "disciplines": disciplines,
@@ -118,8 +118,8 @@ extension StudentsApi: EndPointType {
                             let phone,
                             let email,
                             let note):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacheId,
-                                                                "studentId": studentId,
+            return .requestParametersAndHeaders(bodyParameters: ["teacher_id": teacheId,
+                                                                "student_id": studentId,
                                                                 "name": name,
                                                                 "surname": surname,
                                                                 "disciplines": disciplines,
@@ -130,8 +130,8 @@ extension StudentsApi: EndPointType {
                                                 urlParameters: nil,
                                                 additionHeaders: headers)
         case .deleteStudent(let studentId):
-            return .requestParametersAndHeaders(bodyParameters: ["teacherId": teacheId,
-                                                                "studentId": studentId],
+            return .requestParametersAndHeaders(bodyParameters: ["teacher_id": teacheId,
+                                                                "student_id": studentId],
                                                 bodyEncoding: .jsonEncoding,
                                                 urlParameters: nil,
                                                 additionHeaders: headers)

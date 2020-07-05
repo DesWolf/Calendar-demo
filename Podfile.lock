@@ -1,25 +1,20 @@
 PODS:
   - CVCalendar (1.7.0)
-  - JBCalendarDatePicker (0.2.4)
   - SwiftKeychainWrapper (3.4.0)
 
 DEPENDENCIES:
   - CVCalendar (~> 1.7.0)
-  - JBCalendarDatePicker
   - SwiftKeychainWrapper
 
 SPEC REPOS:
-  https://github.com/joshbirnholz/JBPodSpecs.git:
-    - JBCalendarDatePicker
   trunk:
     - CVCalendar
     - SwiftKeychainWrapper
 
 SPEC CHECKSUMS:
   CVCalendar: 1174c1b43c1a258970e14c1e8b19ef4106c5900b
-  JBCalendarDatePicker: f37fa398d885fb9229ee3d2def4c9ff7e426dd06
   SwiftKeychainWrapper: 6fc49fbf7d4a6b0772917acb0e53a1639f6078d6
 
-PODFILE CHECKSUM: 1d2a871b73367ee14a315a174c9194863a102535
+PODFILE CHECKSUM: 5e317246785d6e223c86f32771c66120a0b5f691
 
 COCOAPODS: 1.9.1

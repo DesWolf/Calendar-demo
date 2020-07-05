@@ -61,7 +61,7 @@ extension StudentProfileTVC {
     
     private func setNavigationController() {
         let navBar = self.navigationController?.navigationBar
-        let statusBarHeight = view.window?.windowScene?.statusBarManager?.statusBarFrame.height ?? 0
+        let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let firstCellHeight = tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.frame.height
         let gradientHeight = statusBarHeight + navBar!.frame.height + (firstCellHeight ?? 145)
 
