@@ -86,6 +86,7 @@ class CalendarNavController: UINavigationController {
             case let .addOfEdit(viewController, lessonId, lesson):
                 
                 DispatchQueue.global(qos: .background).async {
+                    print("lessonId",lessonId)
                     profileTVC.fetchDetailedLesson(lessonId: lessonId)
                 }
                 profileTVC.lesson = lesson

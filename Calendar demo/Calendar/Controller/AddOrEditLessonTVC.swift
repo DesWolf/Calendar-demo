@@ -46,18 +46,18 @@ class AddOrEditLessonTVC: UITableViewController {
     
     
     @IBAction func startDateChanged(sender: UIDatePicker) {
-        let oneHour     = TimeInterval(60 * 60)
-        let startDate   = Date().fullScreenDate(str: "\(startDatePicker.date)")
-        let endDate     = Date().fullScreenDate(str: "\(endDatePicker.date)")
+        let oneHour         = TimeInterval(60 * 60)
+        let startDate       = Date().fullDate(str: "\(startDatePicker.date)")
+        let endDate         = Date().fullDate(str: "\(endDatePicker.date)")
         
-        startLabel.text   = startDate
-        endLabel.text     = endDate
+        startLabel.text     = startDate
+        endLabel.text       = endDate
         endDatePicker.setDate(startDatePicker.date.addingTimeInterval(oneHour), animated: true)
         
     }
     
     @IBAction func endDateChanged(sender: UIDatePicker) {
-        endLabel.text = Date().fullScreenDate(str: "\(endDatePicker.date)")
+        endLabel.text = Date().fullDate(str: "\(endDatePicker.date)")
     }
     
     @IBAction func cancelButton(_ sender: Any) {
@@ -67,12 +67,12 @@ class AddOrEditLessonTVC: UITableViewController {
     @IBAction func saveButtonClick(_ sender: Any) {
         if nameTF.text != "", nameTF.text != " " {
             saveLesson()
-            setNotification(meetingId: 1,
-                            date: startDatePicker.date,
-                            notifInSeconds: notifInSeconds ?? 0,
-                            notifDescription: notificationLabel.text ?? "нет",
-                            meetingName: nameTF.text ?? "Занятие",
-                            student: "\(student?.name ?? "") \(student?.surname ?? "")")
+            setNotification(meetingId           : 1,
+                            date                : startDatePicker.date,
+                            notifInSeconds      : notifInSeconds ?? 0,
+                            notifDescription    : notificationLabel.text ?? "нет",
+                            meetingName         : nameTF.text ?? "Занятие",
+                            student             : "\(student?.name ?? "") \(student?.surname ?? "")")
         } else {
             DispatchQueue.main.async {
                 self.simpleAlert(message: "Пожалуйста, заполните необходимые поля")
@@ -95,7 +95,7 @@ extension AddOrEditLessonTVC {
         print(String(describing:lesson))
         
         if lesson != nil {
-            let endRepeat           = Date().fullScreenDate(str: "\(lesson?.endRepeat)")
+            let endRepeat           = Date().date(str: "\(String(describing: lesson?.endRepeat))")
             
             nameTF.text             = lesson?.lessonName
             placeTF.text            = lesson?.place ?? ""
@@ -108,44 +108,42 @@ extension AddOrEditLessonTVC {
         }
         
         self.hideKeyboardWhenTappedAround()
+        endRepeatCell.isHidden  = true
         
         setupStartLesson()
         setupEndLesson()
         setupNavigationBar()
         
-        priceTF.attributedPlaceholder = NSAttributedString(string: "0",
-                                                           attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        priceTF.attributedPlaceholder = NSAttributedString(string: "0", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
         
-        endRepeatCell.isHidden  = true
     }
     
     private func setupStartLesson() {
-        let startDate               = Date().fullScreenDate(str: lesson?.startDate)
-        let picker         = Date().convertStrToDate(str: lesson?.startDate)
-        startLabel.text       = startDate
+        let picker = Date().convertStrToDate(str: lesson?.startDate)
         
-        endDatePicker.setDate(picker, animated: true)
-        endDatePicker.datePickerMode = .dateAndTime
-        endDatePicker.isHidden = true
+        startLabel.text = Date().fullDate(str: lesson?.startDate)
+        
+        startDatePicker.setDate(picker, animated: true)
+        startDatePicker.minuteInterval = 5
+        startDatePicker.isHidden = true
     }
     
     private func setupEndLesson() {
-        let oneHour                 = TimeInterval(60 * 60)
-        let endDate                 = Date().fullScreenDate(str: lesson?.endDate ?? "\(Date())")
-        let picker                  = Date().convertStrToDate(str: lesson?.endDate ?? "\(Date())")
+        let oneHour = TimeInterval(60 * 60)
+        var picker  = Date().convertStrToDate(str: lesson?.endDate)
         
-        endLabel.text               = endDate
+        picker = lesson == nil ? picker.addingTimeInterval(oneHour) : picker
+        endLabel.text = Date().fullDate(str: "\(picker)")
         
-        endDatePicker.setDate(picker.addingTimeInterval(oneHour), animated: true)
+        endDatePicker.setDate(picker, animated: true)
+        endDatePicker.minuteInterval = 5
         endDatePicker.isHidden = true
     }
     
     private func setupNavigationBar() {
-        let navBar = self.navigationController?.navigationBar
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let gradientHeight = statusBarHeight  + navBar!.frame.height
-        
-        print(statusBarHeight, navBar?.frame.height)
+        let navBar                  = self.navigationController?.navigationBar
+        let statusBarHeight         = UIApplication.shared.statusBarFrame.height
+        let gradientHeight          = statusBarHeight  + navBar!.frame.height
         
         navigationItem.title = lesson == nil ? "Новый урок" : "Редактирование"
         navigationItem.leftBarButtonItem?.title = "Отмена"
@@ -195,23 +193,24 @@ extension AddOrEditLessonTVC {
         
         switch segue.identifier {
         case "student":
-            guard let nav = segue.destination as? UINavigationController, let studTVC = nav.topViewController as? StudentsForLessonTVC else { return }
+            guard let nav = segue.destination as? UINavigationController,
+                    let studTVC = nav.topViewController as? StudentsForLessonTVC else { return }
             studTVC.selectedStudent = student
         case "disciplines":
-            guard let nav = segue.destination as? UINavigationController, let disTVC = nav.topViewController as? DisciplinesForLessonTVC else { return }
+            guard let nav = segue.destination as? UINavigationController,
+                    let disTVC = nav.topViewController as? DisciplinesForLessonTVC else { return }
             disTVC.selectedDiscipline =  disciplineLabel.text ?? ""
         case "repeatLesson":
-            guard let nav = segue.destination as? UINavigationController, let repeatTVC = nav.topViewController as? RepeatTVC else { return }
+            guard let nav = segue.destination as? UINavigationController,
+                    let repeatTVC = nav.topViewController as? RepeatTVC else { return }
             repeatTVC.repeatLesson = repeatLabel.text == RepeatLesson.never.rawValue ? .never : .weekly
             repeatTVC.endOfRepeat = endRepeatLabel.text ?? ""
             
         case "notification":
-            guard let nav = segue.destination as? UINavigationController, let notifTVC = nav.topViewController as? NotificationTVC else { return }
+            guard let nav = segue.destination as? UINavigationController,
+                    let notifTVC = nav.topViewController as? NotificationTVC else { return }
             notifTVC.selectedNotification =  notificationLabel.text ?? "Нет"
             notifTVC.notifInSeconds = notifInSeconds ?? 0
-            
-            
-            
             
         default:
             return
@@ -220,6 +219,8 @@ extension AddOrEditLessonTVC {
     
     func saveLesson() {
         let endRepeat = serverDate2(str: "\(endRepeatLabel.text ?? "01.01.2000")")
+        let start = "\(startDatePicker.date)".prefix(19)
+        let end = "\(endDatePicker.date)".prefix(19)
         
         lesson = LessonModel(lessonId       : lesson != nil ? lesson?.lessonId : nil,
                              lessonName     : nameTF.text,
@@ -228,39 +229,37 @@ extension AddOrEditLessonTVC {
                              studentName    : student?.name,
                              studentSurname : student?.surname,
                              discipline     : disciplineLabel.text ?? "",
-                             startDate      : "\(startDatePicker.date)",
+                             startDate      : "\(start)",
                              duration       : [""],
-                             endDate        : "\(endDatePicker.date)",
+                             endDate        : "\(end)",
                              repeatedly     : repeatLabel.text == "Никогда" ?  "never" : "weekly",
                              endRepeat      :  repeatLabel.text == "Никогда" ? "" : endRepeat,
-                             price: Int(priceTF.text ?? "0"),
-                             note: noteTV.text,
-                             payStatus: 0,
-                             paymentDate: "")
+                             price          : Int(priceTF.text ?? "0"),
+                             note           : noteTV.text,
+                             payStatus      : 0,
+                             paymentDate    : "")
+        
         if lesson?.lessonId != nil {
             changeLesson(lesson: lesson!)
         } else {
             addNewLesson(lesson: lesson!)
         }
-        print(String(describing:lesson))
-        
-        
     }
 }
 
 //MARK: Network
 extension AddOrEditLessonTVC {
     private func addNewLesson(lesson: LessonModel) {
-        networkManagerCalendar.addLesson(name: lesson.lessonName ?? "",
-                                         place: lesson.place ?? "",
-                                         studentId: lesson.studentId ?? 0,
-                                         discipline: lesson.discipline ?? "",
-                                         startDate: lesson.startDate ?? "",
-                                         endDate: lesson.endDate ?? "",
-                                         repeatedly: lesson.repeatedly ?? "",
-                                         endRepeat: lesson.endRepeat ?? "",
-                                         price: lesson.price ?? 0,
-                                         note: lesson.note ?? "")
+        networkManagerCalendar.addLesson(name           : lesson.lessonName ?? "",
+                                         place          : lesson.place ?? "",
+                                         studentId      : lesson.studentId ?? 0,
+                                         discipline     : lesson.discipline ?? "",
+                                         startDate      : lesson.startDate ?? "",
+                                         endDate        : lesson.endDate ?? "",
+                                         repeatedly     : lesson.repeatedly ?? "",
+                                         endRepeat      : lesson.endRepeat ?? "",
+                                         price          : lesson.price ?? 0,
+                                         note           : lesson.note ?? "")
         { [weak self]  (responce, error)  in
             guard let responce = responce else {
                 print(error ?? "")
@@ -276,19 +275,19 @@ extension AddOrEditLessonTVC {
     }
     
     private func changeLesson(lesson: LessonModel) {
-        networkManagerCalendar.changeLesson(lessonId: lesson.lessonId ?? 0,
-                                            name: lesson.lessonName ?? "",
-                                            place: lesson.place ?? "",
-                                            studentId: lesson.studentId ?? 0,
-                                            discipline: lesson.discipline ?? "",
-                                            startDate: lesson.startDate ?? "",
-                                            endDate: lesson.endDate ?? "",
-                                            repeatedly: lesson.repeatedly ?? "",
-                                            endRepeat: lesson.endRepeat ?? "",
-                                            price: lesson.price ?? 0,
-                                            note: lesson.note ?? "",
-                                            payStatus: lesson.payStatus ?? 0,
-                                            paymentDate: lesson.paymentDate ?? "")
+        networkManagerCalendar.changeLesson(lessonId    : lesson.lessonId ?? 0,
+                                            name        : lesson.lessonName ?? "",
+                                            place       : lesson.place ?? "",
+                                            studentId   : lesson.studentId ?? 0,
+                                            discipline  : lesson.discipline ?? "",
+                                            startDate   : lesson.startDate ?? "",
+                                            endDate     : lesson.endDate ?? "",
+                                            repeatedly  : lesson.repeatedly ?? "",
+                                            endRepeat   : lesson.endRepeat ?? "",
+                                            price       : lesson.price ?? 0,
+                                            note        : lesson.note ?? "",
+                                            payStatus   : lesson.payStatus ?? 0,
+                                            paymentDate : lesson.paymentDate ?? "")
         { [weak self]  (responce, error)  in
             guard let responce = responce else {
                 print(error ?? "")
@@ -308,9 +307,9 @@ extension AddOrEditLessonTVC {
 //MARK: TableViewDelegate, TableViewDataSource
 extension AddOrEditLessonTVC {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        let startPicker = IndexPath(row: 1, section: 2)
-        let endPicker = IndexPath(row: 3, section: 2)
-        let endRepeat = IndexPath(row: 5, section: 2)
+        let startPicker         = IndexPath(row: 1, section: 2)
+        let endPicker           = IndexPath(row: 3, section: 2)
+        let endRepeat           = IndexPath(row: 5, section: 2)
         
         switch indexPath{
         case startPicker:
@@ -325,8 +324,8 @@ extension AddOrEditLessonTVC {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let startDateIndexPath = IndexPath(row: 0, section: 2)
-        let endDateIndexPath = IndexPath(row: 2, section: 2)
+        let startDateIndexPath  = IndexPath(row: 0, section: 2)
+        let endDateIndexPath    = IndexPath(row: 2, section: 2)
         
         switch indexPath {
         case startDateIndexPath:

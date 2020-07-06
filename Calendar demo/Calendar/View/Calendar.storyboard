@@ -722,13 +722,16 @@
                                                     <rect key="frame" x="20" y="11.5" width="343" height="20.5"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Предмет занятий:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0lk-W9-RHg">
-                                                            <rect key="frame" x="0.0" y="0.0" width="319.5" height="20.5"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="283" height="20.5"/>
                                                             <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="   " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vO-6P-6yT">
-                                                            <rect key="frame" x="329.5" y="0.0" width="13.5" height="20.5"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="253" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1vO-6P-6yT">
+                                                            <rect key="frame" x="293" y="0.0" width="50" height="20.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" constant="20.5" id="zzA-Fs-3bi"/>
+                                                            </constraints>
                                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                             <color key="textColor" red="0.60392156860000001" green="0.60392156860000001" blue="0.60392156860000001" alpha="1" colorSpace="calibratedRGB"/>
                                                             <nil key="highlightedColor"/>
@@ -1078,8 +1081,8 @@
                         <outlet property="priceCell" destination="5KL-sA-oQa" id="bOl-xf-4co"/>
                         <outlet property="priceTF" destination="Mt5-3e-fXe" id="Mfw-tY-XIu"/>
                         <outlet property="repeatLabel" destination="tZz-Is-JVg" id="k3M-GR-qfb"/>
+                        <outlet property="startDatePicker" destination="0pa-lY-bPi" id="Gyu-GY-nLn"/>
                         <outlet property="startLabel" destination="gEd-VK-nkg" id="s6G-tX-C2e"/>
-                        <outlet property="startLessonDatePicker" destination="0pa-lY-bPi" id="DYW-Cv-vac"/>
                         <outlet property="studentLabel" destination="v8c-Z0-QJ0" id="7YQ-TH-tss"/>
                     </connections>
                 </tableViewController>

@@ -96,14 +96,37 @@ extension Date {
     //    }
     
     public func convertStrDate(date: String, formatFrom: String, formatTo: String) -> String {
-        var result = ""
+        var result = date
         let formatter = DateFormatter()
         formatter.dateFormat = formatFrom //"dd MMMM, yyyy"
-        guard let date = formatter.date(from: date) else { return "Wrong format" }
+        guard var date = formatter.date(from: date) else { return "Wrong format" }
         formatter.dateFormat = formatTo //"yyyy-MM-dd"
-        result = formatter.string(from: date)
+       
+        result = formatter.string(from: checkFive(date: date))
         
         return result
+    }
+
+    func checkFive(date: Date) -> Date {
+        var date = date
+        let calendar = Calendar.current
+        let year = calendar.component(.year, from: date)
+        let month = calendar.component(.month, from: date)
+        let day = calendar.component(.day, from: date)
+        let hour = calendar.component(.hour, from: date)
+        var minutes = calendar.component(.minute, from: date)
+        
+        if minutes % 5 != 0 {
+            
+            while minutes % 5 > 0 {
+                minutes += 1
+            }
+        }
+        
+        let dateComponents = DateComponents(calendar: calendar, year: year, month: month, day: day, hour: hour, minute: minutes)
+        date = calendar.date(from: dateComponents) ?? Date()
+        
+        return date
     }
     
     public func time(str: String?) -> String {
@@ -119,6 +142,14 @@ extension Date {
         return convertStrDate(date: newStr,
                               formatFrom: "yyyy-MM-dd HH:mm:ssZ",
                               formatTo: "dd.MM.YY")
+    }
+    
+    public func fullDate(str: String?) -> String {
+    let newStr = str ?? "\(Date())"
+    
+    return convertStrDate(date: newStr,
+                          formatFrom: "yyyy-MM-dd HH:mm:ssZ",
+                          formatTo: "dd.MM.yyyy hh:mm")
     }
     
     public func fullScreenDate(str: String?) -> String {

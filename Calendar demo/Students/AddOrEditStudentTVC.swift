@@ -133,7 +133,7 @@ extension AddOrEditStudentTVC {
         networkManagerStudents.addStudent(studentId: newStudent.studentId ?? 0,
                                           name: newStudent.name!,
                                           surname: newStudent.surname ?? "",
-                                          disciplines: newStudent.disciplines ?? [""],
+                                          disciplines: newStudent.disciplines ?? [],
                                           phone: newStudent.phone ?? "",
                                           email: newStudent.email ?? "",
                                           note: newStudent.note ?? "")

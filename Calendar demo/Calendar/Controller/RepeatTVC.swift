@@ -63,6 +63,7 @@ extension RepeatTVC {
     
     private func setupPicker(str: String) {
         let oneMonth = TimeInterval(60 * 60 * 24 * 30)
+        endRepeatPicker.minuteInterval = 5
         
         if repeatLesson.rawValue == RepeatLesson.never.rawValue {
             repeatLesson = .never

@@ -129,7 +129,6 @@ extension CalendarVC {
     private func fetchCalendar(date: String) {
         
         
-        
         let startDate = Date().monthMinusOne(str: date)
         let endDate = Date().monthPlusOne(str: date)
         
@@ -144,6 +143,7 @@ extension CalendarVC {
                 return
             }
             self?.lessons = calendar
+//            print(calendar)
             self?.updateSelectedDay()
             
             DispatchQueue.main.async {
@@ -171,12 +171,12 @@ extension CalendarVC {
 //MARK: TableViewDelegate & TableViewDataSource
 extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
     
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return selectedDay.count
-    }
+//    func numberOfSections(in tableView: UITableView) -> Int {
+//        return selectedDay.count
+//    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return selectedDay.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -309,12 +309,12 @@ extension CalendarVC: CVCalendarViewDelegate {
     
     func preliminaryView(shouldDisplayOnDayView dayView: DayView) -> Bool {
         if let day = dayView.date {
-            let day2 = day.convertedDate()?.addingTimeInterval(60 * 60 * 24 )
+            let day2 = day.convertedDate()?.addingTimeInterval(60 * 60 * 24)
             let convDay = "\(day2 ?? Date())".prefix(10)
-            let datesDictionary = filterDates(lessons: lessons)
+            let datesDictionary = filterDates2(lessons: lessons)
             
             for elem in 0..<datesDictionary.count {
-                if convDay == datesDictionary[elem] {
+                if convDay == datesDictionary[elem].prefix(10) {
                     return true
                 }
             }
@@ -337,7 +337,7 @@ extension CalendarVC: CVCalendarViewDelegate {
         for index in 0..<(res?.count ?? 0) {
             datesDictionary?.append(contentsOf: res?[index] as? [String] ?? [])
         }
-        
+//        print("filtersDates:",datesDictionary)
         return datesDictionary ?? [""]
     }
     
@@ -352,13 +352,47 @@ extension CalendarVC: CVCalendarViewDelegate {
     
     
     func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
-        let day = Date().convertStrDate(date: "\(dayView.date.commonDescription)",
-            formatFrom: "dd MMMM, yyyy",
-            formatTo: "yyyy-MM-dd")
+        if let day = dayView.date {
+            var day2 = "\(day.convertedDate()?.addingTimeInterval(60 * 60 * 24) ?? Date())"
+            let datesDictionary = filterDates2(lessons: lessons)
+            
+            day2 = String(day2.prefix(10))
+            
+            for elem in 0..<datesDictionary.count {
+                
+                if day2 == datesDictionary[elem].prefix(10) {
+                    print("day2",day2,"dateDictElem",datesDictionary[elem].prefix(10))
+                
+                    
+                    
+                    
+                    
+                        //FIX IT
+                    
+                    
+                    
+                    
+//
+//                    selectedDay = self.lessons?.filter({ (lesson) -> Bool in
+//                        let dur = lesson.duration
+//                        for elem in dur
+//                    })
+//
+                    
+//                    selectedDay = self.lessons?.filter{ $0.startDate == day2 } ?? []
+                }
+            }
+            
+            
+            
+//        let day = Date().convertStrDate(date: "\(dayView.date.commonDescription)",
+//            formatFrom: "dd MMMM, yyyy",
+//            formatTo: "yyyy-MM-dd")
         
-        selectedDay = self.lessons?.filter{ $0.startDate == day } ?? []
+            selectedDay = self.lessons?.filter{ $0.startDate == day2 } ?? []
         
         self.tableView.reloadData()
         self.tableView.tableFooterView = UIView()
+        }
     }
 }
