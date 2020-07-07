@@ -10,9 +10,12 @@ import UIKit
 
 class DayTVCell: UITableViewCell {
     
+    @IBOutlet weak var startTimeLabel: UILabel!
+    @IBOutlet weak var endTimeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
-    @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var descLabel: UILabel!
+    @IBOutlet weak var priceLabel: UILabel!
+    @IBOutlet weak var payStatusLabel: UILabel!
     
     func configere(with meeting: LessonModel) {
         var name: String?
@@ -29,8 +32,12 @@ class DayTVCell: UITableViewCell {
             description     = meeting.discipline ?? ""
         }
         
-        self.timeLabel.text = "\(startTime) - \(endTime)"
-        self.nameLabel.text = name
-        self.descLabel.text = description
+        
+        payStatusLabel.textColor    = meeting.payStatus == 1 ? UIColor.systemGreen : UIColor.systemRed
+        payStatusLabel.text         = meeting.payStatus == 1 ? "Оплаченно" : "Не оплаченно"
+        startTimeLabel.text         = startTime
+        endTimeLabel.text           = endTime
+        nameLabel.text              = name
+        descLabel.text              = description
     }
 }
