@@ -26,7 +26,7 @@ class CalendarVC: UIViewController {
     
     //    private var datesDictionary:[String] = []
     private var currentCalendar: Calendar?
-    private var selectedDay = [LessonModel]()
+    private var selectedDay: [LessonModel]?
     private var modeView: ModeView = .monthView
     
     var onAddButtonTap: (() -> (Void))?
@@ -35,11 +35,11 @@ class CalendarVC: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-
+        
         self.calendarView.calendarAppearanceDelegate = self
         
-//        // Animator delegate [Unnecessary]
-//        self.calendarView.animatorDelegate = self
+        //        // Animator delegate [Unnecessary]
+        //        self.calendarView.animatorDelegate = self
         
         self.menuView.menuViewDelegate = self
         self.calendarView.calendarDelegate = self
@@ -128,12 +128,10 @@ extension CalendarVC {
 extension CalendarVC {
     private func fetchCalendar(date: String) {
         
+        let startDate = String("\(Date().monthMinusOne(str: date))".prefix(10))
+        let endDate = String("\(Date().monthPlusOne(str: date))".prefix(10))
         
-        let startDate = Date().monthMinusOne(str: date)
-        let endDate = Date().monthPlusOne(str: date)
-        
-        networkManagerCalendar.fetchCalendar(startDate: serverDate(str: "\(startDate)"),
-                                             endDate: serverDate(str: "\(endDate)"))
+        networkManagerCalendar.fetchCalendar(startDate: startDate, endDate: endDate)
         { [weak self]  (calendar, error)  in
             guard let calendar = calendar else {
                 print(error ?? "")
@@ -143,8 +141,8 @@ extension CalendarVC {
                 return
             }
             self?.lessons = calendar
-//            print(calendar)
-            self?.updateSelectedDay()
+            //            print(calendar)
+            self?.filterLessons(day: "\("\(Date())".prefix(10))")
             
             DispatchQueue.main.async {
                 self?.calendarView.contentController.refreshPresentedMonth()
@@ -171,40 +169,40 @@ extension CalendarVC {
 //MARK: TableViewDelegate & TableViewDataSource
 extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
     
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return selectedDay.count
-//    }
+        func numberOfSections(in tableView: UITableView) -> Int {
+            return selectedDay?.count ?? 0
+        }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return selectedDay.count
+        return 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "meetingCell", for: indexPath) as! DayTVCell
-        let meeting = selectedDay[indexPath.row]
+        guard let meeting = selectedDay?[indexPath.row] else { return cell }
         cell.configere(with: meeting)
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let meeting = selectedDay[indexPath.row]
+        guard let meeting = selectedDay?[indexPath.row] else { return }
         onCellTap?(meeting)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         guard editingStyle == .delete else { return }
-        let selectedLesson = selectedDay[indexPath.row]
+        let selectedLesson = selectedDay?[indexPath.row]
         lessons?.remove(at: indexPath.row)
         
-        deleteLesson(lessonId: selectedLesson.lessonId ?? 0)
+        deleteLesson(lessonId: selectedLesson?.lessonId ?? 0)
         calendarView.contentController.refreshPresentedMonth()
         calendarView.commitCalendarViewUpdate()
         menuView.commitMenuViewUpdate()
-        updateSelectedDay()
+        filterLessons(day: "\("\(Date())".prefix(10))")
         tableView.reloadData()
     }
     
-
+    
 }
 
 //MARK: Alert
@@ -311,7 +309,7 @@ extension CalendarVC: CVCalendarViewDelegate {
         if let day = dayView.date {
             let day2 = day.convertedDate()?.addingTimeInterval(60 * 60 * 24)
             let convDay = "\(day2 ?? Date())".prefix(10)
-            let datesDictionary = filterDates2(lessons: lessons)
+            let datesDictionary = filterDates(lessons: lessons)
             
             for elem in 0..<datesDictionary.count {
                 if convDay == datesDictionary[elem].prefix(10) {
@@ -322,77 +320,33 @@ extension CalendarVC: CVCalendarViewDelegate {
         return false
     }
     
-    
-    func filterDates(lessons: [LessonModel]?) ->([String]) {
-        var datesDictionary: [String]  = []
-        datesDictionary.append(contentsOf: (lessons.map ({ $0.map ({($0.startDate ?? "")}) }) ?? [""]))
-        
-        return datesDictionary
-    }
-    
-    func filterDates2(lessons: [LessonModel]?) ->([String]) {
+    private func filterDates(lessons: [LessonModel]?) ->([String]) {
         var datesDictionary: [String]?  = []
         let res = lessons.map ({ $0.map ({($0.duration ?? [""])}) }) ?? [""]
         
         for index in 0..<(res?.count ?? 0) {
             datesDictionary?.append(contentsOf: res?[index] as? [String] ?? [])
         }
-//        print("filtersDates:",datesDictionary)
         return datesDictionary ?? [""]
     }
     
     
-    func updateSelectedDay() {
-        let today = Date().convertStrDate(date: "\(Date())",
-            formatFrom: "yyyy-MM-dd HH:mm:ssZ",
-            formatTo: "yyyy-MM-dd")
-        
-        self.selectedDay = self.lessons?.filter{ $0.startDate == today } ?? []
-    }
+
     
     
     func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
         if let day = dayView.date {
-            var day2 = "\(day.convertedDate()?.addingTimeInterval(60 * 60 * 24) ?? Date())"
-            let datesDictionary = filterDates2(lessons: lessons)
+            var currentDay = "\(day.convertedDate()?.addingTimeInterval(60 * 60 * 24) ?? Date())"
+            currentDay = String(currentDay.prefix(10))
             
-            day2 = String(day2.prefix(10))
+            filterLessons(day: currentDay)
             
-            for elem in 0..<datesDictionary.count {
-                
-                if day2 == datesDictionary[elem].prefix(10) {
-                    print("day2",day2,"dateDictElem",datesDictionary[elem].prefix(10))
-                
-                    
-                    
-                    
-                    
-                        //FIX IT
-                    
-                    
-                    
-                    
-//
-//                    selectedDay = self.lessons?.filter({ (lesson) -> Bool in
-//                        let dur = lesson.duration
-//                        for elem in dur
-//                    })
-//
-                    
-//                    selectedDay = self.lessons?.filter{ $0.startDate == day2 } ?? []
-                }
-            }
-            
-            
-            
-//        let day = Date().convertStrDate(date: "\(dayView.date.commonDescription)",
-//            formatFrom: "dd MMMM, yyyy",
-//            formatTo: "yyyy-MM-dd")
-        
-            selectedDay = self.lessons?.filter{ $0.startDate == day2 } ?? []
-        
-        self.tableView.reloadData()
-        self.tableView.tableFooterView = UIView()
+            self.tableView.reloadData()
+            self.tableView.tableFooterView = UIView()
         }
+    }
+    
+    func filterLessons(day: String) {
+        selectedDay = lessons?.filter { ($0.duration?.filter({ $0.contains("\(String(describing: day))") == true }) != []) == true }
     }
 }

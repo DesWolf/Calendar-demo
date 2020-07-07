@@ -131,9 +131,9 @@ extension Date {
     
     public func time(str: String?) -> String {
         let newStr = str ?? "\(Date())"
-        return convertStrDate(date: newStr,
-                              formatFrom: "yyyy-MM-dd HH:mm:ssZ",
-                              formatTo: "HH:mm")
+        let formatFrom = newStr.count == 19 ? "yyyy-MM-dd HH:mm:ss" : "yyyy-MM-dd HH:mm:ssZ"
+        
+        return convertStrDate(date: newStr, formatFrom: formatFrom,  formatTo: "HH:mm")
     }
     
     public func date(str: String?) -> String {
@@ -151,6 +151,7 @@ extension Date {
                           formatFrom: "yyyy-MM-dd HH:mm:ssZ",
                           formatTo: "dd.MM.yyyy hh:mm")
     }
+    
     
     public func fullScreenDate(str: String?) -> String {
         let newStr = str ?? "\(Date())"

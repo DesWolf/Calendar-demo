@@ -15,17 +15,18 @@ class DayTVCell: UITableViewCell {
     @IBOutlet weak var descLabel: UILabel!
     
     func configere(with meeting: LessonModel) {
-        let startTime =  Date().time(str: meeting.startDate ?? "\(Date())")
-        let endTime =    Date().time(str: meeting.endDate ?? "\(Date())")
         var name: String?
         var description: String?
+        let startTime       =  Date().time(str: meeting.startDate)
+        let endTime         =  Date().time(str: meeting.endDate)
+        
         
         if meeting.studentName == nil {
-            name = meeting.lessonName ?? ""
-            description = "Личное"
+            name            = meeting.lessonName ?? ""
+            description     = "Личное"
         } else {
-            name = "Урок с \(meeting.studentName ?? "") \(meeting.studentSurname ?? "")"
-            description = meeting.discipline ?? ""
+            name            = "Урок с \(meeting.studentName ?? "") \(meeting.studentSurname ?? "")"
+            description     = meeting.discipline ?? ""
         }
         
         self.timeLabel.text = "\(startTime) - \(endTime)"
