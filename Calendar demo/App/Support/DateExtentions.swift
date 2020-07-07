@@ -77,23 +77,12 @@ extension Date {
         if let date = dateFormatter.date(from: date) {
             dateFormatter.timeZone = TimeZone.current
             dateFormatter.dateFormat = "HH:mm:ssZ"
-
+            
             result = dateFormatter.string(from: date)
             print(result)
         }
         return " " + result
     }
-    
-    //    func convertCVCalendarDate(date: String) -> String{
-    //        var result = ""
-    //        let formatter = DateFormatter()
-    //        formatter.dateFormat = "dd MMMM, yyyy"
-    //        if let date = formatter.date(from: date) {
-    //            formatter.dateFormat = "yyyy-MM-dd"
-    //            result = formatter.string(from: date)
-    //        }
-    //        return result
-    //    }
     
     public func convertStrDate(date: String, formatFrom: String, formatTo: String) -> String {
         var result = date
@@ -101,12 +90,12 @@ extension Date {
         formatter.dateFormat = formatFrom //"dd MMMM, yyyy"
         guard var date = formatter.date(from: date) else { return "Wrong format" }
         formatter.dateFormat = formatTo //"yyyy-MM-dd"
-       
+        
         result = formatter.string(from: checkFive(date: date))
         
         return result
     }
-
+    
     func checkFive(date: Date) -> Date {
         var date = date
         let calendar = Calendar.current
@@ -138,26 +127,23 @@ extension Date {
     
     public func date(str: String?) -> String {
         let newStr = str ?? "\(Date())"
+        let formatFrom = newStr.count == 19 ? "yyyy-MM-dd HH:mm:ss" : "yyyy-MM-dd HH:mm:ssZ"
         
-        return convertStrDate(date: newStr,
-                              formatFrom: "yyyy-MM-dd HH:mm:ssZ",
-                              formatTo: "dd.MM.YY")
+        return convertStrDate(date: newStr, formatFrom: formatFrom, formatTo: "dd.MM.YY")
     }
     
     public func fullDate(str: String?) -> String {
-    let newStr = str ?? "\(Date())"
-    
-    return convertStrDate(date: newStr,
-                          formatFrom: "yyyy-MM-dd HH:mm:ssZ",
-                          formatTo: "dd.MM.yyyy hh:mm")
+        let newStr = str ?? "\(Date())"
+        let formatFrom = newStr.count == 19 ? "yyyy-MM-dd HH:mm:ss" : "yyyy-MM-dd HH:mm:ssZ"
+        
+        return convertStrDate(date: newStr, formatFrom: formatFrom, formatTo: "dd.MM.yyyy hh:mm")
     }
     
     
     public func fullScreenDate(str: String?) -> String {
         let newStr = str ?? "\(Date())"
+        let formatFrom = newStr.count == 19 ? "yyyy-MM-dd HH:mm:ss" : "yyyy-MM-dd HH:mm:ssZ"
         
-        return convertStrDate(date: newStr,
-                              formatFrom: "yyyy-MM-dd HH:mm:ssZ",
-                              formatTo: "EEEE, MMM d, yyyy")
+        return convertStrDate(date: newStr, formatFrom: formatFrom, formatTo: "EEEE, d MMMM, yyyy")
     }
 }

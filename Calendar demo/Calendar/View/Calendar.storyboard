@@ -30,15 +30,20 @@
                                     <constraint firstAttribute="height" constant="449" id="DAn-La-yD5"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yGT-7Q-c4S">
-                                <rect key="frame" x="0.0" y="553" width="414" height="309"/>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="yGT-7Q-c4S">
+                                <rect key="frame" x="0.0" y="580" width="414" height="282"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="216" id="zwf-eM-V8f"/>
-                                </constraints>
                                 <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="headerCell" id="CXo-xV-Fgx">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="CXo-xV-Fgx" id="RQX-Co-0u0">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="meetingCell" rowHeight="95" id="JOp-K4-3VU" customClass="DayTVCell" customModule="Calendar_demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="95"/>
+                                        <rect key="frame" x="0.0" y="72" width="414" height="95"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JOp-K4-3VU" id="Kfr-WO-FAa">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="95"/>
@@ -91,6 +96,12 @@
                                     <outlet property="delegate" destination="KaI-3w-aNX" id="rUs-nX-WO5"/>
                                 </connections>
                             </tableView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LRX-RM-WdI">
+                                <rect key="frame" x="20" y="552" width="374" height="18"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -101,13 +112,16 @@
                             <constraint firstItem="yGT-7Q-c4S" firstAttribute="bottom" secondItem="Fse-8Y-0Zl" secondAttribute="bottom" id="E4t-r2-jRi"/>
                             <constraint firstItem="ZUm-fx-5Oa" firstAttribute="top" secondItem="cgt-6W-3CX" secondAttribute="top" id="Lrf-2a-k1T"/>
                             <constraint firstItem="r3w-uj-xvL" firstAttribute="leading" secondItem="Fse-8Y-0Zl" secondAttribute="leading" id="OJe-7Z-X6k"/>
+                            <constraint firstItem="LRX-RM-WdI" firstAttribute="top" secondItem="r3w-uj-xvL" secondAttribute="bottom" constant="-1" id="Psu-aj-GSQ"/>
                             <constraint firstItem="yGT-7Q-c4S" firstAttribute="trailing" secondItem="Fse-8Y-0Zl" secondAttribute="trailing" id="Qb9-09-p0x"/>
                             <constraint firstItem="r3w-uj-xvL" firstAttribute="top" secondItem="rJ1-T4-e9a" secondAttribute="bottom" constant="10" id="Wxf-Ab-eXW"/>
+                            <constraint firstItem="LRX-RM-WdI" firstAttribute="leading" secondItem="Fse-8Y-0Zl" secondAttribute="leading" constant="20" id="aUU-fe-KcM"/>
                             <constraint firstItem="rJ1-T4-e9a" firstAttribute="trailing" secondItem="Fse-8Y-0Zl" secondAttribute="trailing" id="hof-ze-7nL"/>
                             <constraint firstItem="ZUm-fx-5Oa" firstAttribute="trailing" secondItem="Fse-8Y-0Zl" secondAttribute="trailing" id="idt-ng-mKu"/>
                             <constraint firstItem="yGT-7Q-c4S" firstAttribute="leading" secondItem="Fse-8Y-0Zl" secondAttribute="leading" id="keG-Yx-qsr"/>
+                            <constraint firstItem="Fse-8Y-0Zl" firstAttribute="trailing" secondItem="LRX-RM-WdI" secondAttribute="trailing" constant="20" id="oyO-Z6-D3B"/>
                             <constraint firstItem="ZUm-fx-5Oa" firstAttribute="leading" secondItem="Fse-8Y-0Zl" secondAttribute="leading" id="qIw-bd-KJM"/>
-                            <constraint firstItem="yGT-7Q-c4S" firstAttribute="top" secondItem="r3w-uj-xvL" secondAttribute="bottom" id="tzY-ym-kuA"/>
+                            <constraint firstItem="yGT-7Q-c4S" firstAttribute="top" secondItem="LRX-RM-WdI" secondAttribute="bottom" constant="10" id="v0T-5A-7V0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Fse-8Y-0Zl"/>
                     </view>
@@ -134,6 +148,7 @@
                     <connections>
                         <outlet property="backgroundImage" destination="ZUm-fx-5Oa" id="ka7-Da-Zhd"/>
                         <outlet property="calendarView" destination="r3w-uj-xvL" id="uYK-vh-S4y"/>
+                        <outlet property="dateLabel" destination="LRX-RM-WdI" id="zWb-fd-WJj"/>
                         <outlet property="menuView" destination="rJ1-T4-e9a" id="OK7-8M-pDm"/>
                         <outlet property="tableView" destination="yGT-7Q-c4S" id="FVS-rz-LKi"/>
                     </connections>

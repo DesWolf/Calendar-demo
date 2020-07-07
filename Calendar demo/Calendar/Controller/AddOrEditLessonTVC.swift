@@ -107,7 +107,7 @@ extension AddOrEditLessonTVC {
             noteTV.text             = lesson?.note ?? ""
         }
         
-        self.hideKeyboardWhenTappedAround()
+//        self.hideKeyboardWhenTappedAround()
         endRepeatCell.isHidden  = true
         
         setupStartLesson()

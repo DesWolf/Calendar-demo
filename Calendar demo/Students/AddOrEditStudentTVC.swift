@@ -26,7 +26,7 @@ class AddOrEditStudentTVC: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.hideKeyboardWhenTappedAround()
+//        self.hideKeyboardWhenTappedAround()
         configureScreen()
         
         chousedDisciplines = student?.disciplines

@@ -18,7 +18,6 @@
 		9E0A5E20244F26CE00188CDE /* StudentsListTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E1F244F26CE00188CDE /* StudentsListTVC.swift */; };
 		9E0A5E25244F271F00188CDE /* StatisticTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E24244F271F00188CDE /* StatisticTVC.swift */; };
 		9E0A5E27244F272F00188CDE /* FinanceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E26244F272F00188CDE /* FinanceVC.swift */; };
-		9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E28244F39C000188CDE /* ColorsConfig.swift */; };
 		9E0A5E2B244F3FC200188CDE /* ProfileVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2A244F3FC200188CDE /* ProfileVC.swift */; };
 		9E0A5E2E244F410900188CDE /* StudentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2D244F410900188CDE /* StudentModel.swift */; };
 		9E0A5E30244F411400188CDE /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2F244F411400188CDE /* NotificationModel.swift */; };
@@ -101,7 +100,6 @@
 		9E0A5E1F244F26CE00188CDE /* StudentsListTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsListTVC.swift; sourceTree = "<group>"; };
 		9E0A5E24244F271F00188CDE /* StatisticTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticTVC.swift; sourceTree = "<group>"; };
 		9E0A5E26244F272F00188CDE /* FinanceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinanceVC.swift; sourceTree = "<group>"; };
-		9E0A5E28244F39C000188CDE /* ColorsConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsConfig.swift; sourceTree = "<group>"; };
 		9E0A5E2A244F3FC200188CDE /* ProfileVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileVC.swift; sourceTree = "<group>"; };
 		9E0A5E2D244F410900188CDE /* StudentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentModel.swift; sourceTree = "<group>"; };
 		9E0A5E2F244F411400188CDE /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
@@ -202,7 +200,6 @@
 				9E0538AB247C0EE500AAC0AA /* UIColor+Additions.swift */,
 				9E7C1347247D45EE0095C57E /* UIImage Extentions.swift */,
 				9ED2EAC8247D5720001E3767 /* TF Extention.swift */,
-				9E0A5E28244F39C000188CDE /* ColorsConfig.swift */,
 				9ECECBEE248103E60053AC78 /* DisciplinesList.swift */,
 				9E6B56A9248B987E00042E2B /* DateExtentions.swift */,
 				9E862342248BBDBF0004B3FD /* UIVewControllerExtention.swift */,
@@ -718,7 +715,6 @@
 				9E0538AC247C0EE500AAC0AA /* UIColor+Additions.swift in Sources */,
 				9EC155B2246D639600D2C776 /* NetworkLogger.swift in Sources */,
 				9E374AA1249299410082A119 /* StudentsForLessonTVCell.swift in Sources */,
-				9E0A5E29244F39C000188CDE /* ColorsConfig.swift in Sources */,
 				9EC155BC246D6B2C00D2C776 /* StudentsTVCell.swift in Sources */,
 				9E8DDB332451E384003EC688 /* AddOrEditStudentTVC.swift in Sources */,
 				9EC155B4246D63AA00D2C776 /* ParameterEncoding.swift in Sources */,

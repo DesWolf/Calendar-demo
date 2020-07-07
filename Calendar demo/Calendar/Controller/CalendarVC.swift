@@ -20,11 +20,10 @@ class CalendarVC: UIViewController {
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var dateLabel: UILabel!
     
     private let networkManagerCalendar = NetworkManagerCalendar()
     private var lessons: [LessonModel]?
-    
-    //    private var datesDictionary:[String] = []
     private var currentCalendar: Calendar?
     private var selectedDay: [LessonModel]?
     private var modeView: ModeView = .monthView
@@ -34,13 +33,9 @@ class CalendarVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         
         self.calendarView.calendarAppearanceDelegate = self
-        
-        //        // Animator delegate [Unnecessary]
-        //        self.calendarView.animatorDelegate = self
-        
         self.menuView.menuViewDelegate = self
         self.calendarView.calendarDelegate = self
     }
@@ -54,6 +49,7 @@ class CalendarVC: UIViewController {
         super.viewDidLayoutSubviews()
         calendarView.commitCalendarViewUpdate()
         menuView.commitMenuViewUpdate()
+
     }
     
     @IBAction func sendRequest(_ sender: Any) {
@@ -77,7 +73,7 @@ extension CalendarVC {
         setupNavigationBar()
         backgroundColor()
         
-        
+
         calendarView.changeDaysOutShowingState(shouldShow: true)
     }
     
@@ -174,14 +170,36 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
         }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return 2
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        switch indexPath.row {
+        case 0:
+            let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath)
+            cell.backgroundColor = .appGray
+
+            return cell
+            
+        default:
         let cell = tableView.dequeueReusableCell(withIdentifier: "meetingCell", for: indexPath) as! DayTVCell
-        guard let meeting = selectedDay?[indexPath.row] else { return cell }
+        guard let meeting = selectedDay?[indexPath.section] else { return cell }
         cell.configere(with: meeting)
+        
         return cell
+        }
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        
+        if indexPath == IndexPath(row: 0, section: 0) { return 25 }
+        
+        switch indexPath.row {
+        case 0:
+            return 10
+        default:
+            return UITableView.automaticDimension
+        }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -334,19 +352,20 @@ extension CalendarVC: CVCalendarViewDelegate {
 
     
     
-    func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
+   func didSelectDayView(_ dayView: DayView, animationDidFinish: Bool){
         if let day = dayView.date {
-            var currentDay = "\(day.convertedDate()?.addingTimeInterval(60 * 60 * 24) ?? Date())"
-            currentDay = String(currentDay.prefix(10))
+            let currentDay = "\(day.convertedDate()?.addingTimeInterval(60 * 60 * 24) ?? Date())"
+            let shortCurrentDay = String(currentDay.prefix(10))
             
-            filterLessons(day: currentDay)
+            filterLessons(day: shortCurrentDay)
             
             self.tableView.reloadData()
             self.tableView.tableFooterView = UIView()
+            self.dateLabel.text = Date().fullScreenDate(str: "\(currentDay)")
         }
     }
     
-    func filterLessons(day: String) {
+    private func filterLessons(day: String) {
         selectedDay = lessons?.filter { ($0.duration?.filter({ $0.contains("\(String(describing: day))") == true }) != []) == true }
     }
 }
