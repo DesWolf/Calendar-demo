@@ -18,7 +18,6 @@ extension Date {
     
     var secondsFromGMT: Int { return TimeZone.current.secondsFromGMT() }
     
-    
     public func monthMinusOne(str: String) -> Date {
         let date = convertStrToDate(str: str)
         
@@ -42,16 +41,19 @@ extension Date {
     public func convertStrToDate(str: String?) -> Date {
         var newStr = str ?? "\(Date())"
         let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = Locale(identifier: "ru_Ru")
         
         switch newStr.count {
         case 10:
             dateFormatter.dateFormat = "dd.MM.yyyy"
         case 19:
-            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ss"
+            newStr = newStr + getCurrentTimeZone()
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
         case 25:
             dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
         default:
-            newStr = newStr + getCurrentTime()
+            newStr = newStr + getCurrentTimeZone()
             dateFormatter.dateFormat = "dd MMMM, yyyy HH:mm:ssZ"
             
         }
@@ -62,7 +64,7 @@ extension Date {
         return date
     }
     
-    private func getCurrentTime() -> String {
+    private func getCurrentTimeZone() -> String {
         let date = "\(Date())"
         var  result = ""
         let dateFormatter = DateFormatter()
@@ -70,7 +72,8 @@ extension Date {
         
         if let date = dateFormatter.date(from: date) {
             dateFormatter.timeZone = TimeZone.current
-            dateFormatter.dateFormat = "HH:mm:ssZ"
+            dateFormatter.locale = Locale(identifier: "ru_Ru")
+            dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
             
             result = dateFormatter.string(from: date)
             print(result)
@@ -78,19 +81,7 @@ extension Date {
         return " " + result
     }
     
-    public func convertStrDate(date: String, formatFrom: String, formatTo: String) -> String {
-        var result = date
-        let formatter = DateFormatter()
-        formatter.dateFormat = formatFrom //"dd MMMM, yyyy"
-        guard var date = formatter.date(from: date) else { return "Wrong format" }
-        formatter.dateFormat = formatTo //"yyyy-MM-dd"
-        
-        result = formatter.string(from: checkFive(date: date))
-        
-        return result
-    }
-    
-    func checkFive(date: Date) -> Date {
+    private func checkFive(date: Date) -> Date {
         var date = date
         let calendar = Calendar.current
         let year = calendar.component(.year, from: date)
@@ -113,31 +104,44 @@ extension Date {
     }
     
     public func time(str: String?) -> String {
-        let newStr = str ?? "\(Date())"
-        let formatFrom = newStr.count == 19 ? "yyyy-MM-dd HH:mm:ss" : "yyyy-MM-dd HH:mm:ssZ"
-        
-        return convertStrDate(date: newStr, formatFrom: formatFrom,  formatTo: "HH:mm")
+        var newStr = str ?? "\(Date())"
+        newStr = str?.count == 19 ?  getCurrentTimeZone() : newStr
+
+        return convertStrDate(date: newStr, formatFrom: "yyyy-MM-dd HH:mm:ssZ",  formatTo: "HH:mm")
     }
     
     public func date(str: String?) -> String {
-        let newStr = str ?? "\(Date())"
-        let formatFrom = newStr.count == 19 ? "yyyy-MM-dd HH:mm:ss" : "yyyy-MM-dd HH:mm:ssZ"
+        var newStr = str ?? "\(Date())"
+        newStr = str?.count == 19 ?  getCurrentTimeZone() : newStr
         
-        return convertStrDate(date: newStr, formatFrom: formatFrom, formatTo: "dd.MM.YY")
+        return convertStrDate(date: newStr, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "dd.MM.YY")
     }
     
     public func fullDate(str: String?) -> String {
-        let newStr = str ?? "\(Date())"
-        let formatFrom = newStr.count == 19 ? "yyyy-MM-dd HH:mm:ss" : "yyyy-MM-dd HH:mm:ssZ"
+        var newStr = str ?? "\(Date())"
+        newStr = str?.count == 19 ?  getCurrentTimeZone() : newStr
         
-        return convertStrDate(date: newStr, formatFrom: formatFrom, formatTo: "dd.MM.yyyy hh:mm")
+        return convertStrDate(date: newStr, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "dd.MM.yyyy HH:mm")
     }
     
     
     public func fullScreenDate(str: String?) -> String {
-        let newStr = str ?? "\(Date())"
-        let formatFrom = newStr.count == 19 ? "yyyy-MM-dd HH:mm:ss" : "yyyy-MM-dd HH:mm:ssZ"
+        var newStr = str ?? "\(Date())"
+        newStr = str?.count == 19 ?  getCurrentTimeZone() : newStr
         
-        return convertStrDate(date: newStr, formatFrom: formatFrom, formatTo: "EEEE, d MMMM, yyyy")
+        return convertStrDate(date: newStr, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "EEEE, d MMMM, yyyy")
+    }
+    
+    private func convertStrDate(date: String, formatFrom: String, formatTo: String) -> String {
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = Locale(identifier: "ru_Ru")
+        
+        dateFormatter.dateFormat = formatFrom
+        guard let date = dateFormatter.date(from: date) else { return "Wrong format" }
+        dateFormatter.dateFormat = formatTo
+        
+        return dateFormatter.string(from: checkFive(date: date))
     }
 }

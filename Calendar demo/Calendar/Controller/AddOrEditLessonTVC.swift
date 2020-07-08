@@ -127,7 +127,8 @@ extension AddOrEditLessonTVC {
     }
     
     private func setStartDateLabel() {
-           startLabel.text = Date().fullDate(str: "\(startDatePicker.date)")
+        print(startDatePicker.date)
+        startLabel.text = Date().fullDate(str: "\(startDatePicker.date)")
        }
     
     private func setEndDateLabel() {
@@ -214,7 +215,7 @@ extension AddOrEditLessonTVC {
     }
     
     func saveLesson() {
-        let endRepeat = serverDate2(str: "\(endRepeatLabel.text ?? "01.01.2000")")
+        let endRepeat = "\(Date().convertStrToDate(str: endRepeatLabel.text))"
         let start = "\(startDatePicker.date)".prefix(19)
         let end = "\(endDatePicker.date)".prefix(19)
         
@@ -368,33 +369,7 @@ extension AddOrEditLessonTVC {
     }
 }
 
-//MARK: Date Support Func
-extension AddOrEditLessonTVC {
-//    private func displayedDateAndTime(str: String) -> String {
-//        return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "dd.MM.yyyy HH:mm")
-//    }
-//
-//    private func displayedDate(str: String) -> String {
-//        return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "dd.MM.yyy")
-//    }
-//
-//    private func displayedHour(str: String) -> String {
-//        return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "HH:mm")
-//    }
-//
-//    private func serverDate(str: String) -> String {
-//        return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "yyyy-MM-dd")
-//    }
-//
-    private func serverDate2(str: String) -> String {
-        return Date().convertStrDate(date: str, formatFrom: "dd.MM.yyyy", formatTo: "yyyy-MM-dd")
-    }
-//
-//    private func serverHour(str: String) -> String {
-//        return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "HH:mm:ss")
-//    }
-    
-}
+
 
 //MARK: Alert
 extension AddOrEditLessonTVC  {

@@ -65,14 +65,14 @@ extension LessonDetailedTVC {
         let date                = Date().fullScreenDate(str: lesson?.startDate)
         let endDate             = Date().date(str: lesson?.endDate)
         
-        nameLabel.text          = lesson?.lessonName ?? ""
+        nameLabel.text          = lesson?.lessonName ?? "Без названия"
         placeLabel.text         = lesson?.place ?? ""
         disciplineLabel.text    = lesson?.discipline ?? ""
         timeLabel.text          = "с \(startTime) до \(endTime)"
         dateLabel.text          = date
         studentLabel.text       = "\(lesson?.studentName ?? "") - \(lesson?.studentSurname ?? "")"
         noteTV.text             = lesson?.note ?? ""
-        repeatLabel.text        = lesson?.endRepeat != nil ? "до \(endDate)" : "Нет"
+        repeatLabel.text        = lesson?.repeatedly == "weekly" ? "до \(endDate)" : "Нет"
         priceLabel.text         = "\(lesson?.price ?? 0) руб."
         paymentLabel.text       = lesson?.payStatus == 0 ? "Не оплаченно" : "Оплаченно"
         

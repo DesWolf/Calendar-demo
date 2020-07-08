@@ -24,8 +24,8 @@ class PaymentTVC: UITableViewController {
     }
     
     @IBAction func paimentChanged(sender: UIDatePicker) {
-        dateOfPaymentLabel.text = displayedDate(str: "\(paymentPicker.date)")
-        paymentDate = displayedDate(str: "\(paymentPicker.date)")
+        dateOfPaymentLabel.text     = Date().date(str: "\(paymentPicker.date)")
+        paymentDate                 = Date().date(str: "\(paymentPicker.date)")
     }
 }
 
@@ -53,26 +53,20 @@ extension PaymentTVC {
     private func setupPicker() {
         
         if payment == "Не оплаченно" {
-            dateOfPaymentLabel.text = displayedDate(str: "\(paymentPicker.date)")
-            dateOfPaymentLabel.isHidden = true
+            dateOfPaymentLabel.text         = Date().date(str: "\(paymentPicker.date)")
+            dateOfPaymentLabel.isHidden     = true
             
-            paymentPicker.datePickerMode = .date
+            paymentPicker.datePickerMode    = .date
+            paymentPicker.isHidden          = true
             paymentPicker.setDate(Date(), animated: true)
-            paymentPicker.isHidden = true
         } else {
-            dateOfPaymentLabel.text = paymentDate
-            dateOfPaymentLabel.isHidden = false
+            dateOfPaymentLabel.text         = paymentDate
+            paymentPicker.datePickerMode    = .date
             
-            paymentPicker.datePickerMode = .date
-            paymentPicker.setDate(Date().convertStrToDate(str: paymentDate ?? "01.01.2021"), animated: true)
-            paymentPicker.isHidden = false
+            dateOfPaymentLabel.isHidden     = false
+            paymentPicker.isHidden          = false
+            paymentPicker.setDate(Date().convertStrToDate(str: paymentDate), animated: true)
         }
-        
-    }
-    
-    private func displayedDate(str: String) -> String {
-        return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "dd.MM.yyyy")
-        
     }
 }
 
@@ -124,5 +118,3 @@ extension PaymentTVC {
         })
     }
 }
-
-

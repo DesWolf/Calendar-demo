@@ -26,12 +26,11 @@ class RepeatTVC: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configureScreen()
-        
     }
     
     @IBAction func endDateChanged(sender: UIDatePicker) {
-        endRepeatLabel.text = displayedDate(str: "\(endRepeatPicker.date)")
-        endOfRepeat = displayedDate(str: "\(endRepeatPicker.date)")
+        endRepeatLabel.text     = Date().date(str: "\(endRepeatPicker.date)")
+        endOfRepeat             = Date().date(str: "\(endRepeatPicker.date)")
     }
 }
 
@@ -66,28 +65,27 @@ extension RepeatTVC {
         endRepeatPicker.minuteInterval = 5
         
         if repeatLesson.rawValue == RepeatLesson.never.rawValue {
-            repeatLesson = .never
-            endRepeatLabel.text = displayedDate(str: "\(endRepeatPicker.date.addingTimeInterval(oneMonth))")
-            endRepeatLabel.isHidden = true
+            repeatLesson                    = .never
+            endRepeatLabel.text             = Date().date(str: "\(endRepeatPicker.date.addingTimeInterval(oneMonth))")
+            endRepeatLabel.isHidden         = true
             
-            endRepeatPicker.datePickerMode = .date
+            endRepeatPicker.datePickerMode  = .date
+            endRepeatPicker.isHidden        = true
+            
             endRepeatPicker.setDate(Date().addingTimeInterval(oneMonth), animated: true)
-            endRepeatPicker.isHidden = true
         } else {
-            repeatLesson = .weekly
-            endRepeatLabel.text = endOfRepeat
-            endRepeatLabel.isHidden = false
+            repeatLesson                    = .weekly
+            endRepeatLabel.text             = endOfRepeat
+            endRepeatLabel.isHidden         = false
             
-            endRepeatPicker.datePickerMode = .date
-            endRepeatPicker.setDate(Date().convertStrToDate(str: endOfRepeat ?? "01.01.2021"), animated: true)
-            endRepeatPicker.isHidden = false
+            endRepeatPicker.datePickerMode  = .date
+            endRepeatPicker.isHidden        = false
+            
+            endRepeatPicker.setDate(Date().convertStrToDate(str: endOfRepeat), animated: true)
         }
     }
-    
-    private func displayedDate(str: String) -> String {
-        return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "dd.MM.yyyy")
-    }
 }
+    
 
 //MARK: TableViewDelegate, TableViewDataSource
 extension RepeatTVC {
@@ -106,23 +104,26 @@ extension RepeatTVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            repeatLesson = .never
-            neverCheckImage.image =  #imageLiteral(resourceName: "check")
-            everyWeekCheckImage.image = UIImage()
+            repeatLesson                    = .never
+            neverCheckImage.image           =  #imageLiteral(resourceName: "check")
+            everyWeekCheckImage.image       = UIImage()
+            
             if !endRepeatLabel.isHidden {
-                endRepeatLabel.isHidden = true
-                endRepeatPicker.isHidden = true
+                endRepeatLabel.isHidden     = true
+                endRepeatPicker.isHidden    = true
                 pickerAnimation(indexPath: indexPath)
             }
         case 1:
-            repeatLesson = .weekly
-            neverCheckImage.image = UIImage()
-            everyWeekCheckImage.image = #imageLiteral(resourceName: "check")
+            repeatLesson                    = .weekly
+            neverCheckImage.image           = UIImage()
+            everyWeekCheckImage.image       = #imageLiteral(resourceName: "check")
+            
             if endRepeatLabel.isHidden {
-                endRepeatLabel.isHidden = false
-                endRepeatPicker.isHidden = false
+                endRepeatLabel.isHidden     = false
+                endRepeatPicker.isHidden    = false
+                endOfRepeat                 = Date().date(str: "\(endRepeatPicker.date)")
+                
                 pickerAnimation(indexPath: indexPath)
-                endOfRepeat = displayedDate(str: "\(endRepeatPicker.date)")
             }
         default:
             return

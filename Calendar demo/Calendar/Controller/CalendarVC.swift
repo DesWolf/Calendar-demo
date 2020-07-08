@@ -217,7 +217,7 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
         selectedDay?.remove(at: indexPath.section)
         deleteLesson(lessonId: selectedLesson?.lessonId ?? 0)
         calendarView.contentController.refreshPresentedMonth()
-
+//        calendarView.contentController.refreshPresentedMonth()
 //        calendarView.commitCalendarViewUpdate()
         menuView.commitMenuViewUpdate()
 //        filterLessons(day: "\("\(calendarView.presentedDate.convertedDate())".prefix(10))")
@@ -241,11 +241,11 @@ extension CalendarVC {
 }
 
 //MARK: Date Support Func
-extension CalendarVC {
-    private func serverDate(str: String) -> String {
-        return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "yyyy-MM-dd")
-    }
-}
+//extension CalendarVC {
+//    private func serverDate(str: String) -> String {
+//        return Date().convertStrDate(date: str, formatFrom: "yyyy-MM-dd HH:mm:ssZ", formatTo: "yyyy-MM-dd")
+//    }
+//}
 
 
 //Настойка календаря
