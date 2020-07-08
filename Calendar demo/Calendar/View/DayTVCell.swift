@@ -10,6 +10,7 @@ import UIKit
 
 class DayTVCell: UITableViewCell {
     
+    @IBOutlet weak var statusImage: UIImageView!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -18,26 +19,48 @@ class DayTVCell: UITableViewCell {
     @IBOutlet weak var payStatusLabel: UILabel!
     
     func configere(with meeting: LessonModel) {
-        var name: String?
-        var description: String?
-        let startTime       =  Date().time(str: meeting.startDate)
-        let endTime         =  Date().time(str: meeting.endDate)
+        textLesson(meeting: meeting)
+        colourLesson(meeting: meeting)
+    }
+}
+
+extension DayTVCell {
+    
+    private func textLesson(meeting: LessonModel) {
+        startTimeLabel.text         = Date().time(str: meeting.startDate)
+        endTimeLabel.text           = Date().time(str: meeting.endDate)
         
-        
-        if meeting.studentName == nil {
-            name            = meeting.lessonName ?? ""
-            description     = "Личное"
-        } else {
-            name            = "Урок с \(meeting.studentName ?? "") \(meeting.studentSurname ?? "")"
-            description     = meeting.discipline ?? ""
+        if meeting.studentName != nil {
+            nameLabel.text          = "Урок с \(meeting.studentName ?? "") \(meeting.studentSurname ?? "")"
+            descLabel.text          = meeting.discipline ?? ""
+            payStatusLabel.text     = meeting.payStatus == 1 ? "Оплаченно" : "Не оплаченно"
+            priceLabel.text         = "\(meeting.price ?? 0) руб."
+            
+        } else if meeting.studentName == nil && meeting.lessonName == nil {
+            nameLabel.text          = "Личное"
+            descLabel.text          = "мероприятие"
+            
+        } else if meeting.studentName == nil && meeting.lessonName != nil {
+            nameLabel.text          = meeting.lessonName ?? ""
+            descLabel.text          = "Личное"
         }
+    }
+    
+    private func colourLesson(meeting: LessonModel) {
         
+        let now = Date()
+        let lessonDate = Date().convertStrToDate(str: meeting.startDate)
         
-        payStatusLabel.textColor    = meeting.payStatus == 1 ? UIColor.systemGreen : UIColor.systemRed
-        payStatusLabel.text         = meeting.payStatus == 1 ? "Оплаченно" : "Не оплаченно"
-        startTimeLabel.text         = startTime
-        endTimeLabel.text           = endTime
-        nameLabel.text              = name
-        descLabel.text              = description
+        if lessonDate > now {
+            statusImage.backgroundColor         = meeting.studentName == nil ? .appBlueDark : .appGreen
+            payStatusLabel.textColor            = meeting.payStatus == 1 ? UIColor.systemGreen : UIColor.systemRed
+            
+        } else {
+            statusImage.backgroundColor         = .lightGray
+            startTimeLabel.textColor            = .lightGray
+            nameLabel.textColor                 = .lightGray
+            priceLabel.textColor                = .lightGray
+            payStatusLabel.textColor            = meeting.payStatus == 1 ? UIColor.lightGray : UIColor.systemRed
+        }
     }
 }

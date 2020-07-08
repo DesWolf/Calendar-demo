@@ -154,7 +154,7 @@ extension CalendarApi: EndPointType {
                                                                  "end_repeat": endRepeat,
                                                                  "price": price,
                                                                  "note": note,
-                                                                 "status_pay": payStatus,
+                                                                 "pay_status": payStatus,
                                                                  "payment_date": paymentDate],
                                                 bodyEncoding: .jsonEncoding,
                                                 urlParameters: nil,

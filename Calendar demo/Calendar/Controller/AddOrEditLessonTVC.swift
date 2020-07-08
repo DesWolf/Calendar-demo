@@ -47,25 +47,22 @@ class AddOrEditLessonTVC: UITableViewController {
     
     @IBAction func startDateChanged(sender: UIDatePicker) {
         let oneHour         = TimeInterval(60 * 60)
-        let startDate       = Date().fullDate(str: "\(startDatePicker.date)")
-        let endDate         = Date().fullDate(str: "\(endDatePicker.date)")
         
-        startLabel.text     = startDate
-        endLabel.text       = endDate
         endDatePicker.setDate(startDatePicker.date.addingTimeInterval(oneHour), animated: true)
         
+        setStartDateLabel()
+        setEndDateLabel()
     }
-    
+
     @IBAction func endDateChanged(sender: UIDatePicker) {
-        endLabel.text = Date().fullDate(str: "\(endDatePicker.date)")
+        setEndDateLabel()
     }
-    
+
     @IBAction func cancelButton(_ sender: Any) {
         onBackButtonTap?()
     }
     
     @IBAction func saveButtonClick(_ sender: Any) {
-        if nameTF.text != "", nameTF.text != " " {
             saveLesson()
             setNotification(meetingId           : 1,
                             date                : startDatePicker.date,
@@ -73,18 +70,7 @@ class AddOrEditLessonTVC: UITableViewController {
                             notifDescription    : notificationLabel.text ?? "нет",
                             meetingName         : nameTF.text ?? "Занятие",
                             student             : "\(student?.name ?? "") \(student?.surname ?? "")")
-        } else {
-            DispatchQueue.main.async {
-                self.simpleAlert(message: "Пожалуйста, заполните необходимые поля")
-            }
-            return
-        }
     }
-    
-    
-    
-    
-    
 }
 
 //MARK: Set Screen
@@ -93,6 +79,7 @@ extension AddOrEditLessonTVC {
     private func configureScreen(){
         
         print(String(describing:lesson))
+        
         
         if lesson != nil {
             let endRepeat           = Date().date(str: "\(String(describing: lesson?.endRepeat))")
@@ -106,39 +93,48 @@ extension AddOrEditLessonTVC {
             priceTF.text            = "\(lesson?.price ?? 0)"
             noteTV.text             = lesson?.note ?? ""
         }
-        
-//        self.hideKeyboardWhenTappedAround()
+    
         endRepeatCell.isHidden  = true
-        
-        setupStartLesson()
-        setupEndLesson()
+        hideKeyboardWhenTappedAround()
+        setupStartLessonPicker()
+        setupEndLessonPicker()
         setupNavigationBar()
         
         priceTF.attributedPlaceholder = NSAttributedString(string: "0", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
-        
     }
     
-    private func setupStartLesson() {
-        let picker = Date().convertStrToDate(str: lesson?.startDate)
-        
-        startLabel.text = Date().fullDate(str: lesson?.startDate)
+    private func setupStartLessonPicker() {
+        let date = lesson != nil ? Date().convertStrToDate(str: lesson?.startDate) : selectedDate
+        let picker = date ?? Date()
         
         startDatePicker.setDate(picker, animated: true)
         startDatePicker.minuteInterval = 5
         startDatePicker.isHidden = true
+        
+        setStartDateLabel()
     }
     
-    private func setupEndLesson() {
+    private func setupEndLessonPicker() {
         let oneHour = TimeInterval(60 * 60)
-        var picker  = Date().convertStrToDate(str: lesson?.endDate)
-        
-        picker = lesson == nil ? picker.addingTimeInterval(oneHour) : picker
-        endLabel.text = Date().fullDate(str: "\(picker)")
+        let date = lesson != nil ? Date().convertStrToDate(str: lesson?.startDate) : selectedDate
+        let picker = date?.addingTimeInterval(oneHour) ?? Date()
         
         endDatePicker.setDate(picker, animated: true)
         endDatePicker.minuteInterval = 5
         endDatePicker.isHidden = true
+        
+        setEndDateLabel()
     }
+    
+    private func setStartDateLabel() {
+           startLabel.text = Date().fullDate(str: "\(startDatePicker.date)")
+       }
+    
+    private func setEndDateLabel() {
+        endLabel.text = Date().fullDate(str: "\(endDatePicker.date)")
+    }
+    
+    
     
     private func setupNavigationBar() {
         let navBar                  = self.navigationController?.navigationBar
@@ -343,7 +339,7 @@ extension AddOrEditLessonTVC {
         let priceCell = IndexPath(row:0, section: 3)
         
         if indexPath == priceCell {
-            cell.contentView.backgroundColor = .bgStudent
+            cell.contentView.backgroundColor = .appBlueDark
         }
     }
     

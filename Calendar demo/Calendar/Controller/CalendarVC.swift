@@ -21,6 +21,7 @@ class CalendarVC: UIViewController {
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var separatorImage: UIImageView!
     
     private let networkManagerCalendar = NetworkManagerCalendar()
     private var lessons: [LessonModel]?
@@ -73,7 +74,7 @@ extension CalendarVC {
         setupNavigationBar()
         backgroundColor()
         
-
+        separatorImage.backgroundColor = .separator
         calendarView.changeDaysOutShowingState(shouldShow: true)
     }
     
@@ -137,7 +138,7 @@ extension CalendarVC {
                 return
             }
             self?.lessons = calendar
-            //            print(calendar)
+//                        print(calendar)
             self?.filterLessons(day: "\("\(Date())".prefix(10))")
             
             DispatchQueue.main.async {
@@ -198,25 +199,34 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
         case 0:
             return 10
         default:
-            return UITableView.automaticDimension
+            return 60
         }
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        guard let meeting = selectedDay?[indexPath.row] else { return }
+        print(selectedDay)
+        guard let meeting = selectedDay?[indexPath.section] else { return }
         onCellTap?(meeting)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        print("deleteSelectedDay", selectedDay, indexPath)
         guard editingStyle == .delete else { return }
-        let selectedLesson = selectedDay?[indexPath.row]
-        lessons?.remove(at: indexPath.row)
-        
+        let selectedLesson = selectedDay?[indexPath.section]
+        lessons?.remove(at: indexPath.section)
+        selectedDay?.remove(at: indexPath.section)
         deleteLesson(lessonId: selectedLesson?.lessonId ?? 0)
         calendarView.contentController.refreshPresentedMonth()
-        calendarView.commitCalendarViewUpdate()
+
+//        calendarView.commitCalendarViewUpdate()
         menuView.commitMenuViewUpdate()
-        filterLessons(day: "\("\(Date())".prefix(10))")
+//        filterLessons(day: "\("\(calendarView.presentedDate.convertedDate())".prefix(10))")
+//        if let day = calendarView.presentedDate.convertedDate() {
+//            let currentDay = "\(day.addingTimeInterval(60 * 60 * 24))"
+//        selectDay(day: currentDay)
+//        }
+        
+        
         tableView.reloadData()
     }
     
@@ -365,7 +375,22 @@ extension CalendarVC: CVCalendarViewDelegate {
         }
     }
     
+//    private func selectDay(day: String) {
+//
+//            let currentDay = day
+//            let shortCurrentDay = String(currentDay.prefix(10))
+//
+//            filterLessons(day: shortCurrentDay)
+//
+//            self.tableView.reloadData()
+//            self.tableView.tableFooterView = UIView()
+//            self.dateLabel.text = Date().fullScreenDate(str: "\(currentDay)")
+//
+//    }
+    
     private func filterLessons(day: String) {
-        selectedDay = lessons?.filter { ($0.duration?.filter({ $0.contains("\(String(describing: day))") == true }) != []) == true }
+        selectedDay = lessons?.filter { ($0.duration?.filter({ $0.contains(day) == true }) != []) == true }
+        print("Lessons ->>>>>>>>>", lessons)
+        print("Selected Day ->>>>>>>>>", selectedDay)
     }
 }

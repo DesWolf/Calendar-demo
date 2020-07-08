@@ -73,8 +73,7 @@ extension AddOrEditStudentTVC {
         }
         
         setupNavigationBar()
-        
-        
+        hideKeyboardWhenTappedAround()
     }
     
     private func setupNavigationBar() {

@@ -16,12 +16,6 @@ extension Date {
         return dateFormatter.string(from: self)
     }
     
-    //    func month(date: Date) -> String {
-    //       let dateFormatter = DateFormatter()
-    //       dateFormatter.dateFormat = "MMMM"
-    //       return dateFormatter.string(from: date)
-    //   }
-    
     var secondsFromGMT: Int { return TimeZone.current.secondsFromGMT() }
     
     

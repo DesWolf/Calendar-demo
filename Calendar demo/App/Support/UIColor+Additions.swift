@@ -10,14 +10,18 @@ import UIKit
 
 extension UIColor {
     
-    static let rwGreen = UIColor(red: 0.0/255.0, green: 104.0/255.0, blue: 55.0/255.0, alpha: 1.0)
-    static let bgStudent = UIColor(red: 81/255, green: 108/255, blue: 180/255, alpha: 1)
-    static let bgStudentTransperent = UIColor(red: 81/255, green: 108/255, blue: 180/255, alpha: 0.3)
+//    static let rwGreen = UIColor(red: 0.0/255.0, green: 104.0/255.0, blue: 55.0/255.0, alpha: 1.0)
+//    static let bgStudent = UIColor(red: 81/255, green: 108/255, blue: 180/255, alpha: 1)
+//    static let bgStudentTransperent = UIColor(red: 81/255, green: 108/255, blue: 180/255, alpha: 0.3)
     static let iconsGray = UIColor(red: 209/255, green: 209/255, blue: 214/255, alpha: 1)
+    static let separator = UIColor(red: 255/255, green: 255/255, blue: 255/255, alpha: 0.5)
+    
     
     static let appBlueLignt = UIColor(red: 83/255, green: 185/255, blue: 208/255, alpha: 1)
     static let appBlueDark = UIColor(red: 88/255, green: 110/255, blue: 180/255, alpha: 1)
     static let appGray = UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1)
+    static let appPink = UIColor(red: 217/255, green: 133/255, blue: 234/255, alpha: 1)
+    static let appGreen = UIColor(red: 52/255, green: 199/255, blue: 89/255, alpha: 1)
     
     
     static func setGradientToTableView(tableView: UITableView, height: Double) {
@@ -47,9 +51,9 @@ extension UIColor {
     
 }
 
-extension CGColor {
-    @available(iOS 13.0, *)
-    static let appBlueLignt = CGColor(srgbRed: 83/255, green: 185/255, blue: 208/255, alpha: 1)
-    @available(iOS 13.0, *)
-    static let appBlueDark = CGColor(srgbRed: 88/255, green: 110/255, blue: 180/255, alpha: 1)
-}
+//extension CGColor {
+//    @available(iOS 13.0, *)
+//    static let appBlueLignt = CGColor(srgbRed: 83/255, green: 185/255, blue: 208/255, alpha: 1)
+//    @available(iOS 13.0, *)
+//    static let appBlueDark = CGColor(srgbRed: 88/255, green: 110/255, blue: 180/255, alpha: 1)
+//}

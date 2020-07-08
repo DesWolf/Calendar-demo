@@ -59,14 +59,11 @@ class LessonDetailedTVC: UITableViewController {
 //MARK: Setup Screen
 extension LessonDetailedTVC {
     func setupScreen(lesson: LessonModel?) {
-//        let lessonStart = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
-//        let lessonEnd = Date().convertStrToDate(str: "\(lesson?.dateStart ?? "2020-01-01") \(lesson?.timeStart ?? "00:00:00")")
-//        let endRepeat = Date().convertStrToDate(str: "\(lesson?.endRepeat ?? "2020-01-01 00:00:00 +0000")")
         
-        let startTime           = Date().time(str: "\(String(describing: lesson?.startDate))")
-        let endTime             = Date().time(str: "\(String(describing: lesson?.endDate))")
-        let date                = Date().fullScreenDate(str: "\(String(describing: lesson?.startDate))")
-        let endDate             = Date().date(str: "\(String(describing: lesson?.endDate))")
+        let startTime           = Date().time(str: lesson?.startDate)
+        let endTime             = Date().time(str: lesson?.endDate)
+        let date                = Date().fullScreenDate(str: lesson?.startDate)
+        let endDate             = Date().date(str: lesson?.endDate)
         
         nameLabel.text          = lesson?.lessonName ?? ""
         placeLabel.text         = lesson?.place ?? ""
@@ -127,7 +124,7 @@ extension LessonDetailedTVC {
         let payment = IndexPath(row: 0, section: 2)
         switch indexPath {
         case payment:
-            cell.backgroundColor = .bgStudent
+            cell.backgroundColor = .appBlueDark
         default:
             break
         }
