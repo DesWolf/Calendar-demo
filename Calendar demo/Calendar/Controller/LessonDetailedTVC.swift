@@ -23,7 +23,7 @@ class LessonDetailedTVC: UITableViewController {
     @IBOutlet weak var paymentLabel: UILabel!
     
     var lesson: LessonModel?
-    private var paymentDate: String?
+    //    private var paymentDate: String?
     private let networkManagerCalendar = NetworkManagerCalendar()
     
     public var onEditButtonTap: ((LessonModel) -> (Void))?
@@ -66,7 +66,6 @@ extension LessonDetailedTVC {
         let date                = Date().str(str: lesson?.startDate, to: .fullDateTime)
         let endDate             = Date().str(str: lesson?.endDate, to: .date)
         
-        
         nameLabel.text          = name ?? "Без названия"
         placeLabel.text         = lesson?.place ?? ""
         disciplineLabel.text    = lesson?.discipline ?? ""
@@ -77,6 +76,7 @@ extension LessonDetailedTVC {
         repeatLabel.text        = lesson?.repeatedly == "weekly" ? "до \(endDate)" : "Нет"
         priceLabel.text         = "\(lesson?.price ?? 0) руб."
         paymentLabel.text       = lesson?.payStatus == 0 ? "Не оплаченно" : "Оплаченно"
+        paymentLabel.textColor  = lesson?.payStatus == 0 ? .systemRed : .systemGreen
         
         tableView.backgroundColor = .clear
     }
@@ -86,9 +86,9 @@ extension LessonDetailedTVC {
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let gradientHeight = statusBarHeight + navBar!.frame.height
         
-
+        
         UINavigationBar().setClearNavBar(controller: self)
-    
+        
         navigationItem.leftBarButtonItem?.title = "Назад"
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
@@ -133,16 +133,16 @@ extension LessonDetailedTVC {
     }
     
     override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
-      let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
+        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
         headerView.backgroundColor = .clear
-    
-      return headerView
+        
+        return headerView
     }
     
     override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
-           footerView.backgroundColor = .clear
-         return footerView
+        footerView.backgroundColor = .clear
+        return footerView
     }
 }
 
@@ -151,28 +151,22 @@ extension LessonDetailedTVC {
     @IBAction func unwiSegueCurrentLesson(_ segue: UIStoryboardSegue) {
         
         guard let desTVC = segue.source as? PaymentTVC else { return }
-        let textCollor: UIColor = desTVC.payment == "Не оплаченно" ? .systemRed : .systemGreen
-        self.paymentLabel.textColor = textCollor
-        self.paymentLabel.text = desTVC.payment
-        self.paymentDate = desTVC.dateOfPaymentLabel.text
         
-        lesson?.payStatus = desTVC.payment == "Не оплачено" ?  0 : 1
-        lesson?.paymentDate = paymentDate
+        paymentLabel.textColor      = desTVC.payment == 0 ? .systemRed : .systemGreen
+        paymentLabel.text           = desTVC.payment == 0 ? "Не оплаченно" : "Оплаченно"
+        lesson?.payStatus           = desTVC.payment
+        lesson?.paymentDate         = desTVC.dateOfPaymentLabel.text
+        
         changeLesson(lesson: lesson!)
         self.tableView.reloadData()
         
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        switch segue.identifier {
-        case "payment":
+        if segue.identifier == "payment" {
             guard let destVC = segue.destination as? PaymentTVC else { return }
-            destVC.payment = paymentLabel.text ?? "Не оплаченно"
-            destVC.paymentDate = paymentDate
-        case .none:
-            return
-        case .some(_):
-            return
+            destVC.payment =  lesson?.payStatus
+            destVC.paymentDate = lesson?.paymentDate
         }
     }
 }
@@ -197,19 +191,19 @@ extension LessonDetailedTVC {
     }
     
     private func changeLesson(lesson: LessonModel) {
-        networkManagerCalendar.changeLesson(lessonId:    lesson.lessonId ?? 0,
-                                            name:        lesson.lessonName ?? "",
-                                            place:       lesson.place ?? "",
-                                            studentId:   lesson.studentId ?? 0,
-                                            discipline:  lesson.discipline ?? "",
-                                            startDate:   lesson.startDate ?? "",
-                                            endDate:     lesson.endDate ?? "",
-                                            repeatedly:  lesson.repeatedly ?? "",
-                                            endRepeat:   lesson.endRepeat ?? "",
-                                            price:       lesson.price ?? 0,
-                                            note:        lesson.note ?? "",
-                                            payStatus:   lesson.payStatus ?? 0,
-                                            paymentDate: lesson.paymentDate ?? "")
+        networkManagerCalendar.changeLesson(lessonId    : lesson.lessonId ?? 0,
+                                            name        : lesson.lessonName ?? "",
+                                            place       : lesson.place ?? "",
+                                            studentId   : lesson.studentId ?? 0,
+                                            discipline  : lesson.discipline ?? "",
+                                            startDate   : lesson.startDate ?? "",
+                                            endDate     : lesson.endDate ?? "",
+                                            repeatedly  : lesson.repeatedly ?? "",
+                                            endRepeat   : lesson.endRepeat ?? "",
+                                            price       : lesson.price ?? 0,
+                                            note        : lesson.note ?? "",
+                                            payStatus   : lesson.payStatus ?? 0,
+                                            paymentDate : lesson.paymentDate ?? "")
         { [weak self]  (responce, error)  in
             guard let responce = responce else {
                 print(error ?? "")

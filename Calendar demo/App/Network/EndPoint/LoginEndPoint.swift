@@ -20,7 +20,7 @@ public enum LoginApi {
 }
 
 extension LoginApi: EndPointType {
-  
+    
     var environmentBaseURL : String {
         switch NetworkManagerStudents.environment {
         case .qa: return "http://f0435023.xsph.ru/api/"
@@ -50,21 +50,21 @@ extension LoginApi: EndPointType {
     var task: HTTPTask {
         switch self {
         case .registerUser(let email, let password, let confirmPassword):
-            return .requestParametersAndHeaders(bodyParameters: [ "email": "\(email)",
-                                                        "password": "\(password)",
-                                                        "confirm_password": "\(confirmPassword)"],
-                                      bodyEncoding: .jsonEncoding,
-                                      urlParameters: nil,
-                additionHeaders: ["Content-Type":"application/json; charset=utf-8",
-                                "key": NetworkManagerLogin.TeachOrgAPIKey])
-
+            return .requestParametersAndHeaders(bodyParameters: [   "email": "\(email)",
+                                                                    "password": "\(password)",
+                                                                    "confirm_password": "\(confirmPassword)"],
+                                                bodyEncoding: .jsonEncoding,
+                                                urlParameters: nil,
+                                                additionHeaders: ["Content-Type":"application/json; charset=utf-8",
+                                                                  "key": NetworkManagerLogin.TeachOrgAPIKey])
+            
         case .loginUser(let email, let password):
             return .requestParametersAndHeaders(bodyParameters: [ "email": "\(email)",
-                                                        "password": "\(password)"],
-                                    bodyEncoding: .jsonEncoding,
-                                    urlParameters: nil,
-            additionHeaders: ["Content-Type":"application/json; charset=utf-8",
-                                "key": NetworkManagerLogin.TeachOrgAPIKey])
+                "password": "\(password)"],
+                                                bodyEncoding: .jsonEncoding,
+                                                urlParameters: nil,
+                                                additionHeaders: ["Content-Type":"application/json; charset=utf-8",
+                                                                  "key": NetworkManagerLogin.TeachOrgAPIKey])
         }
     }
     

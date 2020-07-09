@@ -9,7 +9,7 @@
 import UIKit
 
 enum NetworkResponse:String {
-    case success
+    case success = "200-299 Sucsess"
     case incorrectAPI = "403 incorrect API"
     case dataError = "400 Send data Error"
     case incorrectToken = "401 Token incorrect"
@@ -22,7 +22,7 @@ enum NetworkResponse:String {
 }
 
 enum Result<String>{
-    case success
+    case success(String)
     case failure(String)
 }
 
@@ -88,10 +88,10 @@ struct NetworkManagerLogin {
     }
     fileprivate func handleNetworkResponse(_ response: HTTPURLResponse) -> Result<String>{
         switch response.statusCode {
-        case 200...299: return .success
-        case 400: return .failure(NetworkResponse.dataError.rawValue)
-        case 401: return .failure(NetworkResponse.incorrectToken.rawValue)
-        case 403: return .failure(NetworkResponse.incorrectAPI.rawValue)
+        case 200...299: return .success(NetworkResponse.success.rawValue)
+        case 400: return .success(NetworkResponse.dataError.rawValue)
+        case 401: return .success(NetworkResponse.incorrectToken.rawValue)
+        case 403: return .success(NetworkResponse.incorrectAPI.rawValue)
         case 404...500: return .failure(NetworkResponse.dataNotFound.rawValue)
         case 501...599: return .failure(NetworkResponse.badRequest.rawValue)
         case 600: return .failure(NetworkResponse.outdated.rawValue)

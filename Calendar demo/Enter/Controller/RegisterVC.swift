@@ -14,9 +14,7 @@ class RegisterVC: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var confirmPasswordTF: UITextField!
     
-//    private var email: String = ""
-//    private var password: String = ""
-//    private var confirmPassword: String = ""
+    var onEnterButtonTap: (() -> (Void))?
     
     private let networkManagerLogin = NetworkManagerLogin()
     override func viewDidLoad() {
@@ -54,8 +52,11 @@ class RegisterVC: UIViewController {
             simpleAlert(message: "Пожалуйста, заполните необходимые поля")
         } else {
             registerUser(email: userEmail!, password: userPassword!, confirmPassword: userConfirmPassword!)
+//            onEnterButtonTap?()
+        }
     }
-    }
+    
+    @IBAction func onEnterButtonTap(_ sender: Any) { onEnterButtonTap?() }
 }
 
 
@@ -71,7 +72,18 @@ extension RegisterVC {
                 }
                 return
             }
-            print(message.message ?? "")
+            if message.error != nil {
+                var mes = ""
+                
+                if message.error?.email != nil               { mes = String(describing: message.error?.email ?? "") }
+                if message.error?.password != nil            { mes = String(describing: message.error?.password ?? "") }
+                if message.error?.confirmPassword != nil     { mes = String(describing: message.error?.confirmPassword ?? "") }
+                
+                DispatchQueue.main.async {
+                    self?.simpleAlert(message: mes )
+                }
+            }
+            print(message)
         }
     }
 }

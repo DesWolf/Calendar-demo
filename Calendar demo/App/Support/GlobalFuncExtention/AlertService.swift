@@ -19,6 +19,23 @@ extension UIAlertController {
         target.present(alert, animated: true, completion: nil)
     }
     
+    
+    class func paymentAlert(target: UIViewController, actionHandler: ((_ press: Bool) -> Void)? = nil) {
+        let alert = UIAlertController(title: "Занятие оплачено?", message: "", preferredStyle: .alert)
+        
+
+        alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: {
+            (action:UIAlertAction) in
+            actionHandler?(false)
+        }))
+        
+        
+        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { (action:UIAlertAction) in
+            actionHandler?(true)
+        }))
+        target.present(alert, animated: true, completion: nil)
+    }
+    
     class func addTextAlert(title:String, target: UIViewController, actionHandler: ((_ text: String?) -> Void)? = nil) {
         let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
         

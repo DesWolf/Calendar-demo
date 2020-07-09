@@ -16,10 +16,15 @@ class LoginVC: UIViewController {
     @IBOutlet weak var passwordTF: UITextField!
     @IBOutlet weak var loginButton: UIButton!
     
+    var email: String?
+    var password: String?
+    
+    var onRegisterButtonTap: (() -> (Void))?
     private let networkManagerLogin = NetworkManagerLogin()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupScreen()
     }
     
     @IBAction func emailTFAction(_ sender: Any) {
@@ -51,7 +56,20 @@ class LoginVC: UIViewController {
         }
     }
     
+    @IBAction func onRegisterButtonTap(_ sender: Any) { onRegisterButtonTap?() }
     
+}
+
+//MARK: SetupScreen
+extension LoginVC {
+    private func setupScreen() {
+        if email != nil, password != nil {
+            emailTF.text = email
+            passwordTF.text = password
+        }
+        
+        
+    }
 }
 
 //MARK: Network
@@ -60,10 +78,9 @@ extension LoginVC {
         networkManagerLogin.loginUser(email: email, password: password) { [weak self] (message, error)  in
             
             if message?.token == nil {
-                print("\(error ?? ""), \(message?.error ?? [""])")
+                print(error ?? "")
                 DispatchQueue.main.async {
-                    self?.simpleAlert(message: error ?? "")
-                    self?.simpleAlert(message: message?.error?.first ?? "")
+                    self?.simpleAlert(message: "Ошибка токена")
                 }
             } else {
                 
@@ -73,13 +90,13 @@ extension LoginVC {
                 guard let id2 = id else { return }
                 
                 self?.saveDataToKeychein(accessToken: token2, teacherId: "\(id2)" )
-            DispatchQueue.main.async {
-                
-                let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-                let homePage = mainStoryboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-                let appDelegate = UIApplication.shared.delegate
-                appDelegate?.window??.rootViewController = homePage
-            }
+                DispatchQueue.main.async {
+                    
+                    let mainStoryboard:UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
+                    let homePage = mainStoryboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+                    let appDelegate = UIApplication.shared.delegate
+                    appDelegate?.window??.rootViewController = homePage
+                }
             }
         }
     }

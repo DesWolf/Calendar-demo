@@ -44,8 +44,6 @@ extension Date {
         return Calendar(identifier: .gregorian).date(byAdding: components, to: date)!
     }
     
-    
-    
     public func strToDate(str: String?) -> Date {
         var newStr = str ?? "\(Date())"
         let dateFormatter = DateFormatter()

@@ -40,13 +40,9 @@ class StudentsListTVC: UITableViewController {
         self.tableView.reloadData()
     }
     
-    @IBAction func addStudent(_ sender: Any) {
-        onAddButtonTap?()
-    }
+    @IBAction func addStudent(_ sender: Any) { onAddButtonTap?() }
     
-    @IBAction func refreshButton(_ sender: Any) {
-        fetchStudents()
-    }
+    @IBAction func refreshButton(_ sender: Any) { fetchStudents() }
     
 }
 // MARK: Set Screen

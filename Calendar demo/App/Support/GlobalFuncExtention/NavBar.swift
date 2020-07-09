@@ -10,7 +10,7 @@ import UIKit
 
 extension UINavigationBar {
     
-    public func setClearNavBar(controller: UITableViewController) {
+    public func setClearNavBar(controller: UIViewController) {
         let navBar = controller.navigationController?.navigationBar
         
         navBar?.setBackgroundImage(UIImage(), for: .default)

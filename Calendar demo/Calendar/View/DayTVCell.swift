@@ -52,7 +52,7 @@ extension DayTVCell {
         let lessonDate = Date().strToDate(str: meeting.endDate)
         
         if lessonDate > now {
-            statusImage.backgroundColor         = meeting.studentName == nil ? .appBlueDark : .appGreen
+            statusImage.backgroundColor         = meeting.studentName == nil ? .appBlueDark : .appGray
             payStatusLabel.textColor            = meeting.payStatus == 1 ? UIColor.systemGreen : UIColor.systemRed
             
         } else {

@@ -24,9 +24,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let homePage = mainStoryboard.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
             self.window?.rootViewController = homePage
         } else {
-            let mainStoryboard:UIStoryboard = UIStoryboard(name: "LoginStoryboard", bundle: nil)
-            let loginPage = mainStoryboard.instantiateViewController(withIdentifier: "EnterScreenVC") as! EnterScreenVC
+            let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+            let loginPage = mainStoryboard.instantiateViewController(withIdentifier: "LoginNavController") as! UINavigationController
             self.window?.rootViewController = loginPage
+            
+            
+//            let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+//            let loginPage = mainStoryboard.instantiateViewController(withIdentifier: "EnterScreenVC") as! EnterScreenVC
+//            self.window?.rootViewController = loginPage
         }
         
         notifications.requestAutorization()

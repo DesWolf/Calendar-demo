@@ -10,8 +10,18 @@ import UIKit
 
 class EnterScreenVC: UIViewController {
 
+    var onEnterButtonTap: (() -> (Void))?
+    var onRegisterButtonTap: (() -> (Void))?
+    
+    
   override func viewDidLoad() {
         super.viewDidLoad()
+        
+    
     }
+    
+    @IBAction func enterTap(_ sender: Any) { onEnterButtonTap?() }
+    
+    @IBAction func registerTap(_ sender: Any) { onRegisterButtonTap?() }
 }
 

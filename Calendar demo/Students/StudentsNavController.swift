@@ -10,7 +10,7 @@ import UIKit
 
 class StudentsNavController: UINavigationController {
     
-    private let stStoryboard = UIStoryboard(name: "Students", bundle:nil)
+    private let stStoryboard = UIStoryboard(name: "Students", bundle: nil)
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +24,7 @@ class StudentsNavController: UINavigationController {
             guard let self = self else { return }
             self.openAddOrEditStudent(student: nil)
         }
+        
         listOfStudents.onCellTap = { [weak self] (student) in
             guard let self = self else { return }
             self.openDetails(from: .list(student: student))

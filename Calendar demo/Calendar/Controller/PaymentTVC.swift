@@ -15,7 +15,7 @@ class PaymentTVC: UITableViewController {
     @IBOutlet weak var paymentPicker: UIDatePicker!
     @IBOutlet weak var notPaidCheckImage: UIImageView!
     
-    var payment = ""
+    var payment: Int?
     var paymentDate: String?
     
     override func viewDidLoad() {
@@ -35,12 +35,12 @@ extension PaymentTVC {
         setupNavigationBar()
         setupPicker()
         
-        if payment == "Не оплаченно" {
+        if payment == 0 {
             notPaidCheckImage.image =  #imageLiteral(resourceName: "checkmark")
-            payment = "Не оплаченно"
+            payment = 0
         }  else {
             paidCheckImage.image = #imageLiteral(resourceName: "checkmark")
-            payment = "Оплаченно"
+            payment = 1
             dateOfPaymentLabel.text = paymentDate ?? ""
         }
     }
@@ -52,7 +52,7 @@ extension PaymentTVC {
     
     private func setupPicker() {
         
-        if payment == "Не оплаченно" {
+        if payment == 0 {
             dateOfPaymentLabel.text         = Date().str(str: "\(paymentPicker.date)", to: .date)
             dateOfPaymentLabel.isHidden     = true
             
@@ -87,7 +87,7 @@ extension PaymentTVC {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         switch indexPath.row {
         case 0:
-            payment = "Не оплаченно"
+            payment = 0
             notPaidCheckImage.image =  #imageLiteral(resourceName: "checkmark")
             paidCheckImage.image = #imageLiteral(resourceName: "oval")
             if !dateOfPaymentLabel.isHidden {
@@ -97,7 +97,7 @@ extension PaymentTVC {
                 
             }
         case 1:
-            payment = "Оплаченно"
+            payment = 1
             notPaidCheckImage.image =  #imageLiteral(resourceName: "oval")
             paidCheckImage.image = #imageLiteral(resourceName: "checkmark")
             if dateOfPaymentLabel.isHidden {

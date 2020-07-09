@@ -7,49 +7,65 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "0FF0C6B1-682A-41DE-BFE9-BF47865BB3AD"
-            shouldBeEnabled = "No"
+            uuid = "B411D1E8-70FE-4B2C-A7ED-4414F421C195"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Calendar demo/Calendar/Controller/CalendarVC.swift"
+            filePath = "Calendar demo/Students/StudentsNavController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "378"
-            endingLineNumber = "378"
-            landmarkName = "CalendarVC"
-            landmarkType = "21">
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "openListOfStudents()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B411D1E8-70FE-4B2C-A7ED-4414F421C195 - d90ccbacdab2a268"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Calendar_demo.StudentsNavController.openListOfStudents() -&gt; ()"
+                  moduleName = "Calendar demo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mokuneev/Desktop/swift%20projects/Hackatons/SMZHack/Calendar%20demo/Calendar%20demo/Students/StudentsNavController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "309">
+               </Location>
+               <Location
+                  uuid = "B411D1E8-70FE-4B2C-A7ED-4414F421C195 - b4fd48dd1d55c17c"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 () -&gt; () in Calendar_demo.StudentsNavController.openListOfStudents() -&gt; ()"
+                  moduleName = "Calendar demo"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mokuneev/Desktop/swift%20projects/Hackatons/SMZHack/Calendar%20demo/Calendar%20demo/Students/StudentsNavController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "100">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "09D6E2D4-9769-4A84-87BC-DB4AC10A8B9E"
-            shouldBeEnabled = "No"
+            uuid = "E7F5D252-F86E-4837-9DF6-22AEF4FF0D26"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Calendar demo/Calendar/Controller/CalendarVC.swift"
+            filePath = "Calendar demo/Enter/Controller/EnterScreenVC.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "391"
-            endingLineNumber = "391"
-            landmarkName = "filterLessons(day:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7A5665B6-FDC8-48C6-A757-7046D10ED401"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Calendar demo/Calendar/Controller/CalendarVC.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "365"
-            endingLineNumber = "365"
-            landmarkName = "didSelectDayView(_:animationDidFinish:)"
-            landmarkType = "7">
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "EnterScreenVC"
+            landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>
