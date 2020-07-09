@@ -23,7 +23,7 @@ class CalendarNavController: UINavigationController {
         
         calendar.onAddButtonTap = { [weak self] in
             guard let self = self else { return }
-            let date = Date().convertStrToDate(str: "\(calendar.calendarView.presentedDate.commonDescription)")
+            let date = Date().strToDate(str: "\(calendar.calendarView.presentedDate.commonDescription)")
             self.openAddOrEditLesson(lesson: nil, selectedDate: date)
             
         }

@@ -58,6 +58,7 @@
 		9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */; };
 		9E92C00124815455000B45A5 /* DisciplinesTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92C00024815455000B45A5 /* DisciplinesTVCell.swift */; };
 		9EA67387247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA67386247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift */; };
+		9EADFFE324B70720009F1513 /* LessonDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EADFFE224B70720009F1513 /* LessonDuration.swift */; };
 		9EB0356D249AAD0100F22C57 /* StatisticEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB0356C249AAD0100F22C57 /* StatisticEndPoint.swift */; };
 		9EB0356F249AAD0F00F22C57 /* FinaceEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB0356E249AAD0F00F22C57 /* FinaceEndPoint.swift */; };
 		9EB03571249AAD2E00F22C57 /* NetworkManagerStatistic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EB03570249AAD2E00F22C57 /* NetworkManagerStatistic.swift */; };
@@ -143,6 +144,7 @@
 		9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		9E92C00024815455000B45A5 /* DisciplinesTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesTVCell.swift; sourceTree = "<group>"; };
 		9EA67386247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesCollectionViewCell.swift; sourceTree = "<group>"; };
+		9EADFFE224B70720009F1513 /* LessonDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDuration.swift; sourceTree = "<group>"; };
 		9EB0356C249AAD0100F22C57 /* StatisticEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticEndPoint.swift; sourceTree = "<group>"; };
 		9EB0356E249AAD0F00F22C57 /* FinaceEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FinaceEndPoint.swift; sourceTree = "<group>"; };
 		9EB03570249AAD2E00F22C57 /* NetworkManagerStatistic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerStatistic.swift; sourceTree = "<group>"; };
@@ -201,6 +203,7 @@
 				9E7C1347247D45EE0095C57E /* UIImage Extentions.swift */,
 				9ED2EAC8247D5720001E3767 /* TF Extention.swift */,
 				9ECECBEE248103E60053AC78 /* DisciplinesList.swift */,
+				9EADFFE224B70720009F1513 /* LessonDuration.swift */,
 				9E6B56A9248B987E00042E2B /* DateExtentions.swift */,
 				9E862342248BBDBF0004B3FD /* UIVewControllerExtention.swift */,
 				9E800FE024B1C00D00BCAE63 /* NavBarExtention.swift */,
@@ -722,6 +725,7 @@
 				9E800FE124B1C00D00BCAE63 /* NavBarExtention.swift in Sources */,
 				9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */,
 				9E01A2A6248E75840044AD7F /* RepeatTVC.swift in Sources */,
+				9EADFFE324B70720009F1513 /* LessonDuration.swift in Sources */,
 				9EC155AC246D636700D2C776 /* Router.swift in Sources */,
 				9E6B56A8248B945C00042E2B /* StringExtention.swift in Sources */,
 				9EFD254B247143C700876D48 /* LoginVC.swift in Sources */,

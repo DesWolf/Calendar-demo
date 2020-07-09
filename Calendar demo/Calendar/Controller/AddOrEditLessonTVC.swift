@@ -46,9 +46,10 @@ class AddOrEditLessonTVC: UITableViewController {
     
     
     @IBAction func startDateChanged(sender: UIDatePicker) {
-        let oneHour         = TimeInterval(60 * 60)
+        let dur = StandartDuration.userDur
         
-        endDatePicker.setDate(startDatePicker.date.addingTimeInterval(oneHour), animated: true)
+        endDatePicker.minimumDate = startDatePicker.date
+        endDatePicker.setDate(startDatePicker.date.addingTimeInterval(dur), animated: true)
         
         setStartDateLabel()
         setEndDateLabel()
@@ -82,7 +83,7 @@ extension AddOrEditLessonTVC {
         
         
         if lesson != nil {
-            let endRepeat           = Date().date(str: "\(String(describing: lesson?.endRepeat))")
+            let endRepeat           = Date().str(str: lesson?.endRepeat, to: .date)
             
             nameTF.text             = lesson?.lessonName
             placeTF.text            = lesson?.place ?? ""
@@ -104,7 +105,7 @@ extension AddOrEditLessonTVC {
     }
     
     private func setupStartLessonPicker() {
-        let date = lesson != nil ? Date().convertStrToDate(str: lesson?.startDate) : selectedDate
+        let date = lesson != nil ? Date().strToDate(str: lesson?.startDate) : selectedDate
         let picker = date ?? Date()
         
         startDatePicker.setDate(picker, animated: true)
@@ -115,9 +116,9 @@ extension AddOrEditLessonTVC {
     }
     
     private func setupEndLessonPicker() {
-        let oneHour = TimeInterval(60 * 60)
-        let date = lesson != nil ? Date().convertStrToDate(str: lesson?.startDate) : selectedDate
-        let picker = date?.addingTimeInterval(oneHour) ?? Date()
+        let dur = StandartDuration.userDur
+        let date = lesson != nil ? Date().strToDate(str: lesson?.startDate) : selectedDate
+        let picker = date?.addingTimeInterval(dur) ?? Date()
         
         endDatePicker.setDate(picker, animated: true)
         endDatePicker.minuteInterval = 5
@@ -127,12 +128,11 @@ extension AddOrEditLessonTVC {
     }
     
     private func setStartDateLabel() {
-        print(startDatePicker.date)
-        startLabel.text = Date().fullDate(str: "\(startDatePicker.date)")
+        startLabel.text = Date().str(str: "\(startDatePicker.date)", to: .dateTime)
        }
     
     private func setEndDateLabel() {
-        endLabel.text = Date().fullDate(str: "\(endDatePicker.date)")
+        endLabel.text = Date().str(str: "\(endDatePicker.date)", to: .dateTime)
     }
     
     
@@ -215,7 +215,7 @@ extension AddOrEditLessonTVC {
     }
     
     func saveLesson() {
-        let endRepeat = "\(Date().convertStrToDate(str: endRepeatLabel.text))"
+        let endRepeat = "\(Date().strToDate(str: endRepeatLabel.text))"
         let start = "\(startDatePicker.date)".prefix(19)
         let end = "\(endDatePicker.date)".prefix(19)
         
@@ -227,7 +227,7 @@ extension AddOrEditLessonTVC {
                              studentSurname : student?.surname,
                              discipline     : disciplineLabel.text ?? "",
                              startDate      : "\(start)",
-                             duration       : [""],
+                             duration       : [],
                              endDate        : "\(end)",
                              repeatedly     : repeatLabel.text == "Никогда" ?  "never" : "weekly",
                              endRepeat      :  repeatLabel.text == "Никогда" ? "" : endRepeat,

@@ -24,7 +24,7 @@ class LessonDetailedTVC: UITableViewController {
     
     var lesson: LessonModel?
     private var paymentDate: String?
-    private let networkManagerCalendar =  NetworkManagerCalendar()
+    private let networkManagerCalendar = NetworkManagerCalendar()
     
     public var onEditButtonTap: ((LessonModel) -> (Void))?
     public var onBackButtonTap: (() -> (Void))?
@@ -60,12 +60,14 @@ class LessonDetailedTVC: UITableViewController {
 extension LessonDetailedTVC {
     func setupScreen(lesson: LessonModel?) {
         
-        let startTime           = Date().time(str: lesson?.startDate)
-        let endTime             = Date().time(str: lesson?.endDate)
-        let date                = Date().fullScreenDate(str: lesson?.startDate)
-        let endDate             = Date().date(str: lesson?.endDate)
+        let name                = lesson?.lessonName == "" ? "Без названия" : lesson?.lessonName
+        let startTime           = Date().str(str: lesson?.startDate, to: .time)
+        let endTime             = Date().str(str: lesson?.endDate, to: .time)
+        let date                = Date().str(str: lesson?.startDate, to: .fullDateTime)
+        let endDate             = Date().str(str: lesson?.endDate, to: .date)
         
-        nameLabel.text          = lesson?.lessonName ?? "Без названия"
+        
+        nameLabel.text          = name ?? "Без названия"
         placeLabel.text         = lesson?.place ?? ""
         disciplineLabel.text    = lesson?.discipline ?? ""
         timeLabel.text          = "с \(startTime) до \(endTime)"

@@ -29,8 +29,8 @@ class RepeatTVC: UITableViewController {
     }
     
     @IBAction func endDateChanged(sender: UIDatePicker) {
-        endRepeatLabel.text     = Date().date(str: "\(endRepeatPicker.date)")
-        endOfRepeat             = Date().date(str: "\(endRepeatPicker.date)")
+        endOfRepeat             = Date().str(str: "\(endRepeatPicker.date)", to: .date)
+        endRepeatLabel.text     = endOfRepeat
     }
 }
 
@@ -66,7 +66,7 @@ extension RepeatTVC {
         
         if repeatLesson.rawValue == RepeatLesson.never.rawValue {
             repeatLesson                    = .never
-            endRepeatLabel.text             = Date().date(str: "\(endRepeatPicker.date.addingTimeInterval(oneMonth))")
+            endRepeatLabel.text             = Date().str(str: "\(endRepeatPicker.date.addingTimeInterval(oneMonth))", to: .date)
             endRepeatLabel.isHidden         = true
             
             endRepeatPicker.datePickerMode  = .date
@@ -81,7 +81,7 @@ extension RepeatTVC {
             endRepeatPicker.datePickerMode  = .date
             endRepeatPicker.isHidden        = false
             
-            endRepeatPicker.setDate(Date().convertStrToDate(str: endOfRepeat), animated: true)
+            endRepeatPicker.setDate(Date().strToDate(str: endOfRepeat), animated: true)
         }
     }
 }
@@ -121,7 +121,7 @@ extension RepeatTVC {
             if endRepeatLabel.isHidden {
                 endRepeatLabel.isHidden     = false
                 endRepeatPicker.isHidden    = false
-                endOfRepeat                 = Date().date(str: "\(endRepeatPicker.date)")
+                endOfRepeat                 = Date().str(str: "\(endRepeatPicker.date)", to: . date)
                 
                 pickerAnimation(indexPath: indexPath)
             }

@@ -27,8 +27,8 @@ class DayTVCell: UITableViewCell {
 extension DayTVCell {
     
     private func textLesson(meeting: LessonModel) {
-        startTimeLabel.text         = Date().time(str: meeting.startDate)
-        endTimeLabel.text           = Date().time(str: meeting.endDate)
+        startTimeLabel.text         = Date().str(str: meeting.startDate, to: .time)
+        endTimeLabel.text           = Date().str(str: meeting.endDate, to: .time)
         
         if meeting.studentName != nil {
             nameLabel.text          = "Урок с \(meeting.studentName ?? "") \(meeting.studentSurname ?? "")"
@@ -49,7 +49,7 @@ extension DayTVCell {
     private func colourLesson(meeting: LessonModel) {
         
         let now = Date()
-        let lessonDate = Date().convertStrToDate(str: meeting.startDate)
+        let lessonDate = Date().strToDate(str: meeting.endDate)
         
         if lessonDate > now {
             statusImage.backgroundColor         = meeting.studentName == nil ? .appBlueDark : .appGreen

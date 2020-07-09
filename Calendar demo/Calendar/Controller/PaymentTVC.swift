@@ -24,8 +24,8 @@ class PaymentTVC: UITableViewController {
     }
     
     @IBAction func paimentChanged(sender: UIDatePicker) {
-        dateOfPaymentLabel.text     = Date().date(str: "\(paymentPicker.date)")
-        paymentDate                 = Date().date(str: "\(paymentPicker.date)")
+        paymentDate                 = Date().str(str: "\(paymentPicker.date)", to: .date)
+        dateOfPaymentLabel.text     = paymentDate
     }
 }
 
@@ -53,7 +53,7 @@ extension PaymentTVC {
     private func setupPicker() {
         
         if payment == "Не оплаченно" {
-            dateOfPaymentLabel.text         = Date().date(str: "\(paymentPicker.date)")
+            dateOfPaymentLabel.text         = Date().str(str: "\(paymentPicker.date)", to: .date)
             dateOfPaymentLabel.isHidden     = true
             
             paymentPicker.datePickerMode    = .date
@@ -65,7 +65,7 @@ extension PaymentTVC {
             
             dateOfPaymentLabel.isHidden     = false
             paymentPicker.isHidden          = false
-            paymentPicker.setDate(Date().convertStrToDate(str: paymentDate), animated: true)
+            paymentPicker.setDate(Date().strToDate(str: paymentDate), animated: true)
         }
     }
 }

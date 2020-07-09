@@ -371,7 +371,7 @@ extension CalendarVC: CVCalendarViewDelegate {
             
             self.tableView.reloadData()
             self.tableView.tableFooterView = UIView()
-            self.dateLabel.text = Date().fullScreenDate(str: "\(currentDay)")
+            self.dateLabel.text = Date().str(str: "\(currentDay)", to: .fullDateTime)
         }
     }
     
