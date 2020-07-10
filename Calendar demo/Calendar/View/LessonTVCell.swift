@@ -8,7 +8,7 @@
 
 import UIKit
 
-class DayTVCell: UITableViewCell {
+class LessonTVCell: UITableViewCell {
     
     @IBOutlet weak var statusImage: UIImageView!
     @IBOutlet weak var startTimeLabel: UILabel!
@@ -24,7 +24,7 @@ class DayTVCell: UITableViewCell {
     }
 }
 
-extension DayTVCell {
+extension LessonTVCell {
     
     private func textLesson(meeting: LessonModel) {
         startTimeLabel.text         = Date().str(str: meeting.startDate, to: .time)
@@ -51,8 +51,10 @@ extension DayTVCell {
         let now = Date()
         let lessonDate = Date().strToDate(str: meeting.endDate)
         
+        print(now, lessonDate)
+        
         if lessonDate > now {
-            statusImage.backgroundColor         = meeting.studentName == nil ? .appBlueDark : .appGray
+            statusImage.backgroundColor         = meeting.studentName != nil ? .appBlueDark : .systemPink
             payStatusLabel.textColor            = meeting.payStatus == 1 ? UIColor.systemGreen : UIColor.systemRed
             
         } else {

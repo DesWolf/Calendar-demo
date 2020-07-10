@@ -52,7 +52,10 @@ extension StudentsListTVC {
         let navBar = self.navigationController?.navigationBar
         
         navBar?.prefersLargeTitles = false
-        self.title = "Контакты"
+        
+        title = "Выбор ученика"
+        navBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
+        tableView.tableFooterView = UIView()
     }
 }
 // MARK: Network
@@ -102,7 +105,9 @@ extension StudentsListTVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "contactsTVCell", for: indexPath) as! StudentsTVCell
         let student = isFiltering ? filtredStudents[indexPath.row] : students[indexPath.row]
+        
         cell.configere(with: student)
+        
         return cell
     }
     
@@ -116,6 +121,7 @@ extension StudentsListTVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedStudent = students[indexPath.row]
+        print(indexPath.row)
         onCellTap?(selectedStudent)
     }
 }
@@ -139,7 +145,7 @@ extension StudentsListTVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
-        searchController.obscuresBackgroundDuringPresentation = searchBarisEmpty ? true : false
+//        searchController.obscuresBackgroundDuringPresentation = searchBarisEmpty ? true : false
     }
     
     private func filterContentForSearchText(_ searchText: String){

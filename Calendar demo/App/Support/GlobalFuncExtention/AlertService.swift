@@ -23,7 +23,7 @@ extension UIAlertController {
     class func paymentAlert(target: UIViewController, actionHandler: ((_ press: Bool) -> Void)? = nil) {
         let alert = UIAlertController(title: "Занятие оплачено?", message: "", preferredStyle: .alert)
         
-
+        
         alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: {
             (action:UIAlertAction) in
             actionHandler?(false)
@@ -36,12 +36,12 @@ extension UIAlertController {
         target.present(alert, animated: true, completion: nil)
     }
     
-    class func addTextAlert(title:String, target: UIViewController, actionHandler: ((_ text: String?) -> Void)? = nil) {
-        let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
+    class func addTextAlert(target: UIViewController, actionHandler: ((_ text: String?) -> Void)? = nil) {
+        let alert = UIAlertController(title: "Новая дисциплина", message: "", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = "Добавьте дисциплину..."
+            textField.placeholder = "Введите название дисциплины"
         })
         
         alert.addAction(UIAlertAction(title: "Добавить", style: .default, handler: { (action:UIAlertAction) in
@@ -52,5 +52,29 @@ extension UIAlertController {
             actionHandler?(textField.text)
         }))
         target.present(alert, animated: true, completion: nil)
+    }
+    
+    class func goSettings(target: UIViewController) {
+        
+        let alertController = UIAlertController (title: "Для добавление фото, необходимо предоставить доступ к камере в настройках телефона", message: "Перейти в Настройки?", preferredStyle: .alert)
+        
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alertController.addAction(cancelAction)
+        let settingsAction = UIAlertAction(title: "Settings", style: .default) { (_) -> Void in
+            guard let settingsUrl = URL(string: UIApplication.openSettingsURLString) else {
+                return
+            }
+            
+            if UIApplication.shared.canOpenURL(settingsUrl) {
+                UIApplication.shared.open(settingsUrl, completionHandler: { (success) in
+                    print("Settings opened: \(success)") // Prints true
+                })
+            }
+        }
+        alertController.addAction(settingsAction)
+        
+        
+        target.present(alertController, animated: true, completion: nil)
     }
 }

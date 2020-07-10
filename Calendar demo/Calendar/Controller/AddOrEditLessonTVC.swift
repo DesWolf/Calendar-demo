@@ -161,8 +161,8 @@ extension AddOrEditLessonTVC {
             self.student = studentTVC.selectedStudent
             self.studentLabel.text = "\(self.student?.name ?? "") \(self.student?.surname ?? "")"
             
-            let nav = self.navigationController?.navigationBar
-            nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+//            print(student)
+            
         }
         
         if let disciplineTVC = segue.source as? DisciplinesForLessonTVC {
@@ -184,6 +184,10 @@ extension AddOrEditLessonTVC {
             self.notificationLabel.text = "\(notifTVC.selectedNotification)"
             self.notifInSeconds = notifTVC.notifInSeconds
         }
+        
+        let nav = self.navigationController?.navigationBar
+        nav?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -222,7 +226,7 @@ extension AddOrEditLessonTVC {
         lesson = LessonModel(lessonId       : lesson != nil ? lesson?.lessonId : nil,
                              lessonName     : nameTF.text,
                              place          : placeTF.text,
-                             studentId      : lesson != nil ? lesson?.studentId : student?.studentId,
+                             studentId      : student?.studentId == nil ? lesson?.studentId : student?.studentId,
                              studentName    : student?.name,
                              studentSurname : student?.surname,
                              discipline     : disciplineLabel.text ?? "",

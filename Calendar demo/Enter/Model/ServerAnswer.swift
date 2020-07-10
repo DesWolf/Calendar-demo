@@ -10,7 +10,7 @@ import Foundation
 
 struct ServerAuthorizationAnswer: Decodable {
     let message: String?
-    let error: ErrorType?
+    let error: [ErrorType]?
     let teacherId: Int?
     let token: String?
 }

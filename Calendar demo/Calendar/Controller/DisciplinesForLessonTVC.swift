@@ -33,14 +33,15 @@ extension DisciplinesForLessonTVC {
         navBar?.isTranslucent = true
         navBar?.prefersLargeTitles = false
         navBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
+        
+        tableView.tableFooterView = UIView()
     }
 }
 
 // MARK: Add Discipline func
 extension DisciplinesForLessonTVC {
     func addDiscipline() {
-        UIAlertController.addTextAlert(title: "Какую дисциплину вы бы хотели добавить?",
-                                       target: self) { (newDiscipline: String?) in
+        UIAlertController.addTextAlert(target: self) { (newDiscipline: String?) in
                                         guard let newDiscipline = newDiscipline else { return }
                                         DisciplinesList.all.append(newDiscipline)
                                         self.tableView.reloadData()
@@ -57,10 +58,10 @@ extension DisciplinesForLessonTVC {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "disciplinesLessonCell", for: indexPath) as! DisciplineLessonTVCell
         let discipline = DisciplinesList.all[indexPath.row]
-        var image = UIImage()
+        var image = #imageLiteral(resourceName: "oval")
         
         if discipline == selectedDiscipline {
-            image = #imageLiteral(resourceName: "check")
+            image = #imageLiteral(resourceName: "checkmark")
         }
         
         cell.configure(discipline: discipline, image: image)
@@ -72,10 +73,10 @@ extension DisciplinesForLessonTVC {
         let discipline = DisciplinesList.all[indexPath.row]
         
         if selectedDiscipline == discipline {
-            cell.checkImage.image = UIImage()
+            cell.checkImage.image = #imageLiteral(resourceName: "oval")
             selectedDiscipline = ""
         } else {
-            cell.checkImage.image = #imageLiteral(resourceName: "check")
+            cell.checkImage.image = #imageLiteral(resourceName: "checkmark")
             selectedDiscipline = discipline
         }
         tableView.reloadData()

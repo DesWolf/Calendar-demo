@@ -36,10 +36,10 @@ extension PaymentTVC {
         setupPicker()
         
         if payment == 0 {
-            notPaidCheckImage.image =  #imageLiteral(resourceName: "checkmark")
+            notPaidCheckImage.image =  #imageLiteral(resourceName: "check")
             payment = 0
         }  else {
-            paidCheckImage.image = #imageLiteral(resourceName: "checkmark")
+            paidCheckImage.image = #imageLiteral(resourceName: "check")
             payment = 1
             dateOfPaymentLabel.text = paymentDate ?? ""
         }
@@ -88,8 +88,8 @@ extension PaymentTVC {
         switch indexPath.row {
         case 0:
             payment = 0
-            notPaidCheckImage.image =  #imageLiteral(resourceName: "checkmark")
-            paidCheckImage.image = #imageLiteral(resourceName: "oval")
+            notPaidCheckImage.image =  #imageLiteral(resourceName: "check")
+            paidCheckImage.image = UIImage()
             if !dateOfPaymentLabel.isHidden {
                 dateOfPaymentLabel.isHidden = true
                 paymentPicker.isHidden = true
@@ -98,8 +98,8 @@ extension PaymentTVC {
             }
         case 1:
             payment = 1
-            notPaidCheckImage.image =  #imageLiteral(resourceName: "oval")
-            paidCheckImage.image = #imageLiteral(resourceName: "checkmark")
+            notPaidCheckImage.image =  UIImage()
+            paidCheckImage.image = #imageLiteral(resourceName: "check")
             if dateOfPaymentLabel.isHidden {
                 dateOfPaymentLabel.isHidden = false
                 paymentPicker.isHidden = false

@@ -61,6 +61,7 @@ class StudentsNavController: UINavigationController {
         
         DispatchQueue.main.async {
             let profileTVC = self.stStoryboard.instantiateViewController(withIdentifier: "StudentProfileTVC") as! StudentProfileTVC
+       
             
             profileTVC.onBackButtonTap = { [weak self]  in
                 guard let self = self else { return }
@@ -75,16 +76,13 @@ class StudentsNavController: UINavigationController {
                 
             case let .list(student):
                 profileTVC.student = student
+                
                 self.pushViewController(profileTVC, animated: true)
                 
             case let .addOfEdit(viewController, studentId, student):
                 
-                    if student == nil {
-                    DispatchQueue.global(qos: .background).async {
-                        profileTVC.fetchDetailedStudent(studentId: studentId)
-                    }
-                    }
-                
+                var student = student
+                student.studentId = studentId
                 profileTVC.student = student
                 viewController.dismiss(animated: true) {
                     self.pushViewController(profileTVC, animated: false)

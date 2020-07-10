@@ -75,9 +75,9 @@ extension RegisterVC {
             if message.error != nil {
                 var mes = ""
                 
-                if message.error?.email != nil               { mes = String(describing: message.error?.email ?? "") }
-                if message.error?.password != nil            { mes = String(describing: message.error?.password ?? "") }
-                if message.error?.confirmPassword != nil     { mes = String(describing: message.error?.confirmPassword ?? "") }
+//                if message.error?.email != nil               { mes = String(describing: message.error?.email ?? "") }
+//                if message.error?.password != nil            { mes = String(describing: message.error?.password ?? "") }
+//                if message.error?.confirmPassword != nil     { mes = String(describing: message.error?.confirmPassword ?? "") }
                 
                 DispatchQueue.main.async {
                     self?.simpleAlert(message: mes )

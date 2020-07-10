@@ -160,6 +160,9 @@ extension LessonDetailedTVC {
         changeLesson(lesson: lesson!)
         self.tableView.reloadData()
         
+        let nav = self.navigationController?.navigationBar
+        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

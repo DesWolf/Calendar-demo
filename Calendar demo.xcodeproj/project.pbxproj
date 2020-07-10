@@ -29,6 +29,8 @@
 		9E374A9D249241CF0082A119 /* DisciplineLessonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374A9C249241CF0082A119 /* DisciplineLessonTVCell.swift */; };
 		9E374A9F2492896B0082A119 /* StudentsForLessonTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374A9E2492896B0082A119 /* StudentsForLessonTVC.swift */; };
 		9E374AA1249299410082A119 /* StudentsForLessonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374AA0249299410082A119 /* StudentsForLessonTVCell.swift */; };
+		9E51BA8E24B8A66F002A6238 /* ProfileNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E51BA8D24B8A66E002A6238 /* ProfileNavController.swift */; };
+		9E51BA9024B8A6EC002A6238 /* TimeTableTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E51BA8F24B8A6EC002A6238 /* TimeTableTVC.swift */; };
 		9E5BD563246EE9D500EB4F53 /* String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5BD562246EE9D500EB4F53 /* String.swift */; };
 		9E5C05E7246D8BCE00EADD5C /* ServerAnswer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C05E6246D8BCE00EADD5C /* ServerAnswer.swift */; };
 		9E5C05E9246D930700EADD5C /* LoginEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E5C05E8246D930700EADD5C /* LoginEndPoint.swift */; };
@@ -45,8 +47,7 @@
 		9E7C134A247D47A70095C57E /* StudentProfileTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7C1349247D47A70095C57E /* StudentProfileTVC.swift */; };
 		9E800FE124B1C00D00BCAE63 /* NavBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E800FE024B1C00D00BCAE63 /* NavBar.swift */; };
 		9E80D0A62453268300FECAF7 /* LessonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0A52453268300FECAF7 /* LessonModel.swift */; };
-		9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */; };
-		9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */; };
+		9E80D0AC24533A9C00FECAF7 /* LessonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E80D0AB24533A9C00FECAF7 /* LessonTVCell.swift */; };
 		9E862343248BBDBF0004B3FD /* UIVewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E862342248BBDBF0004B3FD /* UIVewController.swift */; };
 		9E86E9162493784A00FD63AA /* NotificationTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E86E9152493784A00FD63AA /* NotificationTVC.swift */; };
 		9E86E9182493789600FD63AA /* NotificationTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E86E9172493789600FD63AA /* NotificationTVCell.swift */; };
@@ -112,6 +113,8 @@
 		9E374A9C249241CF0082A119 /* DisciplineLessonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineLessonTVCell.swift; sourceTree = "<group>"; };
 		9E374A9E2492896B0082A119 /* StudentsForLessonTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsForLessonTVC.swift; sourceTree = "<group>"; };
 		9E374AA0249299410082A119 /* StudentsForLessonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsForLessonTVCell.swift; sourceTree = "<group>"; };
+		9E51BA8D24B8A66E002A6238 /* ProfileNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavController.swift; sourceTree = "<group>"; };
+		9E51BA8F24B8A6EC002A6238 /* TimeTableTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeTableTVC.swift; sourceTree = "<group>"; };
 		9E5BD562246EE9D500EB4F53 /* String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = String.swift; sourceTree = "<group>"; };
 		9E5C05E6246D8BCE00EADD5C /* ServerAnswer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAnswer.swift; sourceTree = "<group>"; };
 		9E5C05E8246D930700EADD5C /* LoginEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginEndPoint.swift; sourceTree = "<group>"; };
@@ -131,8 +134,7 @@
 		9E7C1349247D47A70095C57E /* StudentProfileTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentProfileTVC.swift; sourceTree = "<group>"; };
 		9E800FE024B1C00D00BCAE63 /* NavBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavBar.swift; sourceTree = "<group>"; };
 		9E80D0A52453268300FECAF7 /* LessonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonModel.swift; sourceTree = "<group>"; };
-		9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DayTVCell.swift; sourceTree = "<group>"; };
-		9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetaledDayService.swift; sourceTree = "<group>"; };
+		9E80D0AB24533A9C00FECAF7 /* LessonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonTVCell.swift; sourceTree = "<group>"; };
 		9E862342248BBDBF0004B3FD /* UIVewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIVewController.swift; sourceTree = "<group>"; };
 		9E86E9152493784A00FD63AA /* NotificationTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTVC.swift; sourceTree = "<group>"; };
 		9E86E9172493789600FD63AA /* NotificationTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTVCell.swift; sourceTree = "<group>"; };
@@ -211,7 +213,7 @@
 				9E374AA0249299410082A119 /* StudentsForLessonTVCell.swift */,
 				9E374A9C249241CF0082A119 /* DisciplineLessonTVCell.swift */,
 				9E86E9172493789600FD63AA /* NotificationTVCell.swift */,
-				9E80D0AB24533A9C00FECAF7 /* DayTVCell.swift */,
+				9E80D0AB24533A9C00FECAF7 /* LessonTVCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -244,7 +246,9 @@
 		9E0538BA247C1B6C00AAC0AA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				9E51BA8D24B8A66E002A6238 /* ProfileNavController.swift */,
 				9E0A5E2A244F3FC200188CDE /* ProfileVC.swift */,
+				9E51BA8F24B8A6EC002A6238 /* TimeTableTVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -256,14 +260,6 @@
 				9E631936244F4781007DE5F1 /* MeetingCell.swift */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		9E0538BC247C1B8300AAC0AA /* Service */ = {
-			isa = PBXGroup;
-			children = (
-				9E80D0CD245470DA00FECAF7 /* DetaledDayService.swift */,
-			);
-			path = Service;
 			sourceTree = "<group>";
 		};
 		9E0538BD247C1B9600AAC0AA /* Model */ = {
@@ -347,7 +343,6 @@
 				9E0538BD247C1B9600AAC0AA /* Model */,
 				9E0538BB247C1B7B00AAC0AA /* View */,
 				9E0538BA247C1B6C00AAC0AA /* Controller */,
-				9E0538BC247C1B8300AAC0AA /* Service */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -701,6 +696,7 @@
 				9E8C5F0D2494DE1000332B61 /* PaymentTVC.swift in Sources */,
 				9E631937244F4781007DE5F1 /* MeetingCell.swift in Sources */,
 				9E8C5F0B2494DBCF00332B61 /* LessonDetailedTVC.swift in Sources */,
+				9E51BA9024B8A6EC002A6238 /* TimeTableTVC.swift in Sources */,
 				9EB03571249AAD2E00F22C57 /* NetworkManagerStatistic.swift in Sources */,
 				9EC155A2246D628000D2C776 /* StudentsEndPoint.swift in Sources */,
 				9E0A5E20244F26CE00188CDE /* StudentsListTVC.swift in Sources */,
@@ -733,13 +729,13 @@
 				9EC155B4246D63AA00D2C776 /* ParameterEncoding.swift in Sources */,
 				9ED2EAC9247D5720001E3767 /* TextField.swift in Sources */,
 				9E800FE124B1C00D00BCAE63 /* NavBar.swift in Sources */,
-				9E80D0CE245470DA00FECAF7 /* DetaledDayService.swift in Sources */,
 				9E01A2A6248E75840044AD7F /* RepeatTVC.swift in Sources */,
 				9EADFFE324B70720009F1513 /* LessonDuration.swift in Sources */,
 				9EC155AC246D636700D2C776 /* Router.swift in Sources */,
 				9EFD254B247143C700876D48 /* LoginVC.swift in Sources */,
-				9E80D0AC24533A9C00FECAF7 /* DayTVCell.swift in Sources */,
+				9E80D0AC24533A9C00FECAF7 /* LessonTVCell.swift in Sources */,
 				9EA67387247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift in Sources */,
+				9E51BA8E24B8A66F002A6238 /* ProfileNavController.swift in Sources */,
 				9E0A5E27244F272F00188CDE /* FinanceVC.swift in Sources */,
 				9E374A9F2492896B0082A119 /* StudentsForLessonTVC.swift in Sources */,
 				9ECECBEF248103E60053AC78 /* DisciplinesList.swift in Sources */,
