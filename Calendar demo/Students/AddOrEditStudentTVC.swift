@@ -23,13 +23,15 @@ class AddOrEditStudentTVC: UITableViewController {
     
     public var onBackButtonTap: (() -> (Void))?
     public var onSaveButtonTap: ((Int, StudentModel) -> (Void))?
+    public var onDisciplinesButtonTap: (([String]) -> ())?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-//        self.hideKeyboardWhenTappedAround()
         configureScreen()
         
         chousedDisciplines = student?.disciplines
+        
+        
     }
     
     override func viewWillAppear(_ animated: Bool){
@@ -45,6 +47,10 @@ class AddOrEditStudentTVC: UITableViewController {
         print("email - ok")
     }
     
+    @IBAction func tapDisciplineButton(_ sender: Any) {
+        onDisciplinesButtonTap?(chousedDisciplines ?? [])
+        
+    }
     @IBAction func tapOnBackButton(_ sender: Any) {
         onBackButtonTap?()
     }

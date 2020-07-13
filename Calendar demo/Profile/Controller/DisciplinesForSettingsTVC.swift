@@ -1,14 +1,14 @@
 //
-//  Disciplines.swift
+//  DisciplinesVC.swift
 //  Calendar demo
 //
-//  Created by Максим Окунеев on 6/11/20.
+//  Created by Максим Окунеев on 7/11/20.
 //  Copyright © 2020 Максим Окунеев. All rights reserved.
 //
 
 import UIKit
 
-class DisciplinesForLessonTVC: UITableViewController {
+class DisciplinesForSettingsTVC: UITableViewController {
     
     public var selectedDiscipline = ""
     
@@ -24,14 +24,14 @@ class DisciplinesForLessonTVC: UITableViewController {
 }
 
 //MARK: Set Screen
-extension DisciplinesForLessonTVC {
+extension DisciplinesForSettingsTVC {
     private func setupScreen() {
         tableView.tableFooterView = UIView()
     }
 }
 
 // MARK: Add Discipline func
-extension DisciplinesForLessonTVC {
+extension DisciplinesForSettingsTVC {
     func addDiscipline() {
         UIAlertController.addTextAlert(target: self) { (newDiscipline: String?) in
                                         guard let newDiscipline = newDiscipline else { return }
@@ -42,38 +42,20 @@ extension DisciplinesForLessonTVC {
 }
 
 // MARK: Table view data source
-extension DisciplinesForLessonTVC {
+extension DisciplinesForSettingsTVC {
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return DisciplinesList.all.count
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "disciplinesLessonCell", for: indexPath) as! DisciplineLessonTVCell
-        let discipline = DisciplinesList.all[indexPath.row]
-        var image = #imageLiteral(resourceName: "oval")
         
-        if discipline == selectedDiscipline {
-            image = #imageLiteral(resourceName: "checkmark")
-        }
+        let cell = self.tableView.dequeueReusableCell(withIdentifier: "disciplineSettingsCell")!
         
-        cell.configure(discipline: discipline, image: image)
+        cell.textLabel?.text = DisciplinesList.all[indexPath.row]
+  
         return cell
     }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "disciplinesLessonCell", for: indexPath) as! DisciplineLessonTVCell
-        let discipline = DisciplinesList.all[indexPath.row]
-        
-        if selectedDiscipline == discipline {
-            cell.checkImage.image = #imageLiteral(resourceName: "oval")
-            selectedDiscipline = ""
-        } else {
-            cell.checkImage.image = #imageLiteral(resourceName: "checkmark")
-            selectedDiscipline = discipline
-        }
-        tableView.reloadData()
-    }
-    
+
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 44
     }

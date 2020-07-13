@@ -23,6 +23,7 @@
 		9E0A5E30244F411400188CDE /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E0A5E2F244F411400188CDE /* NotificationModel.swift */; };
 		9E1B30A6249A32BB00166117 /* Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1B30A5249A32BB00166117 /* Notifications.swift */; };
 		9E1B30A8249A4C5800166117 /* ServerAnsverModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E1B30A7249A4C5800166117 /* ServerAnsverModel.swift */; };
+		9E3109B224B9D26C00F3A894 /* DisciplinesForSettingsTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3109B124B9D26C00F3A894 /* DisciplinesForSettingsTVC.swift */; };
 		9E3570D82488DF6D00F8F997 /* CalendarEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3570D72488DF6D00F8F997 /* CalendarEndPoint.swift */; };
 		9E3570DA2488DFC400F8F997 /* NetworkManagerCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3570D92488DFC400F8F997 /* NetworkManagerCalendar.swift */; };
 		9E374A9B24922FA30082A119 /* DisciplinesForLessonTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374A9A24922FA20082A119 /* DisciplinesForLessonTVC.swift */; };
@@ -107,6 +108,7 @@
 		9E0A5E2F244F411400188CDE /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		9E1B30A5249A32BB00166117 /* Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Notifications.swift; sourceTree = "<group>"; };
 		9E1B30A7249A4C5800166117 /* ServerAnsverModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerAnsverModel.swift; sourceTree = "<group>"; };
+		9E3109B124B9D26C00F3A894 /* DisciplinesForSettingsTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesForSettingsTVC.swift; sourceTree = "<group>"; };
 		9E3570D72488DF6D00F8F997 /* CalendarEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarEndPoint.swift; sourceTree = "<group>"; };
 		9E3570D92488DFC400F8F997 /* NetworkManagerCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManagerCalendar.swift; sourceTree = "<group>"; };
 		9E374A9A24922FA20082A119 /* DisciplinesForLessonTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesForLessonTVC.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			children = (
 				9E51BA8D24B8A66E002A6238 /* ProfileNavController.swift */,
 				9E0A5E2A244F3FC200188CDE /* ProfileVC.swift */,
+				9E3109B124B9D26C00F3A894 /* DisciplinesForSettingsTVC.swift */,
 				9E51BA8F24B8A6EC002A6238 /* TimeTableTVC.swift */,
 			);
 			path = Controller;
@@ -686,6 +689,7 @@
 				9E0A5E18244ED4AD00188CDE /* EnterScreenVC.swift in Sources */,
 				9EE848AD2486924B008BABB3 /* TabBarConroller.swift in Sources */,
 				9EC155B0246D638800D2C776 /* HTTPTask.swift in Sources */,
+				9E3109B224B9D26C00F3A894 /* DisciplinesForSettingsTVC.swift in Sources */,
 				9E374A9D249241CF0082A119 /* DisciplineLessonTVCell.swift in Sources */,
 				9EADFFE724B75CD1009F1513 /* LoginNavController.swift in Sources */,
 				9EC155B6246D63C300D2C776 /* URLParameterEncoding.swift in Sources */,

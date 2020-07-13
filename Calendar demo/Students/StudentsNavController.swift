@@ -45,12 +45,29 @@ class StudentsNavController: UINavigationController {
             guard let self = self else { return }
             self.popViewController(animated: true)
         }
-                
+        
+        
+//        addOrEditVC.onDisciplinesButtonTap = { [weak self] (disc: [String])  in
+//            guard let self = self else { return }
+//            self.openDisciplines(disc: disc)
+//
+//        }
+        
         if let student = student {
             addOrEditVC.student = student
         }
         pushViewController(addOrEditVC, animated: true)
     }
+    
+    
+//    func openDisciplines(disc: [String]) {
+//
+//        let disciplines = stStoryboard.instantiateViewController(withIdentifier: "DisciplinesTVC") as! DisciplinesTVC
+//
+//        disciplines.chousedDisciplines = disc
+//
+//        present(disciplines, animated: true, completion: nil)
+//    }
     
     enum Source {
         case list(student: StudentModel)
@@ -61,7 +78,7 @@ class StudentsNavController: UINavigationController {
         
         DispatchQueue.main.async {
             let profileTVC = self.stStoryboard.instantiateViewController(withIdentifier: "StudentProfileTVC") as! StudentProfileTVC
-       
+            
             
             profileTVC.onBackButtonTap = { [weak self]  in
                 guard let self = self else { return }
@@ -87,7 +104,6 @@ class StudentsNavController: UINavigationController {
                 viewController.dismiss(animated: true) {
                     self.pushViewController(profileTVC, animated: false)
                 }
-                
             }
         }
     }

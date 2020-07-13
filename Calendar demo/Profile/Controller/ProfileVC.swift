@@ -26,14 +26,15 @@ class ProfileVC: UIViewController {
     @IBOutlet weak var profileImage: UIImageView!
     
     var cameraAccess: Bool?
-    var onDisciplinesTap: (() -> (Void))?
     var onTimeTableTap: (() -> (Void))?
+    var onDisciplinesTap: (() -> (Void))?
+    private let notifications = Notifications()
     
     var settings = [ "График свободного времени",
                      "Предмет занятий",
                      "Учетная запись",
-                     "Оформить подписку",
-                     "Уведомления"]
+                     //"Оформить подписку",
+        "Уведомления"]
     
     
     override func viewDidLoad() {
@@ -46,9 +47,9 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func imageTap(_ sender: Any) {
-
+        
         if cameraAccess == nil || cameraAccess == false {
-            requestAccess()
+            requestCameraAccess()
         } else {
             addImage()
         }
@@ -141,7 +142,7 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         switch indexPath.row {
         case 0:
             image = #imageLiteral(resourceName: "timeTable")
-         case 1:
+        case 1:
             image = #imageLiteral(resourceName: "Group")
         case 2:
             image = #imageLiteral(resourceName: "account")
@@ -162,35 +163,69 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         return 44
     }
     
-    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        switch indexPath.row {
+        case 0:
+            onTimeTableTap?()
+        case 1:
+            onDisciplinesTap?()
+        case 2:
+            print("Профиль")
+            //        case 3:
+        //            print("Подписка")
+        case 3:
+            print("Уведомления")
+            requestNotificationAccess()
+        default:
+            return
+        }
+    }
 }
 
 
 
-//MARK: Request access to camera
+//MARK: Request access to camera and Notifications
 extension ProfileVC {
     
-    func requestAccess()  {
+    func requestCameraAccess()  {
         if AVCaptureDevice.authorizationStatus(for: .video) ==  .authorized {
             cameraAccess = true
         } else {
             if cameraAccess == false {
-                UIAlertController.goSettings(target: self)
+                UIAlertController.goSettings(title: "Для добавление фото, необходимо предоставить доступ к камере в настройках телефона",
+                                             msg: "Перейти в Настройки?",
+                                             target: self)
             } else {
                 AVCaptureDevice.requestAccess(for: .video, completionHandler: { (granted: Bool) in
                     if granted {
-                     
                         self.cameraAccess = true
                     } else {
-                      
                         self.cameraAccess = false
                     }
                 })
             }
         }
-
+    }
+    
+    func requestNotificationAccess() {
+        let center  = UNUserNotificationCenter.current()
+        
+        center.requestAuthorization(options: [.sound, .alert, .badge]) { (granted, error) in
+            DispatchQueue.main.async {
+                if granted == false {
+                    
+                    UIAlertController.goSettings(title: "Для получения уведомлений о запланированных мероприятиях, необходимо предоставить доступ в настройках телефона",
+                                                 msg: "Перейти в Настройки?",
+                                                 target: self)
+                } else {
+                    UIAlertController.simpleAlert(title: "Уведомления включены", msg: "Мы напомним вам о предстоящих занятиях", target: self)
+                }
+            }
+        }
     }
 }
+
 
 // MARK: Work with image
 extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{
@@ -218,7 +253,7 @@ extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDele
     }
     
     func saveImage(imageName: String, image: UIImage?) {
-    
+        
         guard let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else { return }
         
         let fileName = imageName

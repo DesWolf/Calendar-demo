@@ -121,7 +121,6 @@ extension StudentsListTVC {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedStudent = students[indexPath.row]
-        print(indexPath.row)
         onCellTap?(selectedStudent)
     }
 }
@@ -145,7 +144,6 @@ extension StudentsListTVC: UISearchResultsUpdating {
     
     func updateSearchResults(for searchController: UISearchController) {
         filterContentForSearchText(searchController.searchBar.text!)
-//        searchController.obscuresBackgroundDuringPresentation = searchBarisEmpty ? true : false
     }
     
     private func filterContentForSearchText(_ searchText: String){

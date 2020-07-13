@@ -16,7 +16,7 @@ class DisciplinesTVC: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigationBar()
+        setupScreen()
     }
     
     @IBAction func AddButton(_ sender: Any) {
@@ -26,21 +26,11 @@ class DisciplinesTVC: UITableViewController {
 
 //MARK: Set Navigation Bar
 extension DisciplinesTVC {
-    private func setupNavigationBar() {
-        let navBar = self.navigationController?.navigationBar
-        
-        navigationItem.leftBarButtonItem?.tintColor = .systemBlue
-        navigationItem.rightBarButtonItem?.tintColor = .systemBlue
-        
-        navBar?.prefersLargeTitles = false
-        navBar?.setBackgroundImage(UIImage(), for: .default)
-        navBar?.shadowImage = UIImage()
-        navBar?.isTranslucent = true
-        navBar?.prefersLargeTitles = true
-        navBar?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-        
+    private func setupScreen() {
+
         tableView.tableFooterView = UIView()
     }
+    
 }
 
 // MARK: Add Discipline

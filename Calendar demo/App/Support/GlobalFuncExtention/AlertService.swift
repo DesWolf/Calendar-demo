@@ -54,9 +54,9 @@ extension UIAlertController {
         target.present(alert, animated: true, completion: nil)
     }
     
-    class func goSettings(target: UIViewController) {
+    class func goSettings(title: String, msg: String, target: UIViewController) {
         
-        let alertController = UIAlertController (title: "Для добавление фото, необходимо предоставить доступ к камере в настройках телефона", message: "Перейти в Настройки?", preferredStyle: .alert)
+        let alertController = UIAlertController (title: title, message: msg, preferredStyle: .alert)
         
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
