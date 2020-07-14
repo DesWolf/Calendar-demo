@@ -2,12 +2,12 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Wh9-fT-ckm">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Статистика-->
+        <!--StatisticTVC-->
         <scene sceneID="abQ-X2-bcn">
             <objects>
                 <tableViewController id="7cQ-6H-BLS" customClass="StatisticTVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
@@ -158,7 +158,11 @@
                             <outlet property="delegate" destination="7cQ-6H-BLS" id="Uur-vv-MAk"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Статистика" largeTitleDisplayMode="always" id="puY-qc-Unp"/>
+                    <toolbarItems>
+                        <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="l7T-sw-J3I"/>
+                    </toolbarItems>
+                    <navigationItem key="navigationItem" largeTitleDisplayMode="always" id="puY-qc-Unp"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="numberOfCancelLessonsLabel" destination="vDR-Iy-Ipi" id="YKM-cH-fGw"/>
                         <outlet property="numberOfFinishedLessonsLabel" destination="be6-ds-PGg" id="Zxh-bs-hd8"/>
@@ -170,6 +174,76 @@
             </objects>
             <point key="canvasLocation" x="3553.6231884057975" y="3231.6964285714284"/>
         </scene>
+        <!--Alert CalendarVC-->
+        <scene sceneID="5ux-Qj-xCM">
+            <objects>
+                <viewController storyboardIdentifier="AlertCalendarVC" id="2vs-sz-em7" customClass="AlertCalendarVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="71e-1b-ufI">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IN0-bS-TBu">
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="dismissButtonTapped:" destination="2vs-sz-em7" eventType="touchUpInside" id="lKx-3f-Eto"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZmT-S7-Kgs">
+                                <rect key="frame" x="55" y="249" width="300" height="360"/>
+                                <subviews>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gWR-R6-pnZ" customClass="CVCalendarMenuView" customModule="CVCalendar">
+                                        <rect key="frame" x="0.0" y="29" width="300" height="30"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0wb-Ak-iav" customClass="CVCalendarView" customModule="CVCalendar">
+                                        <rect key="frame" x="0.0" y="60" width="300" height="300"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                    </view>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Июль, 2020" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZFT-pl-5si">
+                                        <rect key="frame" x="104" y="4" width="93" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <constraints>
+                                    <constraint firstItem="0wb-Ak-iav" firstAttribute="top" secondItem="gWR-R6-pnZ" secondAttribute="bottom" constant="1" id="A6a-Xk-hs1"/>
+                                    <constraint firstAttribute="trailing" secondItem="0wb-Ak-iav" secondAttribute="trailing" id="Jlp-h5-tNE"/>
+                                    <constraint firstAttribute="trailing" secondItem="gWR-R6-pnZ" secondAttribute="trailing" id="Mlj-7L-3be"/>
+                                    <constraint firstItem="gWR-R6-pnZ" firstAttribute="leading" secondItem="ZmT-S7-Kgs" secondAttribute="leading" id="UNJ-om-fas"/>
+                                    <constraint firstAttribute="bottom" secondItem="0wb-Ak-iav" secondAttribute="bottom" id="X2A-7Y-2vx"/>
+                                    <constraint firstItem="0wb-Ak-iav" firstAttribute="leading" secondItem="ZmT-S7-Kgs" secondAttribute="leading" id="eba-eb-Pc2"/>
+                                    <constraint firstItem="0wb-Ak-iav" firstAttribute="top" secondItem="ZmT-S7-Kgs" secondAttribute="top" constant="60" id="snl-vL-LR7"/>
+                                    <constraint firstItem="gWR-R6-pnZ" firstAttribute="top" secondItem="ZmT-S7-Kgs" secondAttribute="top" constant="29" id="z4U-oN-bnk"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="IN0-bS-TBu" firstAttribute="top" secondItem="71e-1b-ufI" secondAttribute="top" id="0be-oS-qrj"/>
+                            <constraint firstItem="I2O-kq-Olt" firstAttribute="trailing" secondItem="ZmT-S7-Kgs" secondAttribute="trailing" constant="59" id="5tn-ft-HMT"/>
+                            <constraint firstItem="ZmT-S7-Kgs" firstAttribute="top" secondItem="I2O-kq-Olt" secondAttribute="top" constant="205" id="7xC-eH-knl"/>
+                            <constraint firstItem="I2O-kq-Olt" firstAttribute="bottom" secondItem="ZmT-S7-Kgs" secondAttribute="bottom" constant="253" id="Ey6-tc-yn2"/>
+                            <constraint firstItem="IN0-bS-TBu" firstAttribute="trailing" secondItem="I2O-kq-Olt" secondAttribute="trailing" id="Kof-jb-GQI"/>
+                            <constraint firstItem="IN0-bS-TBu" firstAttribute="leading" secondItem="I2O-kq-Olt" secondAttribute="leading" id="QJD-hI-4Xc"/>
+                            <constraint firstItem="ZmT-S7-Kgs" firstAttribute="leading" secondItem="I2O-kq-Olt" secondAttribute="leading" constant="55" id="Rly-Bc-Thv"/>
+                            <constraint firstAttribute="bottom" secondItem="IN0-bS-TBu" secondAttribute="bottom" id="qqg-WO-mfp"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="I2O-kq-Olt"/>
+                    </view>
+                    <connections>
+                        <outlet property="backbroundView" destination="ZmT-S7-Kgs" id="rwF-Ug-zN8"/>
+                        <outlet property="calendarView" destination="0wb-Ak-iav" id="F55-sA-pjZ"/>
+                        <outlet property="menuView" destination="gWR-R6-pnZ" id="fVY-fE-HYE"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="qnA-jT-K5s" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4371.0144927536239" y="3231.6964285714284"/>
+        </scene>
         <!--Статистика-->
         <scene sceneID="X7K-R5-aTu">
             <objects>
@@ -177,8 +251,8 @@
                     <tabBarItem key="tabBarItem" title="Статистика" image="Statistic" id="rbU-Me-Pdf"/>
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="HrX-sa-PCM">
-                        <rect key="frame" x="0.0" y="44" width="414" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="HrX-sa-PCM">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
@@ -188,7 +262,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="C2t-mD-bkt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2764" y="3233"/>
+            <point key="canvasLocation" x="3554" y="2490"/>
         </scene>
     </scenes>
     <resources>

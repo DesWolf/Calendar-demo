@@ -12,7 +12,7 @@ enum StringDateType: String {
     case time = "HH:mm"
     case date = "dd.MM.YY"
     case dateTime = "dd.MM.yyyy HH:mm"
-    case fullDateTime = "EEEE, d MMMM, yyyy"
+    case fullDateTime = "EEEE, d MMMM yyyy"
 }
 
 
@@ -48,7 +48,7 @@ extension Date {
         var newStr = str ?? "\(Date())"
         let dateFormatter = DateFormatter()
         dateFormatter.timeZone = TimeZone.current
-        dateFormatter.locale = Locale(identifier: "ru_Ru")
+        dateFormatter.locale = Locale(identifier: "RU_RU")
         
         switch newStr.count {
         case 10:
@@ -79,7 +79,7 @@ extension Date {
         let dateFormatter = DateFormatter()
         
         dateFormatter.timeZone = TimeZone.current
-        dateFormatter.locale = Locale(identifier: "ru_Ru")
+        dateFormatter.locale = Locale(identifier: "RU_RU")
         
         dateFormatter.dateFormat = "yyyy-MM-dd HH:mm:ssZ"
         guard var date = dateFormatter.date(from: newStr) else { return "Wrong format" }
