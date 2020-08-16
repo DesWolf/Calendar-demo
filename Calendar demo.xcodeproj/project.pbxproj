@@ -43,6 +43,8 @@
 		9E631939244F50B4007DE5F1 /* AddOrEditLessonTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E631938244F50B4007DE5F1 /* AddOrEditLessonTVC.swift */; };
 		9E63193A244F6101007DE5F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B4244D92AB00FA529B /* Main.storyboard */; };
 		9E6B56AA248B987E00042E2B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6B56A9248B987E00042E2B /* Date.swift */; };
+		9E700B8A24D6C54B00E66B88 /* TypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E700B8924D6C54B00E66B88 /* TypeCollectionViewCell.swift */; };
+		9E700B8C24D6FCFD00E66B88 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E700B8B24D6FCFD00E66B88 /* AddViewController.swift */; };
 		9E7A73AF244D92AB00FA529B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A73AE244D92AB00FA529B /* AppDelegate.swift */; };
 		9E7A73B3244D92AB00FA529B /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A73B2244D92AB00FA529B /* CalendarVC.swift */; };
 		9E7A73B8244D92AC00FA529B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B7244D92AC00FA529B /* Assets.xcassets */; };
@@ -60,6 +62,7 @@
 		9E8FC977244E1B6500DA0D0C /* RegisterVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */; };
 		9E92C00124815455000B45A5 /* DisciplinesTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E92C00024815455000B45A5 /* DisciplinesTVCell.swift */; };
 		9E9F62E324BE23A200885352 /* AlertCalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9F62E224BE23A200885352 /* AlertCalendarVC.swift */; };
+		9E9F62E724BF8F7900885352 /* StatisticModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E9F62E624BF8F7900885352 /* StatisticModel.swift */; };
 		9EA67387247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EA67386247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift */; };
 		9EADFFE324B70720009F1513 /* LessonDuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EADFFE224B70720009F1513 /* LessonDuration.swift */; };
 		9EADFFE524B74A05009F1513 /* ExtentionCalendarVCCalendar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9EADFFE424B74A05009F1513 /* ExtentionCalendarVCCalendar.swift */; };
@@ -131,6 +134,8 @@
 		9E631938244F50B4007DE5F1 /* AddOrEditLessonTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddOrEditLessonTVC.swift; sourceTree = "<group>"; };
 		9E6B56A9248B987E00042E2B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		9E6C0E622482E75C0099F300 /* Calendar demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Calendar demo.entitlements"; sourceTree = "<group>"; };
+		9E700B8924D6C54B00E66B88 /* TypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCollectionViewCell.swift; sourceTree = "<group>"; };
+		9E700B8B24D6FCFD00E66B88 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		9E7A73AB244D92AB00FA529B /* Calendar demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calendar demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7A73AE244D92AB00FA529B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7A73B2244D92AB00FA529B /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
@@ -151,6 +156,7 @@
 		9E8FC976244E1B6500DA0D0C /* RegisterVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterVC.swift; sourceTree = "<group>"; };
 		9E92C00024815455000B45A5 /* DisciplinesTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesTVCell.swift; sourceTree = "<group>"; };
 		9E9F62E224BE23A200885352 /* AlertCalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertCalendarVC.swift; sourceTree = "<group>"; };
+		9E9F62E624BF8F7900885352 /* StatisticModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatisticModel.swift; sourceTree = "<group>"; };
 		9EA67386247EEDC7001B91A1 /* DisciplinesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplinesCollectionViewCell.swift; sourceTree = "<group>"; };
 		9EADFFE224B70720009F1513 /* LessonDuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LessonDuration.swift; sourceTree = "<group>"; };
 		9EADFFE424B74A05009F1513 /* ExtentionCalendarVCCalendar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtentionCalendarVCCalendar.swift; sourceTree = "<group>"; };
@@ -220,6 +226,7 @@
 				9E0538C1247C224A00AAC0AA /* Calendar.storyboard */,
 				9E374AA0249299410082A119 /* StudentsForLessonTVCell.swift */,
 				9E374A9C249241CF0082A119 /* DisciplineLessonTVCell.swift */,
+				9E700B8924D6C54B00E66B88 /* TypeCollectionViewCell.swift */,
 				9E86E9172493789600FD63AA /* NotificationTVCell.swift */,
 				9E80D0AB24533A9C00FECAF7 /* LessonTVCell.swift */,
 			);
@@ -242,6 +249,7 @@
 				9E0ADAA124AB8A1B0077E26D /* CalendarVC */,
 				9E8C5F0A2494DBCF00332B61 /* LessonDetailedTVC.swift */,
 				9E631938244F50B4007DE5F1 /* AddOrEditLessonTVC.swift */,
+				9E700B8B24D6FCFD00E66B88 /* AddViewController.swift */,
 				9E374A9E2492896B0082A119 /* StudentsForLessonTVC.swift */,
 				9E374A9A24922FA20082A119 /* DisciplinesForLessonTVC.swift */,
 				9E01A2A5248E75840044AD7F /* RepeatTVC.swift */,
@@ -340,6 +348,7 @@
 		9E0A5E23244F270400188CDE /* Statistics */ = {
 			isa = PBXGroup;
 			children = (
+				9E9F62E624BF8F7900885352 /* StatisticModel.swift */,
 				9E0538B6247C1A8800AAC0AA /* Statistic.storyboard */,
 				9E0A5E24244F271F00188CDE /* StatisticTVC.swift */,
 				9E9F62E224BE23A200885352 /* AlertCalendarVC.swift */,
@@ -700,10 +709,12 @@
 				9EE848AD2486924B008BABB3 /* TabBarConroller.swift in Sources */,
 				9EC155B0246D638800D2C776 /* HTTPTask.swift in Sources */,
 				9E3109B224B9D26C00F3A894 /* DisciplinesForSettingsTVC.swift in Sources */,
+				9E9F62E724BF8F7900885352 /* StatisticModel.swift in Sources */,
 				9E374A9D249241CF0082A119 /* DisciplineLessonTVCell.swift in Sources */,
 				9EADFFE724B75CD1009F1513 /* LoginNavController.swift in Sources */,
 				9EC155B6246D63C300D2C776 /* URLParameterEncoding.swift in Sources */,
 				9E86E9182493789600FD63AA /* NotificationTVCell.swift in Sources */,
+				9E700B8A24D6C54B00E66B88 /* TypeCollectionViewCell.swift in Sources */,
 				9EC155BA246D642B00D2C776 /* AlertService.swift in Sources */,
 				9E5E8CDA24A23FE9006E4751 /* CalendarNavController.swift in Sources */,
 				9EB03577249B6DDC00F22C57 /* StudentsNavController.swift in Sources */,
@@ -746,6 +757,7 @@
 				9E43BE6224BCB84A007BC927 /* SegmentedControl.swift in Sources */,
 				9E800FE124B1C00D00BCAE63 /* NavBar.swift in Sources */,
 				9E01A2A6248E75840044AD7F /* RepeatTVC.swift in Sources */,
+				9E700B8C24D6FCFD00E66B88 /* AddViewController.swift in Sources */,
 				9EADFFE324B70720009F1513 /* LessonDuration.swift in Sources */,
 				9EC155AC246D636700D2C776 /* Router.swift in Sources */,
 				9EFD254B247143C700876D48 /* LoginVC.swift in Sources */,

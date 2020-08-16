@@ -93,7 +93,7 @@ extension AddOrEditStudentTVC {
         navigationItem.leftBarButtonItem?.tintColor = .white
         navigationItem.rightBarButtonItem?.tintColor = .white
        
-        UINavigationBar().setClearNavBar(controller: self)
+        UINavigationBar().set(controller: self)
         UIColor.setGradientToTableView(tableView: tableView, height: Double(gradientHeight))
     }
 }

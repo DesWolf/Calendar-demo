@@ -10,20 +10,18 @@ import UIKit
 import CVCalendar
 
 class StatisticTVC: UITableViewController {
-
     
+    @IBOutlet weak var payTotalLabel: UILabel!
+    @IBOutlet weak var notPayTotalLabel: UILabel!
+    @IBOutlet weak var countLessonPayLabel: UILabel!
+    @IBOutlet weak var countLessonNotPayLabel: UILabel!
+    @IBOutlet weak var countLessonTotalLabel: UILabel!
     
-    
-    @IBOutlet weak var numberOfStudentsLabel: UILabel!
-    @IBOutlet weak var numberOfPlannedLessonsLabel: UILabel!
-    @IBOutlet weak var numberOfFinishedLessonsLabel: UILabel!
-    @IBOutlet weak var numberOfCancelLessonsLabel: UILabel!
-    
+    let networkManagerStatistic = NetworkManagerStatistic()
+    private var statistic: StatisticModel?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
     }
     
     
@@ -31,6 +29,7 @@ class StatisticTVC: UITableViewController {
         super.viewWillAppear(animated)
         configureScreen()
         tableView.reloadData()
+        
     }
 }
 
@@ -41,6 +40,12 @@ extension StatisticTVC {
     func configureScreen() {
         
         setupNavigationBar()
+        tableView.backgroundColor = .appGray
+        
+        let start = "\(Date())".prefix(10)
+        let end = "\(Date().monthMinusOne(str: "\(start)"))".prefix(10)
+        fetchCalendar(startDate: String(start), endDate: String(end))
+        print(start, end)
         
     }
     
@@ -51,7 +56,7 @@ extension StatisticTVC {
         let statusBarHeight = UIApplication.shared.statusBarFrame.height
         let gradientHeight = statusBarHeight + navBar!.frame.height
         
-        UINavigationBar().setClearNavBar(controller: self)
+        UINavigationBar().set(controller: self)
         UIColor.setGradientToTableView(tableView: tableView, height: Double(gradientHeight))
         
         setNavButton()
@@ -70,34 +75,51 @@ extension StatisticTVC {
     
     @objc func clickOnNavButton() {
         
-        
         let storyboard = UIStoryboard(name: "Statistic", bundle: nil)
         let myAlert = storyboard.instantiateViewController(withIdentifier: "AlertCalendarVC")
         myAlert.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
         myAlert.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         self.present(myAlert, animated: true, completion: nil)
-        
-        
-        
-        
-        
-        
-        
-        
-        
-//        let vc = UIViewController()
-//        vc.preferredContentSize = CGSize(width: 200,height: 250)
-        
-//        let datePicker = UIDatePicker(frame: CGRect(x: 0, y: 0, width: 250, height: 300))
-//        datePicker.datePickerMode = .date
-//        datePicker.locale = Locale.current
 
-//        vc.view.addSubview(datePicker)
-//        let editRadiusAlert = UIAlertController(title: "Выбирите период", message: "", preferredStyle: UIAlertController.Style.alert)
-//        editRadiusAlert.setValue(vc, forKey: "contentViewController")
-//        editRadiusAlert.addAction(UIAlertAction(title: "Done", style: .default, handler: nil))
-//        editRadiusAlert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
-//        self.present(editRadiusAlert, animated: true)
-    
     }
 }
+
+//MARK: Network
+extension StatisticTVC {
+    func fetchCalendar(startDate: String, endDate: String) {
+        
+//        let startDate = String("\(Date().monthMinusOne(str: date))".prefix(10))
+//        let endDate = String("\(Date().monthPlusOne(str: date))".prefix(10))
+        
+        networkManagerStatistic.fetchStatistic(startDate: startDate, endDate: endDate)
+        { [weak self]  (statistic, error)  in
+            guard let statistic = statistic else {
+                print(error ?? "")
+                DispatchQueue.main.async {
+                    self?.simpleAlert(message: error ?? "")
+                }
+                return
+            }
+            
+            DispatchQueue.main.async {
+                self?.payTotalLabel.text = "\(statistic.payTotal ?? 0)"
+                self?.notPayTotalLabel.text = String(describing: statistic.notPayTotal)
+                self?.countLessonPayLabel.text = String(describing: statistic.countLessonPay)
+                self?.countLessonNotPayLabel.text = String(describing: statistic.countLessonNotPay)
+                self?.countLessonTotalLabel.text = String(describing: statistic.countLessonTotal)
+                self?.tableView.reloadData()
+            }
+            
+            
+        }
+    }
+}
+
+
+//MARK: Alert
+extension StatisticTVC {
+    func simpleAlert(message: String) {
+        UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
+    }
+}
+

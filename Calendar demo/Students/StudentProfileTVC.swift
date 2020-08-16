@@ -65,7 +65,7 @@ extension StudentProfileTVC {
         let firstCellHeight = tableView.cellForRow(at: IndexPath(row: 0, section: 0))?.frame.height
         let gradientHeight = statusBarHeight + navBar!.frame.height + (firstCellHeight ?? 145)
 
-        UINavigationBar().setClearNavBar(controller: self)
+        UINavigationBar().set(controller: self)
         navBar?.prefersLargeTitles = false
         navigationItem.leftBarButtonItem?.tintColor = .white
         UIColor.setGradientToTableView(tableView: tableView, height: Double(gradientHeight))

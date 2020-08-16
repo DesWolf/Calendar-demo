@@ -10,7 +10,7 @@ import UIKit
 
 class AddOrEditLessonTVC: UITableViewController {
     
-    @IBOutlet weak var segmentedControl: UISegmentedControl!
+    @IBOutlet weak var segmetControl: UISegmentedControl!
     @IBOutlet weak var nameTF: UITextField!
     @IBOutlet weak var placeTF: UITextField!
     @IBOutlet weak var studentLabel: UILabel!
@@ -20,11 +20,28 @@ class AddOrEditLessonTVC: UITableViewController {
     @IBOutlet weak var endLabel: UILabel!
     @IBOutlet weak var endDatePicker: UIDatePicker!
     @IBOutlet weak var repeatLabel: UILabel!
-    @IBOutlet weak var endRepeatCell: UITableViewCell!
+    @IBOutlet weak var endRepeatTitle: UILabel!
     @IBOutlet weak var endRepeatLabel: UILabel!
+    @IBOutlet weak var priceTitle: UILabel!
     @IBOutlet weak var priceTF: UITextField!
+    @IBOutlet weak var priceCurrency: UILabel!
     @IBOutlet weak var notificationLabel: UILabel!
     @IBOutlet weak var noteTV: UITextView!
+    
+    @IBOutlet weak var nameBackView: UIView!
+    @IBOutlet weak var studentBackView: UIView!
+    @IBOutlet weak var placeBackView: UIView!
+    @IBOutlet weak var disciplineBackView: UIView!
+    @IBOutlet weak var startBackView: UIView!
+    @IBOutlet weak var endBackView: UIView!
+    @IBOutlet weak var repeatBackView: UIView!
+    @IBOutlet weak var endRepeatBackView: UIView!
+    @IBOutlet weak var priceBackView: UIView!
+    @IBOutlet weak var notificationBackView: UIView!
+    @IBOutlet weak var commentBackView: UIView!
+
+    @IBOutlet weak var studentDisciplineCell: UITableViewCell!
+
     
     public var onBackButtonTap: (() -> (Void))?
     public var onSaveButtonTap: ((Int, LessonModel) -> (Void))?
@@ -36,16 +53,87 @@ class AddOrEditLessonTVC: UITableViewController {
     
     private let networkManagerCalendar =  NetworkManagerCalendar()
     private var notifications = Notifications()
-    
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureScreen()
     }
+     
+    @IBAction func sepmentTap(_ sender: Any) {
+        switch segmetControl.selectedSegmentIndex {
+        case 0:
+            studentDisciplineCell.isHidden = false
+            priceTitle.isHidden = false
+            priceBackView.isHidden = false
+        case 1:
+            studentDisciplineCell.isHidden = true
+            priceTitle.isHidden = true
+            priceBackView.isHidden = true
+        default:
+            break
+        }
+        tableView.reloadData()
+    }
+        
+        
     
+    @IBAction func studentButtonTap(_ sender: Any) {
+        didSelect(view: studentBackView)
+        _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            self.didDeselect(view: self.studentBackView)
+        }
+    }
+    
+    @IBAction func disciplineButtonTap(_ sender: Any) {
+        didSelect(view: disciplineBackView)
+        _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            self.didDeselect(view: self.disciplineBackView)
+        }
+    }
+    
+    @IBAction func isStartButtonTap(_ sender: Any) {
+        let index = IndexPath(row: 3, section: 0)
 
-    @IBAction func startDateChanged(sender: UIDatePicker) {
+        if startDatePicker.isHidden == true {
+            startDatePicker.isHidden = false
+            
+            didSelect(view: startBackView)
+            didDeselect(view: endBackView)
+        
+            startLabel.textColor = .appBlue
+            endLabel.textColor = .black
+        } else {
+            startDatePicker.isHidden = true
+            didDeselect(view: startBackView)
+            startLabel.textColor = .black
+        }
+        endDatePicker.isHidden = true
+        pickerAnimation(indexPath: index)
+    }
+    
+    @IBAction func isEndButtonTap(_ sender: Any) {
+        let index = IndexPath(row: 4, section: 0)
+        
+        if endDatePicker.isHidden == true {
+            endDatePicker.isHidden = false
+            didSelect(view: endBackView)
+            didDeselect(view: startBackView)
+            
+            endLabel.textColor = .appBlue
+            startLabel.textColor = .black
+        } else {
+            endDatePicker.isHidden = true
+            didDeselect(view: endBackView)
+            endLabel.textColor = .black
+        }
+        startDatePicker.isHidden = true
+        pickerAnimation(indexPath: index)
+    }
+    
+    
+    @IBAction func isStartPickerChanged(sender: UIDatePicker) {
         let dur = StandartDuration.userDur
         
         endDatePicker.minimumDate = startDatePicker.date
@@ -55,7 +143,7 @@ class AddOrEditLessonTVC: UITableViewController {
         setEndDateLabel()
     }
     
-    @IBAction func endDateChanged(sender: UIDatePicker) {
+    @IBAction func isEndPickerChanged(sender: UIDatePicker) {
         setEndDateLabel()
     }
     
@@ -72,6 +160,18 @@ class AddOrEditLessonTVC: UITableViewController {
                         meetingName         : nameTF.text ?? "Занятие",
                         student             : "\(student?.name ?? "") \(student?.surname ?? "")")
     }
+    @IBAction func notificationButtonTap(_ sender: Any) {
+        didSelect(view: notificationBackView)
+        _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
+            self.didDeselect(view: self.notificationBackView)
+        }
+        
+    }
+    
+    @IBAction func priceButtonTap(_ sender: Any) {
+        priceCurrency.textColor = .black
+    }
+    
 }
 
 //MARK: Set Screen
@@ -94,53 +194,48 @@ extension AddOrEditLessonTVC {
             noteTV.text             = lesson?.note ?? ""
         }
         
-        endRepeatCell.isHidden  = true
+        endRepeat(isHidden: true)
         hideKeyboardWhenTappedAround()
         setupStartLessonPicker()
         setupEndLessonPicker()
         setupNavigationBar()
         tableView.tableFooterView = UIView()
         
+        setCellBackView()
         
-        priceTF.attributedPlaceholder = NSAttributedString(string: "0", attributes: [NSAttributedString.Key.foregroundColor: UIColor.white])
+        priceTF.attributedPlaceholder = NSAttributedString(string: "0", attributes: [NSAttributedString.Key.foregroundColor: UIColor.appTabIconGray])
     }
     
-//    private func setupSegmentedControl() {
-//
-//        let notSelected: [NSAttributedString.Key : Any]     = [NSAttributedString.Key.foregroundColor: UIColor.white]
-//        let selected: [NSAttributedString.Key : Any]        = [NSAttributedString.Key.foregroundColor: UIColor.white,
-//                                                               NSAttributedString.Key.underlineStyle: NSUnderlineStyle.single.rawValue,
-//                                                               NSAttributedString.Key.underlineColor: UIColor.white]
-//
-//        segmentedControl.setTitleTextAttributes(notSelected, for: .normal)
-//        segmentedControl.setTitleTextAttributes(selected, for: .selected)
-//
-//        segmentedControl.removeBorders()
-////        segmentedControl.backgroundColor = .clear
-////        segmentedControl.selectedSegmentTintColor = .clear
-//
-//    }
+    private func setCellBackView() {
+        let mass = [nameBackView, studentBackView, placeBackView, disciplineBackView, startBackView, endBackView, repeatBackView, endRepeatBackView, priceBackView, notificationBackView, commentBackView]
+        
+        for elem in mass {
+            guard let elem = elem else { return }
+            didDeselect(view: elem)
+        }
+        
+        startLabel.textColor = .appTabIconGray
+        endLabel.textColor = .appTabIconGray
+    }
     
-//    private func setSegmentedControl() {
-//        if segmentedControl.selectedSegmentIndex == 0 {
-//
-//            nameTF.isHidden = true
-//            placeTF.isHidden = true
-//
-//            studentLabel.isHidden = false
-//            disciplineLabel.isHidden = false
-//            priceTF.isHidden = false
-//        } else {
-//            nameTF.isHidden = false
-//            placeTF.isHidden = false
-//
-//            studentLabel.isHidden = true
-//            disciplineLabel.isHidden = true
-//            priceTF.isHidden = true
-//        }
-//
-//        tableView.reloadData()
-//    }
+    private func didSelect(view: UIView) {
+        view.layer.cornerRadius = view.frame.height / 6
+        view.backgroundColor = .appLightBlue
+        view.layer.borderColor = UIColor.clear.cgColor
+    }
+    
+    private func didDeselect(view: UIView) {
+        view.layer.cornerRadius = view.frame.height / 6
+        view.backgroundColor = .fieldBackGray
+        view.layer.borderColor = UIColor.fieldBorder.cgColor
+        view.layer.borderWidth = 0.5
+    }
+    
+    private func endRepeat(isHidden: Bool) {
+        endRepeatTitle.isHidden = isHidden
+        endRepeatLabel.isHidden = isHidden
+        endRepeatBackView.isHidden = isHidden
+    }
     
     private func setupStartLessonPicker() {
         let date = lesson != nil ? Date().strToDate(str: lesson?.startDate) : selectedDate
@@ -149,7 +244,7 @@ extension AddOrEditLessonTVC {
         startDatePicker.setDate(picker, animated: true)
         startDatePicker.minuteInterval = 5
         startDatePicker.isHidden = true
-        
+
         setStartDateLabel()
     }
     
@@ -177,17 +272,17 @@ extension AddOrEditLessonTVC {
     
     private func setupNavigationBar() {
         let navBar                  = self.navigationController?.navigationBar
-        let statusBarHeight         = UIApplication.shared.statusBarFrame.height
-        let gradientHeight          = statusBarHeight  + navBar!.frame.height + segmentedControl.frame.height
+        //        let statusBarHeight         = UIApplication.shared.statusBarFrame.height
+        //        let gradientHeight          = statusBarHeight  + navBar!.frame.height
         
-        navigationItem.title = lesson == nil ? "Новый урок" : "Редактирование"
+//        navigationItem.title = lesson == nil ? "Новый урок" : "Редактирование"
+        //        navBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navigationItem.leftBarButtonItem?.title = "Отмена"
-        navigationItem.leftBarButtonItem?.tintColor = .white
-        navigationItem.rightBarButtonItem?.tintColor = .white
+        navigationItem.leftBarButtonItem?.tintColor = .appBlue
+        navigationItem.rightBarButtonItem?.tintColor = .appBlue
         
-        UINavigationBar().setClearNavBar(controller: self)
+        UINavigationBar().set(controller: self)
         
-        UIColor.setGradientToTableView(tableView: tableView, height: Double(gradientHeight))
     }
 }
 
@@ -198,28 +293,28 @@ extension AddOrEditLessonTVC {
         if let studentTVC = segue.source as? StudentsForLessonTVC {
             self.student = studentTVC.selectedStudent
             self.studentLabel.text = "\(self.student?.name ?? "") \(self.student?.surname ?? "")"
-            
-            //            print(student)
-            
         }
-        
+
         if let disciplineTVC = segue.source as? DisciplinesForLessonTVC {
             self.disciplineLabel.text = disciplineTVC.selectedDiscipline
         }
         
         if let repeatTVC = segue.source as? RepeatTVC {
             self.repeatLabel.text = repeatTVC.repeatLesson.rawValue
+            self.repeatLabel.textColor = .black
             if repeatTVC.repeatLesson.rawValue != RepeatLesson.never.rawValue {
                 self.endRepeatLabel.text = "\(repeatTVC.endOfRepeat ?? "")"
-                endRepeatCell.isHidden = false
+                self.endRepeatLabel.textColor = .black
+                endRepeat(isHidden: false)
             } else {
-                endRepeatCell.isHidden = true
+                endRepeat(isHidden: true)
             }
             tableView.reloadData()
         }
         
         if let notifTVC = segue.source as? NotificationTVC {
             self.notificationLabel.text = "\(notifTVC.selectedNotification)"
+            self.notificationLabel.textColor = .black
             self.notifInSeconds = notifTVC.notifInSeconds
         }
         
@@ -231,25 +326,11 @@ extension AddOrEditLessonTVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         switch segue.identifier {
-        case "student":
-            guard let nav = segue.destination as? UINavigationController,
-                let studTVC = nav.topViewController as? StudentsForLessonTVC else { return }
-            studTVC.selectedStudent = student
-        case "disciplines":
-            guard let nav = segue.destination as? UINavigationController,
-                let disTVC = nav.topViewController as? DisciplinesForLessonTVC else { return }
-            disTVC.selectedDiscipline =  disciplineLabel.text ?? ""
         case "repeatLesson":
             guard let nav = segue.destination as? UINavigationController,
                 let repeatTVC = nav.topViewController as? RepeatTVC else { return }
             repeatTVC.repeatLesson = repeatLabel.text == RepeatLesson.never.rawValue ? .never : .weekly
             repeatTVC.endOfRepeat = endRepeatLabel.text ?? ""
-            
-        case "notification":
-            guard let nav = segue.destination as? UINavigationController,
-                let notifTVC = nav.topViewController as? NotificationTVC else { return }
-            notifTVC.selectedNotification =  notificationLabel.text ?? "Нет"
-            notifTVC.notifInSeconds = notifInSeconds ?? 0
             
         default:
             return
@@ -272,11 +353,11 @@ extension AddOrEditLessonTVC {
             duration       : [],
             endDate        : "\(end)",
             repeatedly     : repeatLabel.text == "Никогда" ?  "never" : "weekly",
-            endRepeat      :  repeatLabel.text == "Никогда" ? "" : endRepeat,
+            endRepeat      : repeatLabel.text == "Никогда" ? "" : endRepeat,
             price          : Int(priceTF.text ?? "0"),
             note           : noteTV.text,
-            payStatus      : 0,
-            paymentDate    : "")
+            payStatus      : lesson != nil ? lesson?.payStatus : 0,
+            paymentDate    : lesson != nil ? lesson?.paymentDate: "")
         
         if lesson?.lessonId != nil {
             changeLesson(lesson: lesson!)
@@ -341,78 +422,33 @@ extension AddOrEditLessonTVC {
     }
 }
 
-
-
 //MARK: TableViewDelegate, TableViewDataSource
 extension AddOrEditLessonTVC {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let name                = IndexPath(row: 0, section: 0)
-        let place               = IndexPath(row: 1, section: 0)
-        let student             = IndexPath(row: 0, section: 1)
-        let discipline          = IndexPath(row: 1, section: 1)
-        let startPicker         = IndexPath(row: 1, section: 2)
-        let endPicker           = IndexPath(row: 3, section: 2)
-        let endRepeat           = IndexPath(row: 5, section: 2)
-        let price               = IndexPath(row: 0, section: 3)
+        let nameAndPlace     = IndexPath(row: 0, section: 0)
+        let studentDiscipline = IndexPath(row: 1, section: 0)
+        let startEnd         = IndexPath(row: 2, section: 0)
+        let startPicker      = IndexPath(row: 3, section: 0)
+        let endPicker        = IndexPath(row: 4, section: 0)
+        let repeatSign       = IndexPath(row: 5, section: 0)
+        let notif            = IndexPath(row: 6, section: 0)
+        let comment          = IndexPath(row: 7, section: 0)
         
         switch indexPath{
-        case name:
-            return CGFloat(nameTF.isHidden ? 0.0 : 44.0)
-        case place:
-            return CGFloat(placeTF.isHidden ? 0.0 : 44.0)
-        case student:
-            return CGFloat(studentLabel.isHidden ? 0.0 : 44.0)
-        case discipline:
-            return CGFloat(disciplineLabel.isHidden ? 0.0 : 44.0)
+        case studentDiscipline:
+            return CGFloat(studentDisciplineCell.isHidden ? 0.0 : 96.0)
         case startPicker:
             return CGFloat(startDatePicker.isHidden ? 0.0 : 216.0)
         case endPicker:
             return CGFloat(endDatePicker.isHidden ? 0.0 : 216.0)
-        case endRepeat:
-            return CGFloat(endRepeatCell.isHidden ? 0.0 : 43.5)
-        case price:
-            return CGFloat(priceTF.isHidden ? 0.0 : 44.0)
+//        case endRepeat:
+//            return CGFloat(endRepeatCell.isHidden ? 0.0 : 96)
+//        case price:
+//            return CGFloat(priceCell.isHidden ? 0.0 : 96.0)
         default:
             return super.tableView(tableView, heightForRowAt: indexPath)
         }
-    }
-    
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let startDateIndexPath  = IndexPath(row: 0, section: 2)
-        let endDateIndexPath    = IndexPath(row: 2, section: 2)
-        
-        switch indexPath {
-        case startDateIndexPath:
-            startDatePicker.isHidden = !startDatePicker.isHidden
-            pickerAnimation(indexPath: indexPath)
-        case endDateIndexPath:
-            endDatePicker.isHidden = !endDatePicker.isHidden
-            pickerAnimation(indexPath: indexPath)
-        default:
-            return
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath){
-        let priceCell = IndexPath(row:0, section: 3)
-        
-        if indexPath == priceCell {
-            cell.contentView.backgroundColor = .appBlueDark
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView {
-        let headerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
-        headerView.backgroundColor = .clear
-        
-        return headerView
-    }
-    
-    override func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = UIView(frame: CGRect(x: 0, y: 0, width: tableView.bounds.size.width, height: 25))
-        footerView.backgroundColor = .clear
-        return footerView
     }
 }
 
@@ -426,8 +462,6 @@ extension AddOrEditLessonTVC {
         })
     }
 }
-
-
 
 //MARK: Alert
 extension AddOrEditLessonTVC  {

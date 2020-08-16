@@ -13,6 +13,7 @@ enum StringDateType: String {
     case date = "dd.MM.YY"
     case dateTime = "dd.MM.yyyy HH:mm"
     case fullDateTime = "EEEE, d MMMM yyyy"
+    case monthYear = "MMM, yyyy"
 }
 
 
@@ -74,7 +75,6 @@ extension Date {
     func str(str: String?, to: StringDateType) -> String {
         var newStr = str ?? "\(Date())"
         newStr = str?.count == 19 ? (newStr + "+0000") : newStr
-        
         
         let dateFormatter = DateFormatter()
         

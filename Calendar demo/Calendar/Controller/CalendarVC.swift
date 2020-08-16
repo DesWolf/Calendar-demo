@@ -92,7 +92,7 @@ extension CalendarVC {
     }
     
     private func setupNavigationBar(){
-        UINavigationBar().setClearNavBar(controller: self)
+        UINavigationBar().set(controller: self)
         navigationItem.rightBarButtonItem?.tintColor = .white
         
         navigationItem.title = Date().month

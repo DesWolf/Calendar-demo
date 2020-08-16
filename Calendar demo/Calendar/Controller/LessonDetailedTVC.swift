@@ -87,7 +87,7 @@ extension LessonDetailedTVC {
         let gradientHeight = statusBarHeight + navBar!.frame.height
         
         
-        UINavigationBar().setClearNavBar(controller: self)
+        UINavigationBar().set(controller: self)
         
         navigationItem.leftBarButtonItem?.title = "Назад"
         navigationItem.leftBarButtonItem?.tintColor = .white

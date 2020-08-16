@@ -102,7 +102,7 @@ class ProfileVC: UIViewController {
 extension ProfileVC {
     private func configureScreen() {
         backgroundColor()
-        UINavigationBar().setClearNavBar(controller: self)
+        UINavigationBar().set(controller: self)
         tableView.tableFooterView = UIView()
         profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
         

@@ -18,7 +18,13 @@ extension UIColor {
     static let appGray = UIColor(red: 242/255, green: 242/255, blue: 247/255, alpha: 1)
     static let appPink = UIColor(red: 217/255, green: 133/255, blue: 234/255, alpha: 1)
     static let appLightGreen = UIColor(red: 52/255, green: 199/255, blue: 89/255, alpha: 1)
+    static let appBackGray = UIColor(red: 253/255, green: 253/255, blue: 253/255, alpha: 1)
+    static let appTabIconGray = UIColor(red: 143/255, green: 155/255, blue: 167/255, alpha: 1)
+    static let appBlue = UIColor(red: 0/255, green: 73/255, blue: 196/255, alpha: 1)
+    static let appLightBlue = UIColor(red: 235/255, green: 243/255, blue: 252/255, alpha: 1)
     
+    static let fieldBackGray = UIColor(red: 244/255, green: 245/255, blue: 246/255, alpha: 1)
+    static let fieldBorder = UIColor(red: 224/255, green: 225/255, blue: 227/255, alpha: 1)
     
     static func setGradientToTableView(tableView: UITableView, height: Double) {
 
