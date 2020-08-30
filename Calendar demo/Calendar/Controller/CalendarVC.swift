@@ -174,7 +174,6 @@ extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "meetingCell", for: indexPath) as! LessonTVCell
         cell.configere(with: selectedDay[indexPath.row])
-        
         return cell
     }
     
@@ -213,12 +212,10 @@ extension CalendarVC {
     
     func paymentAlert(index: Int) {
         UIAlertController.paymentAlert(target: self) { (press: Bool) in
-            
             if press == true {
                 self.selectedDay[index].payStatus = 1
                 self.selectedDay[index].paymentDate = String("\(Date())".prefix(10))
                 self.payStatusChange(lesson: (self.selectedDay[index]))
-                
             } else if press == false {
                 self.selectedDay[index].payStatus = 0
                 self.selectedDay[index].paymentDate = ""

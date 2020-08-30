@@ -22,6 +22,7 @@ extension Date {
     var month: String {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "MMMM YYYY"
+//        dateFormatter.locale = Locale(identifier: "ru_RU")
         return dateFormatter.string(from: self)
     }
     

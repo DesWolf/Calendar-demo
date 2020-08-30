@@ -31,7 +31,7 @@ class LessonDetailedTVC: UITableViewController {
     @IBOutlet weak var statusPaymentBackView: UIView!
     @IBOutlet weak var commentBackView: UIView!
     
-    var lesson: LessonModel?
+    var lesson: LessonModel!
     
     private let networkManagerCalendar = NetworkManagerCalendar()
     
@@ -51,8 +51,6 @@ class LessonDetailedTVC: UITableViewController {
         setNavigationController()
         setupScreen(lesson: lesson)
         setCellBackView()
-        
-//        print(String(describing: lesson))
     }
     
     @IBAction private func tapOnBackButton(_ sender: Any) {
@@ -70,35 +68,36 @@ class LessonDetailedTVC: UITableViewController {
 
 //MARK: Setup Screen
 extension LessonDetailedTVC {
-    func setupScreen(lesson: LessonModel?) {
+    func setupScreen(lesson: LessonModel) {
         
-        let name                = lesson?.lessonName == "" ? "Без названия" : lesson?.lessonName
-        let startTime           = Date().str(str: lesson?.startDate, to: .time)
-        let endTime             = Date().str(str: lesson?.endDate, to: .time)
-        let date                = Date().str(str: lesson?.startDate, to: .fullDateTime)
-        let endDate             = Date().str(str: lesson?.endDate, to: .date)
+        let name                = lesson.lessonName == "" ? "Без названия" : lesson.lessonName
+        let startTime           = Date().str(str: lesson.startDate, to: .time)
+        let endTime             = Date().str(str: lesson.endDate, to: .time)
+        let date                = Date().str(str: lesson.startDate, to: .fullDateTime)
+        let endDate             = Date().str(str: lesson.endDate, to: .date)
         
         nameLabel.text          = name ?? "Без названия"
-        placeLabel.text         = lesson?.place ?? ""
-        disciplineLabel.text    = lesson?.discipline ?? ""
+        placeLabel.text         = lesson.place ?? ""
+        disciplineLabel.text    = lesson.discipline ?? ""
         timeLabel.text          = "с \(startTime) до \(endTime)"
         dateLabel.text          = date
-        studentLabel.text       = "\(lesson?.studentName ?? "") \(lesson?.studentSurname ?? "")"
-        noteTV.text             = lesson?.note ?? ""
-        repeatLabel.text        = lesson?.repeatedly == "weekly" ? "до \(endDate)" : "Нет"
-        priceLabel.text         = "\(lesson?.price ?? 0) руб."
-        paymentLabel.text       = lesson?.payStatus == 0 ? "Не оплаченно" : "Оплаченно"
-        paymentLabel.textColor  = lesson?.payStatus == 0 ? .systemRed : .systemGreen
-        
-        
+        studentLabel.text       = "\(lesson.studentName ?? "") \(lesson.studentSurname ?? "")"
+        noteTV.text             = lesson.note ?? ""
+        repeatLabel.text        = lesson.repeatedly == "weekly" ? "до \(endDate)" : "Нет"
+        priceLabel.text         = "\(lesson.price ?? 0) руб."
+        paymentLabel.text       = lesson.payStatus == 0 ? "Не оплаченно" : "Оплаченно"
+        paymentLabel.textColor  = lesson.payStatus == 0 ? .systemRed : .systemGreen
     }
     
     private func setCellBackView() {
-        let mass = [nameBackView, studentBackView, lessonBackView, repeatbackView, notificationBackView, priceBackView, statusPaymentBackView, commentBackView]
+        let mass = [ studentBackView, lessonBackView, repeatbackView, notificationBackView, priceBackView, statusPaymentBackView, commentBackView]
         
         for elem in mass {
             guard let elem = elem else { return }
-            UIView().didDeselect(view: elem)
+            elem.layer.cornerRadius = 13
+            elem.backgroundColor = .appBackGray
+            elem.layer.borderColor = UIColor.fieldBorder.cgColor
+            elem.layer.borderWidth = 0.5
         }
     }
     
@@ -123,25 +122,18 @@ extension LessonDetailedTVC: UITextViewDelegate{
 extension LessonDetailedTVC {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let student = IndexPath(row: 1, section: 0)
-        let note = IndexPath(row: 0, section: 3)
+        let payment = IndexPath(row: 3, section: 0)
+        let note    = IndexPath(row: 4, section: 0)
         
         switch indexPath {
         case student:
-            return lesson?.studentId == nil ? 0 : super.tableView(tableView, heightForRowAt: indexPath)
+            return lesson.studentId == nil ? 0 : super.tableView(tableView, heightForRowAt: indexPath)
+        case payment:
+            return lesson.studentId == nil ? 0 : super.tableView(tableView, heightForRowAt: indexPath)
         case note:
-            return lesson?.note == nil ? 0 : UITableView.automaticDimension
+            return lesson.note == "" ? 0 : UITableView.automaticDimension
         default:
             return super.tableView(tableView, heightForRowAt: indexPath)
-        }
-    }
-    
-    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        let payment = IndexPath(row: 0, section: 2)
-        switch indexPath {
-        case payment:
-            cell.backgroundColor = .appBlueDark
-        default:
-            break
         }
     }
     
@@ -167,8 +159,8 @@ extension LessonDetailedTVC {
         
         paymentLabel.textColor      = desTVC.payment == 0 ? .systemRed : .systemGreen
         paymentLabel.text           = desTVC.payment == 0 ? "Не оплаченно" : "Оплаченно"
-        lesson?.payStatus           = desTVC.payment
-        lesson?.paymentDate         = desTVC.dateOfPaymentLabel.text
+        lesson.payStatus           = desTVC.payment
+        lesson.paymentDate         = desTVC.dateOfPaymentLabel.text
         
         changeLesson(lesson: lesson!)
         self.tableView.reloadData()
@@ -181,8 +173,8 @@ extension LessonDetailedTVC {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "payment" {
             guard let destVC = segue.destination as? PaymentTVC else { return }
-            destVC.payment =  lesson?.payStatus
-            destVC.paymentDate = lesson?.paymentDate
+            destVC.payment =  lesson.payStatus
+            destVC.paymentDate = lesson.paymentDate
         }
     }
 }
