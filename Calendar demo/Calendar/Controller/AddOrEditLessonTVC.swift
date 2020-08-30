@@ -39,9 +39,8 @@ class AddOrEditLessonTVC: UITableViewController {
     @IBOutlet weak var priceBackView: UIView!
     @IBOutlet weak var notificationBackView: UIView!
     @IBOutlet weak var commentBackView: UIView!
-
+    
     @IBOutlet weak var studentDisciplineCell: UITableViewCell!
-
     
     public var onBackButtonTap: (() -> (Void))?
     public var onSaveButtonTap: ((Int, LessonModel) -> (Void))?
@@ -50,17 +49,26 @@ class AddOrEditLessonTVC: UITableViewController {
     public var notifInSeconds: Double?
     public var selectedDate: Date?
     
-    
     private let networkManagerCalendar =  NetworkManagerCalendar()
     private var notifications = Notifications()
-
+    
+    struct Constant {
+        static let nameAndPlace         = IndexPath(row: 0, section: 0)
+        static let studentDiscipline    = IndexPath(row: 1, section: 0)
+        static let startEnd             = IndexPath(row: 2, section: 0)
+        static let startPicker          = IndexPath(row: 3, section: 0)
+        static let endPicker            = IndexPath(row: 4, section: 0)
+        static let repeatSign           = IndexPath(row: 5, section: 0)
+        static let notificationPrice    = IndexPath(row: 6, section: 0)
+        static let comment              = IndexPath(row: 7, section: 0)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureScreen()
     }
-     
+    
     @IBAction func sepmentTap(_ sender: Any) {
         switch segmetControl.selectedSegmentIndex {
         case 0:
@@ -74,43 +82,41 @@ class AddOrEditLessonTVC: UITableViewController {
         default:
             break
         }
-        tableView.reloadData()
+        rowAnimation(indexPath: Constant.studentDiscipline)
     }
-        
-        
     
     @IBAction func studentButtonTap(_ sender: Any) {
-        didSelect(view: studentBackView)
+        UIView().didSelect(view: studentBackView)
         _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            self.didDeselect(view: self.studentBackView)
+            UIView().didDeselect(view: self.studentBackView)
         }
     }
     
     @IBAction func disciplineButtonTap(_ sender: Any) {
-        didSelect(view: disciplineBackView)
+        UIView().didSelect(view: disciplineBackView)
         _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            self.didDeselect(view: self.disciplineBackView)
+            UIView().didDeselect(view: self.disciplineBackView)
         }
     }
     
     @IBAction func isStartButtonTap(_ sender: Any) {
         let index = IndexPath(row: 3, section: 0)
-
+        
         if startDatePicker.isHidden == true {
             startDatePicker.isHidden = false
             
-            didSelect(view: startBackView)
-            didDeselect(view: endBackView)
-        
+            UIView().didSelect(view: startBackView)
+            UIView().didDeselect(view: endBackView)
+            
             startLabel.textColor = .appBlue
             endLabel.textColor = .black
         } else {
             startDatePicker.isHidden = true
-            didDeselect(view: startBackView)
+            UIView().didDeselect(view: startBackView)
             startLabel.textColor = .black
         }
         endDatePicker.isHidden = true
-        pickerAnimation(indexPath: index)
+        rowAnimation(indexPath: index)
     }
     
     @IBAction func isEndButtonTap(_ sender: Any) {
@@ -118,18 +124,18 @@ class AddOrEditLessonTVC: UITableViewController {
         
         if endDatePicker.isHidden == true {
             endDatePicker.isHidden = false
-            didSelect(view: endBackView)
-            didDeselect(view: startBackView)
+            UIView().didSelect(view: endBackView)
+            UIView().didDeselect(view: startBackView)
             
             endLabel.textColor = .appBlue
             startLabel.textColor = .black
         } else {
             endDatePicker.isHidden = true
-            didDeselect(view: endBackView)
+            UIView().didDeselect(view: endBackView)
             endLabel.textColor = .black
         }
         startDatePicker.isHidden = true
-        pickerAnimation(indexPath: index)
+        rowAnimation(indexPath: index)
     }
     
     
@@ -161,9 +167,9 @@ class AddOrEditLessonTVC: UITableViewController {
                         student             : "\(student?.name ?? "") \(student?.surname ?? "")")
     }
     @IBAction func notificationButtonTap(_ sender: Any) {
-        didSelect(view: notificationBackView)
+        UIView().didSelect(view: notificationBackView)
         _ = Timer.scheduledTimer(withTimeInterval: 1.0, repeats: true) { timer in
-            self.didDeselect(view: self.notificationBackView)
+            UIView().didDeselect(view: self.notificationBackView)
         }
         
     }
@@ -171,7 +177,6 @@ class AddOrEditLessonTVC: UITableViewController {
     @IBAction func priceButtonTap(_ sender: Any) {
         priceCurrency.textColor = .black
     }
-    
 }
 
 //MARK: Set Screen
@@ -206,29 +211,17 @@ extension AddOrEditLessonTVC {
         priceTF.attributedPlaceholder = NSAttributedString(string: "0", attributes: [NSAttributedString.Key.foregroundColor: UIColor.appTabIconGray])
     }
     
+    //MARK: Set BackView
     private func setCellBackView() {
         let mass = [nameBackView, studentBackView, placeBackView, disciplineBackView, startBackView, endBackView, repeatBackView, endRepeatBackView, priceBackView, notificationBackView, commentBackView]
         
         for elem in mass {
             guard let elem = elem else { return }
-            didDeselect(view: elem)
+            UIView().didDeselect(view: elem)
         }
         
         startLabel.textColor = .appTabIconGray
         endLabel.textColor = .appTabIconGray
-    }
-    
-    private func didSelect(view: UIView) {
-        view.layer.cornerRadius = view.frame.height / 6
-        view.backgroundColor = .appLightBlue
-        view.layer.borderColor = UIColor.clear.cgColor
-    }
-    
-    private func didDeselect(view: UIView) {
-        view.layer.cornerRadius = view.frame.height / 6
-        view.backgroundColor = .fieldBackGray
-        view.layer.borderColor = UIColor.fieldBorder.cgColor
-        view.layer.borderWidth = 0.5
     }
     
     private func endRepeat(isHidden: Bool) {
@@ -244,7 +237,7 @@ extension AddOrEditLessonTVC {
         startDatePicker.setDate(picker, animated: true)
         startDatePicker.minuteInterval = 5
         startDatePicker.isHidden = true
-
+        
         setStartDateLabel()
     }
     
@@ -268,21 +261,11 @@ extension AddOrEditLessonTVC {
         endLabel.text = Date().str(str: "\(endDatePicker.date)", to: .dateTime)
     }
     
-    
-    
     private func setupNavigationBar() {
-        let navBar                  = self.navigationController?.navigationBar
-        //        let statusBarHeight         = UIApplication.shared.statusBarFrame.height
-        //        let gradientHeight          = statusBarHeight  + navBar!.frame.height
-        
-//        navigationItem.title = lesson == nil ? "Новый урок" : "Редактирование"
-        //        navBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navigationItem.leftBarButtonItem?.title = "Отмена"
         navigationItem.leftBarButtonItem?.tintColor = .appBlue
         navigationItem.rightBarButtonItem?.tintColor = .appBlue
-        
         UINavigationBar().set(controller: self)
-        
     }
 }
 
@@ -294,7 +277,7 @@ extension AddOrEditLessonTVC {
             self.student = studentTVC.selectedStudent
             self.studentLabel.text = "\(self.student?.name ?? "") \(self.student?.surname ?? "")"
         }
-
+        
         if let disciplineTVC = segue.source as? DisciplinesForLessonTVC {
             self.disciplineLabel.text = disciplineTVC.selectedDiscipline
         }
@@ -331,7 +314,6 @@ extension AddOrEditLessonTVC {
                 let repeatTVC = nav.topViewController as? RepeatTVC else { return }
             repeatTVC.repeatLesson = repeatLabel.text == RepeatLesson.never.rawValue ? .never : .weekly
             repeatTVC.endOfRepeat = endRepeatLabel.text ?? ""
-            
         default:
             return
         }
@@ -350,14 +332,14 @@ extension AddOrEditLessonTVC {
                              studentSurname : student?.surname,
                              discipline     : disciplineLabel.text ?? "",
                              startDate      : "\(start)",
-            duration       : [],
-            endDate        : "\(end)",
-            repeatedly     : repeatLabel.text == "Никогда" ?  "never" : "weekly",
-            endRepeat      : repeatLabel.text == "Никогда" ? "" : endRepeat,
-            price          : Int(priceTF.text ?? "0"),
-            note           : noteTV.text,
-            payStatus      : lesson != nil ? lesson?.payStatus : 0,
-            paymentDate    : lesson != nil ? lesson?.paymentDate: "")
+                             duration       : [],
+                             endDate        : "\(end)",
+                             repeatedly     : repeatLabel.text == "Никогда" ?  "never" : "weekly",
+                             endRepeat      : repeatLabel.text == "Никогда" ? "" : endRepeat,
+                             price          : Int(priceTF.text ?? "0"),
+                             note           : noteTV.text,
+                             payStatus      : lesson != nil ? lesson?.payStatus : 0,
+                             paymentDate    : lesson != nil ? lesson?.paymentDate: "")
         
         if lesson?.lessonId != nil {
             changeLesson(lesson: lesson!)
@@ -426,35 +408,22 @@ extension AddOrEditLessonTVC {
 extension AddOrEditLessonTVC {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         
-        let nameAndPlace     = IndexPath(row: 0, section: 0)
-        let studentDiscipline = IndexPath(row: 1, section: 0)
-        let startEnd         = IndexPath(row: 2, section: 0)
-        let startPicker      = IndexPath(row: 3, section: 0)
-        let endPicker        = IndexPath(row: 4, section: 0)
-        let repeatSign       = IndexPath(row: 5, section: 0)
-        let notif            = IndexPath(row: 6, section: 0)
-        let comment          = IndexPath(row: 7, section: 0)
-        
         switch indexPath{
-        case studentDiscipline:
+        case Constant.studentDiscipline:
             return CGFloat(studentDisciplineCell.isHidden ? 0.0 : 96.0)
-        case startPicker:
+        case Constant.startPicker:
             return CGFloat(startDatePicker.isHidden ? 0.0 : 216.0)
-        case endPicker:
+        case Constant.endPicker:
             return CGFloat(endDatePicker.isHidden ? 0.0 : 216.0)
-//        case endRepeat:
-//            return CGFloat(endRepeatCell.isHidden ? 0.0 : 96)
-//        case price:
-//            return CGFloat(priceCell.isHidden ? 0.0 : 96.0)
         default:
             return super.tableView(tableView, heightForRowAt: indexPath)
         }
     }
 }
 
-//MARK: PickerView
+//MARK: Animation
 extension AddOrEditLessonTVC {
-    private func pickerAnimation(indexPath: IndexPath) {
+    private func rowAnimation(indexPath: IndexPath) {
         UIView.animate(withDuration: 0.3, animations: { () -> Void in
             self.tableView.beginUpdates()
             self.tableView.deselectRow(at: indexPath as IndexPath, animated: true)

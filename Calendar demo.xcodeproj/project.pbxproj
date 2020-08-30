@@ -30,6 +30,7 @@
 		9E374A9D249241CF0082A119 /* DisciplineLessonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374A9C249241CF0082A119 /* DisciplineLessonTVCell.swift */; };
 		9E374A9F2492896B0082A119 /* StudentsForLessonTVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374A9E2492896B0082A119 /* StudentsForLessonTVC.swift */; };
 		9E374AA1249299410082A119 /* StudentsForLessonTVCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E374AA0249299410082A119 /* StudentsForLessonTVCell.swift */; };
+		9E3A5EFD24F2C42C001C96FB /* View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E3A5EFC24F2C42C001C96FB /* View.swift */; };
 		9E43BE6224BCB84A007BC927 /* SegmentedControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E43BE6124BCB84A007BC927 /* SegmentedControl.swift */; };
 		9E43BE6424BCB8DC007BC927 /* UIImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E43BE6324BCB8DC007BC927 /* UIImage.swift */; };
 		9E51BA8E24B8A66F002A6238 /* ProfileNavController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E51BA8D24B8A66E002A6238 /* ProfileNavController.swift */; };
@@ -44,7 +45,6 @@
 		9E63193A244F6101007DE5F1 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B4244D92AB00FA529B /* Main.storyboard */; };
 		9E6B56AA248B987E00042E2B /* Date.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E6B56A9248B987E00042E2B /* Date.swift */; };
 		9E700B8A24D6C54B00E66B88 /* TypeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E700B8924D6C54B00E66B88 /* TypeCollectionViewCell.swift */; };
-		9E700B8C24D6FCFD00E66B88 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E700B8B24D6FCFD00E66B88 /* AddViewController.swift */; };
 		9E7A73AF244D92AB00FA529B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A73AE244D92AB00FA529B /* AppDelegate.swift */; };
 		9E7A73B3244D92AB00FA529B /* CalendarVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9E7A73B2244D92AB00FA529B /* CalendarVC.swift */; };
 		9E7A73B8244D92AC00FA529B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9E7A73B7244D92AC00FA529B /* Assets.xcassets */; };
@@ -121,6 +121,7 @@
 		9E374A9C249241CF0082A119 /* DisciplineLessonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DisciplineLessonTVCell.swift; sourceTree = "<group>"; };
 		9E374A9E2492896B0082A119 /* StudentsForLessonTVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsForLessonTVC.swift; sourceTree = "<group>"; };
 		9E374AA0249299410082A119 /* StudentsForLessonTVCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentsForLessonTVCell.swift; sourceTree = "<group>"; };
+		9E3A5EFC24F2C42C001C96FB /* View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = View.swift; sourceTree = "<group>"; };
 		9E43BE6124BCB84A007BC927 /* SegmentedControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentedControl.swift; sourceTree = "<group>"; };
 		9E43BE6324BCB8DC007BC927 /* UIImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImage.swift; sourceTree = "<group>"; };
 		9E51BA8D24B8A66E002A6238 /* ProfileNavController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileNavController.swift; sourceTree = "<group>"; };
@@ -135,7 +136,6 @@
 		9E6B56A9248B987E00042E2B /* Date.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Date.swift; sourceTree = "<group>"; };
 		9E6C0E622482E75C0099F300 /* Calendar demo.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "Calendar demo.entitlements"; sourceTree = "<group>"; };
 		9E700B8924D6C54B00E66B88 /* TypeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypeCollectionViewCell.swift; sourceTree = "<group>"; };
-		9E700B8B24D6FCFD00E66B88 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
 		9E7A73AB244D92AB00FA529B /* Calendar demo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Calendar demo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9E7A73AE244D92AB00FA529B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9E7A73B2244D92AB00FA529B /* CalendarVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarVC.swift; sourceTree = "<group>"; };
@@ -245,16 +245,11 @@
 		9E0538B2247C196300AAC0AA /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				9E5E8CD924A23FE9006E4751 /* CalendarNavController.swift */,
+				9E86284524F2681800D593B5 /* Navigation */,
 				9E0ADAA124AB8A1B0077E26D /* CalendarVC */,
+				9E86284424F267E600D593B5 /* SupportScreen */,
 				9E8C5F0A2494DBCF00332B61 /* LessonDetailedTVC.swift */,
 				9E631938244F50B4007DE5F1 /* AddOrEditLessonTVC.swift */,
-				9E700B8B24D6FCFD00E66B88 /* AddViewController.swift */,
-				9E374A9E2492896B0082A119 /* StudentsForLessonTVC.swift */,
-				9E374A9A24922FA20082A119 /* DisciplinesForLessonTVC.swift */,
-				9E01A2A5248E75840044AD7F /* RepeatTVC.swift */,
-				9E8C5F0C2494DE1000332B61 /* PaymentTVC.swift */,
-				9E86E9152493784A00FD63AA /* NotificationTVC.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -428,6 +423,7 @@
 				9E6B56A9248B987E00042E2B /* Date.swift */,
 				9E800FE024B1C00D00BCAE63 /* NavBar.swift */,
 				9E862342248BBDBF0004B3FD /* VewController.swift */,
+				9E3A5EFC24F2C42C001C96FB /* View.swift */,
 				9E43BE6124BCB84A007BC927 /* SegmentedControl.swift */,
 				9E43BE6324BCB8DC007BC927 /* UIImage.swift */,
 			);
@@ -466,6 +462,26 @@
 				9E0A5E1E244F26B000188CDE /* Support */,
 			);
 			path = "Calendar demo";
+			sourceTree = "<group>";
+		};
+		9E86284424F267E600D593B5 /* SupportScreen */ = {
+			isa = PBXGroup;
+			children = (
+				9E374A9E2492896B0082A119 /* StudentsForLessonTVC.swift */,
+				9E374A9A24922FA20082A119 /* DisciplinesForLessonTVC.swift */,
+				9E01A2A5248E75840044AD7F /* RepeatTVC.swift */,
+				9E8C5F0C2494DE1000332B61 /* PaymentTVC.swift */,
+				9E86E9152493784A00FD63AA /* NotificationTVC.swift */,
+			);
+			name = SupportScreen;
+			sourceTree = "<group>";
+		};
+		9E86284524F2681800D593B5 /* Navigation */ = {
+			isa = PBXGroup;
+			children = (
+				9E5E8CD924A23FE9006E4751 /* CalendarNavController.swift */,
+			);
+			name = Navigation;
 			sourceTree = "<group>";
 		};
 		9EC155A0246D622300D2C776 /* Network */ = {
@@ -739,6 +755,7 @@
 				9E7C134A247D47A70095C57E /* StudentProfileTVC.swift in Sources */,
 				9E0A5E2E244F410900188CDE /* StudentModel.swift in Sources */,
 				9E5BD563246EE9D500EB4F53 /* String.swift in Sources */,
+				9E3A5EFD24F2C42C001C96FB /* View.swift in Sources */,
 				9E3570DA2488DFC400F8F997 /* NetworkManagerCalendar.swift in Sources */,
 				9EADFFE524B74A05009F1513 /* ExtentionCalendarVCCalendar.swift in Sources */,
 				9EB0356F249AAD0F00F22C57 /* FinaceEndPoint.swift in Sources */,
@@ -757,7 +774,6 @@
 				9E43BE6224BCB84A007BC927 /* SegmentedControl.swift in Sources */,
 				9E800FE124B1C00D00BCAE63 /* NavBar.swift in Sources */,
 				9E01A2A6248E75840044AD7F /* RepeatTVC.swift in Sources */,
-				9E700B8C24D6FCFD00E66B88 /* AddViewController.swift in Sources */,
 				9EADFFE324B70720009F1513 /* LessonDuration.swift in Sources */,
 				9EC155AC246D636700D2C776 /* Router.swift in Sources */,
 				9EFD254B247143C700876D48 /* LoginVC.swift in Sources */,

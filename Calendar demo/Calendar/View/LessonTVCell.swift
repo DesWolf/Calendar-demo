@@ -10,6 +10,7 @@ import UIKit
 
 class LessonTVCell: UITableViewCell {
     
+    @IBOutlet weak var backCellView: UIView!
     @IBOutlet weak var statusImage: UIImageView!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
@@ -21,6 +22,19 @@ class LessonTVCell: UITableViewCell {
     func configere(with meeting: LessonModel) {
         textLesson(meeting: meeting)
         colourLesson(meeting: meeting)
+        
+        backCellView.backgroundColor = .appBackGray
+        backCellView.layer.cornerRadius = 10
+        backCellView.layer.borderColor = UIColor.fieldBorder.cgColor
+        backCellView.layer.borderWidth = 0.5
+        
+        self.backCellView.layer.masksToBounds = true
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        priceLabel.text = nil
+        payStatusLabel.text = nil
     }
 }
 
@@ -54,7 +68,7 @@ extension LessonTVCell {
         print(now, lessonDate)
         
         if lessonDate > now {
-            statusImage.backgroundColor         = meeting.studentName != nil ? .appBlueDark : .systemPink
+            statusImage.backgroundColor         = meeting.studentName != nil ? .appBlue : .systemPink
             payStatusLabel.textColor            = meeting.payStatus == 1 ? UIColor.systemGreen : UIColor.systemRed
             
         } else {

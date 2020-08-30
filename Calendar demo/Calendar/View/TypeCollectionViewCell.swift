@@ -18,9 +18,6 @@ class TypeCollectionViewCell: UICollectionViewCell {
             backgroundColor = .fieldBorder
             textLabel.textColor = .appBlue
         } else  {
-//            backgroundColor = .clear
-//            layer.borderColor = UIColor.fieldBorder.cgColor
-//            layer.borderWidth = 0.5
             textLabel.textColor = .appTabIconGray
         }
         textLabel.text = name

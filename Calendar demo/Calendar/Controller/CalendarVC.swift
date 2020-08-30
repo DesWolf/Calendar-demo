@@ -16,25 +16,24 @@ enum ModeView {
 
 class CalendarVC: UIViewController {
     
-    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var backCalendarView: UIView!
     @IBOutlet weak var menuView: CVCalendarMenuView!
     @IBOutlet weak var calendarView: CVCalendarView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var dateLabel: UILabel!
-    @IBOutlet weak var separatorImage: UIImageView!
     
-    private let networkManagerCalendar = NetworkManagerCalendar()
-    var lessons: [LessonModel]?
-    private var currentCalendar: Calendar?
-    var selectedDay: [LessonModel]?
-    private var modeView: ModeView = .monthView
-    
+    var lessons: [LessonModel] = []
+    var selectedDay: [LessonModel] = []
     var onAddButtonTap: (() -> (Void))?
     var onCellTap: ((LessonModel) -> (Void))?
     
+    private let networkManagerCalendar = NetworkManagerCalendar()
+
+    private var currentCalendar: Calendar?
+    private var modeView: ModeView = .monthView
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         
         self.calendarView.calendarAppearanceDelegate = self
         self.menuView.menuViewDelegate = self
@@ -50,7 +49,6 @@ class CalendarVC: UIViewController {
         super.viewDidLayoutSubviews()
         calendarView.commitCalendarViewUpdate()
         menuView.commitMenuViewUpdate()
-        
     }
     
     @IBAction func sendRequest(_ sender: Any) {
@@ -70,33 +68,21 @@ extension CalendarVC {
         setupNavigationBar()
         backgroundColor()
         
-        separatorImage.backgroundColor = .separator
         calendarView.changeDaysOutShowingState(shouldShow: true)
-        
     }
     
     private func backgroundColor() {
-        
-        let gradientBackgroundColors = [UIColor.appBlueLignt.cgColor, UIColor.appBlueDark.cgColor]
-        let gradientLayer = CAGradientLayer()
-        
-        gradientLayer.colors = gradientBackgroundColors
-        gradientLayer.locations = [0.0,1.0]
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 0, y: 0.5)
-        gradientLayer.frame = self.view.bounds
-        
-        self.backgroundImage.layer.insertSublayer(gradientLayer, at: 0)
-        
-        tableView.backgroundColor = .appGray
+        backCalendarView.backgroundColor = .appBackGray
+        backCalendarView.layer.cornerRadius = 10
+        backCalendarView.layer.borderColor = UIColor.fieldBorder.cgColor
+        backCalendarView.layer.borderWidth = 0.5
     }
     
     private func setupNavigationBar(){
         UINavigationBar().set(controller: self)
-        navigationItem.rightBarButtonItem?.tintColor = .white
+        navigationItem.rightBarButtonItem?.tintColor = .appBlue
         
         navigationItem.title = Date().month
-
     }
     
     func switchMode() {
@@ -109,8 +95,6 @@ extension CalendarVC {
         }
     }
 }
-
-
 
 //MARK: Network
 extension CalendarVC {
@@ -129,7 +113,7 @@ extension CalendarVC {
                 return
             }
             self?.lessons = calendar
-
+            
             self?.filterLessons(day: "\("\(Date())".prefix(10))")
             
             DispatchQueue.main.async {
@@ -183,64 +167,37 @@ extension CalendarVC {
 
 //MARK: TableViewDelegate & TableViewDataSource
 extension CalendarVC: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return selectedDay?.count ?? 0
-    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 2
+        return selectedDay.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        switch indexPath.row {
-        case 0:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "headerCell", for: indexPath)
-            cell.backgroundColor = .appGray
-            
-            return cell
-            
-        default:
-            let cell = tableView.dequeueReusableCell(withIdentifier: "meetingCell", for: indexPath) as! LessonTVCell
-            guard let meeting = selectedDay?[indexPath.section] else { return cell }
-            cell.configere(with: meeting)
-            
-            return cell
-        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: "meetingCell", for: indexPath) as! LessonTVCell
+        cell.configere(with: selectedDay[indexPath.row])
+        
+        return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if indexPath == IndexPath(row: 0, section: 0) { return 25 }
-        
-        switch indexPath.row {
-        case 0:
-            return 10
-        default:
-            return 60
-        }
+        return 80
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
-        guard let meeting = selectedDay?[indexPath.section] else { return }
-        onCellTap?(meeting)
+        onCellTap?(selectedDay[indexPath.row])
     }
-    
-    
     
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         let delete = UIContextualAction(style: .destructive, title: "Удалить") {  (contextualAction, view, boolValue) in
             print("Delete")
-            let selectedLesson = self.selectedDay?[indexPath.section]
-            self.lessons?.remove(at: indexPath.section)
-            self.selectedDay?.remove(at: indexPath.section)
-            self.deleteLesson(lessonId: selectedLesson?.lessonId ?? 0)
+            let selectedLesson = self.selectedDay[indexPath.row]
+            self.lessons.remove(at: indexPath.row)
+            self.selectedDay.remove(at: indexPath.row)
+            self.deleteLesson(lessonId: selectedLesson.lessonId ?? 0)
             self.tableView.reloadData()
         }
         
         let edit = UIContextualAction(style: .normal, title: "₽") {  (contextualAction, view, boolValue) in
-            self.paymentAlert(section: indexPath.section)
+            self.paymentAlert(index: indexPath.row)
         }
         edit.backgroundColor = .appLightGreen
         
@@ -254,23 +211,21 @@ extension CalendarVC {
         UIAlertController.simpleAlert(title:"Ошибка", msg:"\(message)", target: self)
     }
     
-    func paymentAlert(section: Int) {
+    func paymentAlert(index: Int) {
         UIAlertController.paymentAlert(target: self) { (press: Bool) in
             
             if press == true {
-                self.selectedDay?[section].payStatus = 1
-                self.selectedDay?[section].paymentDate = String("\(Date())".prefix(10))
-                self.payStatusChange(lesson: (self.selectedDay?[section])!)
+                self.selectedDay[index].payStatus = 1
+                self.selectedDay[index].paymentDate = String("\(Date())".prefix(10))
+                self.payStatusChange(lesson: (self.selectedDay[index]))
                 
             } else if press == false {
-                self.selectedDay?[section].payStatus = 0
-                self.selectedDay?[section].paymentDate = ""
-                self.payStatusChange(lesson: (self.selectedDay?[section])!)
+                self.selectedDay[index].payStatus = 0
+                self.selectedDay[index].paymentDate = ""
+                self.payStatusChange(lesson: (self.selectedDay[index]))
             }
             
             self.tableView.reloadData()
-            print(self.lessons)
-            
         }
     }
 }

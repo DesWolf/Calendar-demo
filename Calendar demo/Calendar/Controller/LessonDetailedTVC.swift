@@ -22,24 +22,37 @@ class LessonDetailedTVC: UITableViewController {
     @IBOutlet weak var priceLabel: UILabel!
     @IBOutlet weak var paymentLabel: UILabel!
     
+    @IBOutlet weak var nameBackView: UIView!
+    @IBOutlet weak var studentBackView: UIView!
+    @IBOutlet weak var lessonBackView: UIView!
+    @IBOutlet weak var repeatbackView: UIView!
+    @IBOutlet weak var notificationBackView: UIView!
+    @IBOutlet weak var priceBackView: UIView!
+    @IBOutlet weak var statusPaymentBackView: UIView!
+    @IBOutlet weak var commentBackView: UIView!
+    
     var lesson: LessonModel?
-    //    private var paymentDate: String?
+    
     private let networkManagerCalendar = NetworkManagerCalendar()
     
     public var onEditButtonTap: ((LessonModel) -> (Void))?
     public var onBackButtonTap: (() -> (Void))?
     
-    
-    
+    struct Constant {
+        static let nameAndPlace         = IndexPath(row: 0, section: 0)
+        static let studentDiscipline    = IndexPath(row: 1, section: 0)
+        static let repeatNotification   = IndexPath(row: 2, section: 0)
+        static let price                = IndexPath(row: 3, section: 0)
+        static let comment              = IndexPath(row: 4, section: 0)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setNavigationController()
         setupScreen(lesson: lesson)
+        setCellBackView()
         
-        print(String(describing: lesson))
-        
-        
+//        print(String(describing: lesson))
     }
     
     @IBAction private func tapOnBackButton(_ sender: Any) {
@@ -53,7 +66,6 @@ class LessonDetailedTVC: UITableViewController {
             self.onEditButtonTap?(lesson!)
         }
     }
-    
 }
 
 //MARK: Setup Screen
@@ -71,29 +83,30 @@ extension LessonDetailedTVC {
         disciplineLabel.text    = lesson?.discipline ?? ""
         timeLabel.text          = "с \(startTime) до \(endTime)"
         dateLabel.text          = date
-        studentLabel.text       = "\(lesson?.studentName ?? "") - \(lesson?.studentSurname ?? "")"
+        studentLabel.text       = "\(lesson?.studentName ?? "") \(lesson?.studentSurname ?? "")"
         noteTV.text             = lesson?.note ?? ""
         repeatLabel.text        = lesson?.repeatedly == "weekly" ? "до \(endDate)" : "Нет"
         priceLabel.text         = "\(lesson?.price ?? 0) руб."
         paymentLabel.text       = lesson?.payStatus == 0 ? "Не оплаченно" : "Оплаченно"
         paymentLabel.textColor  = lesson?.payStatus == 0 ? .systemRed : .systemGreen
         
-        tableView.backgroundColor = .clear
+        
+    }
+    
+    private func setCellBackView() {
+        let mass = [nameBackView, studentBackView, lessonBackView, repeatbackView, notificationBackView, priceBackView, statusPaymentBackView, commentBackView]
+        
+        for elem in mass {
+            guard let elem = elem else { return }
+            UIView().didDeselect(view: elem)
+        }
     }
     
     private func setNavigationController() {
-        let navBar = self.navigationController?.navigationBar
-        let statusBarHeight = UIApplication.shared.statusBarFrame.height
-        let gradientHeight = statusBarHeight + navBar!.frame.height
-        
-        
-        UINavigationBar().set(controller: self)
-        
         navigationItem.leftBarButtonItem?.title = "Назад"
-        navigationItem.leftBarButtonItem?.tintColor = .white
-        navigationItem.rightBarButtonItem?.tintColor = .white
-        
-        UIColor.setGradientToTableView(tableView: tableView, height: Double(gradientHeight))
+        navigationItem.leftBarButtonItem?.tintColor = .appBlue
+        navigationItem.rightBarButtonItem?.tintColor = .appBlue
+        UINavigationBar().set(controller: self)
     }
 }
 
