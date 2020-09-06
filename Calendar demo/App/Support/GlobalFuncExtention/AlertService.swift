@@ -36,12 +36,32 @@ extension UIAlertController {
         target.present(alert, animated: true, completion: nil)
     }
     
-    class func addTextAlert(target: UIViewController, actionHandler: ((_ text: String?) -> Void)? = nil) {
-        let alert = UIAlertController(title: "Новая дисциплина", message: "", preferredStyle: .alert)
+    class func paymentAlertWithAdition(target: UIViewController, actionHandler: ((_ press: Int) -> Void)? = nil) {
+        let alert = UIAlertController(title: "Занятие оплачено?", message: "", preferredStyle: .alert)
+        
+        
+        alert.addAction(UIAlertAction(title: "Нет", style: .cancel, handler: {
+            (action:UIAlertAction) in
+            actionHandler?(0)
+        }))
+        
+        
+        alert.addAction(UIAlertAction(title: "Да", style: .default, handler: { (action:UIAlertAction) in
+            actionHandler?(1)
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Подробнее", style: .default, handler: { (action:UIAlertAction) in
+            actionHandler?(2)
+        }))
+        target.present(alert, animated: true, completion: nil)
+    }
+    
+    class func addTextAlert(target: UIViewController, title: String, text: String, actionHandler: ((_ text: String?) -> Void)? = nil) {
+        let alert = UIAlertController(title: title, message: "", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Отмена", style: .cancel))
         alert.addTextField(configurationHandler: { textField in
-            textField.placeholder = "Введите название дисциплины"
+            textField.placeholder =  text//"Введите название дисциплины"
         })
         
         alert.addAction(UIAlertAction(title: "Добавить", style: .default, handler: { (action:UIAlertAction) in

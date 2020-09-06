@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vwU-P5-OOo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="vwU-P5-OOo">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
@@ -7,7 +7,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--ProfileVC-->
+        <!--Профиль-->
         <scene sceneID="H0h-py-Ryk">
             <objects>
                 <viewController storyboardIdentifier="ProfileVC" id="heX-c7-M0U" customClass="ProfileVC" customModule="Calendar_demo" customModuleProvider="target" sceneMemberID="viewController">
@@ -15,50 +15,65 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="65X-we-L9K">
-                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="User 2" translatesAutoresizingMaskIntoConstraints="NO" id="583-YW-ZtC">
-                                <rect key="frame" x="132" y="76" width="150" height="150"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BT0-RZ-reo">
-                                <rect key="frame" x="0.0" y="302" width="414" height="511"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fz1-gK-M05">
+                                <rect key="frame" x="0.0" y="44" width="414" height="200"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="6bU-1F-xAk">
+                                        <rect key="frame" x="343" y="5" width="46" height="30"/>
+                                        <state key="normal" title="Выйти"/>
+                                        <connections>
+                                            <action selector="signOut:" destination="heX-c7-M0U" eventType="touchUpInside" id="mtv-5h-pUj"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите ваше имя" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yCO-EK-FFa">
+                                        <rect key="frame" x="141" y="158" width="132" height="18"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PC5-RM-k3I">
+                                        <rect key="frame" x="141" y="155" width="132" height="30"/>
+                                        <connections>
+                                            <action selector="nameTap:" destination="heX-c7-M0U" eventType="touchUpInside" id="S4O-xF-kUV"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <constraints>
+                                    <constraint firstItem="yCO-EK-FFa" firstAttribute="centerX" secondItem="Fz1-gK-M05" secondAttribute="centerX" id="8S5-mX-b5q"/>
+                                    <constraint firstAttribute="height" constant="200" id="AcM-xG-5xK"/>
+                                    <constraint firstItem="PC5-RM-k3I" firstAttribute="leading" secondItem="Fz1-gK-M05" secondAttribute="leading" constant="141" id="J0l-hh-6NR"/>
+                                    <constraint firstItem="6bU-1F-xAk" firstAttribute="top" secondItem="Fz1-gK-M05" secondAttribute="top" constant="5" id="RwU-cN-fHw"/>
+                                    <constraint firstAttribute="trailing" secondItem="PC5-RM-k3I" secondAttribute="trailing" constant="141" id="dyp-gO-Aeb"/>
+                                    <constraint firstAttribute="bottom" secondItem="PC5-RM-k3I" secondAttribute="bottom" constant="15" id="gX8-dB-wJn"/>
+                                    <constraint firstAttribute="trailing" secondItem="6bU-1F-xAk" secondAttribute="trailing" constant="25" id="thq-xA-xut"/>
+                                </constraints>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="BT0-RZ-reo">
+                                <rect key="frame" x="0.0" y="244" width="414" height="652"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="profileCell" id="JA0-mB-wFY" customClass="ProfileCell" customModule="Calendar_demo" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="profileCell" rowHeight="60" id="JA0-mB-wFY" customClass="ProfileCell" customModule="Calendar_demo" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="414" height="60"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="JA0-mB-wFY" id="HwX-xY-G8K">
-                                            <rect key="frame" x="0.0" y="0.0" width="383" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="383" height="60"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xqJ-ev-U7h">
-                                                    <rect key="frame" x="57" y="11.5" width="333" height="21"/>
+                                                    <rect key="frame" x="15" y="19.5" width="360" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nVF-5H-OLm">
-                                                    <rect key="frame" x="17" y="9.5" width="25" height="25"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" constant="25" id="CnG-g9-7io"/>
-                                                        <constraint firstAttribute="height" constant="25" id="FVz-vM-FCg"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="nVF-5H-OLm" firstAttribute="centerY" secondItem="HwX-xY-G8K" secondAttribute="centerY" id="4op-mZ-2dT"/>
+                                                <constraint firstItem="xqJ-ev-U7h" firstAttribute="leading" secondItem="HwX-xY-G8K" secondAttribute="leading" constant="15" id="TCe-1M-5qP"/>
                                                 <constraint firstItem="xqJ-ev-U7h" firstAttribute="centerY" secondItem="HwX-xY-G8K" secondAttribute="centerY" id="eMi-2x-yec"/>
-                                                <constraint firstItem="xqJ-ev-U7h" firstAttribute="leading" secondItem="nVF-5H-OLm" secondAttribute="trailing" constant="15" id="emv-Pu-vkO"/>
-                                                <constraint firstItem="xqJ-ev-U7h" firstAttribute="trailing" secondItem="HwX-xY-G8K" secondAttribute="trailingMargin" constant="15" id="t4J-du-BdH"/>
-                                                <constraint firstItem="nVF-5H-OLm" firstAttribute="leading" secondItem="HwX-xY-G8K" secondAttribute="leading" constant="17" id="uD7-Vy-z5S"/>
+                                                <constraint firstItem="xqJ-ev-U7h" firstAttribute="trailing" secondItem="HwX-xY-G8K" secondAttribute="trailingMargin" id="t4J-du-BdH"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <outlet property="settingImage" destination="nVF-5H-OLm" id="Hd1-ZT-iT8"/>
                                             <outlet property="settingName" destination="xqJ-ev-U7h" id="Obe-g6-FUT"/>
                                         </connections>
                                     </tableViewCell>
@@ -68,37 +83,49 @@
                                     <outlet property="delegate" destination="heX-c7-M0U" id="1tm-1p-sVc"/>
                                 </connections>
                             </tableView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcX-ZE-LN8">
-                                <rect key="frame" x="242" y="179" width="40" height="39"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" image="plus"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jcX-ZE-LN8">
+                                <rect key="frame" x="144.5" y="69" width="125" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="125" id="0Hi-eU-h6B"/>
+                                    <constraint firstAttribute="height" constant="125" id="FXN-TJ-Vf3"/>
+                                </constraints>
                                 <connections>
                                     <action selector="imageTap:" destination="heX-c7-M0U" eventType="touchUpInside" id="Eci-Y3-yvz"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pJt-T2-FrE">
-                                <rect key="frame" x="113" y="250" width="188" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <state key="normal" title="SignOut"/>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                        <integer key="value" value="5"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
-                                <connections>
-                                    <action selector="signOut:" destination="heX-c7-M0U" eventType="touchUpInside" id="OZi-fB-1c4"/>
-                                </connections>
-                            </button>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="baseAvatar" translatesAutoresizingMaskIntoConstraints="NO" id="583-YW-ZtC">
+                                <rect key="frame" x="144.5" y="69" width="125" height="125"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="125" id="b5M-Q3-Cte"/>
+                                    <constraint firstAttribute="width" constant="125" id="tvu-YI-vUa"/>
+                                </constraints>
+                            </imageView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="583-YW-ZtC" firstAttribute="centerX" secondItem="YXo-Ej-pbg" secondAttribute="centerX" id="0K2-YV-I2W"/>
+                            <constraint firstItem="jcX-ZE-LN8" firstAttribute="top" secondItem="Lec-tV-Ior" secondAttribute="top" constant="25" id="8DD-JJ-7UP"/>
+                            <constraint firstItem="Fz1-gK-M05" firstAttribute="leading" secondItem="Lec-tV-Ior" secondAttribute="leading" id="CTs-qp-nt6"/>
+                            <constraint firstItem="BT0-RZ-reo" firstAttribute="top" secondItem="Fz1-gK-M05" secondAttribute="bottom" id="R55-It-zVG"/>
+                            <constraint firstItem="Fz1-gK-M05" firstAttribute="trailing" secondItem="Lec-tV-Ior" secondAttribute="trailing" id="SoS-8o-8go"/>
+                            <constraint firstAttribute="bottom" secondItem="BT0-RZ-reo" secondAttribute="bottom" id="bR1-G9-Ggu"/>
+                            <constraint firstItem="BT0-RZ-reo" firstAttribute="trailing" secondItem="Lec-tV-Ior" secondAttribute="trailing" id="dyo-li-8qo"/>
+                            <constraint firstItem="Fz1-gK-M05" firstAttribute="top" secondItem="Lec-tV-Ior" secondAttribute="top" id="eWf-ib-it0"/>
+                            <constraint firstItem="BT0-RZ-reo" firstAttribute="leading" secondItem="Lec-tV-Ior" secondAttribute="leading" id="fa7-GO-9la"/>
+                            <constraint firstItem="yCO-EK-FFa" firstAttribute="top" secondItem="jcX-ZE-LN8" secondAttribute="bottom" constant="8" id="jDe-Oh-kYw"/>
+                            <constraint firstItem="583-YW-ZtC" firstAttribute="top" secondItem="Lec-tV-Ior" secondAttribute="top" constant="25" id="lWM-4K-HWC"/>
+                            <constraint firstItem="jcX-ZE-LN8" firstAttribute="centerX" secondItem="YXo-Ej-pbg" secondAttribute="centerX" id="qXg-G6-tI7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Lec-tV-Ior"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Профиль" image="User" id="jHP-LI-32I"/>
                     <navigationItem key="navigationItem" id="o7O-a0-izh"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
-                        <outlet property="backgroundImage" destination="65X-we-L9K" id="o3C-jX-ND8"/>
+                        <outlet property="background" destination="Fz1-gK-M05" id="7pc-13-gzA"/>
+                        <outlet property="nameLabel" destination="yCO-EK-FFa" id="qHL-6f-4Es"/>
                         <outlet property="profileImage" destination="583-YW-ZtC" id="tew-LA-RUA"/>
+                        <outlet property="singOutButton" destination="6bU-1F-xAk" id="gnI-Ns-OEl"/>
                         <outlet property="tableView" destination="BT0-RZ-reo" id="Q54-6a-LY0"/>
                     </connections>
                 </viewController>
@@ -225,7 +252,6 @@
     </scenes>
     <resources>
         <image name="User" width="26" height="26"/>
-        <image name="User 2" width="30" height="30"/>
-        <image name="plus" width="27" height="27"/>
+        <image name="baseAvatar" width="680" height="680"/>
     </resources>
 </document>

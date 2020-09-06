@@ -10,20 +10,21 @@ import UIKit
 import AVFoundation
 import SwiftKeychainWrapper
 
-enum Settings: String {
-    case timeTable      = "График свободного времени"
-    case discipline     = "Предмет занятий"
-    case notification   = "Уведомления"
-    case subscription   = "Оформить подписку"
-    case account        = "Учетная запись"
-}
-
+//enum Settings: String {
+//    case timeTable      = "График свободного времени"
+//    case discipline     = "Предмет занятий"
+//    case notification   = "Уведомления"
+//    case subscription   = "Оформить подписку"
+//    case account        = "Учетная запись"
+//}
 
 class ProfileVC: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var backgroundImage: UIImageView!
+    @IBOutlet weak var background: UIView!
     @IBOutlet weak var profileImage: UIImageView!
+    @IBOutlet weak var singOutButton: UIButton!
+    @IBOutlet weak var nameLabel: UILabel!
     
     var cameraAccess: Bool?
     var onTimeTableTap: (() -> (Void))?
@@ -34,8 +35,7 @@ class ProfileVC: UIViewController {
                      "Предмет занятий",
                      "Учетная запись",
                      //"Оформить подписку",
-        "Уведомления"]
-    
+                     "Уведомления"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -47,7 +47,6 @@ class ProfileVC: UIViewController {
     }
     
     @IBAction func imageTap(_ sender: Any) {
-        
         if cameraAccess == nil || cameraAccess == false {
             requestCameraAccess()
         } else {
@@ -55,15 +54,24 @@ class ProfileVC: UIViewController {
         }
     }
     
+    @IBAction func nameTap(_ sender: Any) {
+        UIAlertController.addTextAlert(target: self,
+                                       title: "Укажите ваше имя",
+                                       text: "")
+        { (name: String?) in
+            guard let name = name else { return }
+            self.nameLabel.text = name
+        }
+    }
+    
     @IBAction func signOut(_ sender: Any) {
         KeychainWrapper.standard.removeObject(forKey: "accessToken")
         KeychainWrapper.standard.removeObject(forKey: "userId")
         
-        let mainStoryboard:UIStoryboard = UIStoryboard(name: "LoginStoryboard", bundle: nil)
-        let loginPage = mainStoryboard.instantiateViewController(withIdentifier: "EnterScreenVC") as! EnterScreenVC
+        let mainStoryboard:UIStoryboard = UIStoryboard(name: "Login", bundle: nil)
+        let loginPage = mainStoryboard.instantiateViewController(withIdentifier: "LoginNavController") as! UINavigationController
         let appDelegate = UIApplication.shared.delegate
         appDelegate?.window??.rootViewController = loginPage
-        
     }
     
     func addImage() {
@@ -94,37 +102,22 @@ class ProfileVC: UIViewController {
         
         present(actionSheet, animated: true)
     }
-    
-    
 }
 
 //MARK: Setup Screen
 extension ProfileVC {
     private func configureScreen() {
-        backgroundColor()
+        background.backgroundColor = .appBackGray
         UINavigationBar().set(controller: self)
         tableView.tableFooterView = UIView()
         profileImage.layer.cornerRadius = profileImage.frame.size.width / 2
+        profileImage.layer.borderColor = UIColor.fieldBorder.cgColor
+        profileImage.layer.borderWidth = 0.5
+        singOutButton.tintColor = .appBlue
         
         if let image = loadImageFromDiskWith(fileName: "profileImage") {
             profileImage.image = image
-            
         }
-    }
-    
-    
-    private func backgroundColor() {
-        let gradientBackgroundColors = [UIColor.appBlueLignt.cgColor, UIColor.appBlueDark.cgColor]
-        let gradientLayer = CAGradientLayer()
-        
-        gradientLayer.colors = gradientBackgroundColors
-        gradientLayer.locations = [0.0,1.0]
-        gradientLayer.startPoint = CGPoint(x: 0, y: 0)
-        gradientLayer.endPoint = CGPoint(x: 0, y: 0.5)
-        gradientLayer.frame = self.view.bounds
-        
-        self.backgroundImage.layer.insertSublayer(gradientLayer, at: 0)
-        tableView.backgroundColor = .appGray
     }
 }
 
@@ -137,30 +130,14 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "profileCell", for: indexPath) as! ProfileCell
         let setting = settings[indexPath.row]
-        let image: UIImage?
         
-        switch indexPath.row {
-        case 0:
-            image = #imageLiteral(resourceName: "timeTable")
-        case 1:
-            image = #imageLiteral(resourceName: "Group")
-        case 2:
-            image = #imageLiteral(resourceName: "account")
-        case 3:
-            image = #imageLiteral(resourceName: "subscribtion")
-        case 4:
-            image = #imageLiteral(resourceName: "notification")
-        default:
-            image = #imageLiteral(resourceName: "timeTable")
-        }
-        
-        cell.configere(name: setting, image: image ?? #imageLiteral(resourceName: "timeTable"))
+        cell.configere(name: setting)
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 44
+        60
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -182,8 +159,6 @@ extension ProfileVC: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-
-
 
 //MARK: Request access to camera and Notifications
 extension ProfileVC {
@@ -225,7 +200,6 @@ extension ProfileVC {
         }
     }
 }
-
 
 // MARK: Work with image
 extension ProfileVC: UIImagePickerControllerDelegate, UINavigationControllerDelegate{

@@ -30,7 +30,6 @@ class LoginNavController: UINavigationController {
             self.openRegister()
         }
         
-        
         pushViewController(startScreen, animated: false)
     }
     
@@ -41,16 +40,12 @@ class LoginNavController: UINavigationController {
             guard let self = self else { return }
             self.popToRootViewController(animated: true)
             self.openRegister()
-            
         }
-        
-        
         
         if let email = email, let password = password {
             login.email = email
             login.password = password
         }
-        
         pushViewController(login, animated: true)
         
     }
@@ -64,7 +59,6 @@ class LoginNavController: UINavigationController {
                 let password = register.passwordTF.text  else { return }
             self.popToRootViewController(animated: false)
             self.openLogin(email: email, password: password)
-            
         }
         
         pushViewController(register, animated: true)

@@ -11,7 +11,7 @@ import UIKit
 class LessonTVCell: UITableViewCell {
     
     @IBOutlet weak var backCellView: UIView!
-    @IBOutlet weak var statusImage: UIImageView!
+    @IBOutlet weak var statusView: UIView!
     @IBOutlet weak var startTimeLabel: UILabel!
     @IBOutlet weak var endTimeLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -24,7 +24,7 @@ class LessonTVCell: UITableViewCell {
         colourLesson(meeting: meeting)
         
         backCellView.backgroundColor = .appBackGray
-        backCellView.layer.cornerRadius = 10
+        backCellView.layer.cornerRadius = 5
         backCellView.layer.borderColor = UIColor.fieldBorder.cgColor
         backCellView.layer.borderWidth = 0.5
         
@@ -47,7 +47,7 @@ extension LessonTVCell {
         if meeting.studentName != nil {
             nameLabel.text          = "Урок с \(meeting.studentName ?? "") \(meeting.studentSurname ?? "")"
             descLabel.text          = meeting.discipline ?? ""
-            payStatusLabel.text     = meeting.payStatus == 1 ? "Оплаченно" : "Не оплаченно"
+            payStatusLabel.text     = meeting.payStatus == 1 ? "Оплачено" : "Не оплачено"
             priceLabel.text         = "\(meeting.price ?? 0) руб."
             
         } else if meeting.studentName == nil && meeting.lessonName == nil {
@@ -65,14 +65,12 @@ extension LessonTVCell {
         let now = Date()
         let lessonDate = Date().strToDate(str: meeting.endDate)
         
-        print(now, lessonDate)
-        
         if lessonDate > now {
-            statusImage.backgroundColor         = meeting.studentName != nil ? .appBlue : .systemPink
+            statusView.backgroundColor         = meeting.studentName != nil ? .appBlue : .systemPink
             payStatusLabel.textColor            = meeting.payStatus == 1 ? UIColor.systemGreen : UIColor.systemRed
             
         } else {
-            statusImage.backgroundColor         = .lightGray
+            statusView.backgroundColor          = .lightGray
             startTimeLabel.textColor            = .lightGray
             nameLabel.textColor                 = .lightGray
             priceLabel.textColor                = .lightGray

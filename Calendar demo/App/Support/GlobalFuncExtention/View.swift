@@ -10,13 +10,13 @@ import UIKit
 
 extension UIView {
     func didSelect(view: UIView) {
-        view.layer.cornerRadius = 13
+        view.layer.cornerRadius = 10
         view.backgroundColor = .appLightBlue
         view.layer.borderColor = UIColor.clear.cgColor
     }
     
     func didDeselect(view: UIView) {
-        view.layer.cornerRadius = 13
+        view.layer.cornerRadius = 10
         view.backgroundColor = .fieldBackGray
         view.layer.borderColor = UIColor.fieldBorder.cgColor
         view.layer.borderWidth = 0.5

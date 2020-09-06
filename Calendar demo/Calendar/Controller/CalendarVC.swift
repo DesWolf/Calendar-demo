@@ -34,7 +34,7 @@ class CalendarVC: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         self.calendarView.calendarAppearanceDelegate = self
         self.menuView.menuViewDelegate = self
         self.calendarView.calendarDelegate = self
@@ -54,6 +54,7 @@ class CalendarVC: UIViewController {
     @IBAction func sendRequest(_ sender: Any) {
         fetchCalendar(date: "\(Date())")
         self.calendarView.commitCalendarViewUpdate()
+        print(lessons)
     }
     
     @IBAction func switchCalView(_ sender: Any) { switchMode() }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WSM-Ad-RAF">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="WSM-Ad-RAF">
     <device id="retina5_9" orientation="portrait" appearance="light"/>
     <dependencies>
-        <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -15,7 +14,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OVN-QJ-MX5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1243" y="1651"/>
+            <point key="canvasLocation" x="2118" y="1651"/>
         </scene>
         <!--Calendar-->
         <scene sceneID="RiK-jO-Egb">
@@ -25,17 +24,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="U81-ha-oJx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1718" y="1651"/>
-        </scene>
-        <!--Finance-->
-        <scene sceneID="Ve5-wA-N5c">
-            <objects>
-                <viewControllerPlaceholder storyboardName="Finance" id="WoO-rb-91P" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Финансы" image="Wallet" id="laB-qh-irs"/>
-                </viewControllerPlaceholder>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="1Hj-yn-ia3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="2191" y="1651"/>
+            <point key="canvasLocation" x="1281" y="1651"/>
         </scene>
         <!--Statistic-->
         <scene sceneID="HMF-xl-QsK">
@@ -45,7 +34,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="86p-V3-aFW" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1978" y="1651"/>
+            <point key="canvasLocation" x="1881" y="1651"/>
         </scene>
         <!--TabBarController-->
         <scene sceneID="4KF-ZP-laa">
@@ -59,11 +48,10 @@
                         <color key="tintColor" red="0.99993699790000001" green="1" blue="0.99987250569999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </tabBar>
                     <connections>
-                        <segue destination="rzq-qV-oiA" kind="relationship" relationship="viewControllers" id="wfE-Ld-72U"/>
-                        <segue destination="9L6-Fy-W6F" kind="relationship" relationship="viewControllers" id="Kx9-xA-qmS"/>
                         <segue destination="Rpp-hV-Lis" kind="relationship" relationship="viewControllers" id="mX7-Ns-x6o"/>
+                        <segue destination="9L6-Fy-W6F" kind="relationship" relationship="viewControllers" id="Kx9-xA-qmS"/>
                         <segue destination="pou-wv-BOi" kind="relationship" relationship="viewControllers" id="GQG-Si-lnW"/>
-                        <segue destination="WoO-rb-91P" kind="relationship" relationship="viewControllers" id="j9l-er-QQf"/>
+                        <segue destination="rzq-qV-oiA" kind="relationship" relationship="viewControllers" id="wfE-Ld-72U"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XOM-W4-IIm" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -78,7 +66,7 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yYM-zr-HAn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1481" y="1651"/>
+            <point key="canvasLocation" x="1574" y="1651"/>
         </scene>
     </scenes>
     <resources>
@@ -86,6 +74,5 @@
         <image name="Contacts" width="25" height="25"/>
         <image name="Statistic" width="26" height="24"/>
         <image name="User" width="26" height="26"/>
-        <image name="Wallet" width="26" height="24"/>
     </resources>
 </document>

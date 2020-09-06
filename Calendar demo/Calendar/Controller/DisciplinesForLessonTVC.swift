@@ -33,10 +33,13 @@ extension DisciplinesForLessonTVC {
 // MARK: Add Discipline func
 extension DisciplinesForLessonTVC {
     func addDiscipline() {
-        UIAlertController.addTextAlert(target: self) { (newDiscipline: String?) in
-                                        guard let newDiscipline = newDiscipline else { return }
-                                        DisciplinesList.all.append(newDiscipline)
-                                        self.tableView.reloadData()
+        UIAlertController.addTextAlert(target: self,
+                                       title: "Новая дисциплина",
+                                       text: "Введите название дисциплины")
+        { (newDiscipline: String?) in
+            guard let newDiscipline = newDiscipline else { return }
+            DisciplinesList.all.append(newDiscipline)
+            self.tableView.reloadData()
         }
     }
 }

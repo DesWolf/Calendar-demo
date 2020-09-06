@@ -32,8 +32,8 @@ class PaymentTVC: UITableViewController {
 //MARK: Set Screen
 extension PaymentTVC {
     private func configureScreen() {
-        setupNavigationBar()
         setupPicker()
+        tableView.tableFooterView = UIView()
         
         if payment == 0 {
             notPaidCheckImage.image =  #imageLiteral(resourceName: "check")
@@ -43,11 +43,6 @@ extension PaymentTVC {
             payment = 1
             dateOfPaymentLabel.text = paymentDate ?? ""
         }
-    }
-    
-    private func setupNavigationBar(){
-        let nav = self.navigationController?.navigationBar
-        nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.black]
     }
     
     private func setupPicker() {

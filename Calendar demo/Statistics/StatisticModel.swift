@@ -9,11 +9,9 @@
 import Foundation
 
 struct StatisticModel: Decodable {
-    
-    let payTotal: Int?
-    let notPayTotal: Int?
-    let countLessonPay: Int?
-    let countLessonNotPay: Int?
-    let countLessonTotal: Int?
-
+    let payTotal: Int
+    let notPayTotal: Int
+    let countLessonPay: Int
+    let countLessonNotPay: Int
+    let countLessonTotal: Int
 }

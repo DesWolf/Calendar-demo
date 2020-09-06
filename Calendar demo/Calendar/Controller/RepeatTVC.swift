@@ -46,7 +46,7 @@ extension RepeatTVC {
             everyWeekCheckImage.image = #imageLiteral(resourceName: "check")
             repeatLesson = .weekly
         }
-        
+        tableView.tableFooterView = UIView()
         setupPicker(str: endOfRepeat ?? "")
     }
     

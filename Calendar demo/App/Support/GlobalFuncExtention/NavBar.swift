@@ -12,15 +12,9 @@ extension UINavigationBar {
     
     public func set(controller: UIViewController) {
         let navBar = controller.navigationController?.navigationBar
-        
-//        navBar?.setBackgroundImage(UIImage(), for: .default)
-//        navBar?.shadowImage = UIImage()
-//        navBar?.isTranslucent = true
 
         navBar?.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
         navBar?.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.black]
-//        controller.navigationController?.hidesBarsOnSwipe = true
-        
         navBar?.backgroundColor = .appBackGray
     }
 }

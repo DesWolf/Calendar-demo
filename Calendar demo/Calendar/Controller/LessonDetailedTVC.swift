@@ -85,7 +85,7 @@ extension LessonDetailedTVC {
         noteTV.text             = lesson.note ?? ""
         repeatLabel.text        = lesson.repeatedly == "weekly" ? "до \(endDate)" : "Нет"
         priceLabel.text         = "\(lesson.price ?? 0) руб."
-        paymentLabel.text       = lesson.payStatus == 0 ? "Не оплаченно" : "Оплаченно"
+        paymentLabel.text       = lesson.payStatus == 0 ? "Не оплачено" : "Оплачено"
         paymentLabel.textColor  = lesson.payStatus == 0 ? .systemRed : .systemGreen
     }
     
@@ -94,7 +94,7 @@ extension LessonDetailedTVC {
         
         for elem in mass {
             guard let elem = elem else { return }
-            elem.layer.cornerRadius = 13
+            elem.layer.cornerRadius = 10
             elem.backgroundColor = .appBackGray
             elem.layer.borderColor = UIColor.fieldBorder.cgColor
             elem.layer.borderWidth = 0.5
@@ -123,15 +123,12 @@ extension LessonDetailedTVC {
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         let student = IndexPath(row: 1, section: 0)
         let payment = IndexPath(row: 3, section: 0)
-        let note    = IndexPath(row: 4, section: 0)
         
         switch indexPath {
         case student:
             return lesson.studentId == nil ? 0 : super.tableView(tableView, heightForRowAt: indexPath)
         case payment:
             return lesson.studentId == nil ? 0 : super.tableView(tableView, heightForRowAt: indexPath)
-        case note:
-            return lesson.note == "" ? 0 : UITableView.automaticDimension
         default:
             return super.tableView(tableView, heightForRowAt: indexPath)
         }
@@ -154,22 +151,21 @@ extension LessonDetailedTVC {
 // MARK: Navigation
 extension LessonDetailedTVC {
     @IBAction func unwiSegueCurrentLesson(_ segue: UIStoryboardSegue) {
-        
+
         guard let desTVC = segue.source as? PaymentTVC else { return }
-        
+
         paymentLabel.textColor      = desTVC.payment == 0 ? .systemRed : .systemGreen
-        paymentLabel.text           = desTVC.payment == 0 ? "Не оплаченно" : "Оплаченно"
+        paymentLabel.text           = desTVC.payment == 0 ? "Не оплачено" : "Оплачено"
         lesson.payStatus           = desTVC.payment
         lesson.paymentDate         = desTVC.dateOfPaymentLabel.text
-        
+
         changeLesson(lesson: lesson!)
         self.tableView.reloadData()
-        
+
         let nav = self.navigationController?.navigationBar
         nav?.titleTextAttributes = [NSAttributedString.Key.foregroundColor : UIColor.white]
-        
     }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "payment" {
             guard let destVC = segue.destination as? PaymentTVC else { return }

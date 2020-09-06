@@ -11,10 +11,8 @@ import UIKit
 class ProfileCell: UITableViewCell {
     
     @IBOutlet weak var settingName: UILabel!
-    @IBOutlet weak var settingImage: UIImageView!
     
-    func configere(name: String, image: UIImage) {
+    func configere(name: String) {
         self.settingName.text = name
-        self.settingImage.image = image
     }
 }
